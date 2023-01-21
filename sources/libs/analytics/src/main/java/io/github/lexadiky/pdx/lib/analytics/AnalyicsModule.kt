@@ -5,7 +5,7 @@ import io.github.lexadiky.pdx.lib.analytics.sender.BloggerEventSender
 import io.github.lexadiky.pdx.lib.analytics.sender.FirebaseEventSender
 import io.github.lexadiky.pdx.lib.arc.di.module
 
-val AnalyticsModule by module {
+val AnalyticsModule by module("analytics") {
     single { createAnalyticsManager(inject()) }
 }
 

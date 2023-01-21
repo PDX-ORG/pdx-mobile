@@ -2,21 +2,27 @@ package io.github.lexadiky.pdx.lib.arc.di
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
 import org.koin.core.KoinApplication
-import org.koin.core.module.Module
-import org.koin.core.parameter.ParametersDefinition
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.koinApplication
 
 class DIContainer(@PublishedApi internal val application: KoinApplication) {
 
+    private var registeredModules: HashSet<String> = HashSet()
+
     constructor(vararg modules: DIModule) : this(koinApplication {
         modules(modules.map { it.koinModule })
     })
+
+    internal fun registerFeature(modules: Array<out DIModule>) {
+        val newModules = modules.filter { module -> module.name !in registeredModules }
+        newModules.forEach { module ->
+                registeredModules += module.name
+        }
+        application.modules(newModules.map { it.koinModule })
+    }
 
     @Composable
     inline fun <reified T> inject(): T {
@@ -53,13 +59,8 @@ fun DIApplication(container: DIContainer, content: @Composable () -> Unit) {
 @Composable
 fun DIFeature(vararg includes: DIModule, content: @Composable () -> Unit) {
     val diContainer = LocalDIContainer.current
-    diContainer.application.modules(includes.map { it.koinModule })
+    diContainer.registerFeature(includes)
     content()
-    DisposableEffect(Unit) {
-        onDispose {
-            diContainer.application.unloadModules(includes.map { it.koinModule })
-        }
-    }
 }
 
 val di: DIContainer

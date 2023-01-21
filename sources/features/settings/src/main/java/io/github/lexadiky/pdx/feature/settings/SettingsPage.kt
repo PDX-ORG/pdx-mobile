@@ -38,9 +38,11 @@ import androidx.compose.ui.unit.dp
 import io.github.lexadiky.pdx.feature.settings.R.*
 import io.github.lexadiky.pdx.lib.arc.di.DIFeature
 import io.github.lexadiky.pdx.lib.arc.di.di
+import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.theme.custom.CustomTheme
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
+import io.github.lexadiky.pdx.feature.settings.R.string as SettingsStrings
 
 @Composable
 fun SettingsPage() {
@@ -51,6 +53,10 @@ fun SettingsPage() {
 
 @Composable
 private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
+    Decoration("pdx://toolbar/title") {
+        Text(stringResource(id = SettingsStrings.settings_toolbar_title))
+    }
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -58,7 +64,7 @@ private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
         item {
             Text(
                 text = stringResource(
-                    id = string.settings_themes_header,
+                    id = SettingsStrings.settings_themes_header,
                     viewModel.state.currentTheme?.id.orEmpty()
                 ),
                 style = MaterialTheme.typography.headlineLarge,
@@ -74,8 +80,8 @@ private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
         }
         item {
             ListItem(
-                headlineText = { Text(text = stringResource(id = string.settings_achievements_header)) },
-                supportingText = { Text(text = stringResource(id = string.settings_achievements_description)) },
+                headlineText = { Text(text = stringResource(id = SettingsStrings.settings_achievements_header)) },
+                supportingText = { Text(text = stringResource(id = SettingsStrings.settings_achievements_description)) },
                 trailingContent = {
                     Icon(Icons.Default.Star, null)
                 },
@@ -84,8 +90,8 @@ private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
         }
         item {
             ListItem(
-                headlineText = { Text(text = stringResource(id = string.settings_github_header)) },
-                supportingText = { Text(text = stringResource(id = string.settings_github_description)) },
+                headlineText = { Text(text = stringResource(id = SettingsStrings.settings_github_header)) },
+                supportingText = { Text(text = stringResource(id = SettingsStrings.settings_github_description)) },
                 trailingContent = {
                     Icon(painterResource(R.drawable.uikit_ic_github), null)
                 },
@@ -94,8 +100,8 @@ private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
         }
         item {
             ListItem(
-                headlineText = { Text(text = stringResource(id = string.settings_cache_header)) },
-                supportingText = { Text(text = stringResource(id = string.settings_cache_description)) },
+                headlineText = { Text(text = stringResource(id = SettingsStrings.settings_cache_header)) },
+                supportingText = { Text(text = stringResource(id = SettingsStrings.settings_cache_description)) },
                 trailingContent = {
                     Icon(Icons.Default.Delete, null)
                 },

@@ -10,7 +10,7 @@ import org.koin.core.scope.Scope
 import org.koin.dsl.module
 import kotlin.reflect.full.isSubclassOf
 
-class DIModule(internal val koinModule: Module)
+class DIModule(val name: String, internal val koinModule: Module)
 
 class ModuleBuilder(@PublishedApi internal val module: Module) {
 
@@ -68,15 +68,15 @@ class ModuleBuilder(@PublishedApi internal val module: Module) {
     }
 }
 
-fun module(definition: ModuleBuilder.() -> Unit): Lazy<DIModule> {
+fun module(name: String, definition: ModuleBuilder.() -> Unit): Lazy<DIModule> {
     return lazy {
-        DIModule(ModuleBuilder(module { }).apply(definition).module)
+        DIModule(name, ModuleBuilder(module { }).apply(definition).module)
     }
 }
 
-fun eagerModule(definition: ModuleBuilder.() -> Unit): DIModule =
-    DIModule(ModuleBuilder(module { }).apply(definition).module)
+fun eagerModule(name: String, definition: ModuleBuilder.() -> Unit): DIModule =
+    DIModule(name, ModuleBuilder(module { }).apply(definition).module)
 
 @Composable
-fun eagerModule(vararg keys: Any, definition: ModuleBuilder.() -> Unit): DIModule =
-    remember(keys = keys) { eagerModule(definition) }
+fun eagerModule(name: String, vararg keys: Any, definition: ModuleBuilder.() -> Unit): DIModule =
+    remember(keys = keys) { eagerModule(name, definition) }

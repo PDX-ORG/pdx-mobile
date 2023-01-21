@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="settings_toolbar_title">Settings</string>
+
     <string name="settings_themes_header">Theme: %s</string>
 
     <string name="settings_github_header">Start / Report issue on Github</string>

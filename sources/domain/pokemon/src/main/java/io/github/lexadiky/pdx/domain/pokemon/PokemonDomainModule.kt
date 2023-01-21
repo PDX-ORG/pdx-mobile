@@ -5,7 +5,7 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.util.ResourcesLoader
 import io.github.lexadiky.pdx.lib.arc.di.module
 
-val PokemonDomainModule by module {
+val PokemonDomainModule by module("pokemon-domain") {
     single { GetPokemonPreviewUseCase(inject()) }
     single { GetPokemonTypeDamageRelations(inject()) }
 

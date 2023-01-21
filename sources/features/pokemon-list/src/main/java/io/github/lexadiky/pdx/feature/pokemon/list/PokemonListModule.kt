@@ -11,7 +11,7 @@ import io.github.lexadiky.pdx.feature.pokemon.list.usecase.PokemonGenericListIte
 import io.github.lexadiky.pdx.feature.pokemon.list.usecase.PokemonGenericListNavigator
 import io.github.lexadiky.pdx.lib.arc.di.module
 
-internal val PokemonListModule by module {
+internal val PokemonListModule by module("pokemon-list") {
     import(PokemonDomainModule)
     internal {
         viewModel { PokemonFilterViewModel(inject()) }

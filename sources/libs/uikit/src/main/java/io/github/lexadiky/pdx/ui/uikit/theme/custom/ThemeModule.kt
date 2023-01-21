@@ -8,7 +8,7 @@ import io.github.lexadiky.pdx.lib.arc.di.module
 
 @Composable
 internal fun ThemeModule(context: Context, isDark: Boolean): Lazy<DIModule> = remember(context, isDark) {
-    module {
+    module("theme") {
         single { ThemeManager(inject(), isDark) }
     }
 }

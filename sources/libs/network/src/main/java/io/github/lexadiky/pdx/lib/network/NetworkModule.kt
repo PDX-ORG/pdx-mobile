@@ -10,7 +10,7 @@ import io.ktor.serialization.kotlinx.json.*
 import okhttp3.Cache
 import java.io.File
 
-val NetworkModule by module {
+val NetworkModule by module("network") {
     single {
         Json {
             prettyPrint = true

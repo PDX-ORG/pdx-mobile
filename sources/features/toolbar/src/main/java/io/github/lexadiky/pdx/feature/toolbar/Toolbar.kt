@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.github.lexadiky.pdx.lib.arc.di.DIFeature
 import io.github.lexadiky.pdx.lib.arc.di.di
+import io.github.lexadiky.pdx.lib.navigation.decoration.DecorationHost
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.util.scroll.LocalPrimeScrollState
 import io.github.lexadiky.pdx.ui.uikit.util.scroll.asTopAppBarState
@@ -43,9 +44,11 @@ internal fun ToolbarImpl(viewModel: ToolbarViewModel) {
     TopAppBar(
         scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(topAppBarState),
         title = {
-            Text(
-                text = viewModel.state.title.render().value
-            )
+            DecorationHost(decoration = "pdx://toolbar/title") {
+                Text(
+                    text = viewModel.state.title.render().value
+                )
+            }
         },
         navigationIcon = {
             IconButton(
@@ -54,11 +57,9 @@ internal fun ToolbarImpl(viewModel: ToolbarViewModel) {
             )
         },
         actions = {
-            AssistChip(
-                onClick = { /*TODO*/ },
-                label = { Text(text = "Click Me") },
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
+            DecorationHost("pdx://toolbar/actions") {
+                // nothing
+            }
         }
     )
 }

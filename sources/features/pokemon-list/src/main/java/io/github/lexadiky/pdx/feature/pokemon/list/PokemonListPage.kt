@@ -23,10 +23,14 @@ import io.github.lexadiky.pdx.feature.pokemon.list.ui.PokemonFilter
 import io.github.lexadiky.pdx.feature.pokemonlist.R
 import io.github.lexadiky.pdx.lib.arc.di.DIFeature
 import io.github.lexadiky.pdx.lib.arc.di.di
+import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
 
 @Composable
 fun PokemonListPage() {
     DIFeature(PokemonListModule) {
+        Decoration(decoration = "pdx://toolbar/title") {
+            Text(stringResource(id = R.string.pokemon_list_title))
+        }
         GenericListPage<PokemonGenericListItem>(
             viewModel = di.inject(),
             filterBlock = { callback ->

@@ -6,7 +6,7 @@ import io.github.lexadiky.pdx.feature.typechart.entity.PokemonSuggester
 import io.github.lexadiky.pdx.feature.typechart.search.TypeSearchViewModel
 import io.github.lexadiky.pdx.lib.arc.di.module
 
-val TypeModule by module {
+val TypeModule by module("type") {
     import(PokemonDomainModule)
 
     internal {
