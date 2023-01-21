@@ -7,4 +7,13 @@
     <string name="achievement_lib_shiny_shake_name">Shiny Shake</string>
     <string name="achievement_lib_shiny_shake_description">Shake device to see shiny pokemon!</string>
 
+    <string name="achievement_lib_whois_beginner_name">Who IS? Beginner</string>
+    <string name="achievement_lib_whois_beginner_description">Have a streak of at least 3 pokemon</string>
+
+    <string name="achievement_lib_whois_trainer_name">Who IS? Trainer</string>
+    <string name="achievement_lib_whois_trainer_description">Have a streak of at least 10 pokemon</string>
+
+    <string name="achievement_lib_whois_champion_name">Who IS? Champion</string>
+    <string name="achievement_lib_whois_champion_description">Have a streak of at least 100 pokemon</string>
+
 </resources>

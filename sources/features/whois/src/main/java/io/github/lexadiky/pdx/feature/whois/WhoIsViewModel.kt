@@ -6,11 +6,16 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
+import io.github.lexadiky.pdx.domain.achievement.AchievementManager
+import io.github.lexadiky.pdx.domain.achievement.library.WhoIsBeginnerAchievement
+import io.github.lexadiky.pdx.domain.achievement.library.WhoIsChampionAchievement
+import io.github.lexadiky.pdx.domain.achievement.library.WhoIsTrainerAchievement
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
 import io.github.lexadiky.pdx.feature.whois.entity.WhoIsPokemonVariant
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.lib.fs.FsManager
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
@@ -19,11 +24,16 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
 
-class WhoIsViewModel(
-    private val getPokemonPreviewUseCase: GetPokemonPreviewUseCase
+internal class WhoIsViewModel(
+    private val getPokemonPreviewUseCase: GetPokemonPreviewUseCase,
+    private val achievementManager: AchievementManager,
+    fsManager: FsManager
 ) : ViewModel() {
 
-    var state by mutableStateOf(WhoIsState())
+    private var streakFsState by fsManager.state("whois")
+        .int("streak", 0)
+
+    var state by mutableStateOf(WhoIsState(streak = streakFsState))
         private set
 
     init {
@@ -44,11 +54,25 @@ class WhoIsViewModel(
             return
         }
         viewModelScope.launch {
-            state = state.copy(masked = false)
+            val newStreak = if (answer == state.whoisTarget) state.streak + 1 else 0
+            recordNewStreak(newStreak)
+            state = state.copy(
+                masked = false,
+                streak = newStreak
+            )
             delay(GUESS_RESULT_LEN)
             state = state
                 .copy(masked = true)
                 .reshuffleNew()
+        }
+    }
+
+    private fun recordNewStreak(newStreak: Int) {
+        streakFsState = newStreak
+        when {
+            newStreak >= 100 -> achievementManager.give(WhoIsChampionAchievement())
+            newStreak >= 10 -> achievementManager.give(WhoIsTrainerAchievement())
+            newStreak >= 3 -> achievementManager.give(WhoIsBeginnerAchievement())
         }
     }
 
@@ -57,6 +81,7 @@ class WhoIsViewModel(
             WhoIsPokemonVariant(
                 image = ImageResource.from(preview.normalSprite!!),
                 name = StringResource.from(preview.localNames[PokemonLanguage.ENGLISH]!!),
+                color = preview.types.first().toColorResource(),
                 id = preview.name
             )
         }
@@ -64,6 +89,6 @@ class WhoIsViewModel(
 
     companion object {
 
-        private val GUESS_RESULT_LEN = 5.seconds
+        private val GUESS_RESULT_LEN = 3.seconds
     }
 }

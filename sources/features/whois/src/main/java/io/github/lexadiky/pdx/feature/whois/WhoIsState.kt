@@ -8,7 +8,8 @@ data class WhoIsState(
     val allPokemon: List<WhoIsPokemonVariant> = emptyList(),
     val currentVariants: List<WhoIsPokemonVariant> = emptyList(),
     val whoisTarget: WhoIsPokemonVariant? = null,
-    val masked: Boolean = true
+    val masked: Boolean = true,
+    val streak: Int = 0
 ) {
     val isLoading = allPokemon.isEmpty()
 
