@@ -7,11 +7,17 @@ import androidx.lifecycle.ViewModel
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemon.list.entity.PokemonSearchQuery
 
-internal class PokemonFilterViewModel(private val queryChangedCallback: (PokemonSearchQuery) -> Unit) :
-    ViewModel() {
+internal class PokemonFilterViewModel(
+    private val queryChangedCallback: (PokemonSearchQuery) -> Unit,
+    initialQuery: PokemonSearchQuery
+) : ViewModel() {
 
-    var state: PokemonFilterState by mutableStateOf(PokemonFilterState())
+    var state: PokemonFilterState by mutableStateOf(PokemonFilterState(query = initialQuery))
         private set
+
+    init {
+        queryChangedCallback(initialQuery)
+    }
 
     fun showTypeFilterDialog() {
         state = state.copy(showTypeFilterDialog = true)

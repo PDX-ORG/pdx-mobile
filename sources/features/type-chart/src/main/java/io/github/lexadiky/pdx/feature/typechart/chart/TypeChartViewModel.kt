@@ -7,10 +7,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
+import io.github.lexadiky.pdx.lib.navigation.Navigator
 import kotlinx.coroutines.launch
 
 internal class TypeChartViewModel(
-    private val getPokemonDamageRelations: GetPokemonTypeDamageRelations
+    private val getPokemonDamageRelations: GetPokemonTypeDamageRelations,
+    private val navigator: Navigator
 ) : ViewModel() {
 
     var state by mutableStateOf(TypeChartState())
@@ -28,5 +30,9 @@ internal class TypeChartViewModel(
 
     fun onTypeClicked(type: PokemonType) {
         state = state.toggleType(type)
+    }
+
+    fun openTypeDetails(type: PokemonType) = viewModelScope.launch {
+        navigator.navigate("pdx://type/${type.id}")
     }
 }

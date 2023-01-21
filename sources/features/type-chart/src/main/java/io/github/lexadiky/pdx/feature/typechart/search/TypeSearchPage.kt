@@ -88,9 +88,17 @@ internal fun TypeSearchPage(viewModel: TypeSearchViewModel = di.inject()) {
 
         item {
             Spacer(modifier = Modifier.size(MaterialTheme.grid.x2))
-            EffectChart(stringResource(id = R.string.type_chart_section_attack_title), viewModel.state.attackDamageRelationTable)
+            EffectChart(
+                title = stringResource(id = R.string.type_chart_section_attack_title),
+                table = viewModel.state.attackDamageRelationTable,
+                onTypeClicked = { viewModel.onTypeClicked(it) }
+            )
             Spacer(modifier = Modifier.size(MaterialTheme.grid.x4))
-            EffectChart(stringResource(id = R.string.type_chart_section_defence_title), viewModel.state.defenceDamageRelationTable)
+            EffectChart(
+                title = stringResource(id = R.string.type_chart_section_defence_title),
+                table = viewModel.state.defenceDamageRelationTable,
+                onTypeClicked = { viewModel.onTypeClicked(it) }
+            )
         }
     }
 }

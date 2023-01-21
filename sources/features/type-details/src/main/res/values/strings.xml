@@ -2,5 +2,10 @@
 <resources>
 
     <string name="type_damage_modifier">x %s</string>
+    <string name="type_damage_section_to">Damage to</string>
+    <string name="type_damage_section_from">Damage from</string>
+    <string name="type_moves_button">See moves</string>
+    <string name="type_featured_pokemon_title">Featured pokemon</string>
+    <string name="type_featured_pokemon_link">All</string>
 
 </resources>

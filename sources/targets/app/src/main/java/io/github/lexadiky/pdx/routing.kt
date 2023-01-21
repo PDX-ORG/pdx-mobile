@@ -29,7 +29,7 @@ fun routing(): PdxNavGraphBuilder.() -> Unit {
             toggleManager.ifEnabled(NewsFeatureToggle) {
                 page("pdx://news") { NewsFeedPage() }
             }
-            page("pdx://pokemon") { PokemonListPage() }
+            page("pdx://pokemon?types={types}") { PokemonListPage() }
             page("pdx://pokemon/{id}") {
                 val id = argument(name = "id") { error("id required") }
                 PokemonDetailsPage(pokemonId = id)

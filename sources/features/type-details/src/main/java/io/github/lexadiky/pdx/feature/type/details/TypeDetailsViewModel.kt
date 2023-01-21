@@ -14,13 +14,15 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
 import io.github.lexadiky.pdx.feature.type.details.entity.TypePokemonPreview
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.lib.navigation.Navigator
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 internal class TypeDetailsViewModel(
     typeId: String,
     private val getPokemonTypeDamageRelations: GetPokemonTypeDamageRelations,
-    private val getPokemonPreviewUseCase: GetPokemonPreviewUseCase
+    private val getPokemonPreviewUseCase: GetPokemonPreviewUseCase,
+    private val navigator: Navigator
 ) : ViewModel() {
 
     var state by mutableStateOf(TypeDetailsState.from(typeId))
@@ -38,6 +40,27 @@ internal class TypeDetailsViewModel(
         }
     }
 
+    fun hideError() {
+        state = state.copy(error = null)
+    }
+
+    fun openPokemonDetails(pokemon: TypePokemonPreview) = viewModelScope.launch {
+        navigator.navigate("pdx://pokemon/${pokemon.id}")
+    }
+
+    fun openTypeDetails(type: PokemonType) = viewModelScope.launch {
+        navigator.navigate("pdx://type/${type.id}")
+    }
+
+    fun openMovesList() = viewModelScope.launch {
+        navigator.navigate("pdx://move?type=${state.type.id}")
+    }
+
+    fun openPokemonList() = viewModelScope.launch {
+        navigator.navigate("pdx://pokemon?types=${state.type.id}")
+    }
+
+
     private fun onStateLoaded(damageRelation: Map<PokemonType, PokemonTypeDamageRelation>, pokemon: List<PokemonPreview>): TypeDetailsState {
         return state.copy(
             damageRelations = damageRelation.getOrDefault(state.type, null),
@@ -46,10 +69,6 @@ internal class TypeDetailsViewModel(
                 .take(FEATURED_POKEMON_BATCH_SIZE)
                 .map { TypePokemonPreview.from(it) }
         )
-    }
-
-    fun hideError() {
-        state = state.copy(error = null)
     }
 
     companion object {

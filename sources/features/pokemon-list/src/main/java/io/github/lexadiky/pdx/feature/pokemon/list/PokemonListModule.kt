@@ -14,11 +14,12 @@ import io.github.lexadiky.pdx.lib.arc.di.module
 internal val PokemonListModule by module("pokemon-list") {
     import(PokemonDomainModule)
     internal {
-        viewModel { PokemonFilterViewModel(inject()) }
-        viewModel {
+        viewModel { params -> PokemonFilterViewModel(inject(), params.get()) }
+        viewModel { params ->
             GenericListViewModel<PokemonGenericListItem>(
                 dataSource = inject(),
-                navigator = inject()
+                navigator = inject(),
+                initialSearchQuery = params.get()
             )
         }
         single<GenericListItemDataSource<PokemonGenericListItem>> { PokemonGenericListItemSource(inject()) }

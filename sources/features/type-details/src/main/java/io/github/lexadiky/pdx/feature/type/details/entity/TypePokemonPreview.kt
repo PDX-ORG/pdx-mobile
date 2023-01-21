@@ -10,6 +10,7 @@ import io.github.lexadiky.pdx.lib.resources.string.from
 internal class TypePokemonPreview(
     val name: StringResource,
     val image: ImageResource,
+    val id: String
 ) {
 
     companion object {
@@ -17,7 +18,8 @@ internal class TypePokemonPreview(
         fun from(preview: PokemonPreview): TypePokemonPreview {
             return TypePokemonPreview(
                 name = StringResource.from(preview.localNames[PokemonLanguage.ENGLISH]!!),
-                image = ImageResource.from(preview.normalSprite ?: "")
+                image = ImageResource.from(preview.normalSprite ?: ""),
+                id = preview.name
             )
         }
     }

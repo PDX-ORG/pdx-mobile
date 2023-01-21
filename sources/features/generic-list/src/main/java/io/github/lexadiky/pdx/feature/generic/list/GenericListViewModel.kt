@@ -16,10 +16,11 @@ import kotlinx.coroutines.launch
 
 class GenericListViewModel<T : GenericListItem>(
     private val dataSource: GenericListItemDataSource<T>,
-    private val navigator: GenericListNavigator<T>
+    private val navigator: GenericListNavigator<T>,
+    initialSearchQuery: SearchQuery<T>
 ) : ViewModel() {
 
-    var state by mutableStateOf(GenericListState<T>())
+    var state by mutableStateOf(GenericListState(query = initialSearchQuery, searchActivated = !initialSearchQuery.isEmpty))
         private set
 
     init {
@@ -34,7 +35,7 @@ class GenericListViewModel<T : GenericListItem>(
     }
 
     fun updateQuery(query: SearchQuery<T>) {
-        state = state.copy(query = query)
+        state = state.copy(query = query, searchActivated = true)
     }
 
     fun openDetails(item: T) = viewModelScope.launch {

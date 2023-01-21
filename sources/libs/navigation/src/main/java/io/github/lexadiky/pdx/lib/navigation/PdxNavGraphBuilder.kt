@@ -24,7 +24,9 @@ class PdxNavGraphBuilder(private val internal: NavGraphBuilder) {
 
     private fun content(route: String, content: @Composable PageContext.() -> Unit) {
         internal.composable(route) { backstackEntry ->
-            val context = remember(backstackEntry) { PageContext(backstackEntry) }
+            val context = remember(backstackEntry) {
+                PageContext(backstackEntry)
+            }
             context.content()
         }
     }

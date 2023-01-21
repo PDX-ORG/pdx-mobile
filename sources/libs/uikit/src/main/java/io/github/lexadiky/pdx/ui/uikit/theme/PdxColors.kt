@@ -7,6 +7,8 @@ object PdxColors {
 
     val externalBrands = Brands
 
+    val link = Color(0xFF2E86D3)
+
     object Brands {
 
         val reddit = Color(0xFFFF6314)

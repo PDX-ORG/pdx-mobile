@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,6 +17,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -23,6 +25,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.android.material.color.utilities.Scheme
@@ -34,6 +38,7 @@ import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.resources.renderNow
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
+import io.github.lexadiky.pdx.ui.uikit.theme.pdx
 import io.github.lexadiky.pdx.ui.uikit.util.saturation
 import io.github.lexadiky.pdx.ui.uikit.util.toColorScheme
 import io.github.lexadiky.pdx.ui.uikit.widget.PillChip
@@ -84,13 +89,21 @@ internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
 
         item {
             viewModel.state.damageTable?.let { ddt ->
-                DamageChart(title = "Damage to", table = ddt.to)
+                DamageChart(
+                    title = stringResource(id = R.string.type_damage_section_to),
+                    table = ddt.to,
+                    onTypeClicked = { viewModel.openTypeDetails(it) }
+                )
             }
         }
 
         item {
             viewModel.state.damageTable?.let { ddt ->
-                DamageChart(title = "Damage from", table = ddt.from)
+                DamageChart(
+                    title = stringResource(id = R.string.type_damage_section_from),
+                    table = ddt.from,
+                    onTypeClicked = { viewModel.openTypeDetails(it) }
+                )
             }
         }
 
@@ -102,10 +115,23 @@ internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1)
             ) {
-                Text(
-                    text = "Featured Pokemon",
-                    style = MaterialTheme.typography.titleMedium,
-                )
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.type_featured_pokemon_title),
+                        style = MaterialTheme.typography.titleMedium,
+                    )
+                    TextButton(onClick = { viewModel.openPokemonList() }) {
+                        Text(
+                            text = stringResource(id = R.string.type_featured_pokemon_link),
+                            style = MaterialTheme.typography.titleMedium
+                                .copy(color = MaterialTheme.colorScheme.pdx.link)
+                        )
+                    }
+                }
                 viewModel.state.featuredPokemon.forEach { preview ->
                     SmallWikiPreview(
                         title = preview.name.renderNow(),
@@ -113,7 +139,7 @@ internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
                         icon = preview.image.render(
                             transformations = listOf(ImageTransformation.CropTransparent)
                         ),
-                        onClick = { /*TODO*/ },
+                        onClick = { viewModel.openPokemonDetails(preview) },
                         isOutlined = true,
                         colors = CardDefaults.outlinedCardColors(
                             containerColor = colorScheme.surfaceVariant
@@ -130,13 +156,15 @@ internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = { viewModel.openMovesList() },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = colorScheme.primary
                     ),
                     modifier = Modifier.fillMaxWidth(0.85f)
                 ) {
-                    Text(text = "See moves")
+                    Text(
+                        text = stringResource(id = R.string.type_moves_button)
+                    )
                 }
             }
         }
@@ -151,6 +179,7 @@ internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
 internal fun DamageChart(
     title: String,
     table: Map<PokemonType, Float>,
+    onTypeClicked: (PokemonType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     if (table.isNotEmpty()) {
@@ -173,7 +202,8 @@ internal fun DamageChart(
                         labelColor = labelColor,
                         trail = { Text(text = stringResource(id = R.string.type_damage_modifier, value)) },
                         trailColor = PillChipDefaults.trailColor(labelColor),
-                        textColor = MaterialTheme.colorScheme.onError
+                        textColor = MaterialTheme.colorScheme.onError,
+                        onClick = { onTypeClicked(type) }
                     )
                 }
             }

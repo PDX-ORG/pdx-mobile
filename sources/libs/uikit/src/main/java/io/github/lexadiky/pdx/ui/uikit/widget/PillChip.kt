@@ -1,16 +1,21 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package io.github.lexadiky.pdx.ui.uikit.widget
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.util.saturation
@@ -28,7 +33,8 @@ fun PillChip(
     trail: @Composable () -> Unit,
     trailColor: Color,
     textColor: Color,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
 ) {
     val textStyle = MaterialTheme.typography.titleSmall.copy(
         color = textColor
@@ -37,6 +43,8 @@ fun PillChip(
         Surface(
             shape = RoundedCornerShape(MaterialTheme.grid.x1),
             modifier = modifier
+                .clip(RoundedCornerShape(MaterialTheme.grid.x1))
+                .clickable { onClick() }
         ) {
             Row {
                 Box(

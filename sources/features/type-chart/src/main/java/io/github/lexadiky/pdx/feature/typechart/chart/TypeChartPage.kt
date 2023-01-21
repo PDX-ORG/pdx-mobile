@@ -32,12 +32,14 @@ internal fun TypeChartPage(viewModel: TypeChartViewModel = di.inject()) {
         EffectChart(
             title = stringResource(id = R.string.type_chart_section_attack_title),
             table = viewModel.state.attackDamageRelationTable,
-            modifier = Modifier.padding(MaterialTheme.grid.x2)
+            modifier = Modifier.padding(MaterialTheme.grid.x2),
+            onTypeClicked = { viewModel.openTypeDetails(it) }
         )
         EffectChart(
             title = stringResource(id = R.string.type_chart_section_defence_title),
             table = viewModel.state.defenceDamageRelationTable,
-            modifier = Modifier.padding(MaterialTheme.grid.x2)
+            modifier = Modifier.padding(MaterialTheme.grid.x2),
+            onTypeClicked = { viewModel.openTypeDetails(it) }
         )
     }
 }

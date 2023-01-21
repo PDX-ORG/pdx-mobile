@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.flowlayout.FlowRow
+import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.typechart.R
 import io.github.lexadiky.pdx.feature.typechart.entity.TypeDamageValue
 import io.github.lexadiky.pdx.ui.uikit.resources.render
@@ -22,6 +23,7 @@ import io.github.lexadiky.pdx.ui.uikit.widget.PillChipDefaults
 internal fun EffectChart(
     title: String,
     table: List<TypeDamageValue>,
+    onTypeClicked: (PokemonType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     if (table.isNotEmpty()) {
@@ -50,7 +52,8 @@ internal fun EffectChart(
                             labelColor = labelColor,
                             trail = { Text(text = stringResource(id = R.string.type_chart_modifier, relation.value)) },
                             trailColor = PillChipDefaults.trailColor(labelColor),
-                            textColor = MaterialTheme.colorScheme.onError
+                            textColor = MaterialTheme.colorScheme.onError,
+                            onClick = { onTypeClicked(relation.type) },
                         )
                     }
                 }

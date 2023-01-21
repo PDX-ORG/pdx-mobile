@@ -6,6 +6,6 @@ import io.github.lexadiky.pdx.lib.arc.di.module
 val TypeDetailsModule by module("type-details") {
     import(PokemonDomainModule)
     internal {
-        viewModel { arg -> TypeDetailsViewModel(arg.get(), inject(), inject()) }
+        viewModel { arg -> TypeDetailsViewModel(arg.get(), inject(), inject(), inject()) }
     }
 }

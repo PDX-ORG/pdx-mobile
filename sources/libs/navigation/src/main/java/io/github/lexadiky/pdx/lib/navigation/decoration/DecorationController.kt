@@ -15,6 +15,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.createGraph
 import androidx.navigation.get
+import com.google.accompanist.navigation.material.BottomSheetNavigator
 import io.github.lexadiky.pdx.lib.navigation.Navigator
 
 class DecorationController(
@@ -27,6 +28,9 @@ class DecorationController(
     }
 
     override fun onDestinationChanged(controller: NavController, destination: NavDestination, arguments: Bundle?) {
+        if (destination.navigatorName == "BottomSheetNavigator") {
+            return
+        }
         graphCache.values.forEach { host ->
             host.navController.navigate(START_DESTINATION)
         }
@@ -35,16 +39,19 @@ class DecorationController(
     @Composable
     internal fun Render(decoration: String, route: String, content: @Composable () -> Unit) {
         val currentEntry by navigator.controller.currentBackStackEntryAsState()
+        val currentRoute = currentEntry?.destination?.route
         LaunchedEffect(decoration, route, currentEntry) {
-            val host = graphCache[decoration] ?: return@LaunchedEffect
-            val composeNavigator = host.navController.navigatorProvider[ComposeNavigator::class]
-            val wrappedContent: @Composable (NavBackStackEntry) -> Unit = { content() }
-            host.navController.graph.addDestination(
-                ComposeNavigator.Destination(composeNavigator, wrappedContent).apply {
-                    this.route = route
-                }
-            )
-            host.navController.navigate(route)
+            if (currentRoute == route) {
+                val host = graphCache[decoration] ?: return@LaunchedEffect
+                val composeNavigator = host.navController.navigatorProvider[ComposeNavigator::class]
+                val wrappedContent: @Composable (NavBackStackEntry) -> Unit = { content() }
+                host.navController.graph.addDestination(
+                    ComposeNavigator.Destination(composeNavigator, wrappedContent).apply {
+                        this.route = route
+                    }
+                )
+                host.navController.navigate(route)
+            }
         }
     }
 
