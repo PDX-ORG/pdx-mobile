@@ -46,7 +46,7 @@ fun PdxScaffold(
             Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                 Scaffold(
                     topBar = { topBar() },
-                    content = { paddig -> content(paddig) },
+                    content = { padding -> content(padding) },
                 )
             }
         }

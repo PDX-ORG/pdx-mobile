@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
             val toolbarConnector = rememberToolbarConnector(
                 onDrawerToggled = { if (drawerState.isOpen) drawerState.close() else drawerState.open() }
             )
-
+            
             NavigationFeature(routing()) {
                 PdxScaffold(
                     drawerState = drawerState,

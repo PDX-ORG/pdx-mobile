@@ -30,12 +30,13 @@ import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.sizes
+import io.github.lexadiky.pdx.ui.uikit.util.scroll.LocalPrimeScrollState
 import io.github.lexadiky.pdx.ui.uikit.widget.FastScrollWheel
 import io.github.lexadiky.pdx.ui.uikit.widget.LargeWikiPreview
 import io.github.lexadiky.pdx.ui.uikit.widget.TagItem
 import io.github.lexadiky.pdx.ui.uikit.widget.ToggleableFab
 
-typealias FilterBlock<T> =  @Composable (queryCallback: (SearchQuery<T>) -> Unit) -> Unit
+typealias FilterBlock<T> = @Composable (queryCallback: (SearchQuery<T>) -> Unit) -> Unit
 
 @Composable
 fun <T : GenericListItem> GenericListPage(
@@ -63,75 +64,81 @@ private fun <T : GenericListItem> GenericListPageImpl(
         viewModel.hideError()
     }
 
-    Scaffold(
-        content = { padding ->
-            Box(
-                modifier = Modifier
-                    .padding(padding)
-                    .fillMaxSize()
-            ) {
-                val columnState = rememberLazyListState()
-                LaunchedEffect(viewModel.state.searchActivated) {
-                    if (viewModel.state.searchActivated) {
-                        columnState.scrollToItem(0)
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        val columnState = LocalPrimeScrollState.current
+            .asLazyListState()
+
+        LaunchedEffect(viewModel.state.searchActivated) {
+            if (viewModel.state.searchActivated) {
+                columnState.scrollToItem(0)
+            }
+        }
+        LazyColumn(
+            state = columnState,
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s2),
+            contentPadding = PaddingValues(MaterialTheme.sizes.s2)
+        ) {
+            if (viewModel.state.searchActivated && viewModel.state.searchAvailable) {
+                item(SEARCH_QUERY_ITEM_ID) {
+                    filterBlock?.invoke { query ->
+                        viewModel.updateQuery(query)
                     }
                 }
-                LazyColumn(
-                    state = columnState,
-                    verticalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s2),
-                    contentPadding = PaddingValues(MaterialTheme.sizes.s2)
-                ) {
-                    if (viewModel.state.searchActivated && viewModel.state.searchAvailable) {
-                        item(SEARCH_QUERY_ITEM_ID) {
-                            filterBlock?.invoke { query ->
-                                viewModel.updateQuery(query)
-                            }
-                        }
-                    }
-                    items(viewModel.state.visibleItems, { entry -> entry.id }) { entry ->
-                        LargeWikiPreview(
-                            preTitle = entry.note.render().value,
-                            title = entry.title.render().value,
-                            image = genericListItemPreviewPainter(
-                                item = entry,
-                                useAlternativeImages = viewModel.state.useAlternativeImages
-                            ),
-                            tags = entry.tags.map { TagItem(it.text, it.color) },
-                            onClick = { viewModel.openDetails(entry) },
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                    }
-                }
-                FastScrollWheel(
-                    items = viewModel.state.visibleItems,
-                    columnState = columnState,
-                    modifier = Modifier.align(Alignment.CenterEnd)
+            }
+            items(viewModel.state.visibleItems, { entry -> entry.id }) { entry ->
+                LargeWikiPreview(
+                    preTitle = entry.note.render().value,
+                    title = entry.title.render().value,
+                    image = genericListItemPreviewPainter(
+                        item = entry,
+                        useAlternativeImages = viewModel.state.useAlternativeImages
+                    ),
+                    tags = entry.tags.map { TagItem(it.text, it.color) },
+                    onClick = { viewModel.openDetails(entry) },
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
-        },
-        floatingActionButton = {
-            if (viewModel.state.searchAvailable) {
-                SearchModeToggleFab(viewModel.state) {
-                    viewModel.toggleSearchMode()
-                }
-            }
-        },
-        modifier = Modifier.fillMaxSize()
-    )
+        }
+        FastScrollWheel(
+            items = viewModel.state.visibleItems,
+            columnState = columnState,
+            modifier = Modifier.align(Alignment.CenterEnd)
+        )
+
+        if (viewModel.state.searchAvailable) {
+            SearchModeToggleFab(
+                state = viewModel.state,
+                onToggle = { viewModel.toggleSearchMode() },
+                modifier = Modifier.align(Alignment.BottomEnd)
+                    .padding(MaterialTheme.sizes.s2)
+            )
+        }
+    }
 }
 
 @Composable
-private fun SearchModeToggleFab(state: GenericListState<*>, onToggle: () -> Unit) {
+private fun SearchModeToggleFab(
+    state: GenericListState<*>,
+    onToggle: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     ToggleableFab(
         state.searchActivated,
         toggled = { Icon(Icons.Default.Close, null) },
         untoggled = { Icon(Icons.Default.Search, null) },
-        onToggle = onToggle
+        onToggle = onToggle,
+        modifier = modifier
     )
 }
 
 @Composable
-private fun genericListItemPreviewPainter(item: GenericListItem, useAlternativeImages: Boolean): Painter {
+private fun genericListItemPreviewPainter(
+    item: GenericListItem,
+    useAlternativeImages: Boolean
+): Painter {
     return if (!useAlternativeImages && item.secondaryImage != null) {
         item.secondaryImage!!.render(listOf(ImageTransformation.CROP_TRANSPARTENT))
     } else {

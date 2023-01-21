@@ -12,13 +12,20 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.github.lexadiky.pdx.lib.arc.di.DIFeature
 import io.github.lexadiky.pdx.lib.arc.di.di
 import io.github.lexadiky.pdx.ui.uikit.resources.render
+import io.github.lexadiky.pdx.ui.uikit.util.scroll.LocalPrimeScrollState
+import io.github.lexadiky.pdx.ui.uikit.util.scroll.asTopAppBarState
 import kotlinx.coroutines.launch
 
 @Composable
@@ -31,8 +38,10 @@ fun Toolbar(connector: ToolbarConnector) {
 @Composable
 internal fun ToolbarImpl(viewModel: ToolbarViewModel) {
     val scope = rememberCoroutineScope()
+    val topAppBarState = LocalPrimeScrollState.current.asTopAppBarState()
+
     TopAppBar(
-        scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(),
+        scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(topAppBarState),
         title = {
             Text(
                 text = viewModel.state.title.render().value

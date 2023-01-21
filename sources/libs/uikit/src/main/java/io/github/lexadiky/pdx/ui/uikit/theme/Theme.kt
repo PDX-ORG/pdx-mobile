@@ -25,10 +25,7 @@ import io.github.lexadiky.pdx.lib.arc.di.di
 import io.github.lexadiky.pdx.ui.uikit.image.ProvideLocalImageLoader
 import io.github.lexadiky.pdx.ui.uikit.theme.custom.ThemeManager
 import io.github.lexadiky.pdx.ui.uikit.theme.custom.ThemeModule
-
-private val DarkColorScheme = darkColorScheme()
-
-private val LightColorScheme = lightColorScheme()
+import io.github.lexadiky.pdx.ui.uikit.util.scroll.ProvideLocalPrimeScrollState
 
 @Composable
 fun PdxTheme(
@@ -50,11 +47,15 @@ fun PdxTheme(
             }
         }
 
-        ProvideLocalImageLoader {
-            MaterialTheme(
-                colorScheme = colorScheme,
-                content = content
-            )
+        ProvideLocalPrimeScrollState {
+            ProvideLocalImageLoader {
+                ProvideLocalImageLoader {
+                    MaterialTheme(
+                        colorScheme = colorScheme,
+                        content = content
+                    )
+                }
+            }
         }
     }
 }

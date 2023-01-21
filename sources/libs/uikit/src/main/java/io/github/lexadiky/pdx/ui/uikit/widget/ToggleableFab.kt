@@ -7,6 +7,7 @@ import androidx.compose.animation.scaleOut
 import androidx.compose.animation.with
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -14,9 +15,13 @@ fun ToggleableFab(
     isToggled: Boolean,
     toggled: @Composable () -> Unit,
     untoggled: @Composable () -> Unit,
-    onToggle: () -> Unit
+    onToggle: () -> Unit,
+    modifier: Modifier
 ) {
-    FloatingActionButton(onClick = { onToggle() }) {
+    FloatingActionButton(
+        onClick = { onToggle() },
+        modifier = modifier
+    ) {
         AnimatedContent(
             targetState = isToggled,
             transitionSpec = {
