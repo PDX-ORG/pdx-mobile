@@ -3,6 +3,7 @@ package io.github.lexadiky.pdx.feature.drawer.domain
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
@@ -23,6 +24,13 @@ internal class DrawerItemSource(private val navigator: Navigator) {
         return flowOf(
             listOfNotNull(
                 DrawerItem.UserAccount,
+                DrawerItem.Navigation(
+                    icon = ImageResource.from(Icons.Default.Home),
+                    title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_home_title),
+                    selected = false,
+                    route = "pdx://home"
+                ),
+                DrawerItem.Divider,
                 DrawerItem.Navigation(
                     icon = ImageResource.from(R.drawable.uikit_ic_pokeball),
                     title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_pokemon_title),

@@ -17,4 +17,7 @@
     <string name="settings_achievements_option_forget_title">Forget all achievements</string>
     <string name="settings_achievements_option_forget_subtitle">If you want to receive them one more time</string>
 
+    <string name="settings_achievements_option_onboarding_title">No achievements yet</string>
+    <string name="settings_achievements_option_onboarding_subtitle">Keep using application, maybe you will find some</string>
+
 </resources>

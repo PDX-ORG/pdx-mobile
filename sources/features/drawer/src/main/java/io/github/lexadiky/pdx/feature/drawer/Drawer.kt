@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
+import io.github.lexadiky.pdx.feature.drawer.accountcard.AccountCard
 import io.github.lexadiky.pdx.feature.drawer.entity.DrawerItem
 import io.github.lexadiky.pdx.lib.arc.di.DIFeature
 import io.github.lexadiky.pdx.lib.arc.di.di
@@ -65,51 +66,6 @@ internal fun DrawerImpl(viewModel: DrawerViewModel) {
                     onClick = { viewModel.onItemClicked(item) },
                     selected = false
                 )
-            }
-        }
-    }
-}
-
-@Composable
-private fun AccountCard() {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(MaterialTheme.grid.x1)
-    ) {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(MaterialTheme.grid.x1)
-        ) {
-            Image(
-                imageVector = Icons.Default.Person,
-                contentDescription = null,
-                modifier = Modifier
-                    .background(MaterialTheme.colorScheme.background, MaterialTheme.shapes.small)
-                    .size(MaterialTheme.grid.x4)
-                    .clip(MaterialTheme.shapes.small)
-            )
-            Text(
-                text = "User Name #232 a b c d e f g",
-                style = MaterialTheme.typography.titleMedium,
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 1
-            )
-        }
-        LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1),
-            contentPadding = PaddingValues(horizontal = MaterialTheme.grid.x1),
-            modifier = Modifier.padding(bottom = MaterialTheme.grid.x1)
-        ) {
-            repeat(3) {
-                item {
-                    AssistChip(
-                        onClick = { /*TODO*/ },
-                        label = { Text(text = "MyDex 23") }
-                    )
-                }
             }
         }
     }

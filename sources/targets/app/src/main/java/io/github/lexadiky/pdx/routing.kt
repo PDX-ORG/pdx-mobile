@@ -23,6 +23,7 @@ fun routing(): PdxNavGraphBuilder.() -> Unit {
 
     return remember(toggleManager) {
         {
+            page("pdx://home") {}
             page("pdx://settings") { SettingsPage() }
             page("pdx://settings/achievements") { AchievementSettingsPage() }
             toggleManager.ifEnabled(NewsFeatureToggle) {

@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
                 onDrawerToggled = { if (drawerState.isOpen) drawerState.close() else drawerState.open() }
             )
             
-            NavigationFeature(routing()) {
+            NavigationFeature(routing(), "pdx://home") {
                 PdxScaffold(
                     drawerState = drawerState,
                     drawerContent = { Drawer() },

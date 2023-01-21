@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -44,14 +45,24 @@ private fun AchievementSettingsPageImpl(viewModel: AchievementSettingsViewModel 
                 }
             )
         }
-        item { Divider() }
-        item {
-            ListItem(
-                headlineText = { Text(stringResource(id = R.string.settings_achievements_option_forget_title)) },
-                supportingText = { Text(stringResource(id = R.string.settings_achievements_option_forget_subtitle)) },
-                trailingContent = { Icon(Icons.Default.Delete, null) },
-                modifier = Modifier.clickable { viewModel.dropAllAchievementData() }
-            )
+        if (viewModel.state.availableAchievements.isNotEmpty()) {
+            item { Divider() }
+            item {
+                ListItem(
+                    headlineText = { Text(stringResource(id = R.string.settings_achievements_option_forget_title)) },
+                    supportingText = { Text(stringResource(id = R.string.settings_achievements_option_forget_subtitle)) },
+                    trailingContent = { Icon(Icons.Default.Delete, null) },
+                    modifier = Modifier.clickable { viewModel.dropAllAchievementData() }
+                )
+            }
+        } else {
+            item {
+                ListItem(
+                    headlineText = { Text(stringResource(id = R.string.settings_achievements_option_onboarding_title)) },
+                    supportingText = { Text(stringResource(id = R.string.settings_achievements_option_onboarding_subtitle)) },
+                    trailingContent = { Icon(Icons.Default.Star, null) },
+                )
+            }
         }
     }
 }

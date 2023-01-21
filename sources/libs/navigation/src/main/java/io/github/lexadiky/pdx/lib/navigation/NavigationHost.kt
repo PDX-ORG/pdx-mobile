@@ -17,14 +17,12 @@ import com.google.accompanist.navigation.material.rememberBottomSheetNavigator
 import io.github.lexadiky.pdx.lib.arc.di.DIFeature
 import io.github.lexadiky.pdx.lib.arc.di.di
 
-private const val START_DESTINATION = "pdx://pokemon"
-
 object NavigationFeatureContext
 
 @Composable
 fun NavigationFeature(
     routing: PdxNavGraphBuilder.() -> Unit,
-    startDestination: String = START_DESTINATION,
+    startDestination: String,
     content: @Composable NavigationFeatureContext.() -> Unit
 ) {
     val bottomSheetNavigator = rememberBottomSheetNavigator()
