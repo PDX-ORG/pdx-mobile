@@ -14,5 +14,5 @@ interface GenericListItem {
     val secondaryImage: ImageResource?
     val tags: List<Tag>
 
-    data class Tag(val text: StringResource, val color: ColorResource)
+    data class Tag(val text: StringResource, val color: ColorResource, val id: String)
 }

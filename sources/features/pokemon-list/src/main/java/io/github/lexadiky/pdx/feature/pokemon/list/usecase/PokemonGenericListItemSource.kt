@@ -35,7 +35,7 @@ internal class PokemonGenericListItemSource(
             secondaryImage = pokemon.shinySprite?.let { ImageResource.from(it) }
                 ?: ImageResource.from(io.github.lexadiky.pdx.lib.uikit.R.drawable.uikit_ic_pokeball),
             tags = pokemon.types.map { type ->
-                GenericListItem.Tag(type.toStringResource(), type.toColorResource())
+                GenericListItem.Tag(type.toStringResource(), type.toColorResource(), type.id)
             },
             textSearchIndex = pokemon.simpleSearchIndex,
             types = pokemon.types

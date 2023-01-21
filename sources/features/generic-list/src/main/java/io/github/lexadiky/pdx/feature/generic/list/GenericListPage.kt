@@ -93,7 +93,11 @@ private fun <T : GenericListItem> GenericListPageImpl(
                         item = entry,
                         useAlternativeImages = viewModel.state.useAlternativeImages
                     ),
-                    tags = entry.tags.map { TagItem(it.text, it.color) },
+                    tags = entry.tags.map { tag ->
+                        TagItem(tag.text, tag.color) {
+                            viewModel.onTagClicked(entry, tag)
+                        }
+                    },
                     onClick = { viewModel.openDetails(entry) },
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -109,7 +113,8 @@ private fun <T : GenericListItem> GenericListPageImpl(
             SearchModeToggleFab(
                 state = viewModel.state,
                 onToggle = { viewModel.toggleSearchMode() },
-                modifier = Modifier.align(Alignment.BottomEnd)
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
                     .padding(MaterialTheme.grid.x2)
             )
         }

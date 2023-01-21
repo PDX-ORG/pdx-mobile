@@ -77,7 +77,8 @@ internal fun TypeSearchPage(viewModel: TypeSearchViewModel = di.inject()) {
                     tags = pokemon.types.map { type ->
                         TagItem(
                             title = type.toStringResource(),
-                            color = type.toColorResource()
+                            color = type.toColorResource(),
+                            onClick = { viewModel.onTypeClicked(type) }
                         )
                     },
                     modifier = Modifier.fillMaxWidth()

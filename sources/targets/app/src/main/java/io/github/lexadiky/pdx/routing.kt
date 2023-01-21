@@ -2,14 +2,14 @@ package io.github.lexadiky.pdx
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import io.github.lexadiky.pdx.feature.settings.achievement.AchievementSettingsPage
 import io.github.lexadiky.pdx.feature.news.NewsFeatureToggle
 import io.github.lexadiky.pdx.feature.news.NewsFeedPage
 import io.github.lexadiky.pdx.feature.pokemon.details.PokemonDetailsPage
 import io.github.lexadiky.pdx.feature.pokemon.list.PokemonListPage
 import io.github.lexadiky.pdx.feature.settings.SettingsPage
+import io.github.lexadiky.pdx.feature.type.details.TypeDetailsPage
 import io.github.lexadiky.pdx.feature.typechart.TypePage
 import io.github.lexadiky.pdx.feature.whois.WhoIsPage
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
@@ -29,12 +29,15 @@ fun routing(): PdxNavGraphBuilder.() -> Unit {
                 page("pdx://news") { NewsFeedPage() }
             }
             page("pdx://pokemon") { PokemonListPage() }
-            composable("pdx://pokemon/{id}") { entry ->
-                PokemonDetailsPage(
-                    pokemonId = entry.arguments!!.getString("id")!!
-                )
+            page("pdx://pokemon/{id}") {
+                val id = argument(name = "id") { error("id required") }
+                PokemonDetailsPage(pokemonId = id)
             }
             page("pdx://type") { TypePage() }
+            page("pdx://type/{id}") {
+                val id = argument(name = "id") { error("id required") }
+                TypeDetailsPage(typeId = id)
+            }
             page("pdx://game/whois") { WhoIsPage() }
         }
     }

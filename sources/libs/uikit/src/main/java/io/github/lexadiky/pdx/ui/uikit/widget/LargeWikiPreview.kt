@@ -95,7 +95,11 @@ fun LargeWikiPreview(
     }
 }
 
-data class TagItem(val title: StringResource, val color: ColorResource)
+data class TagItem(
+    val title: StringResource,
+    val color: ColorResource,
+    val onClick: (() -> Unit)
+)
 
 @Composable
 private fun TagStrip(tags: List<TagItem>, modifier: Modifier = Modifier) {
@@ -111,7 +115,7 @@ private fun TagStrip(tags: List<TagItem>, modifier: Modifier = Modifier) {
                     labelColor = MaterialTheme.colorScheme.onError
                 ),
                 enabled = true,
-                onClick = {}
+                onClick = { tag.onClick() }
             )
         }
     }

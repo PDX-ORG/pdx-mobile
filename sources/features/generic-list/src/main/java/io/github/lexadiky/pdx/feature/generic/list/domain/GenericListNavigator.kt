@@ -4,5 +4,7 @@ import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
 
 interface GenericListNavigator<T: GenericListItem> {
 
-    suspend fun navigateToDetails(item: GenericListItem)
+    suspend fun navigateToDetails(item: T)
+
+    suspend fun navigateToTag(item: T, tag: GenericListItem.Tag) = Unit
 }

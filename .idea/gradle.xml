@@ -37,6 +37,7 @@
             <option value="$PROJECT_DIR$/sources/features/settings" />
             <option value="$PROJECT_DIR$/sources/features/toolbar" />
             <option value="$PROJECT_DIR$/sources/features/type-chart" />
+            <option value="$PROJECT_DIR$/sources/features/type-details" />
             <option value="$PROJECT_DIR$/sources/features/whois" />
             <option value="$PROJECT_DIR$/sources/libs/analytics" />
             <option value="$PROJECT_DIR$/sources/libs/arc" />

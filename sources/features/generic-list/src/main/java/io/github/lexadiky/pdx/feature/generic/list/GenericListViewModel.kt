@@ -41,6 +41,10 @@ class GenericListViewModel<T : GenericListItem>(
         navigator.navigateToDetails(item)
     }
 
+    fun onTagClicked(item: T, tag: GenericListItem.Tag) = viewModelScope.launch {
+        navigator.navigateToTag(item, tag)
+    }
+
     fun setSearchAvailable(isAvailable: Boolean) {
         state = state.copy(searchAvailable = isAvailable)
     }

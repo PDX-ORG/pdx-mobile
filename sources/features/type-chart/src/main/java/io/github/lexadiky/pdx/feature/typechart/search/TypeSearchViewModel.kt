@@ -10,12 +10,14 @@ import androidx.lifecycle.viewModelScope
 import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
+import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
 import io.github.lexadiky.pdx.feature.typechart.R
 import io.github.lexadiky.pdx.feature.typechart.entity.PokemonSuggester
 import io.github.lexadiky.pdx.feature.typechart.entity.PokemonTypeSearchItem
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.lib.navigation.Navigator
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
@@ -28,6 +30,7 @@ internal class TypeSearchViewModel(
     private val getPokemonPreview: GetPokemonPreviewUseCase,
     private val getPokemonDamageRelations: GetPokemonTypeDamageRelations,
     private val suggester: PokemonSuggester,
+    private val navigator: Navigator,
     private val context: Context
 ) : ViewModel() {
 
@@ -74,6 +77,10 @@ internal class TypeSearchViewModel(
 
     fun selectHint(pokemon: PokemonTypeSearchItem) {
         updateSearchQuery(pokemon.name.render(context))
+    }
+
+    fun onTypeClicked(type: PokemonType) = viewModelScope.launch {
+        navigator.navigate("pdx://type/${type.id}")
     }
 
     private fun List<PokemonPreview>.toUi(): List<PokemonTypeSearchItem> {

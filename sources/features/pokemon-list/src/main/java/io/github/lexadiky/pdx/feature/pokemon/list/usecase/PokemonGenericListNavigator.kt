@@ -9,7 +9,11 @@ class PokemonGenericListNavigator(
     private val navigator: Navigator
 ) : GenericListNavigator<PokemonGenericListItem> {
 
-    override suspend fun navigateToDetails(item: GenericListItem) {
+    override suspend fun navigateToDetails(item: PokemonGenericListItem) {
         navigator.navigate("pdx://pokemon/${item.id}")
+    }
+
+    override suspend fun navigateToTag(item: PokemonGenericListItem, tag: GenericListItem.Tag) {
+        navigator.navigate("pdx://type/${tag.id}")
     }
 }

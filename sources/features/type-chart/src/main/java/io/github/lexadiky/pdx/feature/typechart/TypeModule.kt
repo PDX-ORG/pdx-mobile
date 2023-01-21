@@ -11,7 +11,7 @@ val TypeModule by module("type") {
 
     internal {
         viewModel { TypeChartViewModel(inject()) }
-        viewModel { TypeSearchViewModel(inject(), inject(), inject(), inject()) }
+        viewModel { TypeSearchViewModel(inject(), inject(), inject(), inject(), inject()) }
         single { PokemonSuggester() }
     }
 }
