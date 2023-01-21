@@ -8,6 +8,7 @@ import org.koin.core.module.Module
 import org.koin.core.parameter.ParametersHolder
 import org.koin.core.scope.Scope
 import org.koin.dsl.module
+import kotlin.reflect.full.isSubclassOf
 
 class DIModule(internal val koinModule: Module)
 
@@ -29,6 +30,9 @@ class ModuleBuilder(@PublishedApi internal val module: Module) {
 
     inline fun <reified T: Any> single(crossinline provider: DIScope.(DIParametersHolder) -> T) {
         integrityChecker.check(cls = T::class, allowInternal = inInternalScope)
+        assert(!T::class.isSubclassOf(ViewModel::class)) {
+            "use viewModel function for binding ${T::class}"
+        }
 
         module.single(definition = { params ->
             val diParametersHolder = DIParametersHolder(params)

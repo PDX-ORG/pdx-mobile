@@ -15,7 +15,7 @@ import com.google.accompanist.flowlayout.FlowRow
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemonlist.R
 import io.github.lexadiky.pdx.ui.uikit.resources.render
-import io.github.lexadiky.pdx.ui.uikit.theme.sizes
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
 internal fun TypeFilterDialog(
@@ -37,7 +37,7 @@ internal fun TypeFilterDialog(
             }
         },
         text = {
-            FlowRow(mainAxisSpacing = MaterialTheme.sizes.s1) {
+            FlowRow(mainAxisSpacing = MaterialTheme.grid.x1) {
                 PokemonType.values().forEach { type ->
                     FilterChip(
                         selected = type in selected,

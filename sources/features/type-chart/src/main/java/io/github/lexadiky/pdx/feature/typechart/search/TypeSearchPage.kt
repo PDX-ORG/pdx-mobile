@@ -22,7 +22,7 @@ import io.github.lexadiky.pdx.lib.arc.di.di
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
-import io.github.lexadiky.pdx.ui.uikit.theme.sizes
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.widget.LargeWikiPreview
 import io.github.lexadiky.pdx.ui.uikit.widget.SearchField
 import io.github.lexadiky.pdx.ui.uikit.widget.SmallWikiPreview
@@ -37,8 +37,8 @@ internal fun TypeSearchPage(viewModel: TypeSearchViewModel = di.inject()) {
     }
 
     LazyColumn(
-        contentPadding = PaddingValues(MaterialTheme.sizes.s2),
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s2)
+        contentPadding = PaddingValues(MaterialTheme.grid.x2),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2)
     ) {
         item {
             SearchField(
@@ -55,7 +55,7 @@ internal fun TypeSearchPage(viewModel: TypeSearchViewModel = di.inject()) {
                     title = pokemon.name.render().value,
                     preTitle = pokemon.nationalId.render().value,
                     icon = pokemon.image.render(
-                        transformations = listOf(ImageTransformation.CROP_TRANSPARTENT)
+                        transformations = listOf(ImageTransformation.CropTransparent)
                     ),
                     onClick = {
                         keyboardController?.hide()
@@ -72,7 +72,7 @@ internal fun TypeSearchPage(viewModel: TypeSearchViewModel = di.inject()) {
                     title = pokemon.name.render().value,
                     preTitle = pokemon.nationalId.render().value,
                     image = pokemon.image.render(
-                        transformations = listOf(ImageTransformation.CROP_TRANSPARTENT)
+                        transformations = listOf(ImageTransformation.CropTransparent)
                     ),
                     tags = pokemon.types.map { type ->
                         TagItem(
@@ -86,9 +86,9 @@ internal fun TypeSearchPage(viewModel: TypeSearchViewModel = di.inject()) {
         }
 
         item {
-            Spacer(modifier = Modifier.size(MaterialTheme.sizes.s2))
+            Spacer(modifier = Modifier.size(MaterialTheme.grid.x2))
             EffectChart(stringResource(id = R.string.type_chart_section_attack_title), viewModel.state.attackDamageRelationTable)
-            Spacer(modifier = Modifier.size(MaterialTheme.sizes.s4))
+            Spacer(modifier = Modifier.size(MaterialTheme.grid.x4))
             EffectChart(stringResource(id = R.string.type_chart_section_defence_title), viewModel.state.defenceDamageRelationTable)
         }
     }

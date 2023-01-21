@@ -10,26 +10,23 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
 import io.github.lexadiky.pdx.feature.generic.list.entity.SearchQuery
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
-import io.github.lexadiky.pdx.ui.uikit.theme.sizes
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.util.scroll.LocalPrimeScrollState
 import io.github.lexadiky.pdx.ui.uikit.widget.FastScrollWheel
 import io.github.lexadiky.pdx.ui.uikit.widget.LargeWikiPreview
@@ -78,8 +75,8 @@ private fun <T : GenericListItem> GenericListPageImpl(
         }
         LazyColumn(
             state = columnState,
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s2),
-            contentPadding = PaddingValues(MaterialTheme.sizes.s2)
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
+            contentPadding = PaddingValues(MaterialTheme.grid.x2)
         ) {
             if (viewModel.state.searchActivated && viewModel.state.searchAvailable) {
                 item(SEARCH_QUERY_ITEM_ID) {
@@ -113,7 +110,7 @@ private fun <T : GenericListItem> GenericListPageImpl(
                 state = viewModel.state,
                 onToggle = { viewModel.toggleSearchMode() },
                 modifier = Modifier.align(Alignment.BottomEnd)
-                    .padding(MaterialTheme.sizes.s2)
+                    .padding(MaterialTheme.grid.x2)
             )
         }
     }
@@ -140,8 +137,8 @@ private fun genericListItemPreviewPainter(
     useAlternativeImages: Boolean
 ): Painter {
     return if (!useAlternativeImages && item.secondaryImage != null) {
-        item.secondaryImage!!.render(listOf(ImageTransformation.CROP_TRANSPARTENT))
+        item.secondaryImage!!.render(listOf(ImageTransformation.CropTransparent))
     } else {
-        item.primaryImage.render(listOf(ImageTransformation.CROP_TRANSPARTENT))
+        item.primaryImage.render(listOf(ImageTransformation.CropTransparent))
     }
 }

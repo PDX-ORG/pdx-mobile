@@ -32,7 +32,8 @@ import io.github.lexadiky.pdx.feature.drawer.entity.DrawerItem
 import io.github.lexadiky.pdx.lib.arc.di.DIFeature
 import io.github.lexadiky.pdx.lib.arc.di.di
 import io.github.lexadiky.pdx.ui.uikit.resources.render
-import io.github.lexadiky.pdx.ui.uikit.theme.sizes
+import io.github.lexadiky.pdx.ui.uikit.resources.renderNow
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
 fun Drawer() {
@@ -49,10 +50,13 @@ internal fun DrawerImpl(viewModel: DrawerViewModel) {
                 NavigationItem(item) { viewModel.onItemClicked(item) }
             }
             is DrawerItem.Divider -> {
-                Divider()
+                Divider(
+                    modifier = Modifier
+                        .padding(vertical = MaterialTheme.grid.x1)
+                )
             }
             is DrawerItem.UserAccount -> {
-                AccoutCard()
+                AccountCard()
             }
             is DrawerItem.Login -> {
                 NavigationDrawerItem(
@@ -67,23 +71,24 @@ internal fun DrawerImpl(viewModel: DrawerViewModel) {
 }
 
 @Composable
-private fun AccoutCard() {
+private fun AccountCard() {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
+            .padding(MaterialTheme.grid.x1)
     ) {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s2),
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(MaterialTheme.sizes.s1)
+            modifier = Modifier.padding(MaterialTheme.grid.x1)
         ) {
             Image(
                 imageVector = Icons.Default.Person,
                 contentDescription = null,
                 modifier = Modifier
                     .background(MaterialTheme.colorScheme.background, MaterialTheme.shapes.small)
-                    .size(MaterialTheme.sizes.s4)
+                    .size(MaterialTheme.grid.x4)
                     .clip(MaterialTheme.shapes.small)
             )
             Text(
@@ -94,9 +99,9 @@ private fun AccoutCard() {
             )
         }
         LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s1),
-            contentPadding = PaddingValues(horizontal = MaterialTheme.sizes.s1),
-            modifier = Modifier.padding(bottom = MaterialTheme.sizes.s1)
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1),
+            contentPadding = PaddingValues(horizontal = MaterialTheme.grid.x1),
+            modifier = Modifier.padding(bottom = MaterialTheme.grid.x1)
         ) {
             repeat(3) {
                 item {
@@ -113,7 +118,7 @@ private fun AccoutCard() {
 @Composable
 private fun NavigationItem(item: DrawerItem.Navigation, onClick: () -> Unit) {
     NavigationDrawerItem(
-        label = { Text(text = item.title.render().value) },
+        label = { Text(text = item.title.renderNow()) },
         icon = { Icon(item.icon.render(), null) },
         selected = item.selected,
         onClick = { onClick() },

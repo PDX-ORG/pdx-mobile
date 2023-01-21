@@ -17,7 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
-import io.github.lexadiky.pdx.ui.uikit.theme.sizes
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
 fun SmallWikiPreview(
@@ -36,10 +36,10 @@ fun SmallWikiPreview(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(MaterialTheme.sizes.s2)
+                .padding(MaterialTheme.grid.x2)
         ) {
             Row(
-                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s1),
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1),
             ) {
                 if (preTitle != null) {
                     Text(
@@ -58,7 +58,7 @@ fun SmallWikiPreview(
             Image(
                 painter = icon,
                 contentDescription = null,
-                modifier = Modifier.size(MaterialTheme.sizes.s4)
+                modifier = Modifier.size(MaterialTheme.grid.x4)
             )
         }
     }

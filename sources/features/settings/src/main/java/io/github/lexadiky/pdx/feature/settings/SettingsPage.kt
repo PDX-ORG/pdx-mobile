@@ -2,16 +2,13 @@
 
 package io.github.lexadiky.pdx.feature.settings
 
-import android.graphics.fonts.FontStyle
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -21,7 +18,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -29,33 +25,22 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.core.graphics.toColor
-import com.google.android.material.color.utilities.Scheme
-import com.google.android.material.color.utilities.TonalPalette
 import io.github.lexadiky.pdx.feature.settings.R.*
 import io.github.lexadiky.pdx.lib.arc.di.DIFeature
 import io.github.lexadiky.pdx.lib.arc.di.di
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.theme.custom.CustomTheme
-import io.github.lexadiky.pdx.ui.uikit.theme.custom.ThemeManager
-import io.github.lexadiky.pdx.ui.uikit.theme.sizes
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
 fun SettingsPage() {
@@ -78,7 +63,7 @@ private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
                 ),
                 style = MaterialTheme.typography.headlineLarge,
                 fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.padding(MaterialTheme.sizes.s2)
+                modifier = Modifier.padding(MaterialTheme.grid.x2)
             )
             ThemeSelection(viewModel.state) {
                 viewModel.onThemeSelected(it)
@@ -122,15 +107,15 @@ private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
 
 @Composable
 private fun ThemeSelection(state: SettingsPageState, onThemeSelected: (CustomTheme) -> Unit) {
-    val sizeSmall = MaterialTheme.sizes.sN(10)
-    val sizeBig = MaterialTheme.sizes.sN(12)
+    val sizeSmall = MaterialTheme.grid.x(10f)
+    val sizeBig = MaterialTheme.grid.x(12f)
 
     LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s2),
+        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
         verticalAlignment = Alignment.CenterVertically,
-        contentPadding = PaddingValues(horizontal = MaterialTheme.sizes.s2),
+        contentPadding = PaddingValues(horizontal = MaterialTheme.grid.x2),
         modifier = Modifier
-            .height(sizeBig + MaterialTheme.sizes.s2 * 2)
+            .height(sizeBig + MaterialTheme.grid.x2 * 2)
     ) {
         items(state.availableThemes) { theme ->
             ThemeBox(

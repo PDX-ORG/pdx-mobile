@@ -41,9 +41,11 @@
             <option value="$PROJECT_DIR$/sources/features/settings" />
             <option value="$PROJECT_DIR$/sources/features/toolbar" />
             <option value="$PROJECT_DIR$/sources/features/type-chart" />
+            <option value="$PROJECT_DIR$/sources/features/whois" />
             <option value="$PROJECT_DIR$/sources/libs/analytics" />
             <option value="$PROJECT_DIR$/sources/libs/arc" />
             <option value="$PROJECT_DIR$/sources/libs/blogger" />
+            <option value="$PROJECT_DIR$/sources/libs/build-config" />
             <option value="$PROJECT_DIR$/sources/libs/error-handler" />
             <option value="$PROJECT_DIR$/sources/libs/feature-toggle" />
             <option value="$PROJECT_DIR$/sources/libs/navigation" />

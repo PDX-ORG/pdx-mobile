@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import io.github.lexadiky.pdx.ui.uikit.theme.sizes
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.util.saturation
 
 object PillChipDefaults {
@@ -33,21 +33,21 @@ fun PillChip(
     val textStyle = LocalTextStyle.current.copy(color = textColor)
     CompositionLocalProvider(LocalTextStyle provides textStyle) {
         Surface(
-            shape = RoundedCornerShape(MaterialTheme.sizes.s1),
+            shape = RoundedCornerShape(MaterialTheme.grid.x1),
             modifier = modifier
         ) {
             Row {
                 Box(
                     modifier = Modifier
                         .background(labelColor)
-                        .padding(MaterialTheme.sizes.s1)
+                        .padding(MaterialTheme.grid.x1)
                 ) {
                     label()
                 }
                 Box(
                     modifier = Modifier
                         .background(trailColor)
-                        .padding(MaterialTheme.sizes.s1)
+                        .padding(MaterialTheme.grid.x1)
                 ) {
                     trail()
                 }

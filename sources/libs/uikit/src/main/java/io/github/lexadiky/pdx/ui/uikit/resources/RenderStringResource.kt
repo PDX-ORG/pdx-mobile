@@ -48,6 +48,12 @@ fun StringResource.render(): State<String> {
     }
 }
 
+@Composable
+fun StringResource.renderNow(): String {
+    val rendered by render()
+    return rendered
+}
+
 fun StringResource.render(context: Context): String {
     return when (this) {
         is FormattedStringResource -> this.base.render(context)

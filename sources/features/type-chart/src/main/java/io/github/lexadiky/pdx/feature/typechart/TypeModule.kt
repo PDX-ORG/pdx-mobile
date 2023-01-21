@@ -10,8 +10,8 @@ val TypeModule by module {
     import(PokemonDomainModule)
 
     internal {
-        single { TypeChartViewModel(inject()) }
-        single { TypeSearchViewModel(inject(), inject(), inject(), inject()) }
+        viewModel { TypeChartViewModel(inject()) }
+        viewModel { TypeSearchViewModel(inject(), inject(), inject(), inject()) }
         single { PokemonSuggester() }
     }
 }

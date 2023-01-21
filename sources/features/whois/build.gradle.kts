@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "io.github.lexadiky.pdx.feature.typechart"
+    namespace = "io.github.lexadiky.pdx.feature.whois"
 }
 
 dependencies {

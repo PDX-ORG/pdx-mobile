@@ -2,6 +2,7 @@ package io.github.lexadiky.pdx.feature.drawer.domain
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
@@ -35,10 +36,10 @@ internal class DrawerItemSource(private val navigator: Navigator) {
                     route = "pdx://type"
                 ),
                 DrawerItem.Navigation(
-                    icon = ImageResource.from(Icons.Default.Build),
-                    title = StringResource.from("Item"),
+                    icon = ImageResource.from(Icons.Default.Favorite),
+                    title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_who_is),
                     selected = false,
-                    route = "pdx://index"
+                    route = "pdx://game/whois"
                 ),
                 DrawerItem.Divider,
                 newsItem(),

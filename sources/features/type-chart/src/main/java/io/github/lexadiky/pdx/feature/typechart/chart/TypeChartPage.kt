@@ -22,7 +22,7 @@ import io.github.lexadiky.pdx.feature.typechart.R
 import io.github.lexadiky.pdx.feature.typechart.ui.EffectChart
 import io.github.lexadiky.pdx.lib.arc.di.di
 import io.github.lexadiky.pdx.ui.uikit.resources.render
-import io.github.lexadiky.pdx.ui.uikit.theme.sizes
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
 internal fun TypeChartPage(viewModel: TypeChartViewModel = di.inject()) {
@@ -32,25 +32,25 @@ internal fun TypeChartPage(viewModel: TypeChartViewModel = di.inject()) {
         EffectChart(
             title = stringResource(id = R.string.type_chart_section_attack_title),
             table = viewModel.state.attackDamageRelationTable,
-            modifier = Modifier.padding(MaterialTheme.sizes.s2)
+            modifier = Modifier.padding(MaterialTheme.grid.x2)
         )
         EffectChart(
             title = stringResource(id = R.string.type_chart_section_defence_title),
             table = viewModel.state.defenceDamageRelationTable,
-            modifier = Modifier.padding(MaterialTheme.sizes.s2)
+            modifier = Modifier.padding(MaterialTheme.grid.x2)
         )
     }
 }
 
 @Composable
 private fun TypeSelectionCard(state: TypeChartState, onTypeClicked: (PokemonType) -> Unit) {
-    Card(modifier = Modifier.padding(MaterialTheme.sizes.s2)) {
+    Card(modifier = Modifier.padding(MaterialTheme.grid.x2)) {
         Column(
-            modifier = Modifier.padding(MaterialTheme.sizes.s2)
+            modifier = Modifier.padding(MaterialTheme.grid.x2)
         ) {
             state.allTypes.chunked(3).forEach { typeChunk ->
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s1)
+                    horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1)
                 ) {
                     typeChunk.forEach { type ->
                         FilterChip(

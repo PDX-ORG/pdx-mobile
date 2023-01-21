@@ -8,6 +8,8 @@ android {
 }
 
 dependencies {
+    implementation(projects.libs.buildConfig)
+
     api(projects.libs.resources)
     api(projects.libs.arc)
 

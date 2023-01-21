@@ -12,18 +12,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material3.Card
-import androidx.compose.material3.ChipBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SuggestionChip
-import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -38,8 +31,9 @@ import io.github.lexadiky.pdx.lib.arc.di.di
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.resources.render
+import io.github.lexadiky.pdx.ui.uikit.resources.renderNow
 import io.github.lexadiky.pdx.ui.uikit.theme.pdx
-import io.github.lexadiky.pdx.ui.uikit.theme.sizes
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
 fun NewsFeedPage() {
@@ -54,8 +48,8 @@ internal fun NewsFeedPageImpl(viewModel: NewsFeedViewModel) {
         viewModel.dismissError()
     }
     LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s2),
-        contentPadding = PaddingValues(MaterialTheme.sizes.s2)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
+        contentPadding = PaddingValues(MaterialTheme.grid.x2)
     ) {
         items(viewModel.state.items) { item ->
             NewsFeedItem(
@@ -74,11 +68,11 @@ private fun NewsFeedItem(item: NewsFeedItem, onItemClick: () -> Unit, onAuthorCl
         Modifier.fillMaxWidth()
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s2),
-            modifier = Modifier.padding(MaterialTheme.sizes.s2)
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
+            modifier = Modifier.padding(MaterialTheme.grid.x2)
         ) {
             Row(
-                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s2)
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2)
             ) {
                 item.preview?.let { preview ->
                     Image(
@@ -86,12 +80,12 @@ private fun NewsFeedItem(item: NewsFeedItem, onItemClick: () -> Unit, onAuthorCl
                         contentDescription = null,
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .size(MaterialTheme.sizes.sN(10))
+                            .size(MaterialTheme.grid.x(10f))
                             .clip(MaterialTheme.shapes.extraLarge),
                     )
                 }
                 Text(
-                    text = item.title.render().value,
+                    text = item.title.renderNow(),
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onSurface
                 )

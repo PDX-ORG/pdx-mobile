@@ -14,7 +14,7 @@ import com.google.accompanist.flowlayout.FlowRow
 import io.github.lexadiky.pdx.feature.typechart.R
 import io.github.lexadiky.pdx.feature.typechart.entity.TypeDamageValue
 import io.github.lexadiky.pdx.ui.uikit.resources.render
-import io.github.lexadiky.pdx.ui.uikit.theme.sizes
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.widget.PillChip
 import io.github.lexadiky.pdx.ui.uikit.widget.PillChipDefaults
 
@@ -27,7 +27,7 @@ internal fun EffectChart(
     if (table.isNotEmpty()) {
         Column(
             modifier = modifier,
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s2)
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2)
         ) {
             Text(
                 text = title,
@@ -38,9 +38,9 @@ internal fun EffectChart(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 FlowRow(
-                    mainAxisSpacing = MaterialTheme.sizes.s1,
-                    crossAxisSpacing = MaterialTheme.sizes.s1,
-                    modifier = Modifier.padding(MaterialTheme.sizes.s2)
+                    mainAxisSpacing = MaterialTheme.grid.x1,
+                    crossAxisSpacing = MaterialTheme.grid.x1,
+                    modifier = Modifier.padding(MaterialTheme.grid.x2)
                 ) {
 
                     table.forEach { relation ->

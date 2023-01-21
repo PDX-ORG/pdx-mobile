@@ -11,6 +11,7 @@ import io.github.lexadiky.pdx.feature.pokemon.details.PokemonDetailsPage
 import io.github.lexadiky.pdx.feature.pokemon.list.PokemonListPage
 import io.github.lexadiky.pdx.feature.settings.SettingsPage
 import io.github.lexadiky.pdx.feature.typechart.TypePage
+import io.github.lexadiky.pdx.feature.whois.WhoIsPage
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
 import io.github.lexadiky.pdx.lib.arc.di.di
 import io.github.lexadiky.pdx.lib.ifEnabled
@@ -42,6 +43,9 @@ fun routing(): NavGraphBuilder.() -> Unit {
             }
             composable("pdx://type") {
                 TypePage()
+            }
+            composable("pdx://game/whois") {
+                WhoIsPage()
             }
         }
     }

@@ -32,7 +32,7 @@ import io.github.lexadiky.pdx.lib.resources.color.ColorResource
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.animation
-import io.github.lexadiky.pdx.ui.uikit.theme.sizes
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
 fun LargeWikiPreview(
@@ -50,13 +50,13 @@ fun LargeWikiPreview(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(MaterialTheme.sizes.s2)
+                .padding(MaterialTheme.grid.x2)
         ) {
             Column(
                 verticalArrangement = Arrangement.SpaceBetween,
             ) {
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s1),
+                    horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1),
                 ) {
                     if (preTitle != null) {
                         Text(
@@ -83,7 +83,7 @@ fun LargeWikiPreview(
                         .with(scaleOut(MaterialTheme.animation.linearSlow()))
                 },
                 modifier = Modifier
-                    .size(MaterialTheme.sizes.sN(8))
+                    .size(MaterialTheme.grid.x8)
                     .align(Alignment.CenterEnd)
             ) { self ->
                 Image(
@@ -100,7 +100,7 @@ data class TagItem(val title: StringResource, val color: ColorResource)
 @Composable
 private fun TagStrip(tags: List<TagItem>, modifier: Modifier = Modifier) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s05),
+        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x05),
         modifier = modifier
     ) {
         for (tag in tags) {

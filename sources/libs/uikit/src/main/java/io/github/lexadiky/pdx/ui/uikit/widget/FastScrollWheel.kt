@@ -20,7 +20,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
-import io.github.lexadiky.pdx.ui.uikit.theme.sizes
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.util.delayState
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
@@ -47,9 +47,9 @@ fun <T> FastScrollWheel(
     ) {
         LazyColumn(
             state = localState,
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.sizes.s2),
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
             modifier = Modifier
-                .padding(MaterialTheme.sizes.s1)
+                .padding(MaterialTheme.grid.x1)
                 .clip(MaterialTheme.shapes.circular)
                 .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
                 .fillMaxHeight(0.5f)
@@ -66,7 +66,7 @@ fun <T> FastScrollWheel(
                             }
                         }
                         .background(MaterialTheme.colorScheme.surfaceTint.copy(alpha = 0.75f),)
-                        .padding(MaterialTheme.sizes.s1)
+                        .padding(MaterialTheme.grid.x1)
                 )
             }
         }
