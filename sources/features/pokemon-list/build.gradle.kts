@@ -1,7 +1,5 @@
 plugins {
-    id("org.lexadiky.gradle.preset.library-android")
-    id("org.jetbrains.kotlin.android")
-    kotlin("plugin.serialization")
+    id("io.github.lexadiky.pdx.plugin.module.feature")
 }
 
 android {

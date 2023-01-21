@@ -4,7 +4,6 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
-    includeBuild("./sources/plugins/android")
 }
 
 dependencyResolutionManagement {

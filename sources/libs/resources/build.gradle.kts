@@ -1,15 +1,12 @@
 plugins {
-    id("org.lexadiky.gradle.preset.library-android")
-    id("org.jetbrains.kotlin.android")
+    id("io.github.lexadiky.pdx.plugin.module.library.android")
 }
 
 android {
     namespace = "io.github.lexadiky.pdx.lib.resources"
-    buildFeatures {
-        compose = false
-    }
 }
 
 dependencies {
     api(libs.android.compose.ui.core)
+    api(libs.kotlin.datetime)
 }

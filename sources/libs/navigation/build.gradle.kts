@@ -1,6 +1,5 @@
 plugins {
-    id("org.lexadiky.gradle.preset.library-android")
-    id("org.jetbrains.kotlin.android")
+    id("io.github.lexadiky.pdx.plugin.module.feature")
     id("io.github.lexadiky.pdx.plugin.eve")
 }
 

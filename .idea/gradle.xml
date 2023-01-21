@@ -7,14 +7,10 @@
         <compositeConfiguration>
           <compositeBuild compositeDefinitionSource="SCRIPT">
             <builds>
-              <build path="$PROJECT_DIR$/sources/plugins/android" name="android">
-                <projects>
-                  <project path="$PROJECT_DIR$/sources/plugins/android" />
-                </projects>
-              </build>
               <build path="$PROJECT_DIR$/sources/plugins" name="plugins">
                 <projects>
                   <project path="$PROJECT_DIR$/sources/plugins" />
+                  <project path="$PROJECT_DIR$/sources/plugins/convention" />
                   <project path="$PROJECT_DIR$/sources/plugins/eve" />
                 </projects>
               </build>
@@ -53,7 +49,7 @@
             <option value="$PROJECT_DIR$/sources/libs/resources" />
             <option value="$PROJECT_DIR$/sources/libs/uikit" />
             <option value="$PROJECT_DIR$/sources/plugins" />
-            <option value="$PROJECT_DIR$/sources/plugins/android" />
+            <option value="$PROJECT_DIR$/sources/plugins/convention" />
             <option value="$PROJECT_DIR$/sources/plugins/eve" />
             <option value="$PROJECT_DIR$/sources/targets/app" />
             <option value="$PROJECT_DIR$/sources/targets/type-calculator" />
