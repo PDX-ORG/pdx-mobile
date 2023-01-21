@@ -21,6 +21,12 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
+    - name: Create Google Services JSON File
+      env:
+        GOOGLE_SERVICES_JSON: ${{ secrets.google_services_json }}
+      run:
+        - echo $GOOGLE_SERVICES_JSON | base64 -di > ./sources/target/app/google-services.json
+        - echo $GOOGLE_SERVICES_JSON | base64 -di > ./sources/target/type-calculator/google-services.json
     - name: Build with Gradle
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
