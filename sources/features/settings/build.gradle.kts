@@ -12,6 +12,7 @@ dependencies {
     implementation(projects.libs.network)
     implementation(projects.libs.errorHandler)
     implementation(projects.libs.navigation)
+    implementation(projects.libs.fs)
 
     implementation(projects.domain.achievement)
 }

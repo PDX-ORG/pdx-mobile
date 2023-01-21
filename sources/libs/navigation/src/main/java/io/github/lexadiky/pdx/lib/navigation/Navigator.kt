@@ -1,5 +1,6 @@
 package io.github.lexadiky.pdx.lib.navigation
 
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.net.Uri

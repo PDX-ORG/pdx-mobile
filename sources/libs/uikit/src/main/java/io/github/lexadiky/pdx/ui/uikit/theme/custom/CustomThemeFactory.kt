@@ -65,12 +65,12 @@ internal class CustomThemeFactory(private val context: Context) {
     private fun createDefaultThemes(): List<CustomTheme> {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val dynamicDark = CustomTheme(
-                id = "dynamic-dark",
+                id = dynamicThemeId(isDark = true),
                 isDark = true,
                 colorScheme = dynamicDarkColorScheme(context)
             )
             val dynamicLight = CustomTheme(
-                id = "dynamic-light",
+                id = dynamicThemeId(isDark = false),
                 isDark = false,
                 colorScheme = dynamicLightColorScheme(context)
             )
@@ -89,6 +89,13 @@ internal class CustomThemeFactory(private val context: Context) {
             )
 
             return listOf(dynamicLight, dynamicDark)
+        }
+    }
+
+    companion object {
+
+        fun dynamicThemeId(isDark: Boolean): String {
+            return "dynamic-${if (isDark) "dark" else "light"}"
         }
     }
 }

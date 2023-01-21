@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.github.lexadiky.pdx.lib.fs.FsManager
 import io.github.lexadiky.pdx.lib.navigation.Navigator
 import io.github.lexadiky.pdx.ui.uikit.theme.custom.CustomTheme
 import io.github.lexadiky.pdx.ui.uikit.theme.custom.ThemeManager
@@ -12,6 +13,7 @@ import kotlinx.coroutines.launch
 
 internal class SettingsPageViewModel(
     private val themeManager: ThemeManager,
+    private val fsManager: FsManager,
     private val navigator: Navigator
 ) : ViewModel() {
 
@@ -30,6 +32,10 @@ internal class SettingsPageViewModel(
         state = state.copy(
             currentTheme = themeManager.current()
         )
+    }
+
+    fun dropCaches() {
+        fsManager.drop()
     }
 
     fun openGithub() {

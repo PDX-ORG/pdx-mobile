@@ -7,24 +7,24 @@ import io.github.lexadiky.lib.blogger.BLogger
 import io.github.lexadiky.lib.blogger.error
 import io.github.lexadiky.lib.blogger.info
 import io.github.lexadiky.lib.blogger.verbose
+import io.github.lexadiky.pdx.lib.fs.FsManager
 
 class ThemeManager(
     private val context: Context,
-    private val isDark: Boolean
+    private val fsManager: FsManager,
+    private val isDark: Boolean,
 ) {
-    private val sharedPrefs = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+    private var selectedThemeId by fsManager.state("custom_theme").string(
+        key = "theme_id_${if (isDark) "dark" else "light"}",
+        default = CustomThemeFactory.dynamicThemeId(isDark)
+    )
 
     private val factory: CustomThemeFactory = CustomThemeFactory(context)
     private val currentTheme: MutableState<CustomTheme> = mutableStateOf(factory.default(isDark))
 
     init {
         BLogger.tag("ThemeManager").verbose("created")
-        val selectedThemeId = sharedPrefs.getString(SP_PREF_ID + isDark, null)
-        if (selectedThemeId != null) {
-            set(selectedThemeId)
-        } else {
-            BLogger.tag("ThemeManager").verbose("no theme set by user, using default")
-        }
+        set(selectedThemeId)
     }
 
     fun list(): List<CustomTheme> {
@@ -37,9 +37,7 @@ class ThemeManager(
             BLogger.tag("ThemeManager").error("can't find theme: '$id' to set, doing nothing")
             return false
         }
-        sharedPrefs.edit()
-            .putString(SP_PREF_ID + isDark, id)
-            .apply()
+        selectedThemeId = id
         currentTheme.value = theme
         BLogger.tag("ThemeManager").info("theme changed to: `$id`")
         return true
@@ -47,11 +45,5 @@ class ThemeManager(
 
     fun current(): CustomTheme {
         return currentTheme.value
-    }
-
-    companion object {
-
-        private const val SP_NAME = "theme_manager"
-        private const val SP_PREF_ID = "current_theme_"
     }
 }

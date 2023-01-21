@@ -105,7 +105,7 @@ private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
                 trailingContent = {
                     Icon(Icons.Default.Delete, null)
                 },
-                modifier = Modifier.clickable {  }
+                modifier = Modifier.clickable { viewModel.dropCaches() }
             )
         }
     }
