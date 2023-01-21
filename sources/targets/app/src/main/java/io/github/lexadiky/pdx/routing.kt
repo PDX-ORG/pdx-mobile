@@ -34,7 +34,7 @@ fun routing(): PdxNavGraphBuilder.() -> Unit {
                 PokemonDetailsPage(pokemonId = id)
             }
             page("pdx://type") { TypePage() }
-            page("pdx://type/{id}") {
+            modal("pdx://type/{id}") {
                 val id = argument(name = "id") { error("id required") }
                 TypeDetailsPage(typeId = id)
             }

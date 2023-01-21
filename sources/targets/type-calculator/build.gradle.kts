@@ -11,6 +11,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.libs.target)
     implementation(projects.libs.uikit)
     implementation(projects.libs.arc)
     implementation(projects.libs.featureToggle)

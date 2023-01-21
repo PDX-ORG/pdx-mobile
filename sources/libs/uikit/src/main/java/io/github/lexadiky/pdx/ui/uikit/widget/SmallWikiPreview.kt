@@ -9,8 +9,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,41 +28,64 @@ fun SmallWikiPreview(
     preTitle: String?,
     icon: Painter,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    isOutlined: Boolean = false,
+    colors: CardColors = if (!isOutlined) CardDefaults.cardColors() else CardDefaults.outlinedCardColors()
 ) {
-    Card(
-        onClick = { onClick() },
-        modifier = modifier
+    if (!isOutlined) {
+        Card(
+            onClick = { onClick() },
+            colors = colors,
+            modifier = modifier
+        ) {
+            Content(title = title, preTitle = preTitle, icon = icon, onClick = onClick)
+        }
+    } else {
+        OutlinedCard(
+            onClick = { onClick() },
+            colors = colors,
+            modifier = modifier
+        ) {
+            Content(title = title, preTitle = preTitle, icon = icon, onClick = onClick)
+        }
+    }
+}
+
+@Composable
+private fun Content(
+    title: String,
+    preTitle: String?,
+    icon: Painter,
+    onClick: () -> Unit,
+) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(MaterialTheme.grid.x2)
     ) {
         Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(MaterialTheme.grid.x2)
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1),
         ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1),
-            ) {
-                if (preTitle != null) {
-                    Text(
-                        text = preTitle,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.alignByBaseline()
-                    )
-                }
+            if (preTitle != null) {
                 Text(
-                    text = title,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    fontWeight = FontWeight.SemiBold,
+                    text = preTitle,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.alignByBaseline()
                 )
             }
-            Image(
-                painter = icon,
-                contentDescription = null,
-                modifier = Modifier.size(MaterialTheme.grid.x4)
+            Text(
+                text = title,
+                color = MaterialTheme.colorScheme.onSurface,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.alignByBaseline()
             )
         }
+        Image(
+            painter = icon,
+            contentDescription = null,
+            modifier = Modifier.size(MaterialTheme.grid.x4)
+        )
     }
 }

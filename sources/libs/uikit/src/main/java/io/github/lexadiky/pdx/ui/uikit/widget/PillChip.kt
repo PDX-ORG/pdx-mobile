@@ -30,7 +30,9 @@ fun PillChip(
     textColor: Color,
     modifier: Modifier = Modifier
 ) {
-    val textStyle = LocalTextStyle.current.copy(color = textColor)
+    val textStyle = MaterialTheme.typography.titleSmall.copy(
+        color = textColor
+    )
     CompositionLocalProvider(LocalTextStyle provides textStyle) {
         Surface(
             shape = RoundedCornerShape(MaterialTheme.grid.x1),
@@ -40,14 +42,14 @@ fun PillChip(
                 Box(
                     modifier = Modifier
                         .background(labelColor)
-                        .padding(MaterialTheme.grid.x1)
+                        .padding(horizontal = MaterialTheme.grid.x1, vertical = MaterialTheme.grid.x05)
                 ) {
                     label()
                 }
                 Box(
                     modifier = Modifier
                         .background(trailColor)
-                        .padding(MaterialTheme.grid.x1)
+                        .padding(horizontal = MaterialTheme.grid.x1, vertical = MaterialTheme.grid.x05)
                 ) {
                     trail()
                 }

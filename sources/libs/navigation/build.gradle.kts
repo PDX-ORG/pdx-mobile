@@ -12,4 +12,5 @@ dependencies {
     implementation(projects.libs.arc)
     implementation(projects.libs.analytics)
     implementation(projects.libs.uikit)
+    implementation(libs.accompanist.navigation.material)
 }

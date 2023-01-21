@@ -1,17 +1,15 @@
 package io.github.lexadiky.pdx.domain.achievement
 
 import android.annotation.SuppressLint
-import android.app.NotificationChannel
 import android.content.Context
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import io.github.lexadiky.pdx.domain.achievement.library.Achievement
-import io.github.lexadiky.pdx.lib.blogger.BLogger
-import io.github.lexadiky.pdx.lib.blogger.error
-import io.github.lexadiky.pdx.lib.blogger.verbose
+import io.github.lexadiky.lib.blogger.BLogger
+import io.github.lexadiky.lib.blogger.error
+import io.github.lexadiky.lib.blogger.verbose
 import io.github.lexadiky.pdx.ui.uikit.resources.render
-import kotlin.random.Random
 
 class AchievementManager(
     private val context: Context,

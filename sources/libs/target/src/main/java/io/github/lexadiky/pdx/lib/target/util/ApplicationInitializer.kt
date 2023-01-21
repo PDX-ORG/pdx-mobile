@@ -1,7 +1,7 @@
-package io.github.lexadiky.pdx
+package io.github.lexadiky.pdx.lib.target.util
 
-import io.github.lexadiky.pdx.lib.blogger.BLogger
-import io.github.lexadiky.pdx.lib.blogger.info
+import io.github.lexadiky.lib.blogger.BLogger
+import io.github.lexadiky.lib.blogger.info
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +10,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 
-private typealias SuspendedInitTask = suspend () -> Unit
+typealias SuspendedInitTask = suspend () -> Unit
 
 class ApplicationInitializer {
 

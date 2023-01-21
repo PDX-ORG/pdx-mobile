@@ -27,10 +27,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import io.github.lexadiky.pdx.lib.resources.color.ColorResource
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.ui.uikit.resources.render
+import io.github.lexadiky.pdx.ui.uikit.resources.renderNow
 import io.github.lexadiky.pdx.ui.uikit.theme.animation
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
@@ -108,15 +110,24 @@ private fun TagStrip(tags: List<TagItem>, modifier: Modifier = Modifier) {
         modifier = modifier
     ) {
         for (tag in tags) {
-            ElevatedSuggestionChip(
-                label = { Text(text = tag.title.render().value) },
-                colors = SuggestionChipDefaults.elevatedSuggestionChipColors(
-                    containerColor = tag.color.render(),
-                    labelColor = MaterialTheme.colorScheme.onError
-                ),
-                enabled = true,
+            TagChip(
+                title = tag.title.renderNow(),
+                color = tag.color.render(),
                 onClick = { tag.onClick() }
             )
         }
     }
+}
+
+@Composable
+private fun TagChip(title: String, color: Color, onClick: () -> Unit) {
+    ElevatedSuggestionChip(
+        label = { Text(text = title) },
+        colors = SuggestionChipDefaults.elevatedSuggestionChipColors(
+            containerColor = color,
+            labelColor = MaterialTheme.colorScheme.onError
+        ),
+        enabled = true,
+        onClick = onClick
+    )
 }

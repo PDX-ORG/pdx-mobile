@@ -1,5 +1,8 @@
+@file:OptIn(ExperimentalMaterialNavigationApi::class)
+
 package io.github.lexadiky.pdx.lib.navigation
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModelStore
@@ -8,6 +11,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
+import com.google.accompanist.navigation.material.ModalBottomSheetLayout
+import com.google.accompanist.navigation.material.rememberBottomSheetNavigator
 import io.github.lexadiky.pdx.lib.arc.di.DIFeature
 import io.github.lexadiky.pdx.lib.arc.di.di
 
@@ -21,7 +27,10 @@ fun NavigationFeature(
     startDestination: String = START_DESTINATION,
     content: @Composable NavigationFeatureContext.() -> Unit
 ) {
-    val controller = rememberNavController()
+    val bottomSheetNavigator = rememberBottomSheetNavigator()
+    val controller = rememberNavController(
+        bottomSheetNavigator
+    )
     val navGraph = remember(controller, routing) {
         val builder = PdxNavGraphBuilder(
             internal = NavGraphBuilder(
@@ -35,8 +44,14 @@ fun NavigationFeature(
         builder.build()
     }
 
-    DIFeature(NavigationModule(controller, navGraph)) {
-        NavigationFeatureContext.content()
+    ModalBottomSheetLayout(
+        bottomSheetNavigator = bottomSheetNavigator,
+        sheetShape = MaterialTheme.shapes.extraLarge,
+        sheetBackgroundColor = MaterialTheme.colorScheme.surface
+    ) {
+        DIFeature(NavigationModule(controller, navGraph)) {
+            NavigationFeatureContext.content()
+        }
     }
 }
 

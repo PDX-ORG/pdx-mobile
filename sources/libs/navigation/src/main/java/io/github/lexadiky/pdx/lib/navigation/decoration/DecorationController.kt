@@ -4,19 +4,21 @@ import android.os.Bundle
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.createGraph
 import androidx.navigation.get
 import io.github.lexadiky.pdx.lib.navigation.Navigator
 
 class DecorationController(
-    navigator: Navigator
+    private val navigator: Navigator
 ) : NavController.OnDestinationChangedListener {
     private val graphCache: HashMap<String, CachedRegistredHost> = HashMap()
 
@@ -32,7 +34,8 @@ class DecorationController(
 
     @Composable
     internal fun Render(decoration: String, route: String, content: @Composable () -> Unit) {
-        LaunchedEffect(decoration, route) {
+        val currentEntry by navigator.controller.currentBackStackEntryAsState()
+        LaunchedEffect(decoration, route, currentEntry) {
             val host = graphCache[decoration] ?: return@LaunchedEffect
             val composeNavigator = host.navController.navigatorProvider[ComposeNavigator::class]
             val wrappedContent: @Composable (NavBackStackEntry) -> Unit = { content() }

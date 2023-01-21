@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalContracts::class)
 
-package io.github.lexadiky.pdx.lib.blogger
+package io.github.lexadiky.lib.blogger
 
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract

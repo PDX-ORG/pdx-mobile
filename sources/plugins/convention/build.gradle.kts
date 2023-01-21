@@ -22,5 +22,9 @@ gradlePlugin {
             id = "io.github.lexadiky.pdx.plugin.module.library.android"
             implementationClass = "io.github.lexadiky.pdx.plugin.convention.PdxConventionLibraryAndroidPlugin"
         }
+        create("pdx-module-library-jvm") {
+            id = "io.github.lexadiky.pdx.plugin.module.library.jvm"
+            implementationClass = "io.github.lexadiky.pdx.plugin.convention.PdxConventionLibraryJvmPlugin"
+        }
     }
 }
