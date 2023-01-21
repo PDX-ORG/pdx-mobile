@@ -7,13 +7,9 @@ import androidx.navigation.NavGraph
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.createGraph
-import androidx.navigation.navDeepLink
 import io.github.lexadiky.pdx.lib.arc.di.DIFeature
 import io.github.lexadiky.pdx.lib.arc.di.di
-import io.github.lexadiky.pdx.lib.navigation.util.registerPage404
 
 private const val START_DESTINATION = "pdx://pokemon"
 
@@ -21,15 +17,22 @@ object NavigationFeatureContext
 
 @Composable
 fun NavigationFeature(
-    routing: NavGraphBuilder.() -> Unit,
+    routing: PdxNavGraphBuilder.() -> Unit,
     startDestination: String = START_DESTINATION,
     content: @Composable NavigationFeatureContext.() -> Unit
 ) {
     val controller = rememberNavController()
     val navGraph = remember(controller, routing) {
+        val builder = PdxNavGraphBuilder(
+            internal = NavGraphBuilder(
+                provider = controller.navigatorProvider,
+                startDestination = startDestination,
+                route = null
+            )
+        )
+        builder.apply(routing)
         controller.setViewModelStore(ViewModelStore())
-        val navGraph = controller.createGraph(startDestination, null, routing)
-        navGraph
+        builder.build()
     }
 
     DIFeature(NavigationModule(controller, navGraph)) {

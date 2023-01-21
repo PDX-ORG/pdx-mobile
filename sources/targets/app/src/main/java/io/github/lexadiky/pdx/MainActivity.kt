@@ -17,8 +17,8 @@ import io.github.lexadiky.pdx.feature.drawer.Drawer
 import io.github.lexadiky.pdx.feature.toolbar.Toolbar
 import io.github.lexadiky.pdx.feature.toolbar.rememberToolbarConnector
 import io.github.lexadiky.pdx.lib.arc.di.DIApplication
-import io.github.lexadiky.pdx.lib.navigation.NavigationFeature
 import io.github.lexadiky.pdx.lib.navigation.NavigationHost
+import io.github.lexadiky.pdx.lib.navigation.NavigationFeature
 import io.github.lexadiky.pdx.ui.uikit.theme.PdxTheme
 import io.github.lexadiky.pdx.ui.uikit.widget.scaffold.PdxScaffold
 

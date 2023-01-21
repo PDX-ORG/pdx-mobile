@@ -15,38 +15,27 @@ import io.github.lexadiky.pdx.feature.whois.WhoIsPage
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
 import io.github.lexadiky.pdx.lib.arc.di.di
 import io.github.lexadiky.pdx.lib.ifEnabled
+import io.github.lexadiky.pdx.lib.navigation.PdxNavGraphBuilder
 
 @Composable
-fun routing(): NavGraphBuilder.() -> Unit {
+fun routing(): PdxNavGraphBuilder.() -> Unit {
     val toggleManager = di.inject<FeatureToggleManager>()
 
     return remember(toggleManager) {
         {
-            composable("pdx://settings") {
-                SettingsPage()
-            }
-            composable("pdx://settings/achievements") {
-                AchievementSettingsPage()
-            }
+            page("pdx://settings") { SettingsPage() }
+            page("pdx://settings/achievements") { AchievementSettingsPage() }
             toggleManager.ifEnabled(NewsFeatureToggle) {
-                composable("pdx://news") {
-                    NewsFeedPage()
-                }
+                page("pdx://news") { NewsFeedPage() }
             }
-            composable("pdx://pokemon") {
-                PokemonListPage()
-            }
+            page("pdx://pokemon") { PokemonListPage() }
             composable("pdx://pokemon/{id}") { entry ->
                 PokemonDetailsPage(
                     pokemonId = entry.arguments!!.getString("id")!!
                 )
             }
-            composable("pdx://type") {
-                TypePage()
-            }
-            composable("pdx://game/whois") {
-                WhoIsPage()
-            }
+            page("pdx://type") { TypePage() }
+            page("pdx://game/whois") { WhoIsPage() }
         }
     }
 }
