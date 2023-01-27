@@ -15,6 +15,7 @@ import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from
 import io.github.lexadiky.pdx.lib.uikit.R
+import io.github.lexadiky.pdx.ui.uikit.resources.from
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 

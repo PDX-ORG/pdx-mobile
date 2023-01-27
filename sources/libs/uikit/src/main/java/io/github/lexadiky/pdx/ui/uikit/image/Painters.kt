@@ -7,9 +7,9 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import coil.compose.AsyncImagePainter
 import coil.request.ImageRequest
-import io.github.lexadiky.lib.blogger.BLogger
-import io.github.lexadiky.lib.blogger.error
-import io.github.lexadiky.lib.blogger.verbose
+import io.github.lexadiky.akore.blogger.BLogger
+import io.github.lexadiky.akore.blogger.error
+import io.github.lexadiky.akore.blogger.verbose
 
 @Composable
 fun rememberAsyncImagePainter(model: Any, builder: ImageRequest.Builder.() -> Unit = {}): Painter {

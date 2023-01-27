@@ -1,7 +1,7 @@
 package io.github.lexadiky.pdx.lib.analytics.sender
 
-import io.github.lexadiky.lib.blogger.BLogger
-import io.github.lexadiky.lib.blogger.info
+import io.github.lexadiky.akore.blogger.BLogger
+import io.github.lexadiky.akore.blogger.info
 
 internal class BloggerEventSender : EventSender {
 

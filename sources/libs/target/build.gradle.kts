@@ -7,7 +7,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.libs.blogger)
+    implementation(libs.akore.blogger)
     implementation(projects.libs.analytics)
     implementation(projects.libs.featureToggle)
     implementation(projects.libs.network)

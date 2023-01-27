@@ -11,6 +11,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { setUrl("https://jitpack.io") }
     }
     defaultLibrariesExtensionName.set("projectLibs")
     versionCatalogs {

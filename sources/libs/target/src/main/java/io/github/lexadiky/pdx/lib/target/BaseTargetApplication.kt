@@ -1,7 +1,7 @@
 package io.github.lexadiky.pdx.lib.target
 
 import android.app.Application
-import io.github.lexadiky.lib.blogger.BLogger
+import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
 import io.github.lexadiky.pdx.lib.FeatureToggleModule
 import io.github.lexadiky.pdx.lib.analytics.AnalyticsModule

@@ -4,9 +4,9 @@ package io.github.lexadiky.pdx.lib
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
-import io.github.lexadiky.lib.blogger.BLogger
-import io.github.lexadiky.lib.blogger.error
-import io.github.lexadiky.lib.blogger.info
+import io.github.lexadiky.akore.blogger.BLogger
+import io.github.lexadiky.akore.blogger.error
+import io.github.lexadiky.akore.blogger.info
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeout
 import kotlin.coroutines.resume

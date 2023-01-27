@@ -6,9 +6,9 @@ import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import io.github.lexadiky.pdx.domain.achievement.library.Achievement
-import io.github.lexadiky.lib.blogger.BLogger
-import io.github.lexadiky.lib.blogger.error
-import io.github.lexadiky.lib.blogger.verbose
+import io.github.lexadiky.akore.blogger.BLogger
+import io.github.lexadiky.akore.blogger.error
+import io.github.lexadiky.akore.blogger.verbose
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 
 class AchievementManager(

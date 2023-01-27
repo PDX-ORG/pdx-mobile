@@ -52,4 +52,6 @@ firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
 accompanist-navigation-material = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
 
+akore-blogger = "com.github.akore-org:blogger:2919ce7a83"
+
 [plugins]

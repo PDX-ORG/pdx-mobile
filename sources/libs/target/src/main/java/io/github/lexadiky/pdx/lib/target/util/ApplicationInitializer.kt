@@ -1,7 +1,7 @@
 package io.github.lexadiky.pdx.lib.target.util
 
-import io.github.lexadiky.lib.blogger.BLogger
-import io.github.lexadiky.lib.blogger.info
+import io.github.lexadiky.akore.blogger.BLogger
+import io.github.lexadiky.akore.blogger.info
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

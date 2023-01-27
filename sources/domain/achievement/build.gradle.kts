@@ -9,6 +9,6 @@ android {
 dependencies {
     implementation(projects.libs.arc)
     implementation(projects.libs.resources)
-    implementation(projects.libs.blogger)
+    implementation(libs.akore.blogger)
     implementation(projects.libs.uikit)
 }

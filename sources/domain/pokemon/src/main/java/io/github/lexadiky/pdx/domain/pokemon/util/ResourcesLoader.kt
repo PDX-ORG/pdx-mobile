@@ -1,8 +1,8 @@
 package io.github.lexadiky.pdx.domain.pokemon.util
 
 import arrow.core.Either
-import io.github.lexadiky.lib.blogger.BLogger
-import io.github.lexadiky.lib.blogger.error
+import io.github.lexadiky.akore.blogger.BLogger
+import io.github.lexadiky.akore.blogger.error
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 

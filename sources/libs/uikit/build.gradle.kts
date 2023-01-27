@@ -26,5 +26,5 @@ dependencies {
 
     api(libs.coil.compose.base)
 
-    implementation(projects.libs.blogger)
+    implementation(libs.akore.blogger)
 }

@@ -1,8 +1,8 @@
 package io.github.lexadiky.pdx.lib.target.util
 
 import android.util.Log
-import io.github.lexadiky.lib.blogger.ContextualLoggerDelegate
-import io.github.lexadiky.lib.blogger.LoggerLevel
+import io.github.lexadiky.akore.blogger.ContextualLoggerDelegate
+import io.github.lexadiky.akore.blogger.LoggerLevel
 
 internal class LogcatLoggerDelegate : ContextualLoggerDelegate {
 

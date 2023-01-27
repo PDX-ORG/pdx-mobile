@@ -3,10 +3,10 @@ package io.github.lexadiky.pdx.ui.uikit.theme.custom
 import android.content.Context
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import io.github.lexadiky.lib.blogger.BLogger
-import io.github.lexadiky.lib.blogger.error
-import io.github.lexadiky.lib.blogger.info
-import io.github.lexadiky.lib.blogger.verbose
+import io.github.lexadiky.akore.blogger.BLogger
+import io.github.lexadiky.akore.blogger.error
+import io.github.lexadiky.akore.blogger.info
+import io.github.lexadiky.akore.blogger.verbose
 import io.github.lexadiky.pdx.lib.fs.FsManager
 
 class ThemeManager(

@@ -15,7 +15,7 @@ dependencies {
     implementation(projects.libs.network)
     implementation(projects.libs.errorHandler)
     implementation(projects.libs.navigation)
-    implementation(projects.libs.blogger)
+    implementation(libs.akore.blogger)
 
     implementation(projects.domain.pokemon)
     implementation(projects.domain.achievement)

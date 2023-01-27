@@ -7,7 +7,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.libs.blogger)
+    implementation(libs.akore.blogger)
     implementation(projects.libs.arc)
 
     implementation(platform(libs.firebase.bom))

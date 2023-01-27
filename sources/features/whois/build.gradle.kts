@@ -14,6 +14,6 @@ dependencies {
     implementation(projects.libs.uikit)
     implementation(projects.libs.errorHandler)
     implementation(projects.libs.navigation)
-    implementation(projects.libs.blogger)
+    implementation(libs.akore.blogger)
     implementation(projects.libs.fs)
 }

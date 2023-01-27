@@ -17,7 +17,7 @@ dependencies {
     implementation(projects.libs.network)
     implementation(projects.libs.navigation)
     implementation(projects.libs.analytics)
-    implementation(projects.libs.blogger)
+    implementation(libs.akore.blogger)
     implementation(projects.libs.target)
     implementation(projects.domain.achievement)
     implementation(projects.features.toolbar)
