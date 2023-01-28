@@ -1,7 +1,6 @@
 package io.github.lexadiky.pdx.feature.typechart.search
 
 import android.content.Context
-import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -13,7 +12,6 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
-import io.github.lexadiky.pdx.feature.typechart.R
 import io.github.lexadiky.pdx.feature.typechart.entity.PokemonSuggester
 import io.github.lexadiky.pdx.feature.typechart.entity.PokemonTypeSearchItem
 import io.github.lexadiky.pdx.lib.errorhandler.UIError

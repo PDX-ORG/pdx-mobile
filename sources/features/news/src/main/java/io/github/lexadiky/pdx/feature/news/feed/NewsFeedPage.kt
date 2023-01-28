@@ -24,17 +24,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.feature.news.NewsModule
+import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.resources.render
-import io.github.lexadiky.pdx.ui.uikit.resources.renderNow
-import io.github.lexadiky.pdx.ui.uikit.theme.pdx
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
+import io.github.lexadiky.pdx.ui.uikit.theme.pdx
 
 @Composable
 fun NewsFeedPage() {
@@ -86,7 +85,7 @@ private fun NewsFeedItem(item: NewsFeedItem, onItemClick: () -> Unit, onAuthorCl
                     )
                 }
                 Text(
-                    text = item.title.renderNow(),
+                    text = item.title.render(),
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onSurface
                 )
@@ -108,7 +107,7 @@ private fun NewsFeedItem(item: NewsFeedItem, onItemClick: () -> Unit, onAuthorCl
                     onClick = { onAuthorClicked() }
                 )
 
-                Text(text = item.time.render().value)
+                Text(text = item.time.render())
             }
         }
     }

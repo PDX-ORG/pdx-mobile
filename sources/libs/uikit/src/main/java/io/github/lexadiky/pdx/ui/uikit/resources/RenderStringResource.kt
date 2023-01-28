@@ -3,7 +3,6 @@ package io.github.lexadiky.pdx.ui.uikit.resources
 import android.content.Context
 import android.text.format.DateFormat
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -16,13 +15,10 @@ import io.github.lexadiky.pdx.lib.resources.string.LiteralStringResource
 import io.github.lexadiky.pdx.lib.resources.string.ResStringResource
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.TemporalStringResource
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toJavaLocalDate
-import kotlinx.datetime.toLocalDateTime
 import java.util.Date
 
 @Composable
-fun StringResource.render(): State<String> {
+private fun StringResource.renderAsState(): State<String> {
     return when (this) {
         is LiteralStringResource -> remember(this.value) { mutableStateOf(this.value) }
         is ResStringResource -> {
@@ -40,7 +36,7 @@ fun StringResource.render(): State<String> {
         }
 
         is FormattedStringResource -> {
-            val renderedBase by this.base.render()
+            val renderedBase by this.base.renderAsState()
             remember {
                 derivedStateOf { renderedBase.format(*this.arguments) }
             }
@@ -49,8 +45,8 @@ fun StringResource.render(): State<String> {
 }
 
 @Composable
-fun StringResource.renderNow(): String {
-    val rendered by render()
+fun StringResource.render(): String {
+    val rendered by renderAsState()
     return rendered
 }
 

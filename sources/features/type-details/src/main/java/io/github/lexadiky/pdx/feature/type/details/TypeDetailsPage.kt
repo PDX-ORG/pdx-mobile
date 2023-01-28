@@ -32,10 +32,10 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
-import io.github.lexadiky.pdx.ui.uikit.resources.renderNow
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.theme.pdx
 import io.github.lexadiky.pdx.ui.uikit.util.saturation
@@ -54,7 +54,7 @@ fun TypeDetailsPage(typeId: String) {
 @SuppressLint("RestrictedApi")
 @Composable
 internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
-    val primaryColor = viewModel.state.type.toColorResource().render()
+    val primaryColor = viewModel.state.type.assets.color.render()
 
     val colorScheme = remember(viewModel.state) {
         Scheme.light(primaryColor.toArgb())
@@ -81,7 +81,7 @@ internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
     ) {
         item {
             Text(
-                text = viewModel.state.type.toStringResource().renderNow(),
+                text = viewModel.state.type.assets.title.render(),
                 style = MaterialTheme.typography.titleLarge
             )
         }
@@ -133,7 +133,7 @@ internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
                 }
                 viewModel.state.featuredPokemon.forEach { preview ->
                     SmallWikiPreview(
-                        title = preview.name.renderNow(),
+                        title = preview.name.render(),
                         preTitle = "",
                         icon = preview.image.render(
                             transformations = listOf(ImageTransformation.CropTransparent)
@@ -195,9 +195,9 @@ internal fun DamageChart(
                 crossAxisSpacing = MaterialTheme.grid.x1,
             ) {
                 table.forEach { (type, value) ->
-                    val labelColor = type.toColorResource().render()
+                    val labelColor = type.assets.color.render()
                     PillChip(
-                        label = { Text(text = type.toStringResource().render().value) },
+                        label = { Text(text = type.assets.title.render()) },
                         labelColor = labelColor,
                         trail = { Text(text = stringResource(id = R.string.type_damage_modifier, value)) },
                         trailColor = PillChipDefaults.trailColor(labelColor),

@@ -19,7 +19,6 @@ import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.feature.drawer.accountcard.AccountCard
 import io.github.lexadiky.pdx.feature.drawer.entity.DrawerItem
 import io.github.lexadiky.pdx.ui.uikit.resources.render
-import io.github.lexadiky.pdx.ui.uikit.resources.renderNow
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
@@ -60,7 +59,7 @@ internal fun DrawerImpl(viewModel: DrawerViewModel) {
 @Composable
 private fun NavigationItem(item: DrawerItem.Navigation, onClick: () -> Unit) {
     NavigationDrawerItem(
-        label = { Text(text = item.title.renderNow()) },
+        label = { Text(text = item.title.render()) },
         icon = { Icon(item.icon.render(), null) },
         selected = item.selected,
         onClick = { onClick() },

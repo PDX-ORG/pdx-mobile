@@ -12,6 +12,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.flowlayout.FlowRow
+import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemonlist.R
 import io.github.lexadiky.pdx.ui.uikit.resources.render
@@ -43,10 +44,10 @@ internal fun TypeFilterDialog(
                         selected = type in selected,
                         onClick = { onItemClicked(type) },
                         colors = FilterChipDefaults.filterChipColors(
-                            selectedContainerColor = type.toColorResource().render(),
+                            selectedContainerColor = type.assets.color.render(),
                             selectedLabelColor = MaterialTheme.colorScheme.onError
                         ),
-                        label = { Text(text = type.toStringResource().render().value) }
+                        label = { Text(text = type.assets.title.render()) }
                     )
                 }
             }

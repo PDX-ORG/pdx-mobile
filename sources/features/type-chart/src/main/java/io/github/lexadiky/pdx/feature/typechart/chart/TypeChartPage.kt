@@ -22,6 +22,7 @@ import io.github.lexadiky.pdx.feature.typechart.R
 import io.github.lexadiky.pdx.feature.typechart.ui.EffectChart
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
@@ -60,10 +61,10 @@ private fun TypeSelectionCard(state: TypeChartState, onTypeClicked: (PokemonType
                             selected = type in state.selectedTypes,
                             onClick = { onTypeClicked(type) },
                             colors = FilterChipDefaults.filterChipColors(
-                                selectedContainerColor = type.toColorResource().render(),
+                                selectedContainerColor = type.assets.color.render(),
                                 selectedLabelColor = MaterialTheme.colorScheme.onError
                             ),
-                            label = { Text(text = type.toStringResource().render().value) },
+                            label = { Text(text = type.assets.title.render()) },
                             modifier = Modifier.weight(1f)
                         )
                     }

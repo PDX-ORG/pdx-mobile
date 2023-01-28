@@ -1,6 +1,7 @@
 package io.github.lexadiky.pdx.feature.pokemon.list.usecase
 
 import arrow.core.Either
+import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
@@ -33,7 +34,7 @@ internal class PokemonGenericListItemSource(
             secondaryImage = pokemon.shinySprite?.let { ImageResource.from(it) }
                 ?: ImageResource.from(io.github.lexadiky.pdx.lib.uikit.R.drawable.uikit_ic_pokeball),
             tags = pokemon.types.map { type ->
-                GenericListItem.Tag(type.toStringResource(), type.toColorResource(), type.id)
+                GenericListItem.Tag(type.assets.title, type.assets.color, type.id)
             },
             textSearchIndex = pokemon.simpleSearchIndex,
             types = pokemon.types

@@ -9,6 +9,7 @@ android {
 dependencies {
     implementation(projects.features.genericList)
     implementation(projects.domain.pokemon)
+    implementation(projects.domain.pokemonAsset)
 
     implementation(libs.akore.alice.robo)
     implementation(projects.libs.uikit)
@@ -18,6 +19,5 @@ dependencies {
     implementation(libs.akore.blogger)
     implementation(libs.arrow.core)
 
-    implementation(projects.domain.pokemon)
     implementation(projects.domain.achievement)
 }

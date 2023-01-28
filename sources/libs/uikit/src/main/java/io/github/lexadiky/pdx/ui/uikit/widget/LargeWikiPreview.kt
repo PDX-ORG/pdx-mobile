@@ -32,7 +32,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import io.github.lexadiky.pdx.lib.resources.color.ColorResource
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.ui.uikit.resources.render
-import io.github.lexadiky.pdx.ui.uikit.resources.renderNow
 import io.github.lexadiky.pdx.ui.uikit.theme.animation
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
@@ -111,7 +110,7 @@ private fun TagStrip(tags: List<TagItem>, modifier: Modifier = Modifier) {
     ) {
         for (tag in tags) {
             TagChip(
-                title = tag.title.renderNow(),
+                title = tag.title.render(),
                 color = tag.color.render(),
                 onClick = { tag.onClick() }
             )

@@ -39,7 +39,6 @@ import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
-import io.github.lexadiky.pdx.ui.uikit.resources.renderNow
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
@@ -106,7 +105,7 @@ private fun WhoIsPageImpl(viewModel: WhoIsViewModel) {
                     modifier = Modifier.fillMaxWidth(0.75f)
                 ) {
                     AnimatedContent(
-                        targetState = variant.name.renderNow(),
+                        targetState = variant.name.render(),
                         transitionSpec = { fadeIn(tween(1000)) with fadeOut(tween(1000)) }
                     ) { name ->
                         Text(text = name)

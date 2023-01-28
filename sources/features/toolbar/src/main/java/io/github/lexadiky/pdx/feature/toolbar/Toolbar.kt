@@ -38,7 +38,7 @@ internal fun ToolbarImpl(viewModel: ToolbarViewModel) {
         title = {
             DecorationHost(decoration = "pdx://toolbar/title") {
                 Text(
-                    text = viewModel.state.title.render().value
+                    text = viewModel.state.title.render()
                 )
             }
         },

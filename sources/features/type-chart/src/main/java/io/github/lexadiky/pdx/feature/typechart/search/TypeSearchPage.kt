@@ -19,6 +19,7 @@ import io.github.lexadiky.pdx.feature.typechart.R
 import io.github.lexadiky.pdx.feature.typechart.ui.EffectChart
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
@@ -52,8 +53,8 @@ internal fun TypeSearchPage(viewModel: TypeSearchViewModel = di.inject()) {
         if (viewModel.state.selectedPokemon == null) {
             items(viewModel.state.suggestedPokemon) { pokemon ->
                 SmallWikiPreview(
-                    title = pokemon.name.render().value,
-                    preTitle = pokemon.nationalId.render().value,
+                    title = pokemon.name.render(),
+                    preTitle = pokemon.nationalId.render(),
                     icon = pokemon.image.render(
                         transformations = listOf(ImageTransformation.CropTransparent)
                     ),
@@ -69,15 +70,15 @@ internal fun TypeSearchPage(viewModel: TypeSearchViewModel = di.inject()) {
         viewModel.state.selectedPokemon?.let { pokemon ->
             item {
                 LargeWikiPreview(
-                    title = pokemon.name.render().value,
-                    preTitle = pokemon.nationalId.render().value,
+                    title = pokemon.name.render(),
+                    preTitle = pokemon.nationalId.render(),
                     image = pokemon.image.render(
                         transformations = listOf(ImageTransformation.CropTransparent)
                     ),
                     tags = pokemon.types.map { type ->
                         TagItem(
-                            title = type.toStringResource(),
-                            color = type.toColorResource(),
+                            title = type.assets.title,
+                            color = type.assets.color,
                             onClick = { viewModel.onTypeClicked(type) }
                         )
                     },

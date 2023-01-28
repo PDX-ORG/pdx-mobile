@@ -35,8 +35,8 @@ private fun AchievementSettingsPageImpl(viewModel: AchievementSettingsViewModel 
     LazyColumn {
         items(viewModel.state.availableAchievements) { achievement ->
             ListItem(
-                headlineText = { Text(achievement.name.render().value) },
-                supportingText = { Text(achievement.description.render().value) },
+                headlineText = { Text(achievement.name.render()) },
+                supportingText = { Text(achievement.description.render()) },
                 trailingContent = {
                     Icon(
                         painter = achievement.icon?.render()

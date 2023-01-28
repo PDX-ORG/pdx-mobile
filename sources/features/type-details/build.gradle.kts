@@ -8,6 +8,7 @@ android {
 
 dependencies {
     implementation(projects.domain.pokemon)
+    implementation(projects.domain.pokemonAsset)
 
     implementation(libs.akore.alice.robo)
     implementation(projects.libs.uikit)

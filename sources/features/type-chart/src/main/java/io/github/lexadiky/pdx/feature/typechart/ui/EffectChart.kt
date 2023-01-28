@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.flowlayout.FlowRow
+import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.typechart.R
 import io.github.lexadiky.pdx.feature.typechart.entity.TypeDamageValue
@@ -46,9 +47,9 @@ internal fun EffectChart(
                 ) {
 
                     table.forEach { relation ->
-                        val labelColor = relation.type.toColorResource().render()
+                        val labelColor = relation.type.assets.color.render()
                         PillChip(
-                            label = { Text(text = relation.type.toStringResource().render().value) },
+                            label = { Text(text = relation.type.assets.title.render()) },
                             labelColor = labelColor,
                             trail = { Text(text = stringResource(id = R.string.type_chart_modifier, relation.value)) },
                             trailColor = PillChipDefaults.trailColor(labelColor),

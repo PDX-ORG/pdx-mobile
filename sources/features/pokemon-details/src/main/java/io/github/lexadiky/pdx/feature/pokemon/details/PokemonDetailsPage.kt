@@ -17,5 +17,5 @@ fun PageContext.PokemonDetailsPage(pokemonId: String) {
 
 @Composable
 private fun PokemonDetailsPageImpl(viewModel: PokemonDetailsViewModel) {
-    Text(text = "PKMN: ${viewModel.state.name.render().value}")
+    Text(text = "PKMN: ${viewModel.state.name.render()}")
 }

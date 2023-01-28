@@ -10,6 +10,7 @@ import io.github.lexadiky.pdx.domain.achievement.AchievementManager
 import io.github.lexadiky.pdx.domain.achievement.library.WhoIsBeginnerAchievement
 import io.github.lexadiky.pdx.domain.achievement.library.WhoIsChampionAchievement
 import io.github.lexadiky.pdx.domain.achievement.library.WhoIsTrainerAchievement
+import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
@@ -81,7 +82,7 @@ internal class WhoIsViewModel(
             WhoIsPokemonVariant(
                 image = ImageResource.from(preview.normalSprite!!),
                 name = StringResource.from(preview.localNames[PokemonLanguage.ENGLISH]!!),
-                color = preview.types.first().toColorResource(),
+                color = preview.types.first().assets.color,
                 id = preview.name
             )
         }

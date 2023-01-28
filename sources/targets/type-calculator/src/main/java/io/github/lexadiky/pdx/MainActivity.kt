@@ -17,7 +17,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
 import androidx.core.view.WindowCompat
+import io.github.lexadiky.akore.alice.robo.DIApplication
 import io.github.lexadiky.akore.alice.robo.di
+import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.lib.navigation.NavigationHost
 import io.github.lexadiky.pdx.lib.navigation.Navigator
 import io.github.lexadiky.pdx.lib.navigation.NavigationFeature
@@ -41,7 +43,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun Content() {
         PdxTheme {
-            NavigationFeature(routing()) {
+            NavigationFeature(routing(), "pdx://type") {
                 val navigator = di.inject<Navigator>()
                 val scope = rememberCoroutineScope()
 

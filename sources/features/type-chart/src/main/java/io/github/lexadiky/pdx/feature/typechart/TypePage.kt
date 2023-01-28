@@ -36,7 +36,7 @@ private fun TypePageImpl() {
         TabRow(selectedTabIndex = tabs.indexOf(selectedTab)) {
             TypePageTabs.values().forEach { tab ->
                 Tab(selected = selectedTab == tab, onClick = { selectedTab = tab }, text = {
-                    Text(text = tab.title.render().value)
+                    Text(text = tab.title.render())
                 })
             }
         }

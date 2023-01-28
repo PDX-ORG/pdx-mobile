@@ -87,8 +87,8 @@ private fun <T : GenericListItem> GenericListPageImpl(
             }
             items(viewModel.state.visibleItems, { entry -> entry.id }) { entry ->
                 LargeWikiPreview(
-                    preTitle = entry.note.render().value,
-                    title = entry.title.render().value,
+                    preTitle = entry.note.render(),
+                    title = entry.title.render(),
                     image = genericListItemPreviewPainter(
                         item = entry,
                         useAlternativeImages = viewModel.state.useAlternativeImages
