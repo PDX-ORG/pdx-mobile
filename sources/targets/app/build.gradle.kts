@@ -19,6 +19,7 @@ dependencies {
     implementation(libs.akore.blogger)
     implementation(projects.libs.target)
     implementation(projects.domain.achievement)
+    implementation(projects.domain.pokemonAsset)
     implementation(projects.features.toolbar)
     implementation(projects.features.drawer)
     implementation(projects.features.news)
