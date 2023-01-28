@@ -13,7 +13,7 @@ android {
 dependencies {
     implementation(projects.libs.target)
     implementation(projects.libs.uikit)
-    implementation(projects.libs.aliceRobo)
+    implementation(libs.akore.alice.robo)
     implementation(projects.libs.featureToggle)
     implementation(projects.libs.network)
     implementation(projects.libs.navigation)

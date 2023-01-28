@@ -54,5 +54,6 @@ accompanist-navigation-material = { module = "com.google.accompanist:accompanist
 
 akore-blogger = "com.github.akore-org:blogger:2919ce7a83"
 akore-alice-core = "com.github.akore-org.alice:core:-SNAPSHOT"
+akore-alice-robo = "com.github.akore-org.alice:robo:-SNAPSHOT"
 
 [plugins]

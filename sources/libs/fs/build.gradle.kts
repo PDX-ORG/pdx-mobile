@@ -8,5 +8,5 @@ android {
 
 dependencies {
     implementation(libs.akore.blogger)
-    implementation(projects.libs.aliceRobo)
+    implementation(libs.akore.alice.robo)
 }

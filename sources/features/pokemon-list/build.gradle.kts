@@ -10,7 +10,7 @@ dependencies {
     implementation(projects.features.genericList)
     implementation(projects.domain.pokemon)
 
-    implementation(projects.libs.aliceRobo)
+    implementation(libs.akore.alice.robo)
     implementation(projects.libs.uikit)
     implementation(projects.libs.network)
     implementation(projects.libs.errorHandler)

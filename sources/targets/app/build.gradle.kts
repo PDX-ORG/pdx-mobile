@@ -12,7 +12,6 @@ android {
 
 dependencies {
     implementation(projects.libs.uikit)
-    implementation(projects.libs.aliceRobo)
     implementation(projects.libs.featureToggle)
     implementation(projects.libs.network)
     implementation(projects.libs.navigation)
@@ -32,6 +31,7 @@ dependencies {
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.crashlytics)
+    implementation(libs.akore.alice.robo)
 
     testImplementation(libs.junit4.core)
     androidTestImplementation(libs.android.test.junit4)

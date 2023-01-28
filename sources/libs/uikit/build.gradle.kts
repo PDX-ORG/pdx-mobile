@@ -10,7 +10,6 @@ dependencies {
     implementation(projects.libs.buildConfig)
 
     api(projects.libs.resources)
-    api(projects.libs.aliceRobo)
     api(projects.libs.fs)
 
     api(libs.android.core)
@@ -27,4 +26,5 @@ dependencies {
     api(libs.coil.compose.base)
 
     implementation(libs.akore.blogger)
+    implementation(libs.akore.alice.robo)
 }
