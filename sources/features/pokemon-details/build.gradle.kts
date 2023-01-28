@@ -13,7 +13,9 @@ dependencies {
     implementation(projects.libs.errorHandler)
     implementation(projects.libs.navigation)
     implementation(libs.akore.blogger)
+    implementation(libs.arrow.core)
 
     implementation(projects.domain.pokemon)
+    implementation(projects.domain.pokemonAsset)
     implementation(projects.domain.achievement)
 }

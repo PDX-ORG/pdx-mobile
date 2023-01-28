@@ -25,6 +25,8 @@ dependencies {
 
     api(libs.coil.compose.base)
 
+    implementation(libs.mpchart)
+
     implementation(libs.akore.blogger)
     implementation(libs.akore.alice.robo)
 }

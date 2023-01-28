@@ -1,5 +1,7 @@
 package io.github.lexadiky.pdx.domain.pokemon.entity
 
+import io.lexadiky.pokeapi.entity.common.ResourcePointer
+import io.lexadiky.pokeapi.entity.type.Type
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -59,4 +61,8 @@ enum class PokemonType(val id: String) {
 
     @SerialName("rock")
     ROCK("rock");
+}
+
+fun ResourcePointer<Type>.asType(): PokemonType {
+    return PokemonType.values().first { it.id == this.name }
 }

@@ -56,4 +56,8 @@ akore-blogger = "com.github.akore-org:blogger:2919ce7a83"
 akore-alice-core = "com.github.akore-org.alice:core:-SNAPSHOT"
 akore-alice-robo = "com.github.akore-org.alice:robo:-SNAPSHOT"
 
+pokeapi = "com.github.lexa-diky:pokeapi-kotlin:-SNAPSHOT"
+
+mpchart = "com.github.PhilJay:MPAndroidChart:v3.1.0"
+
 [plugins]

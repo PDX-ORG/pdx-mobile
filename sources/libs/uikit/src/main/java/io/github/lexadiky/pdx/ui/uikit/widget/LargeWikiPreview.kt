@@ -119,7 +119,7 @@ private fun TagStrip(tags: List<TagItem>, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun TagChip(title: String, color: Color, onClick: () -> Unit) {
+fun TagChip(title: String, color: Color, onClick: () -> Unit) {
     ElevatedSuggestionChip(
         label = { Text(text = title) },
         colors = SuggestionChipDefaults.elevatedSuggestionChipColors(

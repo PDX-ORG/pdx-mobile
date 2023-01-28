@@ -28,6 +28,7 @@ dependencies {
     implementation(projects.features.typeChart)
     implementation(projects.features.whois)
     implementation(projects.features.typeDetails)
+    implementation(projects.features.home)
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.crashlytics)

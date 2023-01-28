@@ -14,6 +14,7 @@ import io.github.lexadiky.pdx.feature.whois.WhoIsPage
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.pdx.feature.home.HomePage
 import io.github.lexadiky.pdx.lib.ifEnabled
 import io.github.lexadiky.pdx.lib.navigation.PdxNavGraphBuilder
 
@@ -23,7 +24,7 @@ fun routing(): PdxNavGraphBuilder.() -> Unit {
 
     return remember(toggleManager) {
         {
-            page("pdx://home") {}
+            page("pdx://home") { HomePage() }
             page("pdx://settings") { SettingsPage() }
             page("pdx://settings/achievements") { AchievementSettingsPage() }
             toggleManager.ifEnabled(NewsFeatureToggle) {

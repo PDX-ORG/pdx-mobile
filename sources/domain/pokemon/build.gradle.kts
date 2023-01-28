@@ -8,4 +8,5 @@ dependencies {
     implementation(projects.libs.resources)
     implementation(libs.akore.blogger)
     implementation(libs.arrow.core)
+    implementation(libs.pokeapi)
 }
