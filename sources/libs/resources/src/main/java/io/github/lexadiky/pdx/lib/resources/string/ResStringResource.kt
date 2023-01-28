@@ -1,9 +1,7 @@
 package io.github.lexadiky.pdx.lib.resources.string
 
-import androidx.annotation.StringRes
+class ResStringResource(val stringRes: Int) : StringResource
 
-class ResStringResource(@StringRes val stringRes: Int) : StringResource
-
-fun StringResource.Companion.from(@StringRes res: Int): StringResource {
+fun StringResource.Companion.from(res: Int): StringResource {
     return ResStringResource(res)
 }

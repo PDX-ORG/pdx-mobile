@@ -7,6 +7,7 @@ android {
 }
 
 dependencies {
-    api(projects.libs.alice)
     implementation(libs.koin.compose)
+
+    api(libs.akore.alice.core)
 }

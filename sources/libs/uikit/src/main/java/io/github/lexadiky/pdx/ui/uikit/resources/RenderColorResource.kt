@@ -8,6 +8,6 @@ import io.github.lexadiky.pdx.lib.resources.color.LiteralColorResource
 @Composable
 fun ColorResource.render(): Color {
     return when (this) {
-        is LiteralColorResource -> color
+        is LiteralColorResource -> Color(color)
     }
 }

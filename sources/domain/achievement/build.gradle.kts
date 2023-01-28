@@ -7,8 +7,9 @@ android {
 }
 
 dependencies {
-    implementation(projects.libs.alice)
     implementation(projects.libs.resources)
-    implementation(libs.akore.blogger)
     implementation(projects.libs.uikit)
+
+    implementation(libs.akore.blogger)
+    implementation(libs.akore.alice.core)
 }

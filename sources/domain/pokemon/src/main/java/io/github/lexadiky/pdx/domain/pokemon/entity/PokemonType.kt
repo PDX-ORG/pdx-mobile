@@ -1,6 +1,5 @@
 package io.github.lexadiky.pdx.domain.pokemon.entity
 
-import androidx.compose.ui.graphics.Color
 import io.github.lexadiky.pdx.domain.pokemon.R
 import io.github.lexadiky.pdx.lib.resources.color.ColorResource
 import io.github.lexadiky.pdx.lib.resources.color.from
@@ -74,5 +73,5 @@ enum class PokemonType(
         StringResource.from(nameResource)
 
     fun toColorResource(): ColorResource =
-        ColorResource.from(Color(colorArgb))
+        ColorResource.from(colorArgb)
 }

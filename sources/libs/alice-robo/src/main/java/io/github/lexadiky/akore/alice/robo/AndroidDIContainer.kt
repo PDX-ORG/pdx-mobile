@@ -22,11 +22,11 @@ inline fun <reified T: Any> DIContainer.inject(vararg parameters: Any): T = reme
 }
 
 @Composable
-inline fun <reified T : ViewModel> DIContainer.viewModel(key: String, vararg paramerers: Any): T {
+inline fun <reified T : ViewModel> DIContainer.viewModel(key: String, vararg parameters: Any): T {
     return koinViewModel(
         scope = application.koin.scopeRegistry.rootScope,
         key = key,
-        parameters = { parametersOf(*paramerers) }
+        parameters = { parametersOf(*parameters) }
     )
 }
 
