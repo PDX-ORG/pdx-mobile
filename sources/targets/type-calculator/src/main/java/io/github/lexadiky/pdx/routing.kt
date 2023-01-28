@@ -6,7 +6,7 @@ import io.github.lexadiky.pdx.feature.settings.SettingsPage
 import io.github.lexadiky.pdx.feature.settings.achievement.AchievementSettingsPage
 import io.github.lexadiky.pdx.feature.typechart.TypePage
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
-import io.github.lexadiky.pdx.lib.arc.di.di
+import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.pdx.lib.navigation.PdxNavGraphBuilder
 
 @Composable

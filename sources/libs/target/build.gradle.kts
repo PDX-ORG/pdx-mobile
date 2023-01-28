@@ -12,5 +12,5 @@ dependencies {
     implementation(projects.libs.featureToggle)
     implementation(projects.libs.network)
     implementation(projects.libs.uikit)
-    implementation(projects.libs.arc)
+    implementation(projects.libs.aliceRobo)
 }

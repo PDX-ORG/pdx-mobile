@@ -9,7 +9,7 @@ android {
 
 dependencies {
     api(libs.android.navigation.compose)
-    implementation(projects.libs.arc)
+    implementation(projects.libs.aliceRobo)
     implementation(projects.libs.analytics)
     implementation(projects.libs.uikit)
     implementation(libs.accompanist.navigation.material)

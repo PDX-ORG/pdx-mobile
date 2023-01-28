@@ -17,8 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
 import androidx.core.view.WindowCompat
-import io.github.lexadiky.pdx.lib.arc.di.DIApplication
-import io.github.lexadiky.pdx.lib.arc.di.di
+import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.pdx.lib.navigation.NavigationHost
 import io.github.lexadiky.pdx.lib.navigation.Navigator
 import io.github.lexadiky.pdx.lib.navigation.NavigationFeature

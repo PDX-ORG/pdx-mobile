@@ -10,12 +10,13 @@ dependencies {
     implementation(projects.features.genericList)
     implementation(projects.domain.pokemon)
 
-    implementation(projects.libs.arc)
+    implementation(projects.libs.aliceRobo)
     implementation(projects.libs.uikit)
     implementation(projects.libs.network)
     implementation(projects.libs.errorHandler)
     implementation(projects.libs.navigation)
     implementation(libs.akore.blogger)
+    implementation(libs.arrow.core)
 
     implementation(projects.domain.pokemon)
     implementation(projects.domain.achievement)

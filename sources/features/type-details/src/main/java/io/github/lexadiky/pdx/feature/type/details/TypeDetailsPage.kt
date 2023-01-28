@@ -25,14 +25,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.android.material.color.utilities.Scheme
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
-import io.github.lexadiky.pdx.lib.arc.di.DIFeature
-import io.github.lexadiky.pdx.lib.arc.di.di
+import io.github.lexadiky.akore.alice.robo.DIFeature
+import io.github.lexadiky.akore.alice.robo.di
+import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render

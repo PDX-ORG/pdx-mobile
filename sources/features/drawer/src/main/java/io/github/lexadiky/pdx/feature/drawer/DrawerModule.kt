@@ -1,7 +1,8 @@
 package io.github.lexadiky.pdx.feature.drawer
 
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.feature.drawer.domain.DrawerItemSource
-import io.github.lexadiky.pdx.lib.arc.di.module
+import io.github.lexadiky.akore.alice.module
 
 internal val DrawerModule by module("drawer") {
     internal {

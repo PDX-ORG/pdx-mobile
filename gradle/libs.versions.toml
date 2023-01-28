@@ -37,7 +37,7 @@ coil-compose-base = "io.coil-kt:coil-compose-base:2.2.2"
 arrow-core = "io.arrow-kt:arrow-core:1.1.2"
 
 koin-compose = "io.insert-koin:koin-androidx-compose:3.3.0"
-
+koin-core = "io.insert-koin:koin-core:3.3.0"
 
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }

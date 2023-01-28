@@ -1,7 +1,7 @@
 package io.github.lexadiky.pdx.feature.pokemon.details
 
-import androidx.compose.runtime.Composable
-import io.github.lexadiky.pdx.lib.arc.di.eagerModule
+import io.github.lexadiky.akore.alice.robo.viewModel
+import io.github.lexadiky.akore.alice.eagerModule
 
 internal val PokemonDetailsModule = eagerModule("pokemon-details") {
     internal {

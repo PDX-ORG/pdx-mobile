@@ -2,21 +2,9 @@
 
 package io.github.lexadiky.pdx.feature.drawer
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.AssistChip
-import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -24,14 +12,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.style.TextOverflow
+import io.github.lexadiky.akore.alice.robo.DIFeature
+import io.github.lexadiky.akore.alice.robo.di
+import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.feature.drawer.accountcard.AccountCard
 import io.github.lexadiky.pdx.feature.drawer.entity.DrawerItem
-import io.github.lexadiky.pdx.lib.arc.di.DIFeature
-import io.github.lexadiky.pdx.lib.arc.di.di
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.resources.renderNow
 import io.github.lexadiky.pdx.ui.uikit.theme.grid

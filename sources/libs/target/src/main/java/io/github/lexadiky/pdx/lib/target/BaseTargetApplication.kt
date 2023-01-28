@@ -2,10 +2,10 @@ package io.github.lexadiky.pdx.lib.target
 
 import android.app.Application
 import io.github.lexadiky.akore.blogger.BLogger
+import io.github.lexadiky.akore.alice.DIContainer
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
 import io.github.lexadiky.pdx.lib.FeatureToggleModule
 import io.github.lexadiky.pdx.lib.analytics.AnalyticsModule
-import io.github.lexadiky.pdx.lib.arc.di.DIContainer
 import io.github.lexadiky.pdx.lib.network.NetworkModule
 import io.github.lexadiky.pdx.lib.target.util.ApplicationInitializer
 import io.github.lexadiky.pdx.lib.target.util.LogcatLoggerDelegate

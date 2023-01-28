@@ -1,8 +1,5 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package io.github.lexadiky.pdx.feature.pokemon.list
 
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
@@ -12,8 +9,10 @@ import io.github.lexadiky.pdx.feature.pokemon.list.entity.PokemonSearchQuery
 import io.github.lexadiky.pdx.feature.pokemon.list.entity.parse
 import io.github.lexadiky.pdx.feature.pokemon.list.ui.PokemonFilter
 import io.github.lexadiky.pdx.feature.pokemonlist.R
-import io.github.lexadiky.pdx.lib.arc.di.DIFeature
-import io.github.lexadiky.pdx.lib.arc.di.di
+import io.github.lexadiky.akore.alice.robo.DIFeature
+import io.github.lexadiky.akore.alice.robo.di
+import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
 import io.github.lexadiky.pdx.lib.navigation.page.PageContext
 

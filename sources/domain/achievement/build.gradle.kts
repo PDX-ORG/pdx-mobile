@@ -7,7 +7,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.libs.arc)
+    implementation(projects.libs.alice)
     implementation(projects.libs.resources)
     implementation(libs.akore.blogger)
     implementation(projects.libs.uikit)

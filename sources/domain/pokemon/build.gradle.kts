@@ -11,4 +11,5 @@ dependencies {
     implementation(projects.libs.network)
     implementation(projects.libs.resources)
     implementation(libs.akore.blogger)
+    implementation(libs.arrow.core)
 }

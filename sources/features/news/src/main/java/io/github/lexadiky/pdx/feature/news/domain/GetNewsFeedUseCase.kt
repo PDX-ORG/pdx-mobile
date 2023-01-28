@@ -10,7 +10,7 @@ import java.net.URI
 
 internal class GetNewsFeedUseCase(private val redditNewsClient: RedditNewsClient) {
 
-    suspend operator fun invoke(): Either<GetNewsFeedUseCaseError, List<NewsFeedItem>> = Either.catch (){
+    suspend operator fun invoke(): Either<GetNewsFeedUseCaseError, List<NewsFeedItem>> = Either.catch {
         val children = redditNewsClient.load().data.children
         children.map { child ->
             NewsFeedItem(

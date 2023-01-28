@@ -2,10 +2,9 @@ package io.github.lexadiky.pdx
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.navigation.navArgument
 import io.github.lexadiky.pdx.feature.settings.achievement.AchievementSettingsPage
 import io.github.lexadiky.pdx.feature.news.NewsFeatureToggle
-import io.github.lexadiky.pdx.feature.news.NewsFeedPage
+import io.github.lexadiky.pdx.feature.news.feed.NewsFeedPage
 import io.github.lexadiky.pdx.feature.pokemon.details.PokemonDetailsPage
 import io.github.lexadiky.pdx.feature.pokemon.list.PokemonListPage
 import io.github.lexadiky.pdx.feature.settings.SettingsPage
@@ -13,7 +12,8 @@ import io.github.lexadiky.pdx.feature.type.details.TypeDetailsPage
 import io.github.lexadiky.pdx.feature.typechart.TypePage
 import io.github.lexadiky.pdx.feature.whois.WhoIsPage
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
-import io.github.lexadiky.pdx.lib.arc.di.di
+import io.github.lexadiky.akore.alice.robo.di
+import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.lib.ifEnabled
 import io.github.lexadiky.pdx.lib.navigation.PdxNavGraphBuilder
 

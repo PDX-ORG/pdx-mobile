@@ -1,7 +1,8 @@
 package io.github.lexadiky.pdx.lib.navigation.decoration
 
 import androidx.compose.runtime.Composable
-import io.github.lexadiky.pdx.lib.arc.di.di
+import io.github.lexadiky.akore.alice.robo.di
+import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.lib.navigation.Navigator
 
 @Composable

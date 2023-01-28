@@ -7,7 +7,7 @@ android {
 }
 
 dependencies {
-    api(projects.libs.arc)
+    api(projects.libs.aliceRobo)
     api(libs.kotlin.serialization.json)
     api(libs.ktor.core)
     api(libs.ktor.okhttp)

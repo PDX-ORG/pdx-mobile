@@ -1,17 +1,15 @@
 package io.github.lexadiky.pdx.feature.pokemon.list.usecase
 
 import arrow.core.Either
-import io.github.lexadiky.pdx.feature.generic.list.domain.GenericListItemDataSource
-import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
+import io.github.lexadiky.pdx.feature.generic.list.domain.GenericListItemDataSource
+import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
 import io.github.lexadiky.pdx.feature.pokemon.list.entity.PokemonGenericListItem
-import io.github.lexadiky.pdx.feature.pokemonlist.R
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
-import io.github.lexadiky.pdx.lib.resources.string.format
 import io.github.lexadiky.pdx.lib.resources.string.from
 import io.github.lexadiky.pdx.ui.uikit.util.UikitStringFormatter
 

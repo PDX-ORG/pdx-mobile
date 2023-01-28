@@ -18,9 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.pdx.feature.settings.R
-import io.github.lexadiky.pdx.lib.arc.di.DIFeature
-import io.github.lexadiky.pdx.lib.arc.di.di
-import io.github.lexadiky.pdx.lib.arc.di.module
+import io.github.lexadiky.akore.alice.robo.DIFeature
+import io.github.lexadiky.akore.alice.robo.di
+import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 
 @Composable

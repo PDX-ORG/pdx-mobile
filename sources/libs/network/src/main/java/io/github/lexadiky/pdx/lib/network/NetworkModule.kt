@@ -1,7 +1,7 @@
 package io.github.lexadiky.pdx.lib.network
 
 import android.content.Context
-import io.github.lexadiky.pdx.lib.arc.di.module
+import io.github.lexadiky.akore.alice.module
 import io.ktor.client.*
 import io.ktor.client.engine.okhttp.*
 import kotlinx.serialization.json.Json

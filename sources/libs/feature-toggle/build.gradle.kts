@@ -8,7 +8,7 @@ android {
 
 dependencies {
     implementation(libs.akore.blogger)
-    implementation(projects.libs.arc)
+    implementation(projects.libs.aliceRobo)
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.remoteConfig)

@@ -1,4 +1,4 @@
-package io.github.lexadiky.pdx.lib.arc.di
+package io.github.lexadiky.akore.alice
 
 import java.lang.IllegalArgumentException
 import kotlin.reflect.KClass
