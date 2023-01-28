@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalPagerApi::class)
+
 package io.github.lexadiky.pdx.feature.pokemon.details
 
 import androidx.compose.animation.AnimatedVisibility
@@ -27,6 +29,7 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,6 +38,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.rememberPagerState
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
@@ -43,6 +49,7 @@ import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
 import io.github.lexadiky.pdx.lib.navigation.page.PageContext
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
+import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
@@ -83,13 +90,23 @@ private fun PokemonDetailsPageImpl(viewModel: PokemonDetailsViewModel) {
 
     LazyColumn(
         state = LocalPrimeScrollState.current.asLazyListState(),
-        contentPadding = PaddingValues(MaterialTheme.grid.x2),
         modifier = Modifier
             .fillMaxSize()
             .animateContentSize()
     ) {
         item(HEADER_IMAGE_ID) {
-            HeaderImage(viewModel.state.image)
+            val state = rememberPagerState()
+            LaunchedEffect(state.currentPage) {
+                viewModel.selectVariety(state.currentPage)
+            }
+            HorizontalPager(
+                viewModel.state.availableVarieties,
+                state = state
+            ) { page ->
+                val image = viewModel.state.pokemonSpeciesDetails?.varieties?.get(page)?.sprites?.default
+                    ?.let { ImageResource.from(it) }
+                HeaderImage(image)
+            }
         }
         item {
             Spacer(modifier = Modifier.size(MaterialTheme.grid.x2))
@@ -97,6 +114,7 @@ private fun PokemonDetailsPageImpl(viewModel: PokemonDetailsViewModel) {
         item {
             Card(
                 Modifier
+                    .padding(MaterialTheme.grid.x2)
                     .height(800.dp)
                     .fillMaxWidth()
             ) {
@@ -149,7 +167,8 @@ private fun HeaderImage(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 CircularProgressIndicator(
-                    modifier = Modifier.size(MaterialTheme.grid.x8)
+                    modifier = Modifier
+                        .size(MaterialTheme.grid.x8)
                         .padding(MaterialTheme.grid.x2)
                 )
             }

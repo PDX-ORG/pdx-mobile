@@ -37,10 +37,8 @@ internal class PokemonDetailsViewModel(
 
     private fun createUpdatedState(details: PokemonSpeciesDetails): PokemonDetailsState {
         return state.copy(
-            name = details.localizedNames[PokemonLanguage.ENGLISH]
-                ?.let { StringResource.from(it) },
-            types = details.primaryVariety.types,
-            image = ImageResource.from(details.primaryVariety.sprites.default)
+            pokemonSpeciesDetails = details,
+            selectedVariety = details.primaryVariety
         )
     }
 
@@ -50,5 +48,11 @@ internal class PokemonDetailsViewModel(
 
     fun openTypeDetails(type: PokemonType) = viewModelScope.launch {
         navigator.navigate("pdx://type/${type.id}")
+    }
+
+    fun selectVariety(varietyIndex: Int) {
+        state = state.copy(
+            selectedVariety = state.pokemonSpeciesDetails?.varieties?.get(varietyIndex)
+        )
     }
 }

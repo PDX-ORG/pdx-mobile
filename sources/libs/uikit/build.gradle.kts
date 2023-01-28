@@ -22,6 +22,7 @@ dependencies {
     api(libs.android.compose.material3)
 
     api(libs.accompanist.flowlayout)
+    api(libs.accompanist.pager)
 
     api(libs.coil.compose.base)
 
