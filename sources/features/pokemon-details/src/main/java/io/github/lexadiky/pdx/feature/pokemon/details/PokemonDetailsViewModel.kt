@@ -10,6 +10,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonSpeciesDetailsUseCase
+import io.github.lexadiky.pdx.feature.pokemon.details.usecase.GetAvailableDetailsSections
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.navigation.Navigator
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
@@ -20,7 +21,8 @@ import kotlinx.coroutines.launch
 internal class PokemonDetailsViewModel(
     private val pokemonId: String,
     private val navigator: Navigator,
-    private val getPokemonDetails: GetPokemonSpeciesDetailsUseCase
+    private val getPokemonDetails: GetPokemonSpeciesDetailsUseCase,
+    private val getAvailableDetailsSections: GetAvailableDetailsSections
 ) : ViewModel() {
 
     var state: PokemonDetailsState by mutableStateOf(PokemonDetailsState(pokemonId))
@@ -28,6 +30,10 @@ internal class PokemonDetailsViewModel(
 
     init {
         viewModelScope.launch {
+            state = when (val data = getAvailableDetailsSections()) {
+                is Either.Left -> state.copy(error = UIError.default())
+                is Either.Right -> state.copy(availableDetailsSections = data.value)
+            }
             state = when (val details = getPokemonDetails(pokemonId)) {
                 is Either.Left -> state.copy(error = UIError.default())
                 is Either.Right -> createUpdatedState(details.value)

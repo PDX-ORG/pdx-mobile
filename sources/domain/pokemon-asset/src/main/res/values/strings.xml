@@ -20,4 +20,11 @@
     <string name="domain_pokemon_type_psychic">Psychic</string>
     <string name="domain_pokemon_type_rock">Rock</string>
 
+    <string name="domain_pokemon_asset_stat_short_hp">HP</string>
+    <string name="domain_pokemon_asset_stat_short_speed">Spd</string>
+    <string name="domain_pokemon_asset_stat_short_attack">Atk</string>
+    <string name="domain_pokemon_asset_stat_short_sp_attack">Sp.Atk</string>
+    <string name="domain_pokemon_asset_stat_short_defence">Def</string>
+    <string name="domain_pokemon_asset_stat_short_sp_defence">Sp.Def</string>
+
 </resources>

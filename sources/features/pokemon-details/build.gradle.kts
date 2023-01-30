@@ -12,7 +12,7 @@ dependencies {
     implementation(projects.libs.network)
     implementation(projects.libs.errorHandler)
     implementation(projects.libs.navigation)
-    implementation(libs.akore.blogger)
+    implementation(libs.akore.blogger.core)
     implementation(libs.arrow.core)
 
     implementation(projects.domain.pokemon)

@@ -16,7 +16,7 @@ dependencies {
     implementation(projects.libs.network)
     implementation(projects.libs.navigation)
     implementation(projects.libs.analytics)
-    implementation(libs.akore.blogger)
+    implementation(libs.akore.blogger.core)
     implementation(projects.libs.target)
     implementation(projects.domain.achievement)
     implementation(projects.domain.pokemonAsset)
@@ -31,8 +31,6 @@ dependencies {
     implementation(projects.features.typeDetails)
     implementation(projects.features.home)
 
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.crashlytics)
     implementation(libs.akore.alice.robo)
 
     testImplementation(libs.junit4.core)

@@ -49,11 +49,6 @@ class MainActivity : ComponentActivity() {
             )
             
             NavigationFeature(routing(), "pdx://home") {
-                val navigator = di.inject<Navigator>()
-                LaunchedEffect(Unit) {
-                    navigator.navigate("pdx://pokemon/pikachu")
-                }
-
                 PdxScaffold(
                     drawerState = drawerState,
                     drawerContent = { Drawer() },

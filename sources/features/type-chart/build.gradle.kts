@@ -15,6 +15,6 @@ dependencies {
     implementation(projects.libs.errorHandler)
     implementation(projects.libs.navigation)
 
-    implementation(libs.akore.blogger)
+    implementation(libs.akore.blogger.core)
     implementation(libs.arrow.core)
 }

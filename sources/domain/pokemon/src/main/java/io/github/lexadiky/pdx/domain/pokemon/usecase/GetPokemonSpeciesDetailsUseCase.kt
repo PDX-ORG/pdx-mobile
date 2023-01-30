@@ -6,6 +6,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSprites
 import io.github.lexadiky.pdx.domain.pokemon.entity.asLanguage
+import io.github.lexadiky.pdx.domain.pokemon.entity.asPokemonStat
 import io.github.lexadiky.pdx.domain.pokemon.entity.asType
 import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.entity.pokemon.Pokemon
@@ -41,7 +42,10 @@ class GetPokemonSpeciesDetailsUseCase(private val pokeApiClient: PokeApiClient) 
         types = defaultVariety.types.map { it.type.asType() },
         sprites = PokemonSprites(
             default = defaultVariety.sprites.frontDefault ?: ""
-        )
+        ),
+        stats = defaultVariety.stats.associate { slot ->
+            slot.stat.asPokemonStat() to slot.baseStat
+        }
     )
 
     object Error

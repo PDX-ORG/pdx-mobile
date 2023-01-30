@@ -53,7 +53,8 @@ accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayo
 accompanist-navigation-material = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
 accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist" }
 
-akore-blogger = "com.github.akore-org:blogger:2919ce7a83"
+akore-blogger-core = "com.github.akore-org.blogger:core:-SNAPSHOT"
+akore-blogger-logcat = "com.github.akore-org.blogger:logcat:-SNAPSHOT"
 akore-alice-core = "com.github.akore-org.alice:core:-SNAPSHOT"
 akore-alice-robo = "com.github.akore-org.alice:robo:-SNAPSHOT"
 

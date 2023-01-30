@@ -7,6 +7,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.akore.blogger)
+    implementation(libs.akore.blogger.core)
     implementation(libs.akore.alice.robo)
 }

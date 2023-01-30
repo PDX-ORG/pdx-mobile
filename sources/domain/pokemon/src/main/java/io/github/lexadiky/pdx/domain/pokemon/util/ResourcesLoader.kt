@@ -18,7 +18,7 @@ internal class ResourcesLoader(private val json: Json) {
                 .readText()
             json.decodeFromString<T>(body)
         }.mapLeft { throwable ->
-            BLogger.error("can't load resource body", throwable)
+            BLogger.tag("ResourceLoader").error("can't load resource body", throwable)
             Error
         }
     }

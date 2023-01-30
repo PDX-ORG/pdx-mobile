@@ -10,6 +10,6 @@ dependencies {
     implementation(projects.libs.resources)
     implementation(projects.libs.uikit)
 
-    implementation(libs.akore.blogger)
+    implementation(libs.akore.blogger.core)
     implementation(libs.akore.alice.core)
 }

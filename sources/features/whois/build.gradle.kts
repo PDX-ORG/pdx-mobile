@@ -17,6 +17,6 @@ dependencies {
     implementation(projects.libs.navigation)
     implementation(projects.libs.fs)
 
-    implementation(libs.akore.blogger)
+    implementation(libs.akore.blogger.core)
     implementation(libs.arrow.core)
 }

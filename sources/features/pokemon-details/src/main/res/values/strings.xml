@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="feature_pokemon_details_section_title_stats">Stats</string>
+    <string name="feature_pokemon_details_section_title_info">Info</string>
+    <string name="feature_pokemon_details_section_title_evolution">Evolution</string>
+    <string name="feature_pokemon_details_section_title_battle">Battle</string>
+
+    <string name="feature_pokemon_details_section_stats_total_value">Total value: %d</string>
+
+</resources>
