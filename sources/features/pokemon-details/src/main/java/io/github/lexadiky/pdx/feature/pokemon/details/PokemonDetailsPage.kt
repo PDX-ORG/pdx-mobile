@@ -6,7 +6,11 @@ import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.expandIn
 import androidx.compose.animation.fadeIn
+import androidx.compose.animation.shrinkOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -35,6 +39,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
@@ -180,6 +185,8 @@ private fun HeaderImagePager(
                         ?.let { ImageResource.from(it) }
                     HeaderImage(image)
                 }
+                val isSpritesIconVisible = !pagerState.isScrollInProgress || state.availableVarieties == 1
+                val spriteIconAlpha by animateFloatAsState(if (isSpritesIconVisible) 1f else 0f)
                 Image(
                     painter = painterResource(id = R.drawable.uikit_ic_camera),
                     contentDescription = null,
@@ -188,11 +195,13 @@ private fun HeaderImagePager(
                     ),
                     modifier = Modifier
                         .size(MaterialTheme.grid.x(6f))
+                        .alpha(spriteIconAlpha)
                         .align(Alignment.BottomEnd)
                         .padding(end = MaterialTheme.grid.x2)
                         .clickable(
                             interactionSource = remember { MutableInteractionSource() },
                             indication = null,
+                            enabled = isSpritesIconVisible,
                             onClick = { openSprites() }
                         )
                 )
