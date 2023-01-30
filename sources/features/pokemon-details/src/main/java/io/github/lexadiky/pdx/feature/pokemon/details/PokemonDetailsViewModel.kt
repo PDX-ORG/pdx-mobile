@@ -61,4 +61,8 @@ internal class PokemonDetailsViewModel(
             selectedVariety = state.pokemonSpeciesDetails?.varieties?.get(varietyIndex)
         )
     }
+
+    fun openSprites() = viewModelScope.launch {
+        navigator.navigate("pdx://pokemon/$pokemonId/${state.selectedVariety?.name}/sprites")
+    }
 }

@@ -39,6 +39,7 @@ class GetPokemonSpeciesDetailsUseCase(private val pokeApiClient: PokeApiClient) 
     }
 
     private fun mapPokemonDetails(defaultVariety: Pokemon) = PokemonDetails(
+        name = defaultVariety.name,
         types = defaultVariety.types.map { it.type.asType() },
         sprites = PokemonSprites(
             default = defaultVariety.sprites.frontDefault ?: ""

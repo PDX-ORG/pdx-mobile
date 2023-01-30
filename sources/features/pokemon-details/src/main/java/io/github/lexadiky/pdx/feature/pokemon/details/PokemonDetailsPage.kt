@@ -10,6 +10,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -36,7 +37,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
@@ -61,6 +64,7 @@ import io.github.lexadiky.pdx.lib.navigation.page.PageContext
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
+import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
@@ -105,7 +109,7 @@ private fun PokemonDetailsPageImpl(
                     .animateContentSize()
             ) {
                 item(HEADER_IMAGE_ID) {
-                    HeaderImagePager(viewModel.state, viewModel::selectVariety)
+                    HeaderImagePager(viewModel.state, viewModel::selectVariety, viewModel::openSprites)
                 }
                 item {
                     Spacer(modifier = Modifier.size(MaterialTheme.grid.x2))
@@ -157,7 +161,8 @@ private fun DataCard(viewModel: PokemonDetailsViewModel) {
 @Composable
 private fun HeaderImagePager(
     state: PokemonDetailsState,
-    onVarietyChanged: (Int) -> Unit
+    onVarietyChanged: (Int) -> Unit,
+    openSprites: () -> Unit
 ) {
     Crossfade(targetState = state.isLoaded) { isLoaded ->
         if (isLoaded) {
@@ -166,13 +171,31 @@ private fun HeaderImagePager(
                 onVarietyChanged(pagerState.currentPage)
             }
 
-            HorizontalPager(
-                state.availableVarieties,
-                state = pagerState
-            ) { page ->
-                val image = state.pokemonSpeciesDetails?.varieties?.get(page)?.sprites?.default
-                    ?.let { ImageResource.from(it) }
-                HeaderImage(image)
+            Box {
+                HorizontalPager(
+                    state.availableVarieties,
+                    state = pagerState
+                ) { page ->
+                    val image = state.pokemonSpeciesDetails?.varieties?.get(page)?.sprites?.default
+                        ?.let { ImageResource.from(it) }
+                    HeaderImage(image)
+                }
+                Image(
+                    painter = painterResource(id = R.drawable.uikit_ic_camera),
+                    contentDescription = null,
+                    colorFilter = ColorFilter.tint(
+                        MaterialTheme.colorScheme.primary
+                    ),
+                    modifier = Modifier
+                        .size(MaterialTheme.grid.x(6f))
+                        .align(Alignment.BottomEnd)
+                        .padding(end = MaterialTheme.grid.x2)
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
+                            onClick = { openSprites() }
+                        )
+                )
             }
         } else {
             Box(
