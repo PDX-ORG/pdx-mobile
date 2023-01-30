@@ -8,6 +8,7 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandIn
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.shrinkOut
@@ -186,7 +187,7 @@ private fun HeaderImagePager(
                     HeaderImage(image)
                 }
                 val isSpritesIconVisible = !pagerState.isScrollInProgress || state.availableVarieties == 1
-                val spriteIconAlpha by animateFloatAsState(if (isSpritesIconVisible) 1f else 0f)
+                val spriteIconAlpha by animateFloatAsState(if (isSpritesIconVisible) 1f else 0f, tween(delayMillis = 1_000))
                 Image(
                     painter = painterResource(id = R.drawable.uikit_ic_camera),
                     contentDescription = null,
