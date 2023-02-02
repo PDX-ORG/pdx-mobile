@@ -9,11 +9,13 @@ android {
 dependencies {
     implementation(libs.akore.blogger.core)
     implementation(libs.akore.blogger.logcat)
+    implementation(libs.akore.alice.robo)
+
     implementation(projects.libs.analytics)
     implementation(projects.libs.featureToggle)
     implementation(projects.libs.network)
     implementation(projects.libs.uikit)
-    implementation(libs.akore.alice.robo)
+    implementation(projects.libs.fs.robo)
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.crashlytics)

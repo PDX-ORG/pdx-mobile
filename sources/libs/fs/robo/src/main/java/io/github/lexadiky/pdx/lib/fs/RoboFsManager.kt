@@ -2,20 +2,19 @@ package io.github.lexadiky.pdx.lib.fs
 
 import android.content.Context
 
-class FsManager(private val context: Context) {
+class RoboFsManager(private val context: Context) : FsManager {
 
     private val managementSharedPreferences = context.getSharedPreferences("management.fs.local", Context.MODE_PRIVATE)
 
-    fun state(group: String): StateProvider {
-        val groupName = "$group.fs.local"
+    override fun atomic(groupId: String): AtomicStateProvider {
+        val groupName = "$groupId.fs.local"
         registerGroup(groupName)
-        return StateProvider(
+        return RoboStateProvider(
             context.getSharedPreferences(groupName, Context.MODE_PRIVATE)
         )
     }
 
-
-    fun drop() {
+    override suspend fun drop() {
         val allStates = managementSharedPreferences.getStringSet(KEY_REGISTER_STATES, emptySet())!!
         for (stateGroup in allStates) {
             context.deleteSharedPreferences(stateGroup)

@@ -31,7 +31,7 @@ internal class WhoIsViewModel(
     fsManager: FsManager
 ) : ViewModel() {
 
-    private var streakFsState by fsManager.state("whois")
+    private var streakFsState by fsManager.atomic("whois")
         .int("streak", 0)
 
     var state by mutableStateOf(WhoIsState(streak = streakFsState))

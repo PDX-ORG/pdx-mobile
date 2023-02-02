@@ -7,6 +7,7 @@ import io.github.lexadiky.akore.blogger.logcat.logcat
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
 import io.github.lexadiky.pdx.lib.FeatureToggleModule
 import io.github.lexadiky.pdx.lib.analytics.AnalyticsModule
+import io.github.lexadiky.pdx.lib.fs.RoboFsModule
 import io.github.lexadiky.pdx.lib.network.NetworkModule
 import io.github.lexadiky.pdx.lib.target.util.ApplicationInitializer
 import io.github.lexadiky.pdx.lib.target.util.crashlytics
@@ -20,7 +21,8 @@ abstract class BaseTargetApplication : Application() {
             NetworkModule,
             FeatureToggleModule,
             UikitModule,
-            ApplicationModule(this)
+            ApplicationModule(this),
+            RoboFsModule
         )
     }
 

@@ -34,7 +34,7 @@ internal class SettingsPageViewModel(
         )
     }
 
-    fun dropCaches() {
+    fun dropCaches() = viewModelScope.launch {
         fsManager.drop()
     }
 

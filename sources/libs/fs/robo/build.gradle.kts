@@ -7,6 +7,8 @@ android {
 }
 
 dependencies {
+    api(projects.libs.fs.core)
+
     implementation(libs.akore.blogger.core)
     implementation(libs.akore.alice.robo)
 }

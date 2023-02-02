@@ -14,8 +14,8 @@ class ThemeManager(
     private val fsManager: FsManager,
     private val isDark: Boolean,
 ) {
-    private var selectedThemeId by fsManager.state("custom_theme").string(
-        key = "theme_id_${if (isDark) "dark" else "light"}",
+    private var selectedThemeId by fsManager.atomic("custom_theme").string(
+        id = "theme_id_${if (isDark) "dark" else "light"}",
         default = CustomThemeFactory.dynamicThemeId(isDark)
     )
 

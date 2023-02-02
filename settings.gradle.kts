@@ -27,7 +27,7 @@ includeRecursive("sources")
 
 fun includeRecursive(path: String) {
     val dir = file(path)
-    dir.walkTopDown().maxDepth(3).forEach { subDir ->
+    dir.walkTopDown().maxDepth(4).forEach { subDir ->
         if (isModule(subDir)) {
             val moduleName = createModuleName(subDir, dir)
 
