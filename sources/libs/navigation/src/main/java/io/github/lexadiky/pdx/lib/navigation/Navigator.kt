@@ -4,7 +4,11 @@ import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import androidx.compose.runtime.derivedStateOf
+import androidx.core.os.toPersistableBundle
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -15,7 +19,7 @@ class Navigator internal constructor(
     private val context: Context,
     internal val controller: NavHostController,
     private val navGraph: NavGraph,
-    private val navigationEventsSpec: NavigationEventsSpec
+    private val navigationEventsSpec: NavigationEventsSpec,
 ) {
 
     val currentRoute: String? get() = controller.currentBackStackEntry?.destination?.route
@@ -28,7 +32,7 @@ class Navigator internal constructor(
             }
             context.startActivity(browserIntent)
         } else {
-            controller.navigate(route)
+            controller.navigate(route = route)
         }
     }
 

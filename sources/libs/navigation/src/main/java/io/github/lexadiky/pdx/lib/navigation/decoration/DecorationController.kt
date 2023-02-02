@@ -28,7 +28,7 @@ class DecorationController(
     }
 
     override fun onDestinationChanged(controller: NavController, destination: NavDestination, arguments: Bundle?) {
-        if (destination.navigatorName == "BottomSheetNavigator") {
+        if (destination.navigatorName in NON_DECORABLE_NAVIGATORS) {
             return
         }
         graphCache.values.forEach { host ->
@@ -77,6 +77,9 @@ class DecorationController(
 
     companion object {
 
+        private val NON_DECORABLE_NAVIGATORS = setOf(
+            "BottomSheetNavigator", "FullScreenDialogNavigator"
+        )
         private const val START_DESTINATION = "pdx://_internal/decor/start"
     }
 }

@@ -18,6 +18,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -28,6 +29,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
@@ -53,6 +56,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import com.google.android.material.color.utilities.Scheme
 import io.github.lexadiky.akore.alice.DIContainer
@@ -66,6 +70,8 @@ import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDetailsSect
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.stats.StatsSubPage
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
+import io.github.lexadiky.pdx.lib.navigation.fsdialog.FullScreenDialogAnchor
+import io.github.lexadiky.pdx.lib.navigation.fsdialog.FullScreenDialogStyle
 import io.github.lexadiky.pdx.lib.navigation.page.PageContext
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
@@ -186,26 +192,7 @@ private fun HeaderImagePager(
                         ?.let { ImageResource.from(it) }
                     HeaderImage(image)
                 }
-                val isSpritesIconVisible = !pagerState.isScrollInProgress || state.availableVarieties == 1
-                val spriteIconAlpha by animateFloatAsState(if (isSpritesIconVisible) 1f else 0f, tween(delayMillis = 1_000))
-                Image(
-                    painter = painterResource(id = R.drawable.uikit_ic_camera),
-                    contentDescription = null,
-                    colorFilter = ColorFilter.tint(
-                        MaterialTheme.colorScheme.primary
-                    ),
-                    modifier = Modifier
-                        .size(MaterialTheme.grid.x(6f))
-                        .alpha(spriteIconAlpha)
-                        .align(Alignment.BottomEnd)
-                        .padding(end = MaterialTheme.grid.x2)
-                        .clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null,
-                            enabled = isSpritesIconVisible,
-                            onClick = { openSprites() }
-                        )
-                )
+                SpriteButtonIcon(pagerState, state, openSprites)
             }
         } else {
             Box(
@@ -225,6 +212,36 @@ private fun HeaderImagePager(
                     )
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun BoxScope.SpriteButtonIcon(
+    pagerState: PagerState,
+    state: PokemonDetailsState,
+    openSprites: () -> Unit,
+) {
+    val isSpritesIconVisible = !pagerState.isScrollInProgress || state.availableVarieties == 1
+    val spriteIconAlpha by animateFloatAsState(
+        if (isSpritesIconVisible) 1f else 0f,
+        tween(delayMillis = 1_000)
+    )
+    IconButton(
+        onClick = { openSprites() },
+        modifier = Modifier
+            .size(MaterialTheme.grid.x8)
+            .alpha(spriteIconAlpha)
+            .align(Alignment.BottomEnd)
+            .padding(end = MaterialTheme.grid.x2)
+    ) {
+        Box(contentAlignment = Alignment.Center) {
+            FullScreenDialogAnchor()
+            Icon(
+                painter = painterResource(id = R.drawable.uikit_ic_camera),
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary
+            )
         }
     }
 }

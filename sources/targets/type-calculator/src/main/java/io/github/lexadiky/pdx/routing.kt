@@ -7,10 +7,10 @@ import io.github.lexadiky.pdx.feature.settings.achievement.AchievementSettingsPa
 import io.github.lexadiky.pdx.feature.typechart.TypePage
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
 import io.github.lexadiky.akore.alice.robo.di
-import io.github.lexadiky.pdx.lib.navigation.PdxNavGraphBuilder
+import io.github.lexadiky.pdx.lib.navigation.NaviNavGraphBuilder
 
 @Composable
-fun routing(): PdxNavGraphBuilder.() -> Unit {
+fun routing(): NaviNavGraphBuilder.() -> Unit {
     val toggleManager = di.inject<FeatureToggleManager>()
 
     return remember(toggleManager) {

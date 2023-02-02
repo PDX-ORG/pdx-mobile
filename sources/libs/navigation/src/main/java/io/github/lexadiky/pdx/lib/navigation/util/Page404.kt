@@ -21,7 +21,7 @@ import io.github.lexadiky.pdx.lib.navigation.R
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 internal fun NavGraphBuilder.registerPage404() = composable(
-    route = "pdx-tech://404",
+    route = "navi://__tech__/404",
     deepLinks = listOf(navDeepLink { uriPattern = "android-app://androidx.navigation/.*" })
 ) { navEntry ->
     val route = navEntry.arguments?.getParcelable<Intent>("android-support-nav:controller:deepLinkIntent")

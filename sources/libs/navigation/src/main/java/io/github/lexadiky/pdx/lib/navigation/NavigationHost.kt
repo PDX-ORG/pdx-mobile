@@ -17,21 +17,23 @@ import com.google.accompanist.navigation.material.rememberBottomSheetNavigator
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.pdx.lib.navigation.fsdialog.FullScreenDialogLayout
+import io.github.lexadiky.pdx.lib.navigation.fsdialog.rememberFullScreenDialogNavigator
 
 object NavigationFeatureContext
 
 @Composable
 fun NavigationFeature(
-    routing: PdxNavGraphBuilder.() -> Unit,
+    routing: NaviNavGraphBuilder.() -> Unit,
     startDestination: String,
     content: @Composable NavigationFeatureContext.() -> Unit
 ) {
+    val fullScreenDialogNavigator = rememberFullScreenDialogNavigator()
     val bottomSheetNavigator = rememberBottomSheetNavigator()
-    val controller = rememberNavController(
-        bottomSheetNavigator
-    )
+    val controller = rememberNavController(bottomSheetNavigator, fullScreenDialogNavigator)
+
     val navGraph = remember(controller, routing) {
-        val builder = PdxNavGraphBuilder(
+        val builder = NaviNavGraphBuilder(
             internal = NavGraphBuilder(
                 provider = controller.navigatorProvider,
                 startDestination = startDestination,
@@ -43,13 +45,16 @@ fun NavigationFeature(
         builder.build()
     }
 
-    ModalBottomSheetLayout(
-        bottomSheetNavigator = bottomSheetNavigator,
-        sheetShape = MaterialTheme.shapes.extraLarge,
-        sheetBackgroundColor = MaterialTheme.colorScheme.surface
-    ) {
-        DIFeature(NavigationModule(controller, navGraph)) {
-            NavigationFeatureContext.content()
+
+    FullScreenDialogLayout(fullScreenDialogNavigator) {
+        ModalBottomSheetLayout(
+            bottomSheetNavigator = bottomSheetNavigator,
+            sheetShape = MaterialTheme.shapes.extraLarge,
+            sheetBackgroundColor = MaterialTheme.colorScheme.surface
+        ) {
+            DIFeature(NavigationModule(controller, navGraph)) {
+                NavigationFeatureContext.content()
+            }
         }
     }
 }
