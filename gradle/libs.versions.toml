@@ -9,7 +9,7 @@ accompanist = "0.27.1"
 kotlin-coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
 kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
 kotlin-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
-kotlin-reflection = "org.jetbrains.kotlin:kotlin-reflect:1.7.20"
+kotlin-reflection = "org.jetbrains.kotlin:kotlin-reflect:1.8.0"
 
 android-core = "androidx.core:core-ktx:1.9.0"
 android-lifecycle-runtime = "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
@@ -22,7 +22,7 @@ android-compose-ui-preview = { module = "androidx.compose.ui:ui-tooling-preview"
 android-compose-ui-test = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "android.compose" }
 android-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "android.compose" }
 android-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "android.compose" }
-android-compose-material3 = "androidx.compose.material3:material3:1.0.0"
+android-compose-material3 = "androidx.compose.material3:material3:1.1.0-alpha05"
 android-compose-viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
 android-compose-glance = "androidx.glance:glance-appwidget:1.0.0-alpha05"
 

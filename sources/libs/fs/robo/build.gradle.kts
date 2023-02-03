@@ -9,6 +9,9 @@ android {
 dependencies {
     api(projects.libs.fs.core)
 
+    implementation(projects.libs.network)
+
     implementation(libs.akore.blogger.core)
     implementation(libs.akore.alice.robo)
+    implementation(libs.arrow.core)
 }

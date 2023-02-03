@@ -1,4 +1,4 @@
-package io.github.lexadiky.pdx.lib.fs
+package io.github.lexadiky.pdx.lib.fs.atomic
 
 import kotlin.properties.ReadWriteProperty
 

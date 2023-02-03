@@ -2,12 +2,15 @@ package io.github.lexadiky.pdx.domain.pokemon.usecase
 
 import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
-import io.github.lexadiky.pdx.domain.pokemon.util.ResourcesLoader
+import io.github.lexadiky.pdx.lib.fs.statist.StaticResourceProvider
+import io.github.lexadiky.pdx.lib.fs.statist.provide
 
-class GetPokemonPreviewUseCase internal constructor(private val loader: ResourcesLoader) {
+class GetPokemonPreviewUseCase internal constructor(
+    private val resourceProvider: StaticResourceProvider,
+) {
 
     suspend operator fun invoke(): Either<Error, List<PokemonPreview>> =
-        loader.load<List<PokemonPreview>>("discovery/pokemon.json")
+        resourceProvider.provide<List<PokemonPreview>>("bundle://discovery/pokemon.json").read()
             .mapLeft { Error }
 
     object Error

@@ -10,8 +10,8 @@ import io.github.lexadiky.akore.blogger.info
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeout
 import kotlin.coroutines.resume
+import kotlin.time.Duration.Companion.seconds
 import kotlin.time.ExperimentalTime
-import kotlin.time.seconds
 
 class FeatureToggleManager {
 

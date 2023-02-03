@@ -1,4 +1,4 @@
-package io.github.lexadiky.pdx.domain.pokemon.util
+package io.github.lexadiky.pdx.lib.fs.impl
 
 import arrow.core.Either
 import io.github.lexadiky.akore.blogger.BLogger

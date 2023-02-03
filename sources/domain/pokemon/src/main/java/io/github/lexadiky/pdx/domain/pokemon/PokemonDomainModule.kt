@@ -2,7 +2,6 @@ package io.github.lexadiky.pdx.domain.pokemon
 
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
-import io.github.lexadiky.pdx.domain.pokemon.util.ResourcesLoader
 import io.github.lexadiky.akore.alice.module
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.info
@@ -20,7 +19,6 @@ val PokemonDomainModule by module("pokemon-domain") {
     single { FindPokemonPreviewUseCase(inject()) }
 
     internal {
-        single { ResourcesLoader(inject()) }
         single {
             PokeApiClient {
                 cache = CacheSettings.FileStorage(File(System.getProperty("java.io.tmpdir"), "pokeapi"))

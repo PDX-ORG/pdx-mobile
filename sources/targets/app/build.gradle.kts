@@ -31,6 +31,8 @@ dependencies {
     implementation(projects.features.typeDetails)
     implementation(projects.features.home)
 
+    implementation(projects.features.widget.launcher)
+
     implementation(libs.akore.alice.robo)
 
     testImplementation(libs.junit4.core)
