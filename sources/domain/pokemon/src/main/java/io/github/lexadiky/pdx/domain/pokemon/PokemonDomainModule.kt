@@ -9,6 +9,8 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.FindPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewSampleUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonSpeciesDetailsUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonVarietyDetails
+import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
 import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.util.CacheSettings
 import io.lexadiky.pokeapi.util.PokeApiClientLogger
@@ -21,6 +23,9 @@ val PokemonDomainModule by module("pokemon-domain") {
     single { FindPokemonPreviewUseCase(inject()) }
     single { GetPokemonPreviewSampleUseCase(inject()) }
     single { GetPokemonVarietyDetails(inject()) }
+
+    single { MarkPokemonSpeciesAsViewedUseCase(inject()) }
+    single { GetLatestViewedPokemonUseCase(inject(), inject()) }
 
     internal {
         single {

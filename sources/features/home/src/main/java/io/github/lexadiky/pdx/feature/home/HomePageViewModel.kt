@@ -9,6 +9,7 @@ import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewSampleUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
 import io.github.lexadiky.pdx.feature.home.entitiy.FeaturedPokemonItem
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.navigation.Navigator
@@ -21,7 +22,8 @@ import kotlinx.coroutines.launch
 
 internal class HomePageViewModel(
     private val navigator: Navigator,
-    private val getPokemonPreview: GetPokemonPreviewSampleUseCase
+    private val getPokemonPreview: GetPokemonPreviewSampleUseCase,
+    private val getLatestViewedPokemonUseCase: GetLatestViewedPokemonUseCase,
 ) : ViewModel() {
 
     var state by mutableStateOf(HomePageState())
@@ -33,6 +35,12 @@ internal class HomePageViewModel(
                 is Either.Left -> state.copy(error = UIError.default())
                 is Either.Right -> state.copy(
                     featuredPokemon = makeFeaturedPokemon(data.value)
+                )
+            }
+            state = when (val data = getLatestViewedPokemonUseCase(FEATURED_POKEMON_SAMPLE_SIZE)) {
+                is Either.Left -> state.copy(error = UIError.default())
+                is Either.Right -> state.copy(
+                    latestViewedPokemon = makeFeaturedPokemon(data.value)
                 )
             }
         }

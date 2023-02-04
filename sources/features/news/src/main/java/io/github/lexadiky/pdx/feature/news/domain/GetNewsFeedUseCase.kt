@@ -1,6 +1,8 @@
 package io.github.lexadiky.pdx.feature.news.domain
 
 import arrow.core.Either
+import io.github.lexadiky.akore.blogger.BLogger
+import io.github.lexadiky.akore.blogger.error
 import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.resources.image.*
@@ -24,6 +26,8 @@ internal class GetNewsFeedUseCase(private val redditNewsClient: RedditNewsClient
             )
         }
     }.mapLeft { error ->
+        BLogger.tag("GetNewsFeedUseCase")
+            .error("can't load news feed", error)
         GetNewsFeedUseCaseError
     }
 

@@ -7,4 +7,7 @@
     <string name="home_featured_title_news">News</string>
     <string name="home_featured_title_achievements">Achieve</string>
 
+    <string name="home_section_featured_pokemon_title">Featured pokemon</string>
+    <string name="home_section_last_viewed_pokemon_title">Last viewed</string>
+
 </resources>

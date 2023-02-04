@@ -2,7 +2,10 @@
 
 package io.github.lexadiky.pdx.feature.home
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,19 +20,32 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.domain.pokemon.asset.PokemonTypeAssets
+import io.github.lexadiky.pdx.feature.home.entitiy.FeaturedPokemonItem
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
@@ -58,17 +74,63 @@ private fun HomePageImpl(viewModel: HomePageViewModel = di.inject()) {
         item {
             FeaturedBlock(viewModel)
         }
+        pokemonSuggestionSection(
+            title = R.string.home_section_featured_pokemon_title,
+            items = viewModel.state.featuredPokemon,
+            openPokemonDetails = { viewModel.openPokemonDetails(it) }
+        )
+        pokemonSuggestionSection(
+            title = R.string.home_section_last_viewed_pokemon_title,
+            items = viewModel.state.latestViewedPokemon,
+            openPokemonDetails = { viewModel.openPokemonDetails(it) }
+        )
         item {
-            Column(modifier = Modifier.padding(horizontal = MaterialTheme.grid.x2)) {
+            Spacer(modifier = Modifier.size(100.dp))
+        }
+    }
+}
+
+private fun LazyListScope.pokemonSuggestionSection(
+    title: Int,
+    items: List<FeaturedPokemonItem>,
+    openPokemonDetails: (FeaturedPokemonItem) -> Unit
+) {
+    item(title) {
+        var isFolded by remember { mutableStateOf(false) }
+
+        Column(
+            modifier = Modifier
+                .padding(horizontal = MaterialTheme.grid.x1)
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(MaterialTheme.shapes.extraLarge)
+                    .clickable { isFolded = !isFolded }
+                    .padding(horizontal = MaterialTheme.grid.x1)
+            ) {
                 Text(
-                    text = "Featured pokemon",
+                    text = stringResource(id = title),
                     style = MaterialTheme.typography.titleLarge
                 )
-                Spacer(modifier = Modifier.size(MaterialTheme.grid.x2))
+                IconButton(onClick = { isFolded = !isFolded }) {
+                    val iconRotation by animateFloatAsState(if (isFolded) 0f else 180f)
+                    Icon(
+                        imageVector = Icons.Default.ArrowDropDown,
+                        contentDescription = null,
+                        modifier = Modifier.rotate(iconRotation)
+                    )
+                }
+            }
+            AnimatedVisibility(visible = !isFolded) {
                 Column(
-                    verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2)
+                    verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
+                    modifier = Modifier.padding(horizontal = MaterialTheme.grid.x1)
                 ) {
-                    for (item in viewModel.state.featuredPokemon) {
+                    Spacer(modifier = Modifier.size(MaterialTheme.grid.x05))
+                    for (item in items) {
                         SmallWikiPreview(
                             title = item.name.render(),
                             preTitle = item.nationalDexId.render(),
@@ -76,7 +138,7 @@ private fun HomePageImpl(viewModel: HomePageViewModel = di.inject()) {
                                 listOf(ImageTransformation.CropTransparent)
                             ),
                             isOutlined = true,
-                            onClick = { viewModel.openPokemonDetails(item) }
+                            onClick = { openPokemonDetails(item) }
                         )
                     }
                 }

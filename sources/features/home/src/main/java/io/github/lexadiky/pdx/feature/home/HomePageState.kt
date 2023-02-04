@@ -5,5 +5,6 @@ import io.github.lexadiky.pdx.lib.errorhandler.UIError
 
 data class HomePageState(
     val featuredPokemon: List<FeaturedPokemonItem> = emptyList(),
+    val latestViewedPokemon: List<FeaturedPokemonItem> = emptyList(),
     val error: UIError? = null
 )

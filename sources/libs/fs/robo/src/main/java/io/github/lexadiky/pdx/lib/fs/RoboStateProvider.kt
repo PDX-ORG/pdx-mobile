@@ -27,6 +27,16 @@ class RoboStateProvider(private val sp: SharedPreferences) : AtomicStateProvider
             setter = { key, value -> putString(key, value) }
         )
     }
+
+    override fun stringSet(id: String, default: Set<String>): ReadWriteProperty<Any?, Set<String>> {
+        return GenericFsState(
+            key = id,
+            sp = sp,
+            default = default,
+            getter = { key, default -> getStringSet(key, default) as Set<String> },
+            setter = { key, value -> putStringSet(key, value) }
+        )
+    }
 }
 
 class GenericFsState<T>(

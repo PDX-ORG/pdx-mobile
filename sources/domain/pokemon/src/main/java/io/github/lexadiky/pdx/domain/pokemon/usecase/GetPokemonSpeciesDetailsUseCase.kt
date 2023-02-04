@@ -31,6 +31,7 @@ class GetPokemonSpeciesDetailsUseCase(private val pokeApiClient: PokeApiClient) 
                 .bind(::identity)
 
             PokemonSpeciesDetails(
+                name = species.name,
                 localizedNames = species.names.associate { name ->
                     name.language.asLanguage() to name.name
                 },

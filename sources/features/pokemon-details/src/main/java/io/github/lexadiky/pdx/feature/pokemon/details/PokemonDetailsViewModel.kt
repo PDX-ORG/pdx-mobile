@@ -9,6 +9,7 @@ import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonSpeciesDetailsUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
 import io.github.lexadiky.pdx.feature.pokemon.details.usecase.GetAvailableDetailsSections
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.navigation.Navigator
@@ -18,7 +19,8 @@ internal class PokemonDetailsViewModel(
     private val pokemonId: String,
     private val navigator: Navigator,
     private val getPokemonDetails: GetPokemonSpeciesDetailsUseCase,
-    private val getAvailableDetailsSections: GetAvailableDetailsSections
+    private val getAvailableDetailsSections: GetAvailableDetailsSections,
+    private val markPokemonSpeciesAsViewedUseCase: MarkPokemonSpeciesAsViewedUseCase
 ) : ViewModel() {
 
     var state: PokemonDetailsState by mutableStateOf(PokemonDetailsState(pokemonId))
@@ -32,7 +34,10 @@ internal class PokemonDetailsViewModel(
             }
             state = when (val details = getPokemonDetails(pokemonId)) {
                 is Either.Left -> state.copy(error = UIError.default())
-                is Either.Right -> createUpdatedState(details.value)
+                is Either.Right -> {
+                    launch { markPokemonSpeciesAsViewedUseCase.invoke(details.value) }
+                    createUpdatedState(details.value)
+                }
             }
         }
     }

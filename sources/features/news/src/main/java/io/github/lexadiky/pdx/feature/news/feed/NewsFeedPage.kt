@@ -24,16 +24,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.feature.news.NewsModule
 import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
+import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.theme.pdx
+import io.github.lexadiky.pdx.ui.uikit.util.scroll.LocalPrimeScrollState
 
 @Composable
 fun NewsFeedPage() {
@@ -44,10 +47,14 @@ fun NewsFeedPage() {
 
 @Composable
 internal fun NewsFeedPageImpl(viewModel: NewsFeedViewModel) {
+    Decoration(decoration = "pdx://toolbar/title") {
+        Text(text = stringResource(id = io.github.lexadiky.pdx.feature.news.R.string.news_feed_title))
+    }
     ErrorDialog(error = viewModel.state.error) {
         viewModel.dismissError()
     }
     LazyColumn(
+        state = LocalPrimeScrollState.current.asLazyListState(),
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
         contentPadding = PaddingValues(MaterialTheme.grid.x2)
     ) {

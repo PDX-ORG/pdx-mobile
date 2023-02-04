@@ -11,7 +11,7 @@ internal val PokemonDetailsModule = eagerModule("pokemon-details") {
     internal {
         single { GetAvailableDetailsSections() }
         viewModel { args -> PokemonDetailsStyleFastFetchViewModel(pokemonId = args.get(), inject()) }
-        viewModel { args -> PokemonDetailsViewModel(pokemonId = args.get(), inject(), inject(), inject()) }
+        viewModel { args -> PokemonDetailsViewModel(pokemonId = args.get(), inject(), inject(), inject(), inject()) }
         viewModel { args -> StatsSubPageViewModel(args.get(), args.get()) }
     }
 }
