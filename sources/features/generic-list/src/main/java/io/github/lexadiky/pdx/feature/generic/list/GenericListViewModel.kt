@@ -34,7 +34,7 @@ class GenericListViewModel<T : GenericListItem>(
     }
 
     fun updateQuery(query: SearchQuery<T>) {
-        state = state.copy(query = query, searchActivated = true)
+        state = state.copy(query = query)
     }
 
     fun openDetails(item: T) = viewModelScope.launch {

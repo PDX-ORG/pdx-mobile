@@ -4,6 +4,7 @@ package io.github.lexadiky.pdx.ui.uikit.widget
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -40,13 +41,10 @@ fun SearchField(text: String, onTextChanged: (String) -> Unit, modifier: Modifie
                 placeholder = { Text(stringResource(id = R.string.uikit_search_field_placeholder)) },
                 trailingIcon = { Icon(Icons.Default.Search, null) },
                 shape = SearchBarDefaults.inputFieldShape,
-                contentPadding = TextFieldDefaults.textFieldWithoutLabelPadding(
-                    top = 0.dp,
-                    bottom = 0.dp
-                ),
+                contentPadding = TextFieldDefaults.textFieldWithoutLabelPadding(top = 0.dp, bottom = 0.dp),
                 container = {},
                 colors = SearchBarDefaults.inputFieldColors(),
-                interactionSource = remember { MutableInteractionSource() }
+                interactionSource = remember { MutableInteractionSource() },
             )
         },
         modifier = modifier

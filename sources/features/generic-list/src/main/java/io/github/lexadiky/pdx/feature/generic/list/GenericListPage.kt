@@ -33,7 +33,7 @@ import io.github.lexadiky.pdx.ui.uikit.widget.LargeWikiPreview
 import io.github.lexadiky.pdx.ui.uikit.widget.TagItem
 import io.github.lexadiky.pdx.ui.uikit.widget.ToggleableFab
 
-typealias FilterBlock<T> = @Composable (queryCallback: (SearchQuery<T>) -> Unit) -> Unit
+typealias FilterBlock<T> = @Composable (isVisible: Boolean, queryCallback: (SearchQuery<T>) -> Unit) -> Unit
 
 @Composable
 fun <T : GenericListItem> GenericListPage(
@@ -78,11 +78,10 @@ private fun <T : GenericListItem> GenericListPageImpl(
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
             contentPadding = PaddingValues(MaterialTheme.grid.x2)
         ) {
-            if (viewModel.state.searchActivated && viewModel.state.searchAvailable) {
-                item(SEARCH_QUERY_ITEM_ID) {
-                    filterBlock?.invoke { query ->
-                        viewModel.updateQuery(query)
-                    }
+            item(SEARCH_QUERY_ITEM_ID) {
+                val shouldShowFilter = viewModel.state.searchActivated && viewModel.state.searchAvailable
+                filterBlock?.invoke(shouldShowFilter) { query ->
+                    viewModel.updateQuery(query)
                 }
             }
             items(viewModel.state.visibleItems, { entry -> entry.id }) { entry ->
