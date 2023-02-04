@@ -1,7 +1,8 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalFoundationApi::class)
 
 package io.github.lexadiky.pdx.feature.generic.list
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -70,7 +71,7 @@ private fun <T : GenericListItem> GenericListPageImpl(
 
         LaunchedEffect(viewModel.state.searchActivated) {
             if (viewModel.state.searchActivated) {
-                columnState.scrollToItem(0)
+                columnState.animateScrollToItem(0)
             }
         }
         LazyColumn(
@@ -99,6 +100,7 @@ private fun <T : GenericListItem> GenericListPageImpl(
                     },
                     onClick = { viewModel.openDetails(entry) },
                     modifier = Modifier.fillMaxWidth()
+                        .animateItemPlacement()
                 )
             }
         }

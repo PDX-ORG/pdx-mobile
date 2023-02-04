@@ -62,6 +62,10 @@ internal class PokemonFilterViewModel(
         queryChangedCallback(state.query)
     }
 
+    fun clearFilter() {
+        state = PokemonFilterState()
+    }
+
     companion object {
 
         private const val MAX_TYPES = 2
