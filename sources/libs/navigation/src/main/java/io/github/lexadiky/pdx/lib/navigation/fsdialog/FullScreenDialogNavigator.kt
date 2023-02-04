@@ -24,6 +24,10 @@ import androidx.navigation.NavigatorState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import androidx.compose.animation.core.Animatable
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
@@ -34,6 +38,7 @@ fun rememberFullScreenDialogNavigator(): FullScreenDialogNavigator = remember {
     FullScreenDialogNavigator()
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Navigator.Name("FullScreenDialogNavigator")
 class FullScreenDialogNavigator : Navigator<FullScreenDialogNavigator.Destination>() {
     private val anchors: HashMap<String, FullScreenDialogAnchor> = HashMap()
@@ -90,7 +95,14 @@ class FullScreenDialogNavigator : Navigator<FullScreenDialogNavigator.Destinatio
                             drawContent()
                         }
                 ) {
-                    destination.content(latestEntry)
+                    Scaffold(
+                        containerColor = Color.Transparent,
+                        content = { padding ->
+                            Box(modifier = Modifier.padding(padding)) {
+                                destination.content(latestEntry)
+                            }
+                        }
+                    )
                 }
             }
         }

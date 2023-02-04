@@ -59,7 +59,7 @@ akore-blogger-logcat = "com.github.akore-org.blogger:logcat:-SNAPSHOT"
 akore-alice-core = "com.github.akore-org.alice:core:-SNAPSHOT"
 akore-alice-robo = "com.github.akore-org.alice:robo:-SNAPSHOT"
 
-pokeapi = "com.github.lexa-diky:pokeapi-kotlin:72c041bb80"
+pokeapi = "com.github.lexa-diky:pokeapi-kotlin:-SNAPSHOT"
 
 mpchart = "com.github.PhilJay:MPAndroidChart:v3.1.0"
 

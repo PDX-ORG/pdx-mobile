@@ -30,6 +30,7 @@ dependencies {
     implementation(projects.features.whois)
     implementation(projects.features.typeDetails)
     implementation(projects.features.home)
+    implementation(projects.features.spriteGallery)
 
     implementation(projects.features.widget.launcher)
 

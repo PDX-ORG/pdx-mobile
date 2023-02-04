@@ -10,7 +10,11 @@ object CropTransparentTransformation : Transformation {
     override val cacheKey: String = "CropTransparentTransformation"
 
     override suspend fun transform(input: Bitmap, size: Size): Bitmap {
-        return crop(input)
+        try {
+            return crop(input)
+        } catch (exception: Throwable) {
+            return input
+        }
     }
 
     fun crop(bitmap: Bitmap): Bitmap {

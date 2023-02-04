@@ -11,6 +11,7 @@ import io.github.lexadiky.pdx.feature.pokemon.details.PokemonDetailsPage
 import io.github.lexadiky.pdx.feature.pokemon.list.PokemonListPage
 import io.github.lexadiky.pdx.feature.settings.SettingsPage
 import io.github.lexadiky.pdx.feature.settings.achievement.AchievementSettingsPage
+import io.github.lexadiky.pdx.feature.spritegallery.SpriteGalleryPage
 import io.github.lexadiky.pdx.feature.type.details.TypeDetailsPage
 import io.github.lexadiky.pdx.feature.typechart.TypePage
 import io.github.lexadiky.pdx.feature.whois.WhoIsPage
@@ -41,7 +42,11 @@ fun routing(): NaviNavGraphBuilder.() -> Unit {
                 TypeDetailsPage(typeId = id)
             }
             page("pdx://game/whois") { WhoIsPage() }
-            fullScreen("pdx://pokemon/{speciesId}/{varietyId}/sprites") {}
+            fullScreen("pdx://pokemon/{speciesId}/{varietyId}/sprites") {
+                val speciesId = argument(name = "speciesId") { error("species id required") }
+                val varietyId = argument(name = "varietyId") { error("variety id required") }
+                SpriteGalleryPage(speciesId, varietyId)
+            }
         }
     }
 }

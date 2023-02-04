@@ -10,4 +10,5 @@ dependencies {
     implementation(libs.akore.blogger.core)
     implementation(libs.arrow.core)
     implementation(libs.pokeapi)
+    implementation(libs.kotlin.reflection)
 }

@@ -8,6 +8,7 @@ import io.github.lexadiky.akore.blogger.info
 import io.github.lexadiky.pdx.domain.pokemon.usecase.FindPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewSampleUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonSpeciesDetailsUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonVarietyDetails
 import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.util.CacheSettings
 import io.lexadiky.pokeapi.util.PokeApiClientLogger
@@ -19,6 +20,7 @@ val PokemonDomainModule by module("pokemon-domain") {
     single { GetPokemonSpeciesDetailsUseCase(inject()) }
     single { FindPokemonPreviewUseCase(inject()) }
     single { GetPokemonPreviewSampleUseCase(inject()) }
+    single { GetPokemonVarietyDetails(inject()) }
 
     internal {
         single {
