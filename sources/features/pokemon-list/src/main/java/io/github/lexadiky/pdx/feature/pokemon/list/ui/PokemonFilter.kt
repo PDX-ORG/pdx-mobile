@@ -27,6 +27,7 @@ import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.widget.SearchField
 import kotlinx.coroutines.selects.select
 
@@ -46,7 +47,7 @@ internal fun PokemonFilter(isVisible: Boolean, viewModel: PokemonFilterViewModel
                     onTextChanged = { viewModel.updateTextQuery(it) },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(40.dp)
+                        .height(MaterialTheme.grid.x(5f))
                 )
             } else {
                 Text(

@@ -1,8 +1,11 @@
 package io.github.lexadiky.pdx.feature.settings.achievement
 
-import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.akore.alice.module
+import io.github.lexadiky.pdx.domain.achievement.AchievementModule
 
 val AchievementSettingsModule by module("achievement-settings") {
-    viewModel { AchievementSettingsViewModel(inject()) }
+    import(AchievementModule)
+    internal {
+        single { AchievementSettingsViewModel(inject()) }
+    }
 }

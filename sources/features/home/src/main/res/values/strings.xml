@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="home_featured_title_pokemon">Pokemon</string>
+    <string name="home_featured_title_team">Team</string>
+    <string name="home_featured_title_whois">Who Is?</string>
+    <string name="home_featured_title_news">News</string>
+    <string name="home_featured_title_achievements">Achieve</string>
+
+</resources>

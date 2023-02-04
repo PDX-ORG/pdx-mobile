@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import io.github.lexadiky.pdx.domain.achievement.AchievementManager
 import kotlinx.coroutines.launch
 
-class AchievementSettingsViewModel(private val achievementManager: AchievementManager) : ViewModel() {
+internal class AchievementSettingsViewModel(private val achievementManager: AchievementManager) : ViewModel() {
 
     var state: AchievementSettingsPageState by mutableStateOf(AchievementSettingsPageState())
         private set

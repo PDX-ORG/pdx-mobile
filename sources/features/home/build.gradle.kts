@@ -7,7 +7,12 @@ android {
 }
 
 dependencies {
-    implementation(libs.akore.alice.robo)
+    implementation(projects.domain.pokemonAsset)
+    implementation(projects.domain.pokemon)
+
     implementation(projects.libs.uikit)
     implementation(projects.libs.navigation)
+    implementation(projects.libs.errorHandler)
+
+    implementation(libs.akore.alice.robo)
 }
