@@ -1,4 +1,5 @@
 @file:OptIn(ExperimentalMaterialNavigationApi::class)
+@file:Suppress("UnusedReceiverParameter")
 
 package io.github.lexadiky.pdx.lib.navigation
 
@@ -19,8 +20,6 @@ import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.lib.navigation.fsdialog.FullScreenDialogLayout
 import io.github.lexadiky.pdx.lib.navigation.fsdialog.rememberFullScreenDialogNavigator
-
-object NavigationFeatureContext
 
 @Composable
 fun NavigationFeature(
@@ -45,7 +44,6 @@ fun NavigationFeature(
         builder.build()
     }
 
-
     FullScreenDialogLayout(fullScreenDialogNavigator) {
         ModalBottomSheetLayout(
             bottomSheetNavigator = bottomSheetNavigator,
@@ -65,3 +63,10 @@ fun NavigationFeatureContext.NavigationHost() {
     val graph = di.inject<NavGraph>()
     NavHost(navController, graph)
 }
+
+/**
+ * Marker class for narrowing the scope of navigation host installer functions
+ *
+ * @see NavigationHost
+ */
+object NavigationFeatureContext

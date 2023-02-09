@@ -17,10 +17,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import io.github.lexadiky.pdx.feature.settings.R
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.pdx.feature.settings.R
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 
 @Composable
@@ -41,7 +41,8 @@ private fun AchievementSettingsPageImpl(viewModel: AchievementSettingsViewModel 
                     Icon(
                         painter = achievement.icon?.render()
                             ?: painterResource(id = io.github.lexadiky.pdx.lib.uikit.R.drawable.uikit_ic_pokeball),
-                        contentDescription = null)
+                        contentDescription = null
+                    )
                 }
             )
         }
@@ -59,7 +60,9 @@ private fun AchievementSettingsPageImpl(viewModel: AchievementSettingsViewModel 
             item {
                 ListItem(
                     headlineText = { Text(stringResource(id = R.string.settings_achievements_option_onboarding_title)) },
-                    supportingText = { Text(stringResource(id = R.string.settings_achievements_option_onboarding_subtitle)) },
+                    supportingText = { Text(
+                        stringResource(id = R.string.settings_achievements_option_onboarding_subtitle)
+                    ) },
                     trailingContent = { Icon(Icons.Default.Star, null) },
                 )
             }

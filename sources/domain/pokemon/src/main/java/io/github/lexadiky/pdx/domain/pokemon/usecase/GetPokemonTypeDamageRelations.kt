@@ -1,8 +1,8 @@
 package io.github.lexadiky.pdx.domain.pokemon.usecase
 
 import arrow.core.Either
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonTypeDamageRelation
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
+import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonTypeDamageRelation
 import io.github.lexadiky.pdx.lib.fs.statist.StaticResourceProvider
 import io.github.lexadiky.pdx.lib.fs.statist.provide
 

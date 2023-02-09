@@ -30,6 +30,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonStat
 import io.github.lexadiky.pdx.feature.pokemon.details.R
 import io.github.lexadiky.pdx.ui.uikit.resources.render
+import io.github.lexadiky.pdx.ui.uikit.theme.animation
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
@@ -89,7 +90,7 @@ private fun StatBar(stat: PokemonStat, value: Int, color: Color) {
         ) {
             val anim = remember { Animatable(0.1f) }
             LaunchedEffect(value) {
-                anim.animateTo(value / 225f, tween(1_000))
+                anim.animateTo(value / 225f, MaterialTheme.animation.linearSlow())
             }
 
             Box(

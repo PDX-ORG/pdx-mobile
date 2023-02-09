@@ -20,9 +20,9 @@ import androidx.core.view.WindowCompat
 import io.github.lexadiky.akore.alice.robo.DIApplication
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.pdx.lib.navigation.NavigationFeature
 import io.github.lexadiky.pdx.lib.navigation.NavigationHost
 import io.github.lexadiky.pdx.lib.navigation.Navigator
-import io.github.lexadiky.pdx.lib.navigation.NavigationFeature
 import io.github.lexadiky.pdx.ui.uikit.theme.PdxTheme
 import kotlinx.coroutines.launch
 
@@ -51,11 +51,12 @@ class MainActivity : ComponentActivity() {
                     TopAppBar(
                         title = { Text(stringResource(id = R.string.app_toolbar_title)) },
                         navigationIcon = {
-                            IconButton(onClick = {
-                                scope.launch {
-                                    navigator.navigate("pdx://settings")
+                            IconButton(
+                                onClick = {
+                                    scope.launch {
+                                        navigator.navigate("pdx://settings")
+                                    }
                                 }
-                            }
                             ) {
                                 Icon(Icons.Default.Settings, null)
                             }

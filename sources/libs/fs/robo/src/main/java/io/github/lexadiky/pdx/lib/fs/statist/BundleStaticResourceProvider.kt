@@ -6,15 +6,12 @@ import arrow.core.Either
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.error
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.Json.Default.serializersModule
 import kotlinx.serialization.json.decodeFromStream
 import kotlinx.serialization.serializer
 import java.net.URI
-import kotlin.reflect.KClass
 import kotlin.reflect.KType
-import kotlin.reflect.javaType
 
 class BundleStaticResourceProvider(private val json: Json) : StaticResourceProvider {
 
@@ -45,7 +42,7 @@ class BundleStaticResourceProvider(private val json: Json) : StaticResourceProvi
 
             classLoader.getResourceAsStream(resource).use { input ->
 
-                when(ofType) {
+                when (ofType) {
                     String::class -> input.bufferedReader().readText()
                     else -> json.decodeFromStream(serializersModule.serializer(ofType), input)
                 } as T

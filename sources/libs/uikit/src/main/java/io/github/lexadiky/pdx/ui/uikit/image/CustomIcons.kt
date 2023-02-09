@@ -11,5 +11,4 @@ object CustomIcons {
     val Reddit: Painter @Composable get() = painterResource(id = R.drawable.uikit_ic_reddit)
 }
 
-
 val Icons.Filled.Custom: CustomIcons get() = CustomIcons

@@ -4,7 +4,7 @@ import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
 import io.github.lexadiky.pdx.feature.generic.list.entity.SearchQuery
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 
-data class GenericListState<T: GenericListItem>(
+data class GenericListState<T : GenericListItem>(
     val items: List<T> = emptyList(),
     val query: SearchQuery<T>? = null,
     val searchActivated: Boolean = false,

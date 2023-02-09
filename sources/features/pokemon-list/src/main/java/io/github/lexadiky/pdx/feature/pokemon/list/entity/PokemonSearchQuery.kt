@@ -24,7 +24,7 @@ data class PokemonSearchQuery(
 
 @Composable
 fun PokemonSearchQuery.Companion.parse(context: PageContext): PokemonSearchQuery {
-    val types = context.argument("types") {""}
+    val types = context.argument("types") { "" }
     return remember(types) {
         val requestedTypes = types.split(",")
 

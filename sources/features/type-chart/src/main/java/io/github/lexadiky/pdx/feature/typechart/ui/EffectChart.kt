@@ -45,7 +45,6 @@ internal fun EffectChart(
                     crossAxisSpacing = MaterialTheme.grid.x1,
                     modifier = Modifier.padding(MaterialTheme.grid.x2)
                 ) {
-
                     table.forEach { relation ->
                         val labelColor = relation.type.assets.color.render()
                         PillChip(

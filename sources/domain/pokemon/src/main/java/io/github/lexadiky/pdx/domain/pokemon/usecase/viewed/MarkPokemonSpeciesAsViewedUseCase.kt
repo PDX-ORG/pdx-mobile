@@ -14,7 +14,7 @@ class MarkPokemonSpeciesAsViewedUseCase(
     private var visited by fsManager.atomic("viewed-pokemon")
         .stringSet("viewed-time-id", emptySet())
 
-    suspend operator fun invoke(pokemon: PokemonSpeciesDetails) = withContext(Dispatchers.IO)  {
+    suspend operator fun invoke(pokemon: PokemonSpeciesDetails) = withContext(Dispatchers.IO) {
         Either.catch {
             visited = (visited + "${System.currentTimeMillis()}:${pokemon.name}")
                 .sorted()

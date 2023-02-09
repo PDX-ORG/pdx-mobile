@@ -1,14 +1,12 @@
 package io.github.lexadiky.pdx.feature.drawer.domain
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
 import io.github.lexadiky.pdx.feature.drawer.entity.DrawerItem
-import io.github.lexadiky.pdx.lib.ifEnabled
 import io.github.lexadiky.pdx.lib.navigation.Navigator
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
@@ -34,13 +32,17 @@ internal class DrawerItemSource(private val navigator: Navigator) {
                 DrawerItem.Divider,
                 DrawerItem.Navigation(
                     icon = ImageResource.from(R.drawable.uikit_ic_pokeball),
-                    title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_pokemon_title),
+                    title = StringResource.from(
+                        io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_pokemon_title
+                    ),
                     selected = false,
                     route = "pdx://pokemon"
                 ),
                 DrawerItem.Navigation(
                     icon = ImageResource.from(Icons.Default.Star),
-                    title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_type_chart_title),
+                    title = StringResource.from(
+                        io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_type_chart_title
+                    ),
                     selected = false,
                     route = "pdx://type"
                 ),
@@ -54,7 +56,9 @@ internal class DrawerItemSource(private val navigator: Navigator) {
                 newsItem(),
                 DrawerItem.Navigation(
                     icon = ImageResource.from(Icons.Default.Settings),
-                    title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_settings_title),
+                    title = StringResource.from(
+                        io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_settings_title
+                    ),
                     selected = false,
                     route = "pdx://settings"
                 ),

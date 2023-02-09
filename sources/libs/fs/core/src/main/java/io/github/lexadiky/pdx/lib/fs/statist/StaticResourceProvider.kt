@@ -6,7 +6,7 @@ import kotlin.reflect.typeOf
 
 interface StaticResourceProvider {
 
-    suspend fun <T: Any> provide(uri: URI, ofType: KType): ResourceDescriptor<T>
+    suspend fun <T : Any> provide(uri: URI, ofType: KType): ResourceDescriptor<T>
 
     companion object {
 
@@ -14,6 +14,6 @@ interface StaticResourceProvider {
     }
 }
 
-suspend inline fun <reified T: Any> StaticResourceProvider.provide(uri: String): ResourceDescriptor<T> {
+suspend inline fun <reified T : Any> StaticResourceProvider.provide(uri: String): ResourceDescriptor<T> {
     return provide(URI.create(uri), typeOf<T>())
 }

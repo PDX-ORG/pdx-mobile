@@ -7,8 +7,10 @@ import kotlinx.serialization.SerialName
 enum class PokemonLanguage {
     @SerialName("roomaji")
     JA_ROOMAJI,
+
     @SerialName("en")
     ENGLISH,
+
     @SerialName("ja")
     JAPANESE,
 
@@ -18,7 +20,7 @@ enum class PokemonLanguage {
 // not implemented
 fun ResourcePointer<Language>.asLanguage(): PokemonLanguage {
     return when (this.name) {
-        "en" ->  PokemonLanguage.ENGLISH
+        "en" -> PokemonLanguage.ENGLISH
         else -> PokemonLanguage.UNKNOWN
     }
 }

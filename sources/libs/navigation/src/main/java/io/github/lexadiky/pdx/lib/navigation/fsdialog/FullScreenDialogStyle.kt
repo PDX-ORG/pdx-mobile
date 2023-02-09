@@ -3,11 +3,10 @@ package io.github.lexadiky.pdx.lib.navigation.fsdialog
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.tween
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Brush
-import io.github.lexadiky.pdx.ui.uikit.theme.grid
+import io.github.lexadiky.pdx.ui.uikit.theme.animation
 
 sealed interface FullScreenDialogStyle {
 
@@ -30,7 +29,7 @@ sealed interface FullScreenDialogStyle {
                             colorScheme.background
                         )
                     ),
-                    animationSpec = tween(durationMillis = 1500)
+                    animationSpec = MaterialTheme.animation.linearSlow()
                 )
             }
         }

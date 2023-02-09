@@ -6,10 +6,8 @@ dependencyResolutionManagement {
     }
 }
 pluginManagement {
-
 }
 
 rootProject.name = "plugins"
 
 include(":eve", ":convention")
-

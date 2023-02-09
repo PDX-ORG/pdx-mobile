@@ -21,16 +21,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import io.github.lexadiky.pdx.feature.pokemonlist.R
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
+import io.github.lexadiky.pdx.feature.pokemonlist.R
 import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.widget.SearchField
-import kotlinx.coroutines.selects.select
-
 
 @Composable
 internal fun PokemonFilter(isVisible: Boolean, viewModel: PokemonFilterViewModel = di.inject()) {
@@ -47,7 +44,7 @@ internal fun PokemonFilter(isVisible: Boolean, viewModel: PokemonFilterViewModel
                     onTextChanged = { viewModel.updateTextQuery(it) },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(MaterialTheme.grid.x(5f))
+                        .height(MaterialTheme.grid.x5)
                 )
             } else {
                 Text(
@@ -60,7 +57,7 @@ internal fun PokemonFilter(isVisible: Boolean, viewModel: PokemonFilterViewModel
     AnimatedVisibility(
         visible = isVisible,
         enter = expandVertically(expandFrom = Alignment.Top),
-        exit = shrinkVertically (shrinkTowards = Alignment.Top)
+        exit = shrinkVertically(shrinkTowards = Alignment.Top)
     ) {
         Column {
             Row {

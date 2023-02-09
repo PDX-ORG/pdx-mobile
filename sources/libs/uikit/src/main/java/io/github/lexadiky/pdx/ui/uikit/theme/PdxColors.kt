@@ -3,6 +3,7 @@ package io.github.lexadiky.pdx.ui.uikit.theme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.ui.graphics.Color
 
+@Suppress("MagicNumber")
 object PdxColors {
 
     val externalBrands = Brands
@@ -15,4 +16,5 @@ object PdxColors {
     }
 }
 
+@Suppress("UnusedReceiverParameter")
 val ColorScheme.pdx get() = PdxColors

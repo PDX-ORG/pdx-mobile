@@ -1,10 +1,6 @@
 package io.github.lexadiky.pdx.lib.fs.statist
 
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.Json.Default.serializersModule
-import kotlinx.serialization.json.decodeFromJsonElement
-import kotlinx.serialization.serializer
 import java.net.URI
 import kotlin.reflect.KType
 

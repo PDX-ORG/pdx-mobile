@@ -15,7 +15,7 @@ class RoboStateProvider(private val sp: SharedPreferences) : AtomicStateProvider
             getter = { key, default -> getInt(key, default ?: -1) as T },
             setter = { key, value -> putInt(key, value ?: -1) }
         )
-                as ReadWriteProperty<Any?, T>
+            as ReadWriteProperty<Any?, T>
     }
 
     override fun <T : String?> string(id: String, default: T): ReadWriteProperty<Any?, T> {

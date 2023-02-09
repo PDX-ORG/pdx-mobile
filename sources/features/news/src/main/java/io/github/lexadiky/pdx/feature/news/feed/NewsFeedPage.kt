@@ -87,7 +87,7 @@ private fun NewsFeedItem(item: NewsFeedItem, onItemClick: () -> Unit, onAuthorCl
                         contentDescription = null,
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .size(MaterialTheme.grid.x(10f))
+                            .size(MaterialTheme.grid.x10)
                             .clip(MaterialTheme.shapes.extraLarge),
                     )
                 }
@@ -119,5 +119,3 @@ private fun NewsFeedItem(item: NewsFeedItem, onItemClick: () -> Unit, onAuthorCl
         }
     }
 }
-
-

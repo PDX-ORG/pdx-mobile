@@ -90,6 +90,9 @@ private fun HomePageImpl(viewModel: HomePageViewModel = di.inject()) {
     }
 }
 
+private const val HEADER_ARROW_ROTATION_DOWN = 0f
+private const val HEADER_ARROW_ROTATION_UP = 180f
+
 private fun LazyListScope.pokemonSuggestionSection(
     title: Int,
     items: List<FeaturedPokemonItem>,
@@ -116,7 +119,9 @@ private fun LazyListScope.pokemonSuggestionSection(
                     style = MaterialTheme.typography.titleLarge
                 )
                 IconButton(onClick = { isFolded = !isFolded }) {
-                    val iconRotation by animateFloatAsState(if (isFolded) 0f else 180f)
+                    val iconRotation by animateFloatAsState(
+                        if (isFolded) HEADER_ARROW_ROTATION_DOWN else HEADER_ARROW_ROTATION_UP
+                    )
                     Icon(
                         imageVector = Icons.Default.ArrowDropDown,
                         contentDescription = null,
@@ -221,7 +226,7 @@ private fun RowScope.HomePageFeaturedCard(
             .fillMaxWidth()
             .let { mod ->
                 when (shape) {
-                    HomePageFeaturedCardShape.Card -> mod.height(MaterialTheme.grid.x(20f))
+                    HomePageFeaturedCardShape.Card -> mod.height(MaterialTheme.grid.x20)
                     HomePageFeaturedCardShape.Box -> mod.aspectRatio(1f)
                 }
             }

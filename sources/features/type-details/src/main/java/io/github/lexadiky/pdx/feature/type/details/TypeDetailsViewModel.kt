@@ -60,8 +60,10 @@ internal class TypeDetailsViewModel(
         navigator.navigate("pdx://pokemon?types=${state.type.id}")
     }
 
-
-    private fun onStateLoaded(damageRelation: Map<PokemonType, PokemonTypeDamageRelation>, pokemon: List<PokemonPreview>): TypeDetailsState {
+    private fun onStateLoaded(
+        damageRelation: Map<PokemonType, PokemonTypeDamageRelation>,
+        pokemon: List<PokemonPreview>
+    ): TypeDetailsState {
         return state.copy(
             damageRelations = damageRelation.getOrDefault(state.type, null),
             featuredPokemon = pokemon.filter { it.types.size == 1 && state.type in it.types }

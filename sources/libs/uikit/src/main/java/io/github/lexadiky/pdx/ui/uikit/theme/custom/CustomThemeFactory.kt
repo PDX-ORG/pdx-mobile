@@ -24,7 +24,7 @@ internal class CustomThemeFactory(private val context: Context) {
         return defaultThemes.first { it.isDark == isDark }
     }
 
-    @SuppressLint("RestrictedApi")
+    @Suppress("MagicNumber", "RestrictedApi")
     private fun createPokemonTypeThemes(): List<CustomTheme> {
         val typeColors = listOf(
             "type-normal" to Color(0xFFA8A77A),

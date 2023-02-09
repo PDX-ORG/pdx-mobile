@@ -20,12 +20,6 @@ import androidx.compose.ui.graphics.Color
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.util.saturation
 
-object PillChipDefaults {
-
-    fun trailColor(color: Color): Color =
-        color.saturation(1.2f)
-}
-
 @Composable
 fun PillChip(
     label: @Composable () -> Unit,
@@ -65,3 +59,10 @@ fun PillChip(
         }
     }
 }
+
+object PillChipDefaults {
+
+    fun trailColor(color: Color): Color =
+        color.saturation()
+}
+

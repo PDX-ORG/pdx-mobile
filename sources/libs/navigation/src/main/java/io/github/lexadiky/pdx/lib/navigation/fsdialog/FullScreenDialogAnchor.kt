@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.onGloballyPositioned
 import io.github.lexadiky.akore.alice.robo.di
@@ -27,7 +26,9 @@ fun FullScreenDialogAnchor(
         akoreNavigator.controller.navigatorProvider
             .getNavigator(FullScreenDialogNavigator::class.java)
     }
-    Box(modifier = Modifier.onGloballyPositioned { coordinates ->
-        jpnNavigator.saveAnchor(tag, FullScreenDialogAnchor(tag, coordinates, style))
-    })
+    Box(
+        modifier = Modifier.onGloballyPositioned { coordinates ->
+            jpnNavigator.saveAnchor(tag, FullScreenDialogAnchor(tag, coordinates, style))
+        }
+    )
 }

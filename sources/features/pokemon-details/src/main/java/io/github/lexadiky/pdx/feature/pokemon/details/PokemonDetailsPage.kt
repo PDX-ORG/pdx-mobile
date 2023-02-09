@@ -6,16 +6,11 @@ import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandIn
 import androidx.compose.animation.fadeIn
-import androidx.compose.animation.shrinkOut
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -46,20 +41,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import com.google.android.material.color.utilities.Scheme
-import io.github.lexadiky.akore.alice.DIContainer
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
@@ -71,7 +60,6 @@ import io.github.lexadiky.pdx.feature.pokemon.details.subpage.stats.StatsSubPage
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
 import io.github.lexadiky.pdx.lib.navigation.fsdialog.FullScreenDialogAnchor
-import io.github.lexadiky.pdx.lib.navigation.fsdialog.FullScreenDialogStyle
 import io.github.lexadiky.pdx.lib.navigation.page.PageContext
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
@@ -79,6 +67,7 @@ import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
+import io.github.lexadiky.pdx.ui.uikit.theme.animation
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.util.scroll.LocalPrimeScrollState
@@ -160,7 +149,10 @@ private fun DataCard(viewModel: PokemonDetailsViewModel) {
                 }
             }
             when (currentTab) {
-                PokemonDetailsSection.Stats -> StatsSubPage(viewModel.state.pokemonSpeciesDetails, viewModel.state.selectedVariety)
+                PokemonDetailsSection.Stats -> StatsSubPage(
+                    viewModel.state.pokemonSpeciesDetails,
+                    viewModel.state.selectedVariety
+                )
                 PokemonDetailsSection.Info -> Unit
                 PokemonDetailsSection.Evolution -> Unit
                 PokemonDetailsSection.Battle -> Unit
@@ -225,7 +217,7 @@ private fun BoxScope.SpriteButtonIcon(
     val isSpritesIconVisible = !pagerState.isScrollInProgress || state.availableVarieties == 1
     val spriteIconAlpha by animateFloatAsState(
         if (isSpritesIconVisible) 1f else 0f,
-        tween(delayMillis = 1_000)
+        MaterialTheme.animation.linearSlow()
     )
     IconButton(
         onClick = { openSprites() },

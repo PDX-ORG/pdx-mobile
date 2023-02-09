@@ -14,10 +14,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.pdx.feature.typechart.chart.TypeChartPage
 import io.github.lexadiky.pdx.feature.typechart.entity.TypePageTabs
 import io.github.lexadiky.pdx.feature.typechart.search.TypeSearchPage
-import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 
 @Composable

@@ -1,6 +1,5 @@
 package io.github.lexadiky.pdx.feature.typechart.search
 
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.feature.typechart.entity.DamageRelationsSubState
 import io.github.lexadiky.pdx.feature.typechart.entity.PokemonTypeSearchItem
 import io.github.lexadiky.pdx.feature.typechart.entity.TypeDamageValue
@@ -19,7 +18,7 @@ data class TypeSearchState(
     val attackDamageRelationTable: List<TypeDamageValue> get() = damageRelationsSubState.attackDamageRelationTable
     val defenceDamageRelationTable: List<TypeDamageValue> get() = damageRelationsSubState.defenceDamageRelationTable
 
-    fun setSelectedPokemon(selectedPokemon: PokemonTypeSearchItem?) : TypeSearchState {
+    fun setSelectedPokemon(selectedPokemon: PokemonTypeSearchItem?): TypeSearchState {
         return copy(
             selectedPokemon = selectedPokemon,
             damageRelationsSubState = damageRelationsSubState.copy(

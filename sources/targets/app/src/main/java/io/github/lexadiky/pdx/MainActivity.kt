@@ -11,18 +11,14 @@ import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import io.github.lexadiky.akore.alice.robo.DIApplication
-import io.github.lexadiky.akore.alice.robo.di
-import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.feature.drawer.Drawer
 import io.github.lexadiky.pdx.feature.toolbar.Toolbar
 import io.github.lexadiky.pdx.feature.toolbar.rememberToolbarConnector
-import io.github.lexadiky.pdx.lib.navigation.NavigationHost
 import io.github.lexadiky.pdx.lib.navigation.NavigationFeature
-import io.github.lexadiky.pdx.lib.navigation.Navigator
+import io.github.lexadiky.pdx.lib.navigation.NavigationHost
 import io.github.lexadiky.pdx.ui.uikit.theme.PdxTheme
 import io.github.lexadiky.pdx.ui.uikit.widget.scaffold.PdxScaffold
 
@@ -47,7 +43,7 @@ class MainActivity : ComponentActivity() {
             val toolbarConnector = rememberToolbarConnector(
                 onDrawerToggled = { if (drawerState.isOpen) drawerState.close() else drawerState.open() }
             )
-            
+
             NavigationFeature(routing(), "pdx://home") {
                 PdxScaffold(
                     drawerState = drawerState,

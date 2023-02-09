@@ -6,6 +6,4 @@ import androidx.glance.appwidget.GlanceAppWidgetReceiver
 class GlancelauncherWidgetReceiver : GlanceAppWidgetReceiver() {
 
     override val glanceAppWidget: GlanceAppWidget = GlanceLauncherWidget()
-
-
 }
