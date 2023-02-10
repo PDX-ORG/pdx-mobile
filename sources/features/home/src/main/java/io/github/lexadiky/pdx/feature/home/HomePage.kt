@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.PokemonTypeAssets
 import io.github.lexadiky.pdx.feature.home.entitiy.FeaturedPokemonItem
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
@@ -63,7 +64,7 @@ fun HomePage() {
 }
 
 @Composable
-private fun HomePageImpl(viewModel: HomePageViewModel = di.inject()) {
+private fun HomePageImpl(viewModel: HomePageViewModel = di.viewModel("default-key")) {
     ErrorDialog(viewModel.state.error) {
         viewModel.hideError()
     }

@@ -3,6 +3,7 @@
 android-compose = "1.3.0"
 ktor = "2.1.3"
 accompanist = "0.27.1"
+akore = "-SNAPSHOT"
 
 [libraries]
 
@@ -37,9 +38,6 @@ coil-compose-base = "io.coil-kt:coil-compose-base:2.2.2"
 
 arrow-core = "io.arrow-kt:arrow-core:1.1.2"
 
-koin-compose = "io.insert-koin:koin-androidx-compose:3.3.0"
-koin-core = "io.insert-koin:koin-core:3.3.0"
-
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
@@ -54,13 +52,11 @@ accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayo
 accompanist-navigation-material = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
 accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist" }
 
-akore-blogger-core = "com.github.akore-org.blogger:core:-SNAPSHOT"
-akore-blogger-logcat = "com.github.akore-org.blogger:logcat:-SNAPSHOT"
-akore-alice-core = "com.github.akore-org.alice:core:-SNAPSHOT"
-akore-alice-robo = "com.github.akore-org.alice:robo:-SNAPSHOT"
+akore-blogger-core = { module = "com.github.akore-org.blogger:core", version.ref = "akore" }
+akore-blogger-logcat = { module = "com.github.akore-org.blogger:logcat", version.ref = "akore" }
+akore-alice-core = { module = "com.github.akore-org.alice:core", version.ref = "akore" }
+akore-alice-robo = { module = "com.github.akore-org.alice:robo", version.ref = "akore" }
 
 pokeapi = "com.github.lexa-diky:pokeapi-kotlin:-SNAPSHOT"
-
-mpchart = "com.github.PhilJay:MPAndroidChart:v3.1.0"
 
 [plugins]
