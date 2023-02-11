@@ -66,8 +66,10 @@ class KotlinTranspiler {
             funBuilder.addParameter(snakeToCamel(argument.name, false), argument.typeClassName())
         }
 
-        funBuilder.addCode("analyticsManager.log(event=\"${event.name}\", " +
-                "parameters=mapOf(${event.arguments.joinToString { "\"${it.name}\" to ${snakeToCamel(it.name, false)}" }}))")
+        funBuilder.addCode(
+            "analyticsManager.log(event=\"${event.name}\", " +
+                "parameters=mapOf(${event.arguments.joinToString { "\"${it.name}\" to ${snakeToCamel(it.name, false)}" }}))"
+        )
 
         return funBuilder.build()
     }

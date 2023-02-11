@@ -31,14 +31,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import io.github.lexadiky.pdx.feature.whois.entity.WhoIsPokemonVariant
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.pdx.feature.whois.entity.WhoIsPokemonVariant
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
+import io.github.lexadiky.pdx.ui.uikit.theme.animation
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
@@ -88,7 +89,6 @@ private fun WhoIsPageImpl(viewModel: WhoIsViewModel) {
             }
         }
 
-
         LazyColumn(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
@@ -106,7 +106,10 @@ private fun WhoIsPageImpl(viewModel: WhoIsViewModel) {
                 ) {
                     AnimatedContent(
                         targetState = variant.name.render(),
-                        transitionSpec = { fadeIn(tween(1000)) with fadeOut(tween(1000)) }
+                        transitionSpec = {
+                            fadeIn(MaterialTheme.animation.linearSlow()) with
+                                    fadeOut(MaterialTheme.animation.linearSlow())
+                        }
                     ) { name ->
                         Text(text = name)
                     }
@@ -120,7 +123,7 @@ private fun WhoIsPageImpl(viewModel: WhoIsViewModel) {
 @Composable
 private fun buttonColorAsState(
     viewModel: WhoIsViewModel,
-    variant: WhoIsPokemonVariant
+    variant: WhoIsPokemonVariant,
 ) = animateColorAsState(
     if (!viewModel.state.masked) {
         if (viewModel.state.whoisTarget == variant) {

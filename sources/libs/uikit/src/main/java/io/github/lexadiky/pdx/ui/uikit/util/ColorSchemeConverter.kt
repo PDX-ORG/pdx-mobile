@@ -34,7 +34,7 @@ fun Scheme.toColorScheme(): ColorScheme = ColorScheme(
     errorContainer = this.errorContainer.toComposeColor(),
     onErrorContainer = this.onErrorContainer.toComposeColor(),
     outline = this.outline.toComposeColor(),
-    outlineVariant =  this.outlineVariant.toComposeColor(),
+    outlineVariant = this.outlineVariant.toComposeColor(),
     scrim = this.scrim.toComposeColor()
 )
 

@@ -5,7 +5,6 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDetailsSection
-import io.github.lexadiky.pdx.feature.pokemon.details.usecase.GetAvailableDetailsSections
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from

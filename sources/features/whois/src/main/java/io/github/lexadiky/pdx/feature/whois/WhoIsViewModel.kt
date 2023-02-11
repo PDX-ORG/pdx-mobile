@@ -71,9 +71,9 @@ internal class WhoIsViewModel(
     private fun recordNewStreak(newStreak: Int) {
         streakFsState = newStreak
         when {
-            newStreak >= 100 -> achievementManager.give(WhoIsChampionAchievement())
-            newStreak >= 10 -> achievementManager.give(WhoIsTrainerAchievement())
-            newStreak >= 3 -> achievementManager.give(WhoIsBeginnerAchievement())
+            newStreak >= ACHIEVEMENT_THRESHOLD_CHAMPION -> achievementManager.give(WhoIsChampionAchievement())
+            newStreak >= ACHIEVEMENT_THRESHOLD_TRAINER -> achievementManager.give(WhoIsTrainerAchievement())
+            newStreak >= ACHIEVEMENT_THRESHOLD_BEGINNER -> achievementManager.give(WhoIsBeginnerAchievement())
         }
     }
 
@@ -91,5 +91,9 @@ internal class WhoIsViewModel(
     companion object {
 
         private val GUESS_RESULT_LEN = 3.seconds
+
+        private const val ACHIEVEMENT_THRESHOLD_BEGINNER = 3
+        private const val ACHIEVEMENT_THRESHOLD_TRAINER = 10
+        private const val ACHIEVEMENT_THRESHOLD_CHAMPION = 100
     }
 }

@@ -8,6 +8,6 @@ import io.github.lexadiky.pdx.lib.uikit.R
 object UikitStringFormatter {
 
     fun nationalId(id: Int): StringResource =
-        StringResource.from(R.string. uikit_national_id_template)
+        StringResource.from(R.string.uikit_national_id_template)
             .format(id)
 }

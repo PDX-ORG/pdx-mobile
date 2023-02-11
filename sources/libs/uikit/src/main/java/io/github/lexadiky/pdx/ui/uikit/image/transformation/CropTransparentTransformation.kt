@@ -3,6 +3,8 @@ package io.github.lexadiky.pdx.ui.uikit.image.transformation
 import android.graphics.Bitmap
 import coil.size.Size
 import coil.transform.Transformation
+import io.github.lexadiky.akore.blogger.BLogger
+import io.github.lexadiky.akore.blogger.error
 import java.util.Arrays
 
 object CropTransparentTransformation : Transformation {
@@ -10,10 +12,12 @@ object CropTransparentTransformation : Transformation {
     override val cacheKey: String = "CropTransparentTransformation"
 
     override suspend fun transform(input: Bitmap, size: Size): Bitmap {
-        try {
-            return crop(input)
+        return try {
+            crop(input)
         } catch (exception: Throwable) {
-            return input
+            BLogger.tag("CropTransparentTransformation")
+                .error("can't crop image", exception)
+            input
         }
     }
 

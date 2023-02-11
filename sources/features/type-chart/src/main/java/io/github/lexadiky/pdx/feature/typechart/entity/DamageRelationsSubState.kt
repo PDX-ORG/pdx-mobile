@@ -6,7 +6,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonTypeDamageRelationTab
 import io.github.lexadiky.pdx.domain.pokemon.util.times
 
 data class DamageRelationsSubState(
-    val damageRelations:  Map<PokemonType, PokemonTypeDamageRelation> = emptyMap(),
+    val damageRelations: Map<PokemonType, PokemonTypeDamageRelation> = emptyMap(),
     val selectedTypes: List<PokemonType> = emptyList()
 ) {
 

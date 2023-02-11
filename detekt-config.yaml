@@ -1,0 +1,19 @@
+style:
+  MaxLineLength:
+    maxLineLength: 180
+
+complexity:
+  LongMethod:
+    threshold: 80
+  LongParameterList:
+    ignoreDefaultParameters: true
+
+naming:
+  FunctionNaming:
+    functionPattern: ([a-z][a-zA-Z0-9]*)|([a-zA-Z][a-zA-Z0-9]*Module)
+    ignoreAnnotated:
+      - Composable
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: false

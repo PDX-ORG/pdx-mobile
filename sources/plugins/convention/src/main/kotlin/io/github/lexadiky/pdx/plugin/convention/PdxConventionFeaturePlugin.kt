@@ -1,11 +1,11 @@
 package io.github.lexadiky.pdx.plugin.convention
 
 import com.android.build.api.dsl.LibraryExtension
-import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
+@Suppress("MagicNumber")
 class PdxConventionFeaturePlugin : Plugin<Project> {
 
     override fun apply(target: Project) {

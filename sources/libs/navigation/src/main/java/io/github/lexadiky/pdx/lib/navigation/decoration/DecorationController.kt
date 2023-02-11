@@ -1,7 +1,6 @@
 package io.github.lexadiky.pdx.lib.navigation.decoration
 
 import android.os.Bundle
-import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -15,7 +14,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.createGraph
 import androidx.navigation.get
-import com.google.accompanist.navigation.material.BottomSheetNavigator
 import io.github.lexadiky.pdx.lib.navigation.Navigator
 
 class DecorationController(
@@ -78,7 +76,8 @@ class DecorationController(
     companion object {
 
         private val NON_DECORABLE_NAVIGATORS = setOf(
-            "BottomSheetNavigator", "FullScreenDialogNavigator"
+            "BottomSheetNavigator",
+            "FullScreenDialogNavigator"
         )
         private const val START_DESTINATION = "pdx://_internal/decor/start"
     }

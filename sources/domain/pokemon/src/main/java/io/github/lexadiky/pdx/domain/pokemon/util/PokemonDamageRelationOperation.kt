@@ -1,8 +1,8 @@
 package io.github.lexadiky.pdx.domain.pokemon.util
 
+import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonTypeDamageRelation
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonTypeDamageRelationTable
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 
 operator fun PokemonTypeDamageRelation.plus(other: PokemonTypeDamageRelation): PokemonTypeDamageRelationTable {
     return PokemonTypeDamageRelationTable(

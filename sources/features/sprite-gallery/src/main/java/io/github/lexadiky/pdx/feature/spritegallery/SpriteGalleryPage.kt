@@ -16,10 +16,7 @@ import com.google.accompanist.pager.HorizontalPager
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
-import io.github.lexadiky.pdx.domain.pokemon.asset.R
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
-import io.github.lexadiky.pdx.lib.resources.image.ImageResource
-import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid

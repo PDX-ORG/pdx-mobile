@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.PokemonTypeAssets
 import io.github.lexadiky.pdx.feature.home.entitiy.FeaturedPokemonItem
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
@@ -63,7 +64,7 @@ fun HomePage() {
 }
 
 @Composable
-private fun HomePageImpl(viewModel: HomePageViewModel = di.inject()) {
+private fun HomePageImpl(viewModel: HomePageViewModel = di.viewModel("default-key")) {
     ErrorDialog(viewModel.state.error) {
         viewModel.hideError()
     }
@@ -89,6 +90,9 @@ private fun HomePageImpl(viewModel: HomePageViewModel = di.inject()) {
         }
     }
 }
+
+private const val HEADER_ARROW_ROTATION_DOWN = 0f
+private const val HEADER_ARROW_ROTATION_UP = 180f
 
 private fun LazyListScope.pokemonSuggestionSection(
     title: Int,
@@ -116,7 +120,9 @@ private fun LazyListScope.pokemonSuggestionSection(
                     style = MaterialTheme.typography.titleLarge
                 )
                 IconButton(onClick = { isFolded = !isFolded }) {
-                    val iconRotation by animateFloatAsState(if (isFolded) 0f else 180f)
+                    val iconRotation by animateFloatAsState(
+                        if (isFolded) HEADER_ARROW_ROTATION_DOWN else HEADER_ARROW_ROTATION_UP
+                    )
                     Icon(
                         imageVector = Icons.Default.ArrowDropDown,
                         contentDescription = null,
@@ -221,7 +227,7 @@ private fun RowScope.HomePageFeaturedCard(
             .fillMaxWidth()
             .let { mod ->
                 when (shape) {
-                    HomePageFeaturedCardShape.Card -> mod.height(MaterialTheme.grid.x(20f))
+                    HomePageFeaturedCardShape.Card -> mod.height(MaterialTheme.grid.x20)
                     HomePageFeaturedCardShape.Box -> mod.aspectRatio(1f)
                 }
             }

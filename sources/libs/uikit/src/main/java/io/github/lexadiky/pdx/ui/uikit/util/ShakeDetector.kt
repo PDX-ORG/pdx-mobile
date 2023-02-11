@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlin.math.sqrt
 
-
 class ShakeDetector(context: Context) {
 
     private val sensorManager = context.getSystemService<SensorManager>()!!

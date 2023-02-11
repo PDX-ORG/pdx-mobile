@@ -52,7 +52,7 @@ class FeatureToggleManager {
         return "ft_${toggle.group}_${toggle.id}"
     }
 
-    private suspend fun syncInternal() = suspendCancellableCoroutine {  cont ->
+    private suspend fun syncInternal() = suspendCancellableCoroutine { cont ->
         firebaseRemoteConfig.fetchAndActivate()
             .addOnCanceledListener {
                 cont.cancel()

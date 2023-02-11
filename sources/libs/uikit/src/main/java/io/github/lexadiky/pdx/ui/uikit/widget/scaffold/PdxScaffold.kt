@@ -36,7 +36,7 @@ fun PdxScaffold(
                     .fillMaxWidth(PdxScaffoldTokens.DrawerWidth)
             ) {
                 Column(
-                    modifier = Modifier.padding(PdxScaffoldTokens.DrawerContentPadding)
+                    modifier = Modifier.padding(PdxScaffoldTokens.DrawerContentPadding.dp)
                 ) {
                     drawerContent()
                 }
@@ -55,6 +55,6 @@ fun PdxScaffold(
 
 private object PdxScaffoldTokens {
 
-    val DrawerWidth = 0.75f // percents of screen
-    val DrawerContentPadding = 12.dp
+    const val DrawerWidth = 0.75f // percents of screen
+    const val DrawerContentPadding = 12
 }

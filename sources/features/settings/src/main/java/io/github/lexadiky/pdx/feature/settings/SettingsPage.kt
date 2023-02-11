@@ -35,7 +35,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import io.github.lexadiky.pdx.feature.settings.R.*
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
@@ -114,8 +113,8 @@ private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
 
 @Composable
 private fun ThemeSelection(state: SettingsPageState, onThemeSelected: (CustomTheme) -> Unit) {
-    val sizeSmall = MaterialTheme.grid.x(10f)
-    val sizeBig = MaterialTheme.grid.x(12f)
+    val sizeSmall = MaterialTheme.grid.x10
+    val sizeBig = MaterialTheme.grid.x12
 
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),

@@ -1,13 +1,13 @@
 package io.github.lexadiky.pdx.domain.pokemon
 
-import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
-import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
 import io.github.lexadiky.akore.alice.module
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.info
 import io.github.lexadiky.pdx.domain.pokemon.usecase.FindPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewSampleUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonSpeciesDetailsUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonVarietyDetails
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase

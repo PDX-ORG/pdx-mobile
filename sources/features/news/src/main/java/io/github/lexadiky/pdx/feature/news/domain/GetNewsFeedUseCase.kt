@@ -5,8 +5,10 @@ import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.error
 import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
-import io.github.lexadiky.pdx.lib.resources.image.*
-import io.github.lexadiky.pdx.lib.resources.string.*
+import io.github.lexadiky.pdx.lib.resources.image.ImageResource
+import io.github.lexadiky.pdx.lib.resources.image.from
+import io.github.lexadiky.pdx.lib.resources.string.StringResource
+import io.github.lexadiky.pdx.lib.resources.string.from
 import kotlinx.datetime.Instant
 import java.net.URI
 
@@ -20,7 +22,11 @@ internal class GetNewsFeedUseCase(private val redditNewsClient: RedditNewsClient
                 authorUri = URI.create(USER_LINK + child.data.author),
                 title = StringResource.from(child.data.title),
                 author = child.data.author,
-                preview = child.data.preview?.images?.firstOrNull()?.resolutions?.lastOrNull()?.url?.let { ImageResource.from(it) },
+                preview = child.data.preview?.images?.firstOrNull()?.resolutions?.lastOrNull()?.url?.let {
+                    ImageResource.from(
+                        it
+                    )
+                },
                 time = Instant.fromEpochSeconds(child.data.createdTimestamp.toLong())
                     .let { StringResource.from(it) }
             )

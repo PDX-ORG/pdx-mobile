@@ -44,4 +44,3 @@ fun PrimeScrollState.asTopAppBarState(): TopAppBarState {
     topAppBarState.contentOffset = firstVisibleItemScrollOffset
     return topAppBarState
 }
-

@@ -1,6 +1,5 @@
 package io.github.lexadiky.pdx.feature.whois.entity
 
-import androidx.annotation.ColorRes
 import io.github.lexadiky.pdx.lib.resources.color.ColorResource
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.string.StringResource

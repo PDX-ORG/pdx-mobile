@@ -15,11 +15,11 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
-import io.github.lexadiky.pdx.feature.typechart.R
-import io.github.lexadiky.pdx.feature.typechart.ui.EffectChart
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
+import io.github.lexadiky.pdx.feature.typechart.R
+import io.github.lexadiky.pdx.feature.typechart.ui.EffectChart
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render

@@ -5,6 +5,7 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
+@Suppress("MagicNumber")
 class PdxConventionTargetPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
@@ -55,6 +56,9 @@ class PdxConventionTargetPlugin : Plugin<Project> {
             resources {
                 excludes += "/META-INF/{AL2.0,LGPL2.1}"
             }
+        }
+        lint {
+            disable += "Instantiatable"
         }
     }
 }

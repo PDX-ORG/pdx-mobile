@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -28,11 +29,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.android.material.color.utilities.Scheme
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
+import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
+import io.github.lexadiky.pdx.feature.type.details.entity.TypePokemonPreview
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
@@ -67,7 +69,7 @@ internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
 
     val backgroundBrush = Brush.linearGradient(
         colors = listOf(
-            primaryColor.saturation(1.2f),
+            primaryColor.saturation(),
             MaterialTheme.colorScheme.surface
         )
     )
@@ -111,65 +113,87 @@ internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
         }
 
         item {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1)
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.type_featured_pokemon_title),
-                        style = MaterialTheme.typography.titleMedium,
-                    )
-                    TextButton(onClick = { viewModel.openPokemonList() }) {
-                        Text(
-                            text = stringResource(id = R.string.type_featured_pokemon_link),
-                            style = MaterialTheme.typography.titleMedium
-                                .copy(color = MaterialTheme.colorScheme.pdx.link)
-                        )
-                    }
-                }
-                viewModel.state.featuredPokemon.forEach { preview ->
-                    SmallWikiPreview(
-                        title = preview.name.render(),
-                        preTitle = "",
-                        icon = preview.image.render(
-                            transformations = listOf(ImageTransformation.CropTransparent)
-                        ),
-                        onClick = { viewModel.openPokemonDetails(preview) },
-                        isOutlined = true,
-                        colors = CardDefaults.outlinedCardColors(
-                            containerColor = colorScheme.surfaceVariant
-                                .copy(alpha = 0.4f)
-                        )
-                    )
-                }
-            }
+            FeaturedPokemonSection(
+                state = viewModel.state,
+                openPokemonList = { viewModel.openPokemonList() },
+                openPokemonDetails = { viewModel.openPokemonDetails(it) }
+            )
         }
 
         item {
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Button(
-                    onClick = { viewModel.openMovesList() },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = colorScheme.primary
-                    ),
-                    modifier = Modifier.fillMaxWidth(0.85f)
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.type_moves_button)
-                    )
-                }
-            }
+            MovesListLink(
+                openMovesList = { viewModel.openMovesList() }
+            )
         }
 
         item {
             Spacer(modifier = Modifier.size(MaterialTheme.grid.x4))
+        }
+    }
+}
+
+@Composable
+private fun MovesListLink(
+    openMovesList: () -> Unit,
+) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Button(
+            onClick = { openMovesList() },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.primary
+            ),
+            modifier = Modifier.fillMaxWidth(0.85f)
+        ) {
+            Text(
+                text = stringResource(id = R.string.type_moves_button)
+            )
+        }
+    }
+}
+
+@Composable
+private fun FeaturedPokemonSection(
+    state: TypeDetailsState,
+    openPokemonList: () -> Unit,
+    openPokemonDetails: (TypePokemonPreview) -> Unit,
+) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1)
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                text = stringResource(id = R.string.type_featured_pokemon_title),
+                style = MaterialTheme.typography.titleMedium,
+            )
+            TextButton(onClick = { openPokemonList() }) {
+                Text(
+                    text = stringResource(id = R.string.type_featured_pokemon_link),
+                    style = MaterialTheme.typography.titleMedium
+                        .copy(color = MaterialTheme.colorScheme.pdx.link)
+                )
+            }
+        }
+        state.featuredPokemon.forEach { preview ->
+            SmallWikiPreview(
+                title = preview.name.render(),
+                preTitle = "",
+                icon = preview.image.render(
+                    transformations = listOf(ImageTransformation.CropTransparent)
+                ),
+                onClick = { openPokemonDetails(preview) },
+                isOutlined = true,
+                colors = CardDefaults.outlinedCardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant
+                        .copy(alpha = 0.4f)
+                )
+            )
         }
     }
 }

@@ -7,7 +7,7 @@ enum class PokemonStat {
     HP, Speed, Attack, SpAttack, Defence, SpDefence
 }
 
-fun ResourcePointer<Stat>.asPokemonStat(): PokemonStat = when(name) {
+fun ResourcePointer<Stat>.asPokemonStat(): PokemonStat = when (name) {
     "hp" -> PokemonStat.HP
     "speed" -> PokemonStat.Speed
     "attack" -> PokemonStat.Attack

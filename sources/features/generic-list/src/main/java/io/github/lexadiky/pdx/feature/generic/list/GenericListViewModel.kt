@@ -19,7 +19,9 @@ class GenericListViewModel<T : GenericListItem>(
     initialSearchQuery: SearchQuery<T>
 ) : ViewModel() {
 
-    var state by mutableStateOf(GenericListState(query = initialSearchQuery, searchActivated = !initialSearchQuery.isEmpty))
+    var state by mutableStateOf(
+        GenericListState(query = initialSearchQuery, searchActivated = !initialSearchQuery.isEmpty)
+    )
         private set
 
     init {

@@ -1,17 +1,10 @@
 package io.github.lexadiky.pdx.lib.navigation
 
-import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
-import androidx.compose.runtime.derivedStateOf
-import androidx.core.os.toPersistableBundle
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import io.github.lexadiky.pdx.generated.analytics.NavigationEventsSpec
 
 @Suppress("RedundantSuspendModifier")

@@ -38,7 +38,7 @@ fun SmallWikiPreview(
             colors = colors,
             modifier = modifier
         ) {
-            Content(title = title, preTitle = preTitle, icon = icon, onClick = onClick)
+            Content(title = title, preTitle = preTitle, icon = icon)
         }
     } else {
         OutlinedCard(
@@ -46,7 +46,7 @@ fun SmallWikiPreview(
             colors = colors,
             modifier = modifier
         ) {
-            Content(title = title, preTitle = preTitle, icon = icon, onClick = onClick)
+            Content(title = title, preTitle = preTitle, icon = icon)
         }
     }
 }
@@ -56,7 +56,6 @@ private fun Content(
     title: String,
     preTitle: String?,
     icon: Painter,
-    onClick: () -> Unit,
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
