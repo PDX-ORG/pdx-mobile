@@ -10,12 +10,13 @@ import io.github.lexadiky.pdx.feature.pokemon.list.ui.PokemonFilterViewModel
 import io.github.lexadiky.pdx.feature.pokemon.list.usecase.PokemonGenericListItemSource
 import io.github.lexadiky.pdx.feature.pokemon.list.usecase.PokemonGenericListNavigator
 import io.github.lexadiky.akore.alice.module
+import io.github.lexadiky.akore.alice.robo.singleViewModel
 
 internal val PokemonListModule by module("pokemon-list") {
     import(PokemonDomainModule)
     internal {
-        viewModel { params -> PokemonFilterViewModel(inject(), params.get()) }
-        viewModel { params ->
+        singleViewModel { params -> PokemonFilterViewModel(inject(), params.get()) }
+        singleViewModel { params ->
             GenericListViewModel<PokemonGenericListItem>(
                 dataSource = inject(),
                 navigator = inject(),
