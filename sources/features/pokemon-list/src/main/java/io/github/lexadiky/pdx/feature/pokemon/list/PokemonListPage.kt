@@ -18,10 +18,10 @@ fun PageContext.PokemonListPage() {
 
     DIFeature(PokemonListModule) {
         GenericListPage<PokemonGenericListItem>(
-            viewModel = di.inject(query),
+            viewModel = di.viewModel(query),
             filterBlock = { isVisible, callback ->
                 PokemonFilter(
-                    viewModel = di.viewModel(key = query.toString(), callback, query),
+                    viewModel = di.viewModel(callback, query),
                     isVisible = isVisible
                 )
             }

@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package io.github.lexadiky.pdx.feature.drawer
 
 import androidx.compose.foundation.layout.padding
@@ -16,6 +14,7 @@ import androidx.compose.ui.Modifier
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.feature.drawer.accountcard.AccountCard
 import io.github.lexadiky.pdx.feature.drawer.entity.DrawerItem
 import io.github.lexadiky.pdx.ui.uikit.resources.render
@@ -24,7 +23,7 @@ import io.github.lexadiky.pdx.ui.uikit.theme.grid
 @Composable
 fun Drawer() {
     DIFeature(DrawerModule) {
-        DrawerImpl(di.inject())
+        DrawerImpl(di.viewModel())
     }
 }
 

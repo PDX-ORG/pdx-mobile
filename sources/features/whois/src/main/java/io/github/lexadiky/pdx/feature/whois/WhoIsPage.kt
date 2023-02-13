@@ -34,6 +34,7 @@ import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.feature.whois.entity.WhoIsPokemonVariant
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
@@ -45,7 +46,7 @@ import io.github.lexadiky.pdx.ui.uikit.theme.grid
 @Composable
 fun WhoIsPage() {
     DIFeature(WhoIsModule) {
-        WhoIsPageImpl(viewModel = di.inject())
+        WhoIsPageImpl(viewModel = di.viewModel())
     }
 }
 

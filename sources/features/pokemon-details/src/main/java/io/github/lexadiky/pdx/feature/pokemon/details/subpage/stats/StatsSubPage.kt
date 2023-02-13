@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
@@ -35,11 +36,19 @@ import io.github.lexadiky.pdx.ui.uikit.theme.circular
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
-internal fun StatsSubPage(pokemonSpeciesDetails: PokemonSpeciesDetails?, selectedVariety: PokemonDetails?) {
+internal fun StatsSubPage(
+    pokemonSpeciesDetails: PokemonSpeciesDetails?,
+    selectedVariety: PokemonDetails?,
+) {
     if (pokemonSpeciesDetails == null || selectedVariety == null) {
         return
     }
-    StatsSubPageImpl(viewModel = di.inject(pokemonSpeciesDetails, selectedVariety))
+    StatsSubPageImpl(
+        viewModel = di.viewModel(
+            pokemonSpeciesDetails,
+            selectedVariety
+        )
+    )
 }
 
 @Composable
@@ -55,7 +64,8 @@ private fun StatsSubPageImpl(viewModel: StatsSubPageViewModel) {
             StatBar(
                 stat = type,
                 value = value,
-                color = viewModel.state.types.firstOrNull()?.assets?.color?.render() ?: Color.Transparent
+                color = viewModel.state.types.firstOrNull()?.assets?.color?.render()
+                    ?: Color.Transparent
             )
         }
         Text(

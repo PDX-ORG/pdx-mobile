@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.typechart.R
@@ -27,7 +28,7 @@ import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
-internal fun TypeChartPage(viewModel: TypeChartViewModel = di.inject()) {
+internal fun TypeChartPage(viewModel: TypeChartViewModel = di.viewModel()) {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         TypeSelectionCard(viewModel.state, viewModel::onTypeClicked)
 

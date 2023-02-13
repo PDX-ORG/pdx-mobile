@@ -78,7 +78,7 @@ private const val HEADER_IMAGE_ID = "__header_image__"
 @Composable
 fun PageContext.PokemonDetailsPage(pokemonId: String) {
     DIFeature(PokemonDetailsModule) {
-        PokemonDetailsPageImpl(di.inject(pokemonId), di.inject(pokemonId))
+        PokemonDetailsPageImpl(di.viewModel(pokemonId), di.viewModel(pokemonId))
     }
 }
 

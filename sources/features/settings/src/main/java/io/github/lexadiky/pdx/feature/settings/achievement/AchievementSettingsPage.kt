@@ -19,7 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
-import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.feature.settings.R
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 
@@ -31,7 +31,7 @@ fun AchievementSettingsPage() {
 }
 
 @Composable
-private fun AchievementSettingsPageImpl(viewModel: AchievementSettingsViewModel = di.inject()) {
+private fun AchievementSettingsPageImpl(viewModel: AchievementSettingsViewModel = di.viewModel()) {
     LazyColumn {
         items(viewModel.state.availableAchievements) { achievement ->
             ListItem(

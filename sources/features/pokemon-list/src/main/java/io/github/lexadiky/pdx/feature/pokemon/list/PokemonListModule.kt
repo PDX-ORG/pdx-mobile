@@ -15,7 +15,9 @@ import io.github.lexadiky.akore.alice.robo.singleViewModel
 internal val PokemonListModule by module("pokemon-list") {
     import(PokemonDomainModule)
     internal {
-        singleViewModel { params -> PokemonFilterViewModel(inject(), params.get()) }
+        singleViewModel { params ->
+            PokemonFilterViewModel(params.get(), params.get())
+        }
         singleViewModel { params ->
             GenericListViewModel<PokemonGenericListItem>(
                 dataSource = inject(),

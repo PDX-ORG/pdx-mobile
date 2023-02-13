@@ -28,6 +28,7 @@ import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.feature.news.NewsModule
 import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
@@ -41,7 +42,7 @@ import io.github.lexadiky.pdx.ui.uikit.util.scroll.LocalPrimeScrollState
 @Composable
 fun NewsFeedPage() {
     DIFeature(NewsModule) {
-        NewsFeedPageImpl(di.inject())
+        NewsFeedPageImpl(di.viewModel())
     }
 }
 

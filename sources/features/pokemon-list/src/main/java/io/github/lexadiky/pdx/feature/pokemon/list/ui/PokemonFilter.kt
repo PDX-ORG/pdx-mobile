@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemonlist.R
 import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
@@ -30,7 +31,7 @@ import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.widget.SearchField
 
 @Composable
-internal fun PokemonFilter(isVisible: Boolean, viewModel: PokemonFilterViewModel = di.inject()) {
+internal fun PokemonFilter(isVisible: Boolean, viewModel: PokemonFilterViewModel = di.viewModel()) {
     LaunchedEffect(!isVisible) {
         if (!isVisible) {
             viewModel.clearFilter()

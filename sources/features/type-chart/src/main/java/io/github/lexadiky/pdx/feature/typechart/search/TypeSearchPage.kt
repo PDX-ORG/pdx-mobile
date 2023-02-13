@@ -17,6 +17,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.feature.typechart.R
 import io.github.lexadiky.pdx.feature.typechart.ui.EffectChart
@@ -30,7 +31,7 @@ import io.github.lexadiky.pdx.ui.uikit.widget.SmallWikiPreview
 import io.github.lexadiky.pdx.ui.uikit.widget.TagItem
 
 @Composable
-internal fun TypeSearchPage(viewModel: TypeSearchViewModel = di.inject()) {
+internal fun TypeSearchPage(viewModel: TypeSearchViewModel = di.viewModel()) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
     ErrorDialog(viewModel.state.error) {

@@ -32,6 +32,7 @@ import com.google.android.material.color.utilities.Scheme
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.type.details.entity.TypePokemonPreview
@@ -49,7 +50,7 @@ import io.github.lexadiky.pdx.ui.uikit.widget.SmallWikiPreview
 @Composable
 fun TypeDetailsPage(typeId: String) {
     DIFeature(TypeDetailsModule) {
-        TypeDetailsPageImpl(viewModel = di.inject(typeId))
+        TypeDetailsPageImpl(viewModel = di.viewModel(typeId))
     }
 }
 

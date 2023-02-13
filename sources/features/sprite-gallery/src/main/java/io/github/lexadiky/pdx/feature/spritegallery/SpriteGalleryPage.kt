@@ -16,6 +16,7 @@ import com.google.accompanist.pager.HorizontalPager
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
@@ -25,7 +26,7 @@ import io.github.lexadiky.pdx.ui.uikit.theme.grid
 fun SpriteGalleryPage(speciesId: String, varietyId: String) {
     DIFeature(SpriteGalleryPageModel) {
         SpriteGalleryPageImpl(
-            di.inject(speciesId, varietyId)
+            di.viewModel(speciesId, varietyId)
         )
     }
 }

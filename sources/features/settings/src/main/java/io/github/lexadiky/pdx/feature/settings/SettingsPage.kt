@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.theme.custom.CustomTheme
@@ -47,7 +48,7 @@ import io.github.lexadiky.pdx.feature.settings.R.string as SettingsStrings
 @Composable
 fun SettingsPage() {
     DIFeature(SettingsPageModule) {
-        SettingsPageImpl(di.inject())
+        SettingsPageImpl(di.viewModel())
     }
 }
 
