@@ -1,6 +1,7 @@
 package io.github.lexadiky.pdx.lib.network
 
 import io.github.lexadiky.akore.alice.module
+import io.github.lexadiky.akore.alice.util.single
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation

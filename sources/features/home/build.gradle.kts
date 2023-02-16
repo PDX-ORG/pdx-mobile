@@ -13,6 +13,7 @@ dependencies {
     implementation(projects.libs.uikit)
     implementation(projects.libs.navigation)
     implementation(projects.libs.errorHandler)
+    implementation(projects.libs.dynamicBanner)
 
     implementation(libs.akore.alice.robo)
 }

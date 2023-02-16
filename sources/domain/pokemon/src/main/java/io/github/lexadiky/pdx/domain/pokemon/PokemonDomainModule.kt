@@ -1,6 +1,7 @@
 package io.github.lexadiky.pdx.domain.pokemon
 
 import io.github.lexadiky.akore.alice.module
+import io.github.lexadiky.akore.alice.util.single
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.info
 import io.github.lexadiky.pdx.domain.pokemon.usecase.FindPokemonPreviewUseCase

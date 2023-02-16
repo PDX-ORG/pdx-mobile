@@ -11,6 +11,7 @@ interface StaticResourceProvider {
     companion object {
 
         const val SCHEME_BUNDLE = "bundle"
+        const val SCHEME_CONFIG = "remote-config"
     }
 }
 

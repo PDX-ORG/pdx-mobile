@@ -47,6 +47,7 @@ import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.PokemonTypeAssets
 import io.github.lexadiky.pdx.feature.home.entitiy.FeaturedPokemonItem
+import io.github.lexadiky.pdx.lib.dynbanner.DynamicBanner
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
@@ -54,6 +55,7 @@ import io.github.lexadiky.pdx.lib.resources.string.from
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
+import io.github.lexadiky.pdx.ui.uikit.util.scroll.LocalPrimeScrollState
 import io.github.lexadiky.pdx.ui.uikit.widget.SmallWikiPreview
 
 @Composable
@@ -64,13 +66,14 @@ fun HomePage() {
 }
 
 @Composable
-private fun HomePageImpl(viewModel: HomePageViewModel = di.viewModel("default-key")) {
+private fun HomePageImpl(viewModel: HomePageViewModel = di.viewModel()) {
     ErrorDialog(viewModel.state.error) {
         viewModel.hideError()
     }
 
     LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
+        state = LocalPrimeScrollState.current.asLazyListState()
     ) {
         item {
             FeaturedBlock(viewModel)
@@ -86,7 +89,10 @@ private fun HomePageImpl(viewModel: HomePageViewModel = di.viewModel("default-ke
             openPokemonDetails = { viewModel.openPokemonDetails(it) }
         )
         item {
-            Spacer(modifier = Modifier.size(100.dp))
+            Spacer(modifier = Modifier.size(MaterialTheme.grid.x12))
+        }
+        item {
+            // TODO DynamicBanner(id = "dynamic_banner_donate_author")
         }
     }
 }

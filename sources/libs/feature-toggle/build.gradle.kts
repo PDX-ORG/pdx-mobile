@@ -13,4 +13,5 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.remoteConfig)
     implementation(libs.kotlin.coroutines)
+    implementation(libs.kotlin.coroutines.gmsIntegration)
 }

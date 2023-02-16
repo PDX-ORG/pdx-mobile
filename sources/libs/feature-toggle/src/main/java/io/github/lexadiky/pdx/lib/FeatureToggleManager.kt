@@ -12,22 +12,11 @@ import kotlinx.coroutines.withTimeout
 import kotlin.coroutines.resume
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.ExperimentalTime
+import kotlinx.coroutines.tasks.await
 
-class FeatureToggleManager {
-
-    private val firebaseRemoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
-
-    init {
-        val settings = FirebaseRemoteConfigSettings.Builder()
-            // TODO .setMinimumFetchIntervalInSeconds(if (BuildConfig.DEBUG) 0 else 3600)
-            .build()
-        firebaseRemoteConfig.setConfigSettingsAsync(settings)
-            .addOnFailureListener { throwable ->
-                BLogger.tag("FeatureToggleManager")
-                    .error("can't set firebase settings", throwable)
-            }
-    }
-
+class FeatureToggleManager(
+    private val firebaseRemoteConfig: FirebaseRemoteConfig
+) {
     suspend fun sync() {
         withTimeout(SYNC_TIMEOUT) {
             syncInternal()
@@ -52,19 +41,8 @@ class FeatureToggleManager {
         return "ft_${toggle.group}_${toggle.id}"
     }
 
-    private suspend fun syncInternal() = suspendCancellableCoroutine { cont ->
-        firebaseRemoteConfig.fetchAndActivate()
-            .addOnCanceledListener {
-                cont.cancel()
-            }
-            .addOnFailureListener { throwable ->
-                BLogger.tag("FeatureToggleManager")
-                    .error("failed to fetch firebase remote config", throwable)
-                cont.resume(Unit)
-            }
-            .addOnSuccessListener {
-                cont.resume(Unit)
-            }
+    private suspend fun syncInternal() {
+        firebaseRemoteConfig.fetchAndActivate().await()
     }
 
     companion object {

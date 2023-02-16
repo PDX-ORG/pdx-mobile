@@ -99,10 +99,6 @@ private fun PokemonDetailsPageImpl(
             }
 
             val scrollState = LocalPrimeScrollState.current
-            LaunchedEffect(scrollState) {
-                scrollState.asLazyListState()
-                    .scrollToItem(0)
-            }
             LazyColumn(
                 state = scrollState.asLazyListState(),
                 modifier = Modifier

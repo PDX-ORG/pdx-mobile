@@ -2,6 +2,8 @@ package io.github.lexadiky.pdx.lib.target
 
 import android.app.Application
 import io.github.lexadiky.akore.alice.DIContainer
+import io.github.lexadiky.akore.alice.builder
+import io.github.lexadiky.akore.alice.lookup
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.logcat.logcat
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
@@ -16,14 +18,16 @@ import io.github.lexadiky.pdx.ui.uikit.UikitModule
 abstract class BaseTargetApplication : Application() {
 
     val diContainer by lazy {
-        DIContainer(
-            AnalyticsModule,
-            NetworkModule,
-            FeatureToggleModule,
-            UikitModule,
-            ApplicationModule(this),
-            RoboFsModule
-        )
+        DIContainer.builder()
+            .modules(
+                ApplicationModule(this),
+                AnalyticsModule,
+                NetworkModule,
+                FeatureToggleModule,
+                UikitModule,
+                RoboFsModule,
+                FirebaseModule
+            ).build()
     }
 
     override fun onCreate() {
