@@ -6,7 +6,7 @@ plugins {
 dependencies {
     implementation("org.yaml:snakeyaml:1.33")
     implementation("com.squareup:kotlinpoet:1.12.0")
-    implementation("org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin:1.8.0")
+    implementation("org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin:1.8.10")
 }
 
 gradlePlugin {
