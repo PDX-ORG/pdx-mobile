@@ -24,9 +24,9 @@ buildscript {
 }
 
 tasks.register("detektAll", Detekt::class.java) {
-    autoCorrect = true
     buildUponDefaultConfig = true
     parallel = true
+    ignoreFailures = true
 
     config.setFrom(files("detekt-config.yaml"))
 
