@@ -4,5 +4,5 @@ import io.github.lexadiky.akore.alice.module
 import io.github.lexadiky.akore.alice.util.single
 
 val FeatureToggleModule by module("feature-toggle") {
-    single { FeatureToggleManager(inject()) }
+    single { FeatureToggleManager(inject(), inject()) }
 }

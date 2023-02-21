@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.pdx.feature.debugpanel.DebugPanelFeature
 import io.github.lexadiky.pdx.feature.home.HomePage
 import io.github.lexadiky.pdx.feature.news.NewsFeatureToggle
 import io.github.lexadiky.pdx.feature.news.feed.NewsFeedPage
@@ -47,6 +48,8 @@ fun routing(): NaviNavGraphBuilder.() -> Unit {
                 val varietyId = argument(name = "varietyId") { error("variety id required") }
                 SpriteGalleryPage(speciesId, varietyId)
             }
+
+            DebugPanelFeature.routing(this, toggleManager)
         }
     }
 }

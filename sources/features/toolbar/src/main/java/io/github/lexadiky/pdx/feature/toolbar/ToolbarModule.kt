@@ -5,6 +5,8 @@ import io.github.lexadiky.akore.alice.robo.singleViewModel
 
 val ToolbarModule by module("toolbar") {
     internal {
-        singleViewModel { params -> ToolbarViewModel(params.get()) }
+        singleViewModel { params ->
+            ToolbarViewModel(params.get<Any>() as ToolbarConnector)
+        }
     }
 }
