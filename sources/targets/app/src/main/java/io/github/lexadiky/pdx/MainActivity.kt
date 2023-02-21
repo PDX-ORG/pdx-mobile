@@ -8,16 +8,22 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import io.github.lexadiky.akore.alice.robo.DIApplication
+import io.github.lexadiky.akore.alice.robo.di
+import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.feature.drawer.Drawer
 import io.github.lexadiky.pdx.feature.toolbar.Toolbar
 import io.github.lexadiky.pdx.feature.toolbar.rememberToolbarConnector
 import io.github.lexadiky.pdx.lib.navigation.NavigationFeature
 import io.github.lexadiky.pdx.lib.navigation.NavigationHost
+import io.github.lexadiky.pdx.lib.navigation.Navigator
 import io.github.lexadiky.pdx.ui.uikit.theme.PdxTheme
 import io.github.lexadiky.pdx.ui.uikit.widget.scaffold.PdxScaffold
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +48,16 @@ class MainActivity : ComponentActivity() {
             )
 
             NavigationFeature(routing(), "pdx://home") {
+                val navigator = di.inject<Navigator>()
+
+                LaunchedEffect(Unit) {
+                    navigator.currentAbsoluteRouteFlow
+                        .distinctUntilChanged()
+                        .collectLatest {
+                            drawerState.close()
+                        }
+                }
+
                 PdxScaffold(
                     drawerState = drawerState,
                     drawerContent = { Drawer() },

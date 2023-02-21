@@ -22,7 +22,4 @@ dependencies {
     implementation(projects.domain.achievement)
     implementation(projects.features.settings)
     implementation(projects.features.typeChart)
-
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.crashlytics)
 }

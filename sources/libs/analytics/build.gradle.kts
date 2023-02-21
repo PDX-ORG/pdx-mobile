@@ -10,6 +10,5 @@ dependencies {
     implementation(libs.akore.blogger.core)
     implementation(libs.akore.alice.robo)
 
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.analytics)
+    implementation(projects.libs.firebase)
 }

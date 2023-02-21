@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalTime::class)
-
 package io.github.lexadiky.pdx.lib
 
 import android.content.Context
@@ -7,7 +5,6 @@ import android.content.pm.ApplicationInfo
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.error
-import kotlin.time.ExperimentalTime
 
 
 class FeatureToggleManager(

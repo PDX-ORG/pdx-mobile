@@ -10,7 +10,6 @@ dependencies {
     implementation(libs.akore.blogger.core)
     implementation(libs.akore.alice.robo)
 
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.remoteConfig)
-    implementation(libs.kotlin.coroutines)
+    implementation(projects.libs.firebase)
+    implementation(projects.libs.fs.core)
 }

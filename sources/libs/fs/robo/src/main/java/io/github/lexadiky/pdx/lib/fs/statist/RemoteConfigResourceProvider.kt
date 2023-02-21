@@ -4,6 +4,7 @@ import arrow.core.Either
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.error
+import io.github.lexadiky.pdx.lib.firebase.FirebaseRemoteConfigProvider
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.Json.Default.serializersModule
@@ -13,14 +14,14 @@ import java.net.URI
 import kotlin.reflect.KType
 
 class RemoteConfigResourceProvider(
-    private val firebaseRemoteConfig: FirebaseRemoteConfig,
+    private val firebaseRemoteConfig: FirebaseRemoteConfigProvider,
     private val json: Json,
 ) : StaticResourceProvider {
 
     override suspend fun <T : Any> provide(uri: URI, ofType: KType): ResourceDescriptor<T> {
         return FirebaseRemoteConfigResourceDescriptor(
             uri = uri,
-            firebaseRemoteConfig = firebaseRemoteConfig,
+            firebaseRemoteConfig = firebaseRemoteConfig.get(),
             ofType = ofType,
             json = json
         )

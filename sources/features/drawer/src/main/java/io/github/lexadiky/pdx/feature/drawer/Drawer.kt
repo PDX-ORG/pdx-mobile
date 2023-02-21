@@ -32,7 +32,10 @@ internal fun DrawerImpl(viewModel: DrawerViewModel = di.viewModel("default")) {
     for (item in viewModel.state.items) {
         when (item) {
             is DrawerItem.Navigation -> {
-                NavigationItem(item) { viewModel.onItemClicked(item) }
+                NavigationItem(item) {
+                    viewModel.onItemClicked(item)
+                    
+                }
             }
             is DrawerItem.Divider -> {
                 Divider(

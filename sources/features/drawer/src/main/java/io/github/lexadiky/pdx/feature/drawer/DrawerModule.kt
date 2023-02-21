@@ -9,6 +9,6 @@ import io.github.lexadiky.akore.alice.util.single
 internal val DrawerModule by module("drawer") {
     internal {
         single { DrawerItemSource(inject()) }
-        singleViewModel { DrawerViewModel(inject(), inject()) }
+        singleViewModel { params -> DrawerViewModel(inject(), inject()) }
     }
 }

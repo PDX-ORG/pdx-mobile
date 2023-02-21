@@ -7,9 +7,9 @@ import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.logcat.logcat
 import io.github.lexadiky.pdx.lib.FeatureToggleModule
 import io.github.lexadiky.pdx.lib.analytics.AnalyticsModule
+import io.github.lexadiky.pdx.lib.firebase.FirebaseModule
 import io.github.lexadiky.pdx.lib.fs.RoboFsModule
 import io.github.lexadiky.pdx.lib.network.NetworkModule
-import io.github.lexadiky.pdx.lib.target.init.impl.SyncFirebaseRemoteConfigTask
 import io.github.lexadiky.pdx.lib.target.init.ApplicationInitializer
 import io.github.lexadiky.pdx.lib.target.util.crashlytics
 import io.github.lexadiky.pdx.ui.uikit.UikitModule
@@ -20,7 +20,7 @@ abstract class BaseTargetApplication : Application() {
         DIContainer.builder()
             .modules(
                 ApplicationModule(this),
-                FirebaseModule,
+                FirebaseModule(this),
                 AnalyticsModule,
                 NetworkModule,
                 FeatureToggleModule,
@@ -36,7 +36,6 @@ abstract class BaseTargetApplication : Application() {
             source pipeTo crashlytics
         }
         ApplicationInitializer(diContainer)
-            .asyncTask(SyncFirebaseRemoteConfigTask())
             .run()
     }
 }
