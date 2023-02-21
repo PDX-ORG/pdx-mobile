@@ -1,31 +1,67 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package io.github.lexadiky.pdx.lib.dynbanner
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.unit.sp
-import io.github.lexadiky.akore.alice.lookup
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
-import io.github.lexadiky.pdx.lib.dynbanner.entity.Banner
-import io.github.lexadiky.pdx.lib.fs.statist.StaticResourceProvider
-import io.github.lexadiky.pdx.lib.fs.statist.provide
+import io.github.lexadiky.akore.alice.robo.viewModel
+import io.github.lexadiky.pdx.ui.uikit.resources.render
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
-fun DynamicBanner(id: String) {
-    var data by remember {
-        mutableStateOf<Banner?>(null)
+fun DynamicBanner(id: String, modifier: Modifier = Modifier) {
+    DIFeature(DynamicBannerModule) {
+        DynamicBannerImpl(viewModel = di.viewModel(id), modifier = modifier)
     }
-    val d = di
-    LaunchedEffect(Unit) {
-        data = d.lookup<StaticResourceProvider>()
-            .provide<Banner>("remote-config://$id")
-            .read()
-            .orNull()
-    }
+}
 
-    Text(text = data?.message.orEmpty(), fontSize = 40.sp)
+@Composable
+private fun DynamicBannerImpl(viewModel: DynamicBannerViewModel, modifier: Modifier) {
+    viewModel.banner?.let { banner ->
+        Card(
+            onClick = { viewModel.onAction() },
+            modifier = modifier
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .background(
+                        Brush.linearGradient(
+                            listOf(
+                                Color.Transparent,
+                                MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
+                            )
+                        )
+                    )
+                    .fillMaxWidth()
+                    .padding(MaterialTheme.grid.x2)
+            ) {
+                Text(
+                    text = banner.message,
+                    modifier = Modifier.alignByBaseline()
+                )
+                banner.icon?.asImageResource()?.let { res ->
+                    Image(
+                        painter = res.render(),
+                        contentDescription = null,
+                        modifier = Modifier.alignByBaseline()
+                    )
+                }
+            }
+        }
+    }
 }

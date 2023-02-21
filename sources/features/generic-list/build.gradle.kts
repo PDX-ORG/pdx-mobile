@@ -12,6 +12,7 @@ dependencies {
     implementation(projects.libs.network)
     implementation(projects.libs.errorHandler)
     implementation(projects.libs.navigation)
+    implementation(projects.libs.dynamicBanner)
     implementation(libs.akore.blogger.core)
     implementation(libs.arrow.core)
 

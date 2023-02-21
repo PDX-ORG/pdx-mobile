@@ -92,7 +92,11 @@ private fun HomePageImpl(viewModel: HomePageViewModel = di.viewModel()) {
             Spacer(modifier = Modifier.size(MaterialTheme.grid.x12))
         }
         item {
-            // TODO DynamicBanner(id = "dynamic_banner_donate_author")
+            DynamicBanner(
+                id = "donate_author",
+                modifier = Modifier.fillMaxWidth()
+                    .padding(MaterialTheme.grid.x2)
+            )
         }
     }
 }

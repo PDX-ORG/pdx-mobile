@@ -11,18 +11,15 @@ import kotlinx.serialization.json.decodeFromStream
 import kotlinx.serialization.serializer
 import java.net.URI
 import kotlin.reflect.KType
-import kotlinx.coroutines.tasks.await
 
 class RemoteConfigResourceProvider(
     private val firebaseRemoteConfig: FirebaseRemoteConfig,
     private val json: Json,
 ) : StaticResourceProvider {
 
-
-
     override suspend fun <T : Any> provide(uri: URI, ofType: KType): ResourceDescriptor<T> {
         return FirebaseRemoteConfigResourceDescriptor(
-            id = uri.host,
+            uri = uri,
             firebaseRemoteConfig = firebaseRemoteConfig,
             ofType = ofType,
             json = json
@@ -30,7 +27,7 @@ class RemoteConfigResourceProvider(
     }
 
     class FirebaseRemoteConfigResourceDescriptor<T : Any>(
-        private val id: String,
+        private val uri: URI,
         private val ofType: KType,
         private val json: Json,
         private val firebaseRemoteConfig: FirebaseRemoteConfig,
@@ -38,12 +35,14 @@ class RemoteConfigResourceProvider(
 
         @Suppress("UNCHECKED_CAST")
         override suspend fun read(): Either<ResourceDescriptor.Error, T> = Either.catch {
-            firebaseRemoteConfig.fetchAndActivate().await()
+            require(uri.host == "firebase") { "only firebase remote configs are supported" }
+
+            val id = uri.path.drop(1) // drop slash at the beginning
             val input = firebaseRemoteConfig.getString(id)
             json.decodeFromString(serializersModule.serializer(ofType), input) as T
         }.mapLeft { err ->
             BLogger.tag("ClassLoaderResourceDescriptor")
-                .error("can't load config: $id", err)
+                .error("can't load config: $uri, with", err)
             ResourceDescriptor.Error.Unknown(err)
         }
     }

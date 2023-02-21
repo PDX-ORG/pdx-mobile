@@ -6,6 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
+import arrow.core.zip
+import io.github.lexadiky.pdx.feature.generic.list.domain.GenericListBannerDataSource
 import io.github.lexadiky.pdx.feature.generic.list.domain.GenericListItemDataSource
 import io.github.lexadiky.pdx.feature.generic.list.domain.GenericListNavigator
 import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
@@ -15,6 +17,7 @@ import kotlinx.coroutines.launch
 
 class GenericListViewModel<T : GenericListItem>(
     private val dataSource: GenericListItemDataSource<T>,
+    private val bannerSource: GenericListBannerDataSource<T>,
     private val navigator: GenericListNavigator<T>,
     initialSearchQuery: SearchQuery<T>
 ) : ViewModel() {
@@ -56,9 +59,9 @@ class GenericListViewModel<T : GenericListItem>(
     }
 
     private fun loadFreshData() = viewModelScope.launch {
-        state = when (val data = dataSource.load()) {
+        state = when (val data = dataSource.load().zip(bannerSource.load())) {
             is Either.Left -> state.copy(uiError = UIError.default())
-            is Either.Right -> state.copy(items = data.value)
+            is Either.Right -> state.copy(items = data.value.first, banners = data.value.second)
         }
     }
 }

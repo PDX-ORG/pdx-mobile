@@ -18,5 +18,4 @@ dependencies {
     implementation(libs.akore.alice.robo)
     implementation(libs.arrow.core)
     implementation(libs.kotlin.coroutines)
-    implementation(libs.kotlin.coroutines.gmsIntegration)
 }

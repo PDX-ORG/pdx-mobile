@@ -7,15 +7,17 @@ android {
 }
 
 dependencies {
-    implementation(libs.akore.blogger.core)
-    implementation(libs.akore.blogger.logcat)
-    implementation(libs.akore.alice.robo)
-
     implementation(projects.libs.analytics)
     implementation(projects.libs.featureToggle)
     implementation(projects.libs.network)
     implementation(projects.libs.uikit)
     implementation(projects.libs.fs.robo)
+    
+    implementation(libs.akore.blogger.core)
+    implementation(libs.akore.blogger.logcat)
+    implementation(libs.akore.alice.robo)
+
+    implementation(libs.kotlin.coroutines.gmsIntegration)
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.crashlytics)

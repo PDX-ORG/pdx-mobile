@@ -15,6 +15,7 @@ val NetworkModule by module("network") {
             isLenient = true
             ignoreUnknownKeys = true
             coerceInputValues = true
+            explicitNulls = false
         }
     }
     single {

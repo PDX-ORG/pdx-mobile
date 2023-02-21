@@ -57,8 +57,8 @@ accompanist-pager = { module = "com.google.accompanist:accompanist-pager", versi
 
 akore-blogger-core = { module = "com.github.akore-org.blogger:core", version.ref = "akore" }
 akore-blogger-logcat = { module = "com.github.akore-org.blogger:logcat", version.ref = "akore" }
-akore-alice-core = { module = "com.github.akore-org.alice:core", version = "5cf3ac8adf" }
-akore-alice-robo = { module = "com.github.akore-org.alice:robo", version = "5cf3ac8adf" }
+akore-alice-core = { module = "com.github.akore-org.alice:core", version.ref = "akore" }
+akore-alice-robo = { module = "com.github.akore-org.alice:robo", version.ref = "akore" }
 
 pokeapi = "com.github.lexa-diky:pokeapi-kotlin:-SNAPSHOT"
 

@@ -1,8 +1,10 @@
 package io.github.lexadiky.pdx.lib.dynbanner.entity
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-data class BannerAction(
+@Serializable
+internal data class BannerAction(
     @SerialName("type")
     val type: Type,
     @SerialName("route")
