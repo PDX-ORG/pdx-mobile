@@ -10,6 +10,7 @@ val DynamicBannerModule by module("dynamic-banner") {
     singleViewModel { params ->
         DynamicBannerViewModel(
             params.get(),
+            params.get(),
             inject(),
             inject()
         )

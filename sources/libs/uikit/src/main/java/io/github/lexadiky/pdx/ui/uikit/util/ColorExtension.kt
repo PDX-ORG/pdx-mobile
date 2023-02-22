@@ -12,5 +12,11 @@ fun Color.saturation(modifier: Float = DEFAULT_SATURATION): Color {
     )
 }
 
+fun Color.alpha(value: Float): Color {
+    return copy(
+        alpha = value
+    )
+}
+
 private fun ensureColorValueRange(value: Float): Float =
     value.coerceIn(0f, 1f)

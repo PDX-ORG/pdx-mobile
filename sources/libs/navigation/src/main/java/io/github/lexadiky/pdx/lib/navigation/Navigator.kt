@@ -15,6 +15,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import io.github.lexadiky.pdx.generated.analytics.NavigationEventsSpec
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
 @Suppress("RedundantSuspendModifier")
 class Navigator internal constructor(
@@ -23,13 +25,15 @@ class Navigator internal constructor(
     private val navGraph: NavGraph,
     private val navigationEventsSpec: NavigationEventsSpec,
 ) {
+    private var latestNavigatedRouteExpression: String? = navGraph.startDestinationRoute
+    private val mutex = Mutex()
 
     val currentRoute: String? get() = controller.currentBackStackEntry?.destination?.route
     val currentAbsoluteRouteFlow: Flow<String?> get() = controller.currentBackStackEntryFlow
         .map { it.destination.route }
         .map(::convertRouteToAbsolute)
 
-    suspend fun navigate(route: NavigationRoute) {
+    suspend fun navigate(route: NavigationRoute) = mutex.withLock {
         navigationEventsSpec.devNavigationNavigate(route)
         if (route.startsWith(LINK_PREFIX_HTTPS) || route.startsWith(LINK_PREFIX_HTTP)) {
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(route)).apply {
@@ -37,7 +41,11 @@ class Navigator internal constructor(
             }
             context.startActivity(browserIntent)
         } else {
+            if (route == latestNavigatedRouteExpression) {
+                return
+            }
             controller.navigate(route = route)
+            latestNavigatedRouteExpression = route
         }
     }
 

@@ -22,8 +22,10 @@ import io.github.lexadiky.pdx.lib.navigation.NavigationHost
 import io.github.lexadiky.pdx.lib.navigation.Navigator
 import io.github.lexadiky.pdx.ui.uikit.theme.PdxTheme
 import io.github.lexadiky.pdx.ui.uikit.widget.scaffold.PdxScaffold
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlin.time.Duration.Companion.milliseconds
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +56,8 @@ class MainActivity : ComponentActivity() {
                     navigator.currentAbsoluteRouteFlow
                         .distinctUntilChanged()
                         .collectLatest {
-                            drawerState.close()
+                            delay(DRAWER_CLOSE_DELAY.milliseconds)
+                            drawerState.close() // TODO causes some weired animation lag
                         }
                 }
 
@@ -70,5 +73,10 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }
+    }
+
+    companion object {
+
+        private const val DRAWER_CLOSE_DELAY = 200
     }
 }

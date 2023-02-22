@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -36,6 +37,7 @@ fun PillChip(
     CompositionLocalProvider(LocalTextStyle provides textStyle) {
         Surface(
             shape = RoundedCornerShape(MaterialTheme.grid.x1),
+            color = trailColor,
             modifier = modifier
                 .clip(RoundedCornerShape(MaterialTheme.grid.x1))
                 .clickable { onClick() }
@@ -50,7 +52,6 @@ fun PillChip(
                 }
                 Box(
                     modifier = Modifier
-                        .background(trailColor)
                         .padding(horizontal = MaterialTheme.grid.x1, vertical = MaterialTheme.grid.x05)
                 ) {
                     trail()

@@ -41,6 +41,7 @@ import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.theme.pdx
+import io.github.lexadiky.pdx.ui.uikit.util.alpha
 import io.github.lexadiky.pdx.ui.uikit.util.saturation
 import io.github.lexadiky.pdx.ui.uikit.util.toColorScheme
 import io.github.lexadiky.pdx.ui.uikit.widget.PillChip
@@ -59,18 +60,13 @@ fun TypeDetailsPage(typeId: String) {
 internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
     val primaryColor = viewModel.state.type.assets.color.render()
 
-    val colorScheme = remember(viewModel.state) {
-        Scheme.light(primaryColor.toArgb())
-            .toColorScheme()
-    }
-
     ErrorDialog(viewModel.state.error) {
         viewModel.hideError()
     }
 
     val backgroundBrush = Brush.linearGradient(
         colors = listOf(
-            primaryColor.saturation(),
+            primaryColor.saturation().alpha(0.5f),
             MaterialTheme.colorScheme.surface
         )
     )

@@ -12,5 +12,5 @@ internal data class Banner(
     @SerialName("icon")
     val icon: BannerIcon?,
     @SerialName("action")
-    val action: BannerAction
+    val action: BannerAction?
 )

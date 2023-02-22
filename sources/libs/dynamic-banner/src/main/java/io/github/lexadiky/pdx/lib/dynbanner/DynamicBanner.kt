@@ -23,9 +23,13 @@ import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
-fun DynamicBanner(id: String, modifier: Modifier = Modifier) {
+fun DynamicBanner(
+    id: String,
+    modifier: Modifier = Modifier,
+    isPlaceholderEnabled: Boolean = false,
+) {
     DIFeature(DynamicBannerModule) {
-        DynamicBannerImpl(viewModel = di.viewModel(id), modifier = modifier)
+        DynamicBannerImpl(viewModel = di.viewModel(id, isPlaceholderEnabled), modifier = modifier)
     }
 }
 

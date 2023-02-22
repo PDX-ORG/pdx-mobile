@@ -8,13 +8,15 @@ import android.hardware.SensorManager
 import androidx.core.content.getSystemService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.debounce
 import kotlin.math.sqrt
+import kotlin.time.Duration.Companion.seconds
 
 class ShakeDetector(context: Context) {
 
     private val sensorManager = context.getSystemService<SensorManager>()!!
     private val eventBus: MutableSharedFlow<Unit> = MutableSharedFlow(replay = 0, extraBufferCapacity = 1)
-    val events: Flow<Unit> get() = eventBus
+    val events: Flow<Unit> get() = eventBus.debounce(EVENT_DEBOUNCE_TIME.seconds)
 
     init {
         sensorManager.registerListener(
@@ -50,5 +52,6 @@ class ShakeDetector(context: Context) {
 
         private const val ACCELERATION_THRESHOLD = 15
         private const val ACCELERATION_DOWN_MOD = 0.9f
+        private const val EVENT_DEBOUNCE_TIME = 1
     }
 }

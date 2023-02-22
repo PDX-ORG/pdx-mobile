@@ -102,7 +102,7 @@ private fun <T : GenericListItem> GenericListPageImpl(
                         modifier = Modifier.padding(bottom = MaterialTheme.grid.x2)
                     ) {
                         applicableBanners.forEach { banner ->
-                            DynamicBanner(id = banner.bannerId)
+                            DynamicBanner(id = banner.bannerId, isPlaceholderEnabled = true)
                         }
                     }
                 }

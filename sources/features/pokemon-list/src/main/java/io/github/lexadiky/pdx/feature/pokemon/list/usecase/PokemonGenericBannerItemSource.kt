@@ -10,8 +10,8 @@ class PokemonGenericBannerItemSource : GenericListBannerDataSource<PokemonGeneri
 
     override suspend fun load(): Either<GenericListBannerDataSource.Error, List<GenericListBanner<PokemonGenericListItem>>> {
         return Either.Right(listOf(
-            PokemonGenericBannerItem(3, "donate_author", "donate_author"),
-            PokemonGenericBannerItem(6, "play_who_is", "play_who_is")
+            PokemonGenericBannerItem(10, "donate_author", "donate_author"),
+            PokemonGenericBannerItem(20, "play_who_is", "play_who_is")
         ))
     }
 }

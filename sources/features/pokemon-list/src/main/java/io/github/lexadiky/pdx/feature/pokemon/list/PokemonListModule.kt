@@ -3,6 +3,7 @@ package io.github.lexadiky.pdx.feature.pokemon.list
 import io.github.lexadiky.akore.alice.module
 import io.github.lexadiky.akore.alice.robo.singleViewModel
 import io.github.lexadiky.akore.alice.util.single
+import io.github.lexadiky.pdx.domain.achievement.AchievementModule
 import io.github.lexadiky.pdx.domain.pokemon.PokemonDomainModule
 import io.github.lexadiky.pdx.feature.generic.list.GenericListViewModel
 import io.github.lexadiky.pdx.feature.generic.list.domain.GenericListBannerDataSource
@@ -17,16 +18,19 @@ import io.github.lexadiky.pdx.feature.pokemon.list.usecase.PokemonGenericListNav
 
 internal val PokemonListModule by module("pokemon-list") {
     import(PokemonDomainModule)
+    import(AchievementModule)
     internal {
         singleViewModel { params ->
             PokemonFilterViewModel(params.get(), params.get())
         }
         singleViewModel { params ->
             GenericListViewModel<PokemonGenericListItem>(
+                initialSearchQuery = params.get(),
                 dataSource = inject(),
                 bannerSource = inject(),
                 navigator = inject(),
-                initialSearchQuery = params.get()
+                shakeDetector = inject(),
+                achievementManager = inject()
             )
         }
         single<GenericListBannerDataSource<PokemonGenericListItem>> { PokemonGenericBannerItemSource() }

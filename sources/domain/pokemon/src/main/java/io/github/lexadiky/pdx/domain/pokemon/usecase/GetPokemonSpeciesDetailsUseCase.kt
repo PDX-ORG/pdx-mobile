@@ -5,9 +5,11 @@ import arrow.core.continuations.either
 import arrow.core.identity
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.error
+import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonArchetype
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSprites
+import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonStat
 import io.github.lexadiky.pdx.domain.pokemon.entity.asLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.asPokemonStat
 import io.github.lexadiky.pdx.domain.pokemon.entity.asType
@@ -50,14 +52,24 @@ class GetPokemonSpeciesDetailsUseCase(private val pokeApiClient: PokeApiClient) 
     }
 
     private fun mapPokemonDetails(defaultVariety: Pokemon): PokemonDetails {
+        val stats = defaultVariety.stats.associate { slot ->
+            slot.stat.asPokemonStat() to slot.baseStat
+        }
         return PokemonDetails(
             name = defaultVariety.name,
             types = defaultVariety.types.map { it.type.asType() },
             sprites = extractSprites(defaultVariety),
-            stats = defaultVariety.stats.associate { slot ->
-                slot.stat.asPokemonStat() to slot.baseStat
-            }
+            stats = stats,
+            archetype = makeArchetype(stats)
         )
+    }
+
+    private fun makeArchetype(stats: Map<PokemonStat, Int>): PokemonArchetype {
+        val maxStat = stats.maxByOrNull { it.value }?.key
+        return when {
+            maxStat == PokemonStat.SpAttack -> PokemonArchetype.SpecialAttacker
+            else -> PokemonArchetype.Unknown
+        }
     }
 
     private fun extractSprites(defaultVariety: Pokemon) = PokemonSprites(

@@ -1,7 +1,6 @@
 package io.github.lexadiky.pdx.feature.pokemon.details.subpage.stats
 
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,9 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import io.github.lexadiky.akore.alice.robo.di
-import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
@@ -34,6 +31,8 @@ import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.animation
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
+import io.github.lexadiky.pdx.ui.uikit.util.saturation
+import io.github.lexadiky.pdx.ui.uikit.widget.PillChip
 
 @Composable
 internal fun StatsSubPage(
@@ -60,22 +59,46 @@ private fun StatsSubPageImpl(viewModel: StatsSubPageViewModel) {
             .wrapContentHeight()
             .fillMaxWidth()
     ) {
+        val anchorColor = viewModel.state.types.firstOrNull()?.assets?.color?.render() ?: Color.Transparent
         viewModel.state.baseStats.forEach { (type, value) ->
             StatBar(
                 stat = type,
                 value = value,
-                color = viewModel.state.types.firstOrNull()?.assets?.color?.render()
-                    ?: Color.Transparent
+                color = anchorColor
             )
         }
-        Text(
-            text = stringResource(
-                R.string.feature_pokemon_details_section_stats_total_value,
-                viewModel.state.totalBaseStatValue
-            ),
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth()
+        StatInfoBar(
+            state = viewModel.state,
+            anchorColor = anchorColor
         )
+    }
+}
+
+@Composable
+private fun StatInfoBar(state: StatsSubPageState, anchorColor: Color) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2)
+    ) {
+        val archetypeTitle = state.archetype?.assets?.title
+
+        PillChip(
+            label = { Text(stringResource(R.string.feature_pokemon_details_section_stats_total_value)) },
+            labelColor = anchorColor,
+            trail = { Text(text = state.totalBaseStatValue.toString()) },
+            trailColor = anchorColor.saturation(),
+            textColor = MaterialTheme.colorScheme.onPrimary
+        )
+
+        archetypeTitle?.let { title ->
+            PillChip(
+                label = { Text(stringResource(R.string.feature_pokemon_details_section_stats_archetype)) },
+                labelColor = anchorColor,
+                trail = { Text(text = title.render()) },
+                trailColor = anchorColor.saturation(),
+                textColor = MaterialTheme.colorScheme.onPrimary,
+                modifier = Modifier.weight(1f)
+            )
+        }
     }
 }
 
@@ -113,6 +136,8 @@ private fun StatBar(stat: PokemonStat, value: Int, color: Color) {
                 Text(
                     text = value.toString(),
                     maxLines = 1,
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    fontWeight = FontWeight.Light,
                     modifier = Modifier
                         .align(Alignment.Center)
                 )
