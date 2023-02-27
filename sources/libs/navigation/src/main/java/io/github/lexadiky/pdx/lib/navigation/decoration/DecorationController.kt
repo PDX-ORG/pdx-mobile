@@ -4,10 +4,14 @@ import android.os.Bundle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.ComposeNavigator
+import androidx.navigation.compose.DialogNavigator
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -55,7 +59,13 @@ class DecorationController(
 
     @Composable
     internal fun RegisterHost(decoration: String, defaultContent: @Composable () -> Unit) {
-        val navController = rememberNavController()
+        val context = LocalContext.current
+        val navController = remember {
+            NavHostController(context).apply {
+                navigatorProvider.addNavigator(ComposeNavigator())
+                navigatorProvider.addNavigator(DialogNavigator())
+            }
+        }
         val graph = navController.createGraph(START_DESTINATION) {
             composable(START_DESTINATION) { defaultContent() }
         }
