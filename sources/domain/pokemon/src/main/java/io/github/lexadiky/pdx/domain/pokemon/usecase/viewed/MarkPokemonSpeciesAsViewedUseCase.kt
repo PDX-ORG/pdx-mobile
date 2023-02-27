@@ -16,8 +16,9 @@ class MarkPokemonSpeciesAsViewedUseCase(
 
     suspend operator fun invoke(pokemon: PokemonSpeciesDetails) = withContext(Dispatchers.IO) {
         Either.catch {
+            visited = visited.filter { pokemon.name !in it }.toSet()
             visited = (visited + "${System.currentTimeMillis()}:${pokemon.name}")
-                .sorted()
+                .sortedDescending()
                 .take(10)
                 .toSet()
         }.mapLeft { error ->

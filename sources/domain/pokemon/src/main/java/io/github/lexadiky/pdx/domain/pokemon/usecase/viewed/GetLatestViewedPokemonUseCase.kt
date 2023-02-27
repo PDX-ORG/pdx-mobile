@@ -18,7 +18,7 @@ class GetLatestViewedPokemonUseCase(
 
     suspend operator fun invoke(size: Int) = either {
         val latestVisitedSample = Either.catch {
-            visited.sorted()
+            visited.sortedDescending()
                 .take(size)
                 .map { it.split(":").last() }
         }.bind()

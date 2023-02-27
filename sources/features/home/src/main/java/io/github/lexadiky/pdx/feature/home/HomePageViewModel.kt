@@ -18,6 +18,8 @@ import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from
 import io.github.lexadiky.pdx.ui.uikit.util.UikitStringFormatter
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 internal class HomePageViewModel(
@@ -37,11 +39,18 @@ internal class HomePageViewModel(
                     featuredPokemon = makeFeaturedPokemon(data.value)
                 )
             }
-            state = when (val data = getLatestViewedPokemonUseCase(FEATURED_POKEMON_SAMPLE_SIZE)) {
-                is Either.Left -> state.copy(error = UIError.default())
-                is Either.Right -> state.copy(
-                    latestViewedPokemon = makeFeaturedPokemon(data.value)
-                )
+
+        }
+        viewModelScope.launch {
+            navigator.currentAbsoluteRouteFlow.map {
+                when (val data = getLatestViewedPokemonUseCase(FEATURED_POKEMON_SAMPLE_SIZE)) {
+                    is Either.Left -> state.copy(error = UIError.default())
+                    is Either.Right -> state.copy(
+                        latestViewedPokemon = makeFeaturedPokemon(data.value)
+                    )
+                }
+            }.collectLatest {
+                state = it
             }
         }
     }
