@@ -9,4 +9,7 @@
     <string name="feature_pokemon_details_section_stats_total_value">Total</string>
     <string name="feature_pokemon_details_section_stats_archetype">Archetype</string>
 
+    <string name="feature_pokemon_details_section_ability_type_normal">Ability</string>
+    <string name="feature_pokemon_details_section_ability_type_hidden">Hidden Ability</string>
+
 </resources>

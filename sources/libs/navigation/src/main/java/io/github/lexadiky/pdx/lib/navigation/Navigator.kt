@@ -33,6 +33,12 @@ class Navigator internal constructor(
         .map { it.destination.route }
         .map(::convertRouteToAbsolute)
 
+    init {
+        controller.addOnDestinationChangedListener { _, _, _->
+            latestNavigatedRouteExpression = null
+        }
+    }
+
     suspend fun navigate(route: NavigationRoute) = mutex.withLock {
         navigationEventsSpec.devNavigationNavigate(route)
         if (route.startsWith(LINK_PREFIX_HTTPS) || route.startsWith(LINK_PREFIX_HTTP)) {

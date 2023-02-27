@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.pdx.feature.ability.details.AbilityDetailsPage
 import io.github.lexadiky.pdx.feature.debugpanel.DebugPanelFeature
 import io.github.lexadiky.pdx.feature.home.HomePage
 import io.github.lexadiky.pdx.feature.news.NewsFeatureToggle
@@ -34,19 +35,19 @@ fun routing(): NaviNavGraphBuilder.() -> Unit {
             }
             page("pdx://pokemon?types={types}") { PokemonListPage() }
             page("pdx://pokemon/{id}") {
-                val id = argument(name = "id") { error("id required") }
-                PokemonDetailsPage(pokemonId = id)
+                PokemonDetailsPage(pokemonId =  argument(name = "id"))
             }
             page("pdx://type") { TypePage() }
             modal("pdx://type/{id}") {
-                val id = argument(name = "id") { error("id required") }
-                TypeDetailsPage(typeId = id)
+                val id =  { error("id required") }
+                TypeDetailsPage(typeId = argument(name = "id"))
             }
             page("pdx://game/whois") { WhoIsPage() }
             fullScreen("pdx://pokemon/{speciesId}/{varietyId}/sprites") {
-                val speciesId = argument(name = "speciesId") { error("species id required") }
-                val varietyId = argument(name = "varietyId") { error("variety id required") }
-                SpriteGalleryPage(speciesId, varietyId)
+                SpriteGalleryPage(argument(name = "speciesId"), argument(name = "varietyId"))
+            }
+            modal("pdx://ability/{id}") {
+                AbilityDetailsPage(id = argument("id"))
             }
 
             DebugPanelFeature.routing(this, toggleManager)

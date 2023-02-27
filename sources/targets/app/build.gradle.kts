@@ -32,6 +32,7 @@ dependencies {
     implementation(projects.features.home)
     implementation(projects.features.spriteGallery)
     implementation(projects.features.debugPanel)
+    implementation(projects.features.abilityDetails)
 
     implementation(projects.features.widget.launcher)
 

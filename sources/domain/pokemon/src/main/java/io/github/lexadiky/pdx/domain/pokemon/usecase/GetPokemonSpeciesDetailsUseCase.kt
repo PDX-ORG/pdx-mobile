@@ -66,8 +66,10 @@ class GetPokemonSpeciesDetailsUseCase(private val pokeApiClient: PokeApiClient) 
 
     private fun makeArchetype(stats: Map<PokemonStat, Int>): PokemonArchetype {
         val maxStat = stats.maxByOrNull { it.value }?.key
-        return when {
-            maxStat == PokemonStat.SpAttack -> PokemonArchetype.SpecialAttacker
+        return when (maxStat) {
+            PokemonStat.SpAttack -> PokemonArchetype.SpecialAttacker
+            PokemonStat.Attack -> PokemonArchetype.PhysicalAttacker
+            PokemonStat.Speed -> PokemonArchetype.Speedster
             else -> PokemonArchetype.Unknown
         }
     }

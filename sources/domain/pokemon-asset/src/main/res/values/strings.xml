@@ -28,6 +28,8 @@
     <string name="domain_pokemon_asset_stat_short_sp_defence">Sp.Def</string>
 
     <string name="domain_pokemon_asset_archetype_sp_attacker">Sp.Attacker</string>
+    <string name="domain_pokemon_asset_archetype_ph_attacker">Ph.Attacker</string>
+    <string name="domain_pokemon_asset_archetype_speedster">Speedster</string>
     <string name="domain_pokemon_asset_archetype_unknown">Unknown</string>
 
 </resources>

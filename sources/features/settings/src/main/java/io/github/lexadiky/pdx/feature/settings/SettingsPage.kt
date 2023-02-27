@@ -24,6 +24,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -75,6 +76,22 @@ private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
             ThemeSelection(viewModel.state) {
                 viewModel.onThemeSelected(it)
             }
+        }
+        item {
+            Divider()
+        }
+        item {
+            ListItem(
+                headlineText = { Text(text = stringResource(id = SettingsStrings.settings_language_use_romaji_header)) },
+                supportingText = { Text(text = stringResource(id = SettingsStrings.settings_language_use_romaji_description)) },
+                trailingContent = {
+                    Switch(
+                        checked = viewModel.state.romajiEnabled,
+                        onCheckedChange = { viewModel.switchRomaji(it) }
+                    )
+                },
+                modifier = Modifier.clickable { viewModel.openAchievements() }
+            )
         }
         item {
             Divider()

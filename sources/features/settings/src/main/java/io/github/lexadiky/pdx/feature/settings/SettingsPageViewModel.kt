@@ -49,4 +49,8 @@ internal class SettingsPageViewModel(
             navigator.navigate("pdx://settings/achievements")
         }
     }
+
+    fun switchRomaji(isEnabled: Boolean) {
+        state = state.copy(romajiEnabled = isEnabled)
+    }
 }

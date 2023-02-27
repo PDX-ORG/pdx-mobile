@@ -14,6 +14,9 @@
     <string name="settings_achievements_header">Manage achievements</string>
     <string name="settings_achievements_description">See earned ones or delete your progress</string>
 
+    <string name="settings_language_use_romaji_header">Use Romaji</string>
+    <string name="settings_language_use_romaji_description">Use Latin transcript of Japanese Pokemon names</string>
+
     <string name="settings_achievements_option_forget_title">Forget all achievements</string>
     <string name="settings_achievements_option_forget_subtitle">If you want to receive them one more time</string>
 

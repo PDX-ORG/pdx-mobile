@@ -12,7 +12,7 @@ class PageContext(
     @Composable
     inline fun argument(
         name: String,
-        crossinline default: @DisallowComposableCalls () -> String
+        crossinline default: @DisallowComposableCalls () -> String = { "$name is required" }
     ): String {
         return remember(name) {
             backstackEntry.arguments?.getString(name, null) ?: default()

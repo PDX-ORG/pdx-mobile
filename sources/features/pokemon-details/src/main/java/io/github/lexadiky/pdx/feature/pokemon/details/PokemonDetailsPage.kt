@@ -13,6 +13,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -97,7 +98,7 @@ private fun PokemonDetailsPageImpl(
     val color = styleFastFetchViewModel.state.color?.render()
 
     AnimatedVisibility(visible = color != null, enter = fadeIn()) {
-        MaterialTheme(colorScheme = Scheme.light(color?.toArgb() ?: Color.Green.toArgb()).toColorScheme()) {
+        MaterialTheme(colorScheme = createColorScheme(color)) {
             TitleDecoration(viewModel.state.name)
             TypeStripDecoration(viewModel.state.types, viewModel::openTypeDetails)
             ErrorDialog(viewModel.state.error) {
@@ -120,6 +121,13 @@ private fun PokemonDetailsPageImpl(
             }
         }
     }
+}
+
+@Composable
+private fun createColorScheme(color: Color?) = if (isSystemInDarkTheme()) {
+    Scheme.dark(color?.toArgb() ?: Color.Red.toArgb()).toColorScheme()
+} else {
+    Scheme.light(color?.toArgb() ?: Color.Green.toArgb()).toColorScheme()
 }
 
 @Composable
