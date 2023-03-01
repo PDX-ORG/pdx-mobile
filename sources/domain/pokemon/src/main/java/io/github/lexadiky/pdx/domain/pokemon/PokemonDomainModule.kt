@@ -14,15 +14,19 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelatio
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonVarietyDetails
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
+import io.github.lexadiky.pdx.lib.locale.LocaleManager
+import io.github.lexadiky.pdx.lib.locale.LocaleManagerModule
 import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.util.CacheSettings
 import io.lexadiky.pokeapi.util.PokeApiClientLogger
 import java.io.File
 
 val PokemonDomainModule by module("pokemon-domain") {
-    single { GetPokemonPreviewUseCase(inject()) }
+    import(LocaleManagerModule)
+
+    single { GetPokemonPreviewUseCase(inject(), inject()) }
     single { GetPokemonTypeDamageRelations(inject()) }
-    single { GetPokemonSpeciesDetailsUseCase(inject()) }
+    single { GetPokemonSpeciesDetailsUseCase(inject(), inject()) }
     single { FindPokemonPreviewUseCase(inject()) }
     single { GetPokemonPreviewSampleUseCase(inject()) }
     single { GetPokemonVarietyDetails(inject()) }
@@ -30,7 +34,7 @@ val PokemonDomainModule by module("pokemon-domain") {
     single { MarkPokemonSpeciesAsViewedUseCase(inject()) }
     single { GetLatestViewedPokemonUseCase(inject(), inject()) }
     single { GetPokemonAbilitiesUseCase(inject(), inject()) }
-    single { GetAbilityUseCase(inject()) }
+    single { GetAbilityUseCase(inject(), inject()) }
 
     internal {
         single {

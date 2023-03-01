@@ -2,7 +2,6 @@ package io.github.lexadiky.pdx.feature.pokemon.list.usecase
 
 import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
 import io.github.lexadiky.pdx.feature.generic.list.domain.GenericListItemDataSource
@@ -28,7 +27,7 @@ internal class PokemonGenericListItemSource(
         PokemonGenericListItem(
             id = pokemon.name,
             note = UikitStringFormatter.nationalId(pokemon.nationalDexNumber),
-            title = StringResource.from(pokemon.localNames[PokemonLanguage.ENGLISH]!!),
+            title = StringResource.from(pokemon.localeName),
             primaryImage = pokemon.normalSprite?.let { ImageResource.from(it) }
                 ?: ImageResource.from(io.github.lexadiky.pdx.lib.uikit.R.drawable.uikit_ic_pokeball),
             secondaryImage = pokemon.shinySprite?.let { ImageResource.from(it) }

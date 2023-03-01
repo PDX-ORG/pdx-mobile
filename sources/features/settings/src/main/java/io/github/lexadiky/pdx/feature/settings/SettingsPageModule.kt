@@ -9,7 +9,7 @@ import io.github.lexadiky.akore.alice.robo.singleViewModel
 val SettingsPageModule by module("settings") {
     import(AchievementModule)
     internal {
-        singleViewModel { SettingsPageViewModel(inject(), inject(), inject()) }
+        singleViewModel { SettingsPageViewModel(inject(), inject(), inject(), inject()) }
         singleViewModel { AchievementSettingsViewModel(inject()) }
     }
 }

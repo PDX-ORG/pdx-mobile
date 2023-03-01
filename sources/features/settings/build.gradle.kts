@@ -13,6 +13,8 @@ dependencies {
     implementation(projects.libs.errorHandler)
     implementation(projects.libs.navigation)
     implementation(projects.libs.fs.core)
+    implementation(projects.libs.localeManager)
 
     implementation(projects.domain.achievement)
+    implementation(projects.domain.pokemon)
 }

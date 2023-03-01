@@ -1,6 +1,7 @@
 package io.github.lexadiky.pdx.domain.pokemon.usecase
 
 import arrow.core.Either
+import io.github.lexadiky.pdx.domain.pokemon.entity.DiscoveryPokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import kotlinx.coroutines.Dispatchers

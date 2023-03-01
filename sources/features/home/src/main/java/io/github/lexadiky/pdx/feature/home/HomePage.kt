@@ -109,6 +109,10 @@ private fun LazyListScope.pokemonSuggestionSection(
     items: List<FeaturedPokemonItem>,
     openPokemonDetails: (FeaturedPokemonItem) -> Unit
 ) {
+    if (items.isEmpty()) {
+        return
+    }
+
     item(title) {
         var isFolded by remember { mutableStateOf(false) }
 

@@ -83,7 +83,7 @@ internal class HomePageViewModel(
         return pokemon.map {
             FeaturedPokemonItem(
                 id = it.name,
-                name = StringResource.from(it.localNames[PokemonLanguage.ENGLISH]!!),
+                name = StringResource.from(it.localeName),
                 image = it.normalSprite?.let { ImageResource.from(it) }
                     ?: ImageResource.from(io.github.lexadiky.pdx.lib.uikit.R.drawable.uikit_ic_pokeball),
                 nationalDexId = UikitStringFormatter.nationalId(it.nationalDexNumber),

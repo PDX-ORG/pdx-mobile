@@ -1,6 +1,5 @@
 package io.github.lexadiky.pdx.feature.type.details.entity
 
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
@@ -17,7 +16,7 @@ internal class TypePokemonPreview(
 
         fun from(preview: PokemonPreview): TypePokemonPreview {
             return TypePokemonPreview(
-                name = StringResource.from(preview.localNames[PokemonLanguage.ENGLISH]!!),
+                name = StringResource.from(preview.localeName),
                 image = ImageResource.from(preview.normalSprite ?: ""),
                 id = preview.name
             )

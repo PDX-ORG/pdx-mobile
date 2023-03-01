@@ -84,7 +84,7 @@ internal class TypeSearchViewModel(
     private fun List<PokemonPreview>.toUi(): List<PokemonTypeSearchItem> {
         return map { preview ->
             PokemonTypeSearchItem(
-                name = StringResource.from(preview.localNames[PokemonLanguage.ENGLISH]!!),
+                name = StringResource.from(preview.localeName),
                 searchQueryIndex = preview.simpleSearchIndex,
                 image = preview.normalSprite?.let { ImageResource.from(it) }
                     ?: ImageResource.from(io.github.lexadiky.pdx.lib.uikit.R.drawable.uikit_ic_pokeball),

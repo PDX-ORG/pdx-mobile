@@ -7,12 +7,16 @@ import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.error
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonArchetype
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
+import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSprites
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonStat
+import io.github.lexadiky.pdx.domain.pokemon.entity.UseRomajiLocaleFlag
 import io.github.lexadiky.pdx.domain.pokemon.entity.asLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.asPokemonStat
 import io.github.lexadiky.pdx.domain.pokemon.entity.asType
+import io.github.lexadiky.pdx.domain.pokemon.util.asPokemonLanguage
+import io.github.lexadiky.pdx.lib.locale.LocaleManager
 import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.entity.pokemon.Pokemon
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +27,10 @@ import kotlin.reflect.KProperty1
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.typeOf
 
-class GetPokemonSpeciesDetailsUseCase(private val pokeApiClient: PokeApiClient) {
+class GetPokemonSpeciesDetailsUseCase(
+    private val pokeApiClient: PokeApiClient,
+    private val localeManager: LocaleManager
+) {
 
     suspend operator fun invoke(id: String): Either<Error, PokemonSpeciesDetails> = either {
         withContext(Dispatchers.IO) {
@@ -31,11 +38,16 @@ class GetPokemonSpeciesDetailsUseCase(private val pokeApiClient: PokeApiClient) 
             val defaultVariety = pokeApiClient.pokemon.get(species.varieties.first { it.isDefault })
                 .bind(::identity)
 
+            val names = species.names.associate { name -> name.language.asLanguage() to name }
+            val localeName = if (localeManager.settings.has(UseRomajiLocaleFlag)) {
+                names[PokemonLanguage.JA_ROOMAJI]?.name
+            } else {
+                names[localeManager.settings.system.asPokemonLanguage()]?.name
+            } ?: names.values.first().name
+
             PokemonSpeciesDetails(
                 name = species.name,
-                localizedNames = species.names.associate { name ->
-                    name.language.asLanguage() to name.name
-                },
+                localeName = localeName,
                 primaryVariety = mapPokemonDetails(defaultVariety),
                 varieties = species.varieties.map {
                     async {

@@ -23,8 +23,7 @@ internal data class PokemonDetailsState(
 
     val availableVarieties: Int get() = pokemonSpeciesDetails?.varieties?.size ?: 0
 
-    val name: StringResource? = pokemonSpeciesDetails?.localizedNames
-        ?.get(PokemonLanguage.ENGLISH)
+    val name: StringResource? = pokemonSpeciesDetails?.localeName
         ?.let { StringResource.from(it) }
 
     val image: ImageResource? = selectedVariety?.sprites?.default

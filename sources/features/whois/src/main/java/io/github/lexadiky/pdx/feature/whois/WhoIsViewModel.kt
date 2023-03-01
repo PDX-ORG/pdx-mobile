@@ -11,7 +11,6 @@ import io.github.lexadiky.pdx.domain.achievement.library.WhoIsBeginnerAchievemen
 import io.github.lexadiky.pdx.domain.achievement.library.WhoIsChampionAchievement
 import io.github.lexadiky.pdx.domain.achievement.library.WhoIsTrainerAchievement
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
 import io.github.lexadiky.pdx.feature.whois.entity.WhoIsPokemonVariant
@@ -81,7 +80,7 @@ internal class WhoIsViewModel(
         return filter { it.normalSprite != null }.map { preview ->
             WhoIsPokemonVariant(
                 image = ImageResource.from(preview.normalSprite!!),
-                name = StringResource.from(preview.localNames[PokemonLanguage.ENGLISH]!!),
+                name = StringResource.from(preview.localeName),
                 color = preview.types.first().assets.color,
                 id = preview.name
             )

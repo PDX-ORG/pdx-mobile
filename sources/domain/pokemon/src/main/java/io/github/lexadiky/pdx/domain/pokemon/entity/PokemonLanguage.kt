@@ -21,6 +21,8 @@ enum class PokemonLanguage {
 fun ResourcePointer<Language>.asLanguage(): PokemonLanguage {
     return when (this.name) {
         "en" -> PokemonLanguage.ENGLISH
+        "roomaji" -> PokemonLanguage.JA_ROOMAJI
+        "ja" -> PokemonLanguage.JAPANESE
         else -> PokemonLanguage.UNKNOWN
     }
 }
