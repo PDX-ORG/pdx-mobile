@@ -6,13 +6,20 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
+import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonSpeciesDetailsUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
+import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonPhysicalDimension
 import io.github.lexadiky.pdx.feature.pokemon.details.usecase.GetAvailableDetailsSections
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.navigation.Navigator
+import io.github.lexadiky.pdx.lib.resources.image.ImageResource
+import io.github.lexadiky.pdx.lib.resources.image.from
+import io.github.lexadiky.pdx.lib.resources.string.StringResource
+import io.github.lexadiky.pdx.lib.resources.string.format
+import io.github.lexadiky.pdx.lib.resources.string.from
 import kotlinx.coroutines.launch
 
 internal class PokemonDetailsViewModel(
@@ -45,7 +52,7 @@ internal class PokemonDetailsViewModel(
     private fun createUpdatedState(details: PokemonSpeciesDetails): PokemonDetailsState {
         return state.copy(
             pokemonSpeciesDetails = details,
-            selectedVariety = details.primaryVariety
+            selectedVariety = details.primaryVariety,
         )
     }
 

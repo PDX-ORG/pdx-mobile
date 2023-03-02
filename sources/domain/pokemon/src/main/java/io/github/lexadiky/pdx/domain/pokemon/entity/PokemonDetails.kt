@@ -5,5 +5,7 @@ data class PokemonDetails(
     val sprites: PokemonSprites,
     val types: List<PokemonType>,
     val stats: Map<PokemonStat, Int>,
-    val archetype: PokemonArchetype
+    val archetype: PokemonArchetype,
+    val height: Double,
+    val weight: Double
 )

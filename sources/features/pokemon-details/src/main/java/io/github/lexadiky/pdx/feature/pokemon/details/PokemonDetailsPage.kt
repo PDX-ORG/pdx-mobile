@@ -21,12 +21,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -48,9 +51,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -202,7 +207,9 @@ private fun HeaderImagePager(
                         PagerDotIndicator(pagerState)
                     }
                 }
-                SpriteButtonIcon(pagerState, state, openSprites)
+                val alpha = rememberPagerHeaderLabelsAlpha(pagerState, state)
+                SpriteButtonIcon(alpha, openSprites)
+                PhysicalDimensions(alpha, state)
             }
         } else {
             Box(
@@ -228,20 +235,14 @@ private fun HeaderImagePager(
 
 @Composable
 private fun BoxScope.SpriteButtonIcon(
-    pagerState: PagerState,
-    state: PokemonDetailsState,
+    alpha: Float,
     openSprites: () -> Unit,
 ) {
-    val isSpritesIconVisible = !pagerState.isScrollInProgress || state.availableVarieties == 1
-    val spriteIconAlpha by animateFloatAsState(
-        if (isSpritesIconVisible) 1f else 0f,
-        MaterialTheme.animation.linearSlow()
-    )
     IconButton(
         onClick = { openSprites() },
         modifier = Modifier
             .size(MaterialTheme.grid.x8)
-            .alpha(spriteIconAlpha)
+            .alpha(alpha)
             .align(Alignment.BottomEnd)
             .padding(end = MaterialTheme.grid.x2)
     ) {
@@ -254,6 +255,59 @@ private fun BoxScope.SpriteButtonIcon(
             )
         }
     }
+}
+
+@Composable
+private fun BoxScope.PhysicalDimensions(
+    alpha: Float,
+    state: PokemonDetailsState
+) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1),
+        modifier = Modifier
+            .alpha(alpha)
+            .padding(start = MaterialTheme.grid.x2)
+            .align(Alignment.TopStart)
+    ) {
+        state.dimensions.forEach { dimension ->
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1),
+                modifier = Modifier
+                    .background(
+                        MaterialTheme.colorScheme.surfaceTint,
+                        MaterialTheme.shapes.circular
+                    )
+                    .padding(
+                        horizontal = MaterialTheme.grid.x1,
+                        vertical = MaterialTheme.grid.x05
+                    )
+            ) {
+                with(LocalDensity.current) {
+                    Image(
+                        painter = dimension.icon.render(),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(MaterialTheme.typography.labelLarge.fontSize.toDp())
+                    )
+                    Text(
+                        text = dimension.label.render(),
+                        style = MaterialTheme.typography.labelLarge
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun rememberPagerHeaderLabelsAlpha(pagerState: PagerState, state: PokemonDetailsState): Float {
+    val isSpritesIconVisible = !pagerState.isScrollInProgress || state.availableVarieties == 1
+    val spriteIconAlpha by animateFloatAsState(
+        if (isSpritesIconVisible) 1f else 0f,
+        MaterialTheme.animation.linearSlow()
+    )
+    return spriteIconAlpha
 }
 
 @Composable
