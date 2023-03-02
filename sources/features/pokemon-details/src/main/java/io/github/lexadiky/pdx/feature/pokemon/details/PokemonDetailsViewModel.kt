@@ -73,4 +73,8 @@ internal class PokemonDetailsViewModel(
     fun openSprites() = viewModelScope.launch {
         navigator.navigate("pdx://pokemon/$pokemonId/${state.selectedVariety?.name}/sprites")
     }
+
+    fun toggleFavorite() = viewModelScope.launch {
+        state = state.copy(isFavorite = !state.isFavorite)
+    }
 }

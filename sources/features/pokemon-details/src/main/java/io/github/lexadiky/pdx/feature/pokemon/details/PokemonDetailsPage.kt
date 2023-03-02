@@ -30,6 +30,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -118,7 +119,7 @@ private fun PokemonDetailsPageImpl(
                     .animateContentSize()
             ) {
                 item(HEADER_IMAGE_ID) {
-                    HeaderImagePager(viewModel.state, viewModel::selectVariety, viewModel::openSprites)
+                    HeaderImagePager(viewModel.state, viewModel::selectVariety, viewModel::openSprites, viewModel::toggleFavorite)
                 }
                 item {
                     DataCard(viewModel)
@@ -179,7 +180,8 @@ private fun DataCard(viewModel: PokemonDetailsViewModel) {
 private fun HeaderImagePager(
     state: PokemonDetailsState,
     onVarietyChanged: (Int) -> Unit,
-    openSprites: () -> Unit
+    openSprites: () -> Unit,
+    toggleFavorite: () -> Unit
 ) {
     Crossfade(targetState = state.isLoaded) { isLoaded ->
         if (isLoaded) {
@@ -207,9 +209,12 @@ private fun HeaderImagePager(
                         PagerDotIndicator(pagerState)
                     }
                 }
+
                 val alpha = rememberPagerHeaderLabelsAlpha(pagerState, state)
+
                 SpriteButtonIcon(alpha, openSprites)
                 PhysicalDimensions(alpha, state)
+                FavoriteButtonIcon(alpha, state, toggleFavorite)
             }
         } else {
             Box(
@@ -252,6 +257,35 @@ private fun BoxScope.SpriteButtonIcon(
                 painter = painterResource(id = R.drawable.uikit_ic_camera),
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.primary
+            )
+        }
+    }
+}
+
+@Composable
+private fun BoxScope.FavoriteButtonIcon(
+    alpha: Float,
+    state: PokemonDetailsState,
+    toggleFavorite: () -> Unit,
+) {
+    IconButton(
+        onClick = { toggleFavorite() },
+        modifier = Modifier
+            .size(MaterialTheme.grid.x8)
+            .alpha(alpha)
+            .align(Alignment.BottomStart)
+            .padding(start = MaterialTheme.grid.x2)
+    ) {
+        Box(contentAlignment = Alignment.Center) {
+            FullScreenDialogAnchor()
+            Icon(
+                imageVector = Icons.Default.Star,
+                contentDescription = null,
+                tint = if (state.isFavorite) {
+                    MaterialTheme.colorScheme.primary
+                } else {
+                    MaterialTheme.colorScheme.surfaceTint
+                }
             )
         }
     }
