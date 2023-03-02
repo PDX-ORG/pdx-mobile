@@ -2,5 +2,5 @@ package io.github.lexadiky.pdx.lib.bildconf
 
 object PdxBuildConfig {
 
-    const val isGooglePlayDemo: Boolean = true
+    const val isGooglePlayDemo: Boolean = false
 }
