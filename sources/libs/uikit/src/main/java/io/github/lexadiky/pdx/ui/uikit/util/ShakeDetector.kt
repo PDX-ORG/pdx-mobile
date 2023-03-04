@@ -28,7 +28,7 @@ class ShakeDetector(context: Context) {
 
     private inner class Listener : SensorEventListener {
 
-        private var acceleration = 10f
+        private var acceleration = DEFAULT_ACCELERATION
         private var accelerationCurrent = SensorManager.GRAVITY_EARTH
         private var accelerationLast = SensorManager.GRAVITY_EARTH
 
@@ -50,6 +50,7 @@ class ShakeDetector(context: Context) {
 
     companion object {
 
+        private const val DEFAULT_ACCELERATION = 10f
         private const val ACCELERATION_THRESHOLD = 15
         private const val ACCELERATION_DOWN_MOD = 0.9f
         private const val EVENT_DEBOUNCE_TIME = 1

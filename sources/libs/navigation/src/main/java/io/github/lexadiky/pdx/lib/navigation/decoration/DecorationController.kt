@@ -15,7 +15,6 @@ import androidx.navigation.compose.DialogNavigator
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.createGraph
 import androidx.navigation.get
 import io.github.lexadiky.pdx.lib.navigation.Navigator
@@ -23,7 +22,7 @@ import io.github.lexadiky.pdx.lib.navigation.Navigator
 class DecorationController(
     private val navigator: Navigator
 ) : NavController.OnDestinationChangedListener {
-    private val graphCache: HashMap<String, CachedRegistredHost> = HashMap()
+    private val graphCache: HashMap<String, CachedRegisteredHost> = HashMap()
 
     init {
         navigator.controller.addOnDestinationChangedListener(this)
@@ -71,14 +70,14 @@ class DecorationController(
         }
         NavHost(navController = navController, graph = graph)
         LaunchedEffect(decoration) {
-            graphCache[decoration] = CachedRegistredHost(
+            graphCache[decoration] = CachedRegisteredHost(
                 decoration = decoration,
                 navController = navController
             )
         }
     }
 
-    private data class CachedRegistredHost(
+    private data class CachedRegisteredHost(
         val decoration: String,
         val navController: NavController
     )

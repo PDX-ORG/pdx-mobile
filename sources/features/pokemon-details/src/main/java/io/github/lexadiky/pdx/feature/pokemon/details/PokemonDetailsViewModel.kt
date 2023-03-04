@@ -6,20 +6,15 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonSpeciesDetailsUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.IsPokemonFavorite
+import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.SaveFavoritePokemon
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
-import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonPhysicalDimension
 import io.github.lexadiky.pdx.feature.pokemon.details.usecase.GetAvailableDetailsSections
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.navigation.Navigator
-import io.github.lexadiky.pdx.lib.resources.image.ImageResource
-import io.github.lexadiky.pdx.lib.resources.image.from
-import io.github.lexadiky.pdx.lib.resources.string.StringResource
-import io.github.lexadiky.pdx.lib.resources.string.format
-import io.github.lexadiky.pdx.lib.resources.string.from
 import kotlinx.coroutines.launch
 
 internal class PokemonDetailsViewModel(
@@ -27,7 +22,9 @@ internal class PokemonDetailsViewModel(
     private val navigator: Navigator,
     private val getPokemonDetails: GetPokemonSpeciesDetailsUseCase,
     private val getAvailableDetailsSections: GetAvailableDetailsSections,
-    private val markPokemonSpeciesAsViewedUseCase: MarkPokemonSpeciesAsViewedUseCase
+    private val markPokemonSpeciesAsViewedUseCase: MarkPokemonSpeciesAsViewedUseCase,
+    private val isPokemonFavorite: IsPokemonFavorite,
+    private val saveFavoritePokemon: SaveFavoritePokemon
 ) : ViewModel() {
 
     var state: PokemonDetailsState by mutableStateOf(PokemonDetailsState(pokemonId))
@@ -49,10 +46,11 @@ internal class PokemonDetailsViewModel(
         }
     }
 
-    private fun createUpdatedState(details: PokemonSpeciesDetails): PokemonDetailsState {
+    private suspend fun createUpdatedState(details: PokemonSpeciesDetails): PokemonDetailsState {
         return state.copy(
             pokemonSpeciesDetails = details,
             selectedVariety = details.primaryVariety,
+            isFavorite = isPokemonFavorite(details.primaryVariety)
         )
     }
 
@@ -64,9 +62,11 @@ internal class PokemonDetailsViewModel(
         navigator.navigate("pdx://type/${type.id}")
     }
 
-    fun selectVariety(varietyIndex: Int) {
+    fun selectVariety(varietyIndex: Int) = viewModelScope.launch {
+        val selectedVariety = state.pokemonSpeciesDetails?.varieties?.get(varietyIndex) ?: return@launch
         state = state.copy(
-            selectedVariety = state.pokemonSpeciesDetails?.varieties?.get(varietyIndex)
+            selectedVariety = selectedVariety,
+            isFavorite = isPokemonFavorite(selectedVariety)
         )
     }
 
@@ -75,6 +75,11 @@ internal class PokemonDetailsViewModel(
     }
 
     fun toggleFavorite() = viewModelScope.launch {
-        state = state.copy(isFavorite = !state.isFavorite)
+        val newIsFavorite = !state.isFavorite
+        state = state.copy(isFavorite = newIsFavorite)
+
+        val currentSpecies = state.pokemonSpeciesDetails ?: return@launch
+        val currentVariety = state.selectedVariety ?: return@launch
+        saveFavoritePokemon(currentSpecies, currentVariety, newIsFavorite)
     }
 }

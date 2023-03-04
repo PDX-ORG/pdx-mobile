@@ -34,7 +34,7 @@ internal val PokemonListModule by module("pokemon-list") {
             )
         }
         single<GenericListBannerDataSource<PokemonGenericListItem>> { PokemonGenericBannerItemSource() }
-        single<GenericListItemDataSource<PokemonGenericListItem>> { PokemonGenericListItemSource(inject()) }
+        single<GenericListItemDataSource<PokemonGenericListItem>> { PokemonGenericListItemSource(inject(), inject()) }
         single<GenericListNavigator<PokemonGenericListItem>> { PokemonGenericListNavigator(inject()) }
     }
 }

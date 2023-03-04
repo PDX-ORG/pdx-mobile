@@ -4,6 +4,7 @@ import io.github.lexadiky.akore.alice.module
 import io.github.lexadiky.akore.alice.util.single
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.info
+import io.github.lexadiky.pdx.domain.pokemon.repository.FavoritePokemonRepository
 import io.github.lexadiky.pdx.domain.pokemon.usecase.FindPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetAbilityUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonAbilitiesUseCase
@@ -12,6 +13,8 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonSpeciesDetailsUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonVarietyDetails
+import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.IsPokemonFavorite
+import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.SaveFavoritePokemon
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
 import io.github.lexadiky.pdx.lib.locale.LocaleManager
@@ -36,6 +39,9 @@ val PokemonDomainModule by module("pokemon-domain") {
     single { GetPokemonAbilitiesUseCase(inject(), inject()) }
     single { GetAbilityUseCase(inject(), inject()) }
 
+    single { SaveFavoritePokemon(inject()) }
+    single { IsPokemonFavorite(inject()) }
+
     internal {
         single {
             PokeApiClient {
@@ -49,5 +55,6 @@ val PokemonDomainModule by module("pokemon-domain") {
                 }
             }
         }
+        single { FavoritePokemonRepository(inject()) }
     }
 }

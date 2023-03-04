@@ -18,9 +18,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.ElevatedSuggestionChip
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Text
@@ -42,6 +45,7 @@ fun LargeWikiPreview(
     image: Painter,
     tags: List<TagItem>,
     onClick: (() -> Unit)? = null,
+    isFavorite: Boolean = false,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -57,21 +61,27 @@ fun LargeWikiPreview(
                 verticalArrangement = Arrangement.SpaceBetween,
             ) {
                 Row(
+                    verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1),
                 ) {
+                    if (isFavorite) {
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
                     if (preTitle != null) {
                         Text(
                             text = preTitle,
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.alignByBaseline()
                         )
                     }
                     Text(
                         text = title,
                         style = MaterialTheme.typography.headlineSmall,
                         color = MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.alignByBaseline()
                     )
                 }
                 TagStrip(tags = tags)

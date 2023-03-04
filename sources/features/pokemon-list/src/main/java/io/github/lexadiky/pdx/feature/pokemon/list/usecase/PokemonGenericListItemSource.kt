@@ -4,6 +4,7 @@ import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.IsPokemonFavorite
 import io.github.lexadiky.pdx.feature.generic.list.domain.GenericListItemDataSource
 import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
 import io.github.lexadiky.pdx.feature.pokemon.list.entity.PokemonGenericListItem
@@ -14,7 +15,8 @@ import io.github.lexadiky.pdx.lib.resources.string.from
 import io.github.lexadiky.pdx.ui.uikit.util.UikitStringFormatter
 
 internal class PokemonGenericListItemSource(
-    private val getPokemon: GetPokemonPreviewUseCase
+    private val getPokemon: GetPokemonPreviewUseCase,
+    private val isPokemonFavorite: IsPokemonFavorite
 ) : GenericListItemDataSource<PokemonGenericListItem> {
 
     override suspend fun load(): Either<GenericListItemDataSource.Error, List<PokemonGenericListItem>> {
@@ -23,7 +25,7 @@ internal class PokemonGenericListItemSource(
             .mapLeft { GenericListItemDataSource.Error.Generic }
     }
 
-    private fun transformToGenericListItem(pokemon: PokemonPreview) =
+    private suspend fun transformToGenericListItem(pokemon: PokemonPreview) =
         PokemonGenericListItem(
             id = pokemon.name,
             note = UikitStringFormatter.nationalId(pokemon.nationalDexNumber),
@@ -36,6 +38,7 @@ internal class PokemonGenericListItemSource(
                 GenericListItem.Tag(type.assets.title, type.assets.color, type.id)
             },
             textSearchIndex = pokemon.simpleSearchIndex,
-            types = pokemon.types
+            types = pokemon.types,
+            isFavorite = isPokemonFavorite.invoke(pokemon)
         )
 }

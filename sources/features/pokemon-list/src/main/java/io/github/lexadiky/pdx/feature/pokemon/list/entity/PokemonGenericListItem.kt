@@ -12,6 +12,7 @@ data class PokemonGenericListItem(
     override val primaryImage: ImageResource,
     override val secondaryImage: ImageResource?,
     override val tags: List<GenericListItem.Tag>,
+    override val isFavorite: Boolean,
     val textSearchIndex: String,
     val types: List<PokemonType>
 ) : GenericListItem

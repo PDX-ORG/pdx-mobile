@@ -33,7 +33,7 @@ class GenericListViewModel<T : GenericListItem>(
     )
         private set
 
-    init {
+    fun refresh() {
         loadFreshData()
         observeShakeEvents()
     }

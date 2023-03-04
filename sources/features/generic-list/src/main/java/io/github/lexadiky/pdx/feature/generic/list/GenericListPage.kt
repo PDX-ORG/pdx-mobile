@@ -3,6 +3,7 @@
 package io.github.lexadiky.pdx.feature.generic.list
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,6 +23,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
 import io.github.lexadiky.pdx.feature.generic.list.entity.SearchQuery
@@ -56,6 +58,10 @@ private fun <T : GenericListItem> GenericListPageImpl(
     filterBlock: FilterBlock<T>?,
     viewModel: GenericListViewModel<T>,
 ) {
+    LaunchedEffect(Unit) {
+        viewModel.refresh()
+    }
+
     LaunchedEffect(filterBlock == null) {
         viewModel.setSearchAvailable(filterBlock != null)
     }
@@ -119,6 +125,7 @@ private fun <T : GenericListItem> GenericListPageImpl(
                             viewModel.onTagClicked(entry, tag)
                         }
                     },
+                    isFavorite = entry.isFavorite,
                     onClick = { viewModel.openDetails(entry) },
                     modifier = Modifier
                         .fillMaxWidth()

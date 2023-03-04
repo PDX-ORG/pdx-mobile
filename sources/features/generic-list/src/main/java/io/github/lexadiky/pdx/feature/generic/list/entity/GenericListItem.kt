@@ -12,6 +12,7 @@ interface GenericListItem {
     val primaryImage: ImageResource
     val secondaryImage: ImageResource?
     val tags: List<Tag>
+    val isFavorite: Boolean
 
     data class Tag(val text: StringResource, val color: ColorResource, val id: String)
 }
