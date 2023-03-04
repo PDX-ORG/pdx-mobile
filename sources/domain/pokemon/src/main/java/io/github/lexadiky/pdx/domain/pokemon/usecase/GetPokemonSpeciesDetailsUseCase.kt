@@ -73,8 +73,8 @@ class GetPokemonSpeciesDetailsUseCase(
             sprites = extractSprites(defaultVariety),
             stats = stats,
             archetype = makeArchetype(stats),
-            height = defaultVariety.height.toDouble() / 10,
-            weight = defaultVariety.weight.toDouble() / 10
+            height = defaultVariety.height.toDouble() / 100,
+            weight = defaultVariety.weight.toDouble() / 100
         )
     }
 
