@@ -73,14 +73,13 @@ class GetPokemonSpeciesDetailsUseCase(
             sprites = extractSprites(defaultVariety),
             stats = stats,
             archetype = makeArchetype(stats),
-            height = defaultVariety.height.toDouble() / 100,
-            weight = defaultVariety.weight.toDouble() / 100
+            height = defaultVariety.height.toDouble() / POKEMON_DIMENSION_MODIFIER,
+            weight = defaultVariety.weight.toDouble() / POKEMON_DIMENSION_MODIFIER
         )
     }
 
     private fun makeArchetype(stats: Map<PokemonStat, Int>): PokemonArchetype {
-        val maxStat = stats.maxByOrNull { it.value }?.key
-        return when (maxStat) {
+        return when (stats.maxByOrNull { it.value }?.key) {
             PokemonStat.SpAttack -> PokemonArchetype.SpecialAttacker
             PokemonStat.Attack -> PokemonArchetype.PhysicalAttacker
             PokemonStat.Speed -> PokemonArchetype.Speedster
@@ -94,6 +93,7 @@ class GetPokemonSpeciesDetailsUseCase(
     )
 
     // TODO maybe should consider something more sane
+    @Suppress("UNCHECKED_CAST")
     private fun extractAllSpritesWithReflection(sprites: Any): List<String> {
         val nullableStringType = typeOf<String?>()
 
@@ -106,6 +106,7 @@ class GetPokemonSpeciesDetailsUseCase(
         } + extractAllSpritesWithReflection(groupProperties, sprites)
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun extractAllSpritesWithReflection(groupProperties: List<KProperty1<out Any, *>>, sprites: Any) =
         groupProperties.flatMap { property ->
             (property as KProperty1<Any, Any?>).get(sprites)
@@ -114,4 +115,9 @@ class GetPokemonSpeciesDetailsUseCase(
         }
 
     object Error
+
+    companion object {
+
+        private const val POKEMON_DIMENSION_MODIFIER = 100
+    }
 }

@@ -62,6 +62,13 @@ internal class PokemonFilterViewModel(
         queryChangedCallback(state.query)
     }
 
+    fun toggleOnlyFilters() {
+        state = state.copy(query = state.query.copy(
+            onlyFavorites = !state.query.onlyFavorites
+        ))
+        queryChangedCallback(state.query)
+    }
+
     fun clearFilter() {
         state = PokemonFilterState()
     }

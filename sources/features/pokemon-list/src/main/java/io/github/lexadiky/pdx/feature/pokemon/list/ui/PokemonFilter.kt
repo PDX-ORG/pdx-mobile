@@ -7,6 +7,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -61,7 +62,9 @@ internal fun PokemonFilter(isVisible: Boolean, viewModel: PokemonFilterViewModel
         exit = shrinkVertically(shrinkTowards = Alignment.Top)
     ) {
         Column {
-            Row {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1)
+            ) {
                 if (viewModel.state.showTypeFilterDialog) {
                     TypeFilterDialog(
                         onClear = { viewModel.hideTypeFilterDialog(clearTypeFilters = true) },
@@ -76,6 +79,12 @@ internal fun PokemonFilter(isVisible: Boolean, viewModel: PokemonFilterViewModel
                     colors = typeFilterColors(viewModel.state.query.selectedTypes),
                     label = { Text(text = stringResource(id = R.string.pokemon_list_query_type_button)) }
                 )
+                FilterChip(
+                    selected = false,
+                    onClick = { viewModel.toggleOnlyFilters() },
+                    colors = favoriteFilterColors(viewModel.state.query.onlyFavorites),
+                    label = { Text(text = stringResource(id = R.string.pokemon_list_query_favorite_button)) }
+                )
             }
         }
     }
@@ -89,4 +98,14 @@ private fun typeFilterColors(selectedTypes: List<PokemonType>) =
         FilterChipDefaults.filterChipColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
         )
+    }
+
+@Composable
+private fun favoriteFilterColors(isEnabled: Boolean) =
+    if (isEnabled) {
+        FilterChipDefaults.filterChipColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer
+        )
+    } else {
+        FilterChipDefaults.filterChipColors()
     }

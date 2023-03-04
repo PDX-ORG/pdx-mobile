@@ -21,10 +21,7 @@ class GetPokemonAbilitiesUseCase(
             abilitySlots.traverse { slot: Pokemon.AbilitySlot -> getAbility(slot.ability.name!!, slot.isHidden) }
                 .mapLeft { Error }
         }
-
-
-
-
+    
     private suspend fun listAbilities(details: PokemonDetails): Either<Error, List<Pokemon.AbilitySlot>> = Either.catch {
         client.pokemon.get(details.name).map { it.abilities }
             .getOrThrow()

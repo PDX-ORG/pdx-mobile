@@ -8,13 +8,15 @@ import io.github.lexadiky.pdx.lib.navigation.page.PageContext
 
 data class PokemonSearchQuery(
     val text: String = "",
-    val selectedTypes: List<PokemonType> = emptyList()
+    val selectedTypes: List<PokemonType> = emptyList(),
+    val onlyFavorites: Boolean = false
 ) : SearchQuery<PokemonGenericListItem> {
 
     override val isEmpty: Boolean = text.isBlank() && selectedTypes.isEmpty()
 
     override fun apply(items: List<PokemonGenericListItem>): List<PokemonGenericListItem> {
         return items
+            .filter { item -> onlyFavorites && item.isFavorite || !onlyFavorites }
             .filter { item -> item.textSearchIndex.contains(text.lowercase()) }
             .filter { item -> item.types.containsAll(selectedTypes) }
     }
