@@ -68,6 +68,7 @@ import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDetailsSection
+import io.github.lexadiky.pdx.feature.pokemon.details.subpage.info.InfoSubPage
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.stats.StatsSubPage
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
@@ -166,8 +167,10 @@ private fun DataCard(viewModel: PokemonDetailsViewModel) {
                     viewModel.state.pokemonSpeciesDetails,
                     viewModel.state.selectedVariety
                 )
-
-                PokemonDetailsSection.Info -> Unit
+                PokemonDetailsSection.Info -> InfoSubPage(
+                    viewModel.state.pokemonSpeciesDetails,
+                    viewModel.state.selectedVariety
+                )
                 PokemonDetailsSection.Evolution -> Unit
                 PokemonDetailsSection.Battle -> Unit
                 null -> Unit

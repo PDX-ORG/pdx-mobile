@@ -8,16 +8,17 @@ import io.github.lexadiky.pdx.domain.pokemon.repository.FavoritePokemonRepositor
 import io.github.lexadiky.pdx.domain.pokemon.usecase.FindPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetAbilityUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonAbilitiesUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPokedexDescriptions
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewSampleUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonSpeciesDetailsUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonVarietyDetails
+import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonGameVersion
 import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.IsPokemonFavorite
 import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.SaveFavoritePokemon
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
-import io.github.lexadiky.pdx.lib.locale.LocaleManager
 import io.github.lexadiky.pdx.lib.locale.LocaleManagerModule
 import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.util.CacheSettings
@@ -41,6 +42,9 @@ val PokemonDomainModule by module("pokemon-domain") {
 
     single { SaveFavoritePokemon(inject()) }
     single { IsPokemonFavorite(inject()) }
+
+    single { GetPokemonPokedexDescriptions(inject(), inject(), inject()) }
+    single { GetPokemonGameVersion(inject(), inject()) }
 
     internal {
         single {

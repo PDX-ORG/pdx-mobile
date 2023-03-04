@@ -6,6 +6,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDetailsSection
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonPhysicalDimension
+import io.github.lexadiky.pdx.feature.pokemon.details.utils.extractDimensions
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
@@ -35,19 +36,4 @@ internal data class PokemonDetailsState(
     val types: List<PokemonType> get() = selectedVariety?.types.orEmpty()
 
     val dimensions: List<PokemonPhysicalDimension> = extractDimensions(selectedVariety)
-
-    private fun extractDimensions(details: PokemonDetails?): List<PokemonPhysicalDimension> = buildList {
-        details ?: return@buildList
-
-        add(PokemonPhysicalDimension(
-            icon = ImageResource.from(io.github.lexadiky.pdx.lib.uikit.R.drawable.uikit_ic_height),
-            label = StringResource.from(R.string.feature_pokemon_details_dimension_height)
-                .format(details.height)
-        ))
-        add(PokemonPhysicalDimension(
-            icon = ImageResource.from(io.github.lexadiky.pdx.lib.uikit.R.drawable.uikit_ic_scale),
-            label = StringResource.from(R.string.feature_pokemon_details_dimension_weight)
-                .format(details.weight)
-        ))
-    }
 }
