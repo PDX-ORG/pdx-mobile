@@ -82,6 +82,7 @@ private fun <T : GenericListItem> GenericListPageImpl(
                 columnState.animateScrollToItem(0)
             }
         }
+        val visibleItems = viewModel.state.visibleItemsAsync()
         LazyColumn(
             state = columnState,
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
@@ -95,7 +96,7 @@ private fun <T : GenericListItem> GenericListPageImpl(
                 }
             }
             itemsIndexed(
-                items = viewModel.state.visibleItems,
+                items = visibleItems,
                 key = { idx, entry -> entry.id }
             ) { idx, entry ->
                 val applicableBanners = remember(idx, entry) {
@@ -134,7 +135,7 @@ private fun <T : GenericListItem> GenericListPageImpl(
             }
         }
         FastScrollWheel(
-            items = viewModel.state.visibleItems,
+            items = visibleItems,
             columnState = columnState,
             modifier = Modifier.align(Alignment.CenterEnd)
         )

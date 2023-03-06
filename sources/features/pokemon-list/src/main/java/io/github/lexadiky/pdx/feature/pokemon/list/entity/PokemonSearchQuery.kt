@@ -12,12 +12,16 @@ data class PokemonSearchQuery(
     val onlyFavorites: Boolean = false
 ) : SearchQuery<PokemonGenericListItem> {
 
-    override val isEmpty: Boolean = text.isBlank() && selectedTypes.isEmpty()
+    override val isEmpty: Boolean = text.isBlank() && selectedTypes.isEmpty() && !onlyFavorites
 
     override fun apply(items: List<PokemonGenericListItem>): List<PokemonGenericListItem> {
+        if (isEmpty) {
+            return items
+        }
+
         return items
             .filter { item -> onlyFavorites && item.isFavorite || !onlyFavorites }
-            .filter { item -> item.textSearchIndex.contains(text.lowercase()) }
+            .filter { item -> item.textSearchIndex.contains(text) }
             .filter { item -> item.types.containsAll(selectedTypes) }
     }
 

@@ -14,6 +14,30 @@ enum class PokemonLanguage {
     @SerialName("ja")
     JAPANESE,
 
+    @SerialName("ja-Hrkt")
+    JA_KATAKANA,
+
+    @SerialName("ko")
+    KOREAN,
+
+    @SerialName("zh-Hant")
+    CHINESE_TRADITIONAL,
+
+    @SerialName("zh-Hans")
+    CHINESE_SIMPLIFIED,
+
+    @SerialName("it")
+    ITALIAN,
+
+    @SerialName("fr")
+    FRENCH,
+
+    @SerialName("es")
+    SPANISH,
+
+    @SerialName("de")
+    GERMAN,
+
     UNKNOWN
 }
 

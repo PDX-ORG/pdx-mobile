@@ -20,15 +20,15 @@ internal data class DiscoveryPokemonPreview(
     @SerialName("types")
     val types: List<PokemonType>
 ) {
-    private val simpleSearchIndex: String get() = localNames.values.joinToString("")
-        .lowercase()
+    private val simpleSearchIndex: String get() =
+        (localNames.values + types.map { it.id }).joinToString(separator = "|", transform = { it.lowercase() })
 
     fun asDomain(localeManager: LocaleManager): PokemonPreview = PokemonPreview(
         name = name,
         localeName = extractName(localeManager),
         nationalDexNumber = nationalDexNumber,
         normalSprite = normalSprite,
-        shinySprite = shinySprite,
+        shinySprite = shinySprite ?: normalSprite,
         types = types,
         simpleSearchIndex = simpleSearchIndex
     )
