@@ -15,6 +15,8 @@ dependencies {
     implementation(projects.libs.firebase)
     implementation(projects.libs.system)
 
+    implementation(projects.domain.pokemon)
+
     implementation(libs.akore.blogger.core)
     implementation(libs.akore.blogger.logcat)
     implementation(libs.akore.alice.robo)

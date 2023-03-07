@@ -17,6 +17,7 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonVarietyDetails
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonGameVersion
 import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.IsPokemonFavorite
 import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.SaveFavoritePokemon
+import io.github.lexadiky.pdx.domain.pokemon.usecase.prefetch.PrefetchPokemonData
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
 import io.github.lexadiky.pdx.lib.locale.LocaleManagerModule
@@ -25,7 +26,7 @@ import io.lexadiky.pokeapi.util.CacheSettings
 import io.lexadiky.pokeapi.util.PokeApiClientLogger
 import java.io.File
 
-val PokemonDomainModule by module("pokemon-domain") {
+val PokemonDomainModule by module("domain-pokemon") {
     import(LocaleManagerModule)
 
     single { GetPokemonPreviewUseCase(inject(), inject()) }
@@ -45,6 +46,8 @@ val PokemonDomainModule by module("pokemon-domain") {
 
     single { GetPokemonPokedexDescriptions(inject(), inject(), inject()) }
     single { GetPokemonGameVersion(inject(), inject()) }
+
+    single { PrefetchPokemonData(inject()) }
 
     internal {
         single {

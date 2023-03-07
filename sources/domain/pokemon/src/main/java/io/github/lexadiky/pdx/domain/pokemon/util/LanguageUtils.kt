@@ -8,8 +8,10 @@ import java.util.Locale
 
 fun List<Name>.ofCurrentLocale(manager: LocaleManager): String {
     val currentLanguage = manager.settings.system.asPokemonLanguage()
-    return first { it.language.asLanguage() == currentLanguage }
-        .name
+    return firstOrNull { it.language.asLanguage() == currentLanguage }
+        ?.name
+        ?: this.firstOrNull()?.name
+        ?: ""
 }
 
 internal fun Locale.asPokemonLanguage(): PokemonLanguage {

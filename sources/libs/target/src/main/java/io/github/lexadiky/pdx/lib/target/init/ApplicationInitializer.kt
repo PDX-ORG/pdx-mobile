@@ -45,7 +45,7 @@ class ApplicationInitializer(di: DIContainer) {
                 .info("all blocking suspended async tasks are done")
         }
         scope.launch {
-            val launchedTasks = blockingAsyncTasks.map { task ->
+            val launchedTasks = nonBlockingAsyncTasks.map { task ->
                 scope.async {
                     task.run(context)
                     BLogger.tag("ApplicationInitializer")
