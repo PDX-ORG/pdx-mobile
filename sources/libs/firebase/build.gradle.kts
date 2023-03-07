@@ -13,5 +13,6 @@ dependencies {
     api(libs.firebase.analytics)
     api(libs.firebase.crashlytics)
     api(libs.firebase.remoteConfig)
+    api(libs.firebase.performance)
     api(libs.kotlin.coroutines.gmsIntegration)
 }
