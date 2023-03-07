@@ -8,7 +8,7 @@ class LocaleManager(fsManager: FsManager) {
     private var flags by fsManager.atomic("pdx_locale").stringSet("locale_flags", emptySet())
 
     val settings: LocaleSettings get() = LocaleSettings(
-        system = Locale.ENGLISH,
+        system = Locale.getDefault(),
         flags = flags.map { LocaleFlag(it) }
     )
 

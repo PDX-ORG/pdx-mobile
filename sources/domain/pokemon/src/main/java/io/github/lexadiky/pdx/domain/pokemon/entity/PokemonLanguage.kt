@@ -4,49 +4,48 @@ import io.lexadiky.pokeapi.entity.common.ResourcePointer
 import io.lexadiky.pokeapi.entity.language.Language
 import kotlinx.serialization.SerialName
 
-enum class PokemonLanguage {
+enum class PokemonLanguage(internal val id: String) {
     @SerialName("roomaji")
-    JA_ROOMAJI,
+    JA_ROOMAJI("roomaji"),
 
     @SerialName("en")
-    ENGLISH,
+    ENGLISH("en"),
 
     @SerialName("ja")
-    JAPANESE,
+    JAPANESE("ja"),
 
     @SerialName("ja-Hrkt")
-    JA_KATAKANA,
+    JA_KATAKANA("ja-Hrkt"),
 
     @SerialName("ko")
-    KOREAN,
+    KOREAN("ko"),
 
     @SerialName("zh-Hant")
-    CHINESE_TRADITIONAL,
+    CHINESE_TRADITIONAL("zh-Hant"),
 
     @SerialName("zh-Hans")
-    CHINESE_SIMPLIFIED,
+    CHINESE_SIMPLIFIED("zh-Hans"),
 
     @SerialName("it")
-    ITALIAN,
+    ITALIAN("it"),
 
     @SerialName("fr")
-    FRENCH,
+    FRENCH("fr"),
 
     @SerialName("es")
-    SPANISH,
+    SPANISH("es"),
 
     @SerialName("de")
-    GERMAN,
+    GERMAN("de");
 
-    UNKNOWN
+    companion object {
+
+        fun default(): PokemonLanguage = ENGLISH
+    }
 }
 
 // not implemented
 fun ResourcePointer<Language>.asLanguage(): PokemonLanguage {
-    return when (this.name) {
-        "en" -> PokemonLanguage.ENGLISH
-        "roomaji" -> PokemonLanguage.JA_ROOMAJI
-        "ja" -> PokemonLanguage.JAPANESE
-        else -> PokemonLanguage.UNKNOWN
-    }
+    return PokemonLanguage.values().firstOrNull { it.id == this.name }
+        ?: PokemonLanguage.default()
 }

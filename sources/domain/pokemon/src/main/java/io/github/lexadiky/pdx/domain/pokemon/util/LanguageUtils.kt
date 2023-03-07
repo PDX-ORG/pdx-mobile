@@ -13,9 +13,6 @@ fun List<Name>.ofCurrentLocale(manager: LocaleManager): String {
 }
 
 internal fun Locale.asPokemonLanguage(): PokemonLanguage {
-    return when (this) {
-        Locale.ENGLISH -> PokemonLanguage.ENGLISH
-        Locale.JAPANESE -> PokemonLanguage.JAPANESE
-        else -> PokemonLanguage.ENGLISH
-    }
+    return PokemonLanguage.values().firstOrNull { this.language == it.id }
+        ?: PokemonLanguage.default()
 }
