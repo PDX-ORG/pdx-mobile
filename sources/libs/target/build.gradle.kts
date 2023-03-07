@@ -13,6 +13,7 @@ dependencies {
     implementation(projects.libs.uikit)
     implementation(projects.libs.fs.robo)
     implementation(projects.libs.firebase)
+    implementation(projects.libs.system)
 
     implementation(libs.akore.blogger.core)
     implementation(libs.akore.blogger.logcat)

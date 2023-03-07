@@ -11,6 +11,7 @@ import io.github.lexadiky.pdx.lib.firebase.FirebaseModule
 import io.github.lexadiky.pdx.lib.fs.RoboFsModule
 import io.github.lexadiky.pdx.lib.network.NetworkModule
 import io.github.lexadiky.pdx.lib.target.init.ApplicationInitializer
+import io.github.lexadiky.pdx.lib.target.util.DIContainerWatchdog
 import io.github.lexadiky.pdx.lib.target.util.crashlytics
 import io.github.lexadiky.pdx.ui.uikit.UikitModule
 
@@ -26,7 +27,9 @@ abstract class BaseTargetApplication : Application() {
                 FeatureToggleModule,
                 UikitModule,
                 RoboFsModule,
-            ).build()
+            )
+            .inspector(DIContainerWatchdog.create(this))
+            .build()
     }
 
     override fun onCreate() {

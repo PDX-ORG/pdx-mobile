@@ -5,6 +5,7 @@ import android.content.pm.ApplicationInfo
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.error
+import io.github.lexadiky.pdx.lib.system.isDebug
 
 
 class FeatureToggleManager(
@@ -24,7 +25,7 @@ class FeatureToggleManager(
         }
     }
 
-    val isDebug: Boolean get() = 0 != context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE
+    val isDebug: Boolean get() = context.isDebug
 
     private fun formatFeatureToggleFbKey(toggle: FeatureToggle<*>): String {
         return "ft_${toggle.group}_${toggle.id}"

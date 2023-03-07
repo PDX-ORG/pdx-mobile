@@ -12,4 +12,5 @@ dependencies {
 
     implementation(projects.libs.firebase)
     implementation(projects.libs.fs.core)
+    implementation(projects.libs.system)
 }
