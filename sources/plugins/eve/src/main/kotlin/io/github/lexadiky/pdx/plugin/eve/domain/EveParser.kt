@@ -10,15 +10,18 @@ class EveParser {
     fun parse(name: String, source: Map<String, Any>): EveModule {
         return EveModule(
             name = name,
-            events = source.entries.map(::parseEvent)
+            events = source.entries.map {
+                parseEvent(name, it)
+            }
         )
     }
 
-    private fun parseEvent(entry: Map.Entry<String, Any>): EveEvent {
+    @Suppress("UNCHECKED_CAST")
+    private fun parseEvent(module: String, entry: Map.Entry<String, Any>): EveEvent {
         return EveEvent(
-            name = entry.key.removePrefix(EVENT_KEYWORD + KEYWORD_SEPARATOR),
+            name = "${module}_" + entry.key.removePrefix(EVENT_KEYWORD + KEYWORD_SEPARATOR),
             arguments = parseArguments(
-                entry.value.mapGet(ARGUMENTS_KEYWORD) as Map<String, Any>
+                entry.value.mapGet(ARGUMENTS_KEYWORD) as? Map<String, Any> ?: emptyMap()
             )
         )
     }
@@ -33,7 +36,8 @@ class EveParser {
             }
     }
 
-    private fun Any.mapGet(name: String): Any = (this as Map<String, Any>)[name]!!
+    private fun Any.mapGet(name: String): Any? =
+        (this as? Map<*, *>)?.get(name)
 
     companion object {
 

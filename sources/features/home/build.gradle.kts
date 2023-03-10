@@ -1,5 +1,6 @@
 plugins {
     id("io.github.lexadiky.pdx.plugin.module.feature")
+    id("io.github.lexadiky.pdx.plugin.eve")
 }
 
 android {
@@ -12,6 +13,7 @@ dependencies {
 
     implementation(projects.libs.uikit)
     implementation(projects.libs.navigation)
+    implementation(projects.libs.analytics)
     implementation(projects.libs.errorHandler)
     implementation(projects.libs.dynamicBanner)
 

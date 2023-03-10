@@ -45,7 +45,8 @@ import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.PokemonTypeAssets
-import io.github.lexadiky.pdx.feature.home.entitiy.FeaturedPokemonItem
+import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonItem
+import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonType
 import io.github.lexadiky.pdx.lib.dynbanner.DynamicBanner
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
@@ -80,12 +81,12 @@ private fun HomePageImpl(viewModel: HomePageViewModel = di.viewModel()) {
         pokemonSuggestionSection(
             title = R.string.home_section_featured_pokemon_title,
             items = viewModel.state.featuredPokemon,
-            openPokemonDetails = { viewModel.openPokemonDetails(it) }
+            openPokemonDetails = { viewModel.openPokemonDetails(it, SuggestedPokemonType.Suggested) }
         )
         pokemonSuggestionSection(
             title = R.string.home_section_last_viewed_pokemon_title,
             items = viewModel.state.latestViewedPokemon,
-            openPokemonDetails = { viewModel.openPokemonDetails(it) }
+            openPokemonDetails = { viewModel.openPokemonDetails(it, SuggestedPokemonType.LAST_VIEWED) }
         )
         item {
             Spacer(modifier = Modifier.size(MaterialTheme.grid.x12))
@@ -106,8 +107,8 @@ private const val HEADER_ARROW_ROTATION_UP = 180f
 
 private fun LazyListScope.pokemonSuggestionSection(
     title: Int,
-    items: List<FeaturedPokemonItem>,
-    openPokemonDetails: (FeaturedPokemonItem) -> Unit
+    items: List<SuggestedPokemonItem>,
+    openPokemonDetails: (SuggestedPokemonItem) -> Unit
 ) {
     if (items.isEmpty()) {
         return

@@ -10,7 +10,7 @@ class EvePlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
         val inputFile = target.objects.fileProperty()
-        inputFile.set(File(target.projectDir, "analytics"))
+        inputFile.set(File(target.projectDir, "src/main/analytics"))
 
         val outputFileProperty = target.objects.fileProperty()
         val outputFile = File(target.buildDir, "generated/sources/main/kotlin/eve")

@@ -52,15 +52,15 @@ class KotlinTranspiler {
 
         module.events.forEach { event ->
             builder.addFunction(
-                makeEventFunction(event)
+                makeEventFunction(module, event)
             )
         }
 
         return builder.build()
     }
 
-    private fun makeEventFunction(event: EveEvent): FunSpec {
-        val funBuilder = FunSpec.builder(snakeToCamel(event.name, false))
+    private fun makeEventFunction(module: EveModule, event: EveEvent): FunSpec {
+        val funBuilder = FunSpec.builder("on" + snakeToCamel(event.name.removePrefix(module.name), false))
 
         event.arguments.forEach { argument ->
             funBuilder.addParameter(snakeToCamel(argument.name, false), argument.typeClassName())

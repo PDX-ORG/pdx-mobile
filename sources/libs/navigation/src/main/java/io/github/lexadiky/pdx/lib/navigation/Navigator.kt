@@ -40,7 +40,7 @@ class Navigator internal constructor(
     }
 
     suspend fun navigate(route: NavigationRoute) = mutex.withLock {
-        navigationEventsSpec.devNavigationNavigate(route)
+        navigationEventsSpec.onNavigated(route)
         if (route.startsWith(LINK_PREFIX_HTTPS) || route.startsWith(LINK_PREFIX_HTTP)) {
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(route)).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

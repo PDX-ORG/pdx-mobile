@@ -1,0 +1,4 @@
+event:suggested_pokemon_clicked:
+  arguments:
+    string:name:
+    string:type:
