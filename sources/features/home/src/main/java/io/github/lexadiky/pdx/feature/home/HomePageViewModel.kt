@@ -9,6 +9,7 @@ import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewSampleUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
+import io.github.lexadiky.pdx.feature.home.entitiy.HomeMenuItemType
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonItem
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonType
 import io.github.lexadiky.pdx.generated.analytics.HomeEventsSpec
@@ -58,18 +59,22 @@ internal class HomePageViewModel(
     }
 
     fun openPokemonList() = viewModelScope.launch {
+        eventSpec.onMenuClicked(HomeMenuItemType.POKEMON_LIST.tag)
         navigator.navigate("pdx://pokemon")
     }
 
     fun openWhoIs() = viewModelScope.launch {
+        eventSpec.onMenuClicked(HomeMenuItemType.WHO_IS.tag)
         navigator.navigate("pdx://game/whois")
     }
 
     fun openNews() = viewModelScope.launch {
+        eventSpec.onMenuClicked(HomeMenuItemType.NEWS.tag)
         navigator.navigate("pdx://news")
     }
 
     fun openAchievements() = viewModelScope.launch {
+        eventSpec.onMenuClicked(HomeMenuItemType.ACHIEVEMENTS.tag)
         navigator.navigate("pdx://settings/achievements")
     }
 

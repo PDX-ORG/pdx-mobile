@@ -2,3 +2,7 @@ event:suggested_pokemon_clicked:
   arguments:
     string:name:
     string:type:
+
+event:menu_clicked:
+  arguments:
+    string:type:
