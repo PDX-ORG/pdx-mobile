@@ -35,7 +35,7 @@ internal class InfoSubPageViewModel(
                 is Either.Left -> state.copy(error = UIError.default())
                 is Either.Right -> state.copy(
                     descriptions = data.value.toData(),
-                    dimensions = extractDimensions(pokemon)
+                    dimensions = extractDimensions(species, pokemon, true)
                 )
             }
         }

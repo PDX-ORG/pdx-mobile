@@ -35,5 +35,9 @@ internal data class PokemonDetailsState(
 
     val types: List<PokemonType> get() = selectedVariety?.types.orEmpty()
 
-    val dimensions: List<PokemonPhysicalDimension> = extractDimensions(selectedVariety)
+    val dimensions: List<PokemonPhysicalDimension> = extractDimensions(
+        pokemonSpeciesDetails,
+        selectedVariety,
+        false
+    )
 }

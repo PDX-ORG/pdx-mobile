@@ -49,6 +49,8 @@ class GetPokemonSpeciesDetailsUseCase(
                 name = species.name,
                 localeName = localeName,
                 primaryVariety = mapPokemonDetails(defaultVariety),
+                isLegendary = species.isLegendary,
+                isMythical = species.isMythical,
                 varieties = species.varieties.map {
                     async {
                         pokeApiClient.pokemon.get(it).bind(::identity)
@@ -63,18 +65,18 @@ class GetPokemonSpeciesDetailsUseCase(
         Error
     }
 
-    private fun mapPokemonDetails(defaultVariety: Pokemon): PokemonDetails {
-        val stats = defaultVariety.stats.associate { slot ->
+    private fun mapPokemonDetails(variety: Pokemon): PokemonDetails {
+        val stats = variety.stats.associate { slot ->
             slot.stat.asPokemonStat() to slot.baseStat
         }
         return PokemonDetails(
-            name = defaultVariety.name,
-            types = defaultVariety.types.map { it.type.asType() },
-            sprites = extractSprites(defaultVariety),
+            name = variety.name,
+            types = variety.types.map { it.type.asType() },
+            sprites = extractSprites(variety),
             stats = stats,
             archetype = makeArchetype(stats),
-            height = defaultVariety.height.toDouble() / POKEMON_DIMENSION_MODIFIER,
-            weight = defaultVariety.weight.toDouble() / POKEMON_DIMENSION_MODIFIER
+            height = variety.height.toDouble() / POKEMON_DIMENSION_MODIFIER,
+            weight = variety.weight.toDouble() / POKEMON_DIMENSION_MODIFIER
         )
     }
 

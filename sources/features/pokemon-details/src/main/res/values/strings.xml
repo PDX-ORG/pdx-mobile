@@ -8,6 +8,8 @@
 
     <string name="feature_pokemon_details_dimension_weight">%s kg</string>
     <string name="feature_pokemon_details_dimension_height">%s m</string>
+    <string name="feature_pokemon_details_dimension_is_legendary">Legendary</string>
+    <string name="feature_pokemon_details_dimension_is_mythical">Mythical</string>
 
     <string name="feature_pokemon_details_section_stats_total_value">Total</string>
     <string name="feature_pokemon_details_section_stats_archetype">Archetype</string>
