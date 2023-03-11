@@ -4,5 +4,6 @@ enum class PokemonArchetype {
     SpecialAttacker,
     PhysicalAttacker,
     Speedster,
+    PerfectlyBalanced,
     Unknown,
 }

@@ -10,6 +10,7 @@ enum class PokemonArchetypeAssets(
     SpecialAttacker(R.string.domain_pokemon_asset_archetype_sp_attacker),
     PhysicalAttacker(R.string.domain_pokemon_asset_archetype_ph_attacker),
     Speedster(R.string.domain_pokemon_asset_archetype_speedster),
+    PerfectlyBalanced(R.string.domain_pokemon_asset_archetype_balanced),
     Unknown(R.string.domain_pokemon_asset_archetype_unknown);
 
     val title get() = StringResource.from(titleResource)
@@ -20,5 +21,6 @@ val PokemonArchetype.assets: PokemonArchetypeAssets
         PokemonArchetype.SpecialAttacker -> PokemonArchetypeAssets.SpecialAttacker
         PokemonArchetype.PhysicalAttacker -> PokemonArchetypeAssets.PhysicalAttacker
         PokemonArchetype.Speedster -> PokemonArchetypeAssets.Speedster
+        PokemonArchetype.PerfectlyBalanced -> PokemonArchetypeAssets.PerfectlyBalanced
         PokemonArchetype.Unknown -> PokemonArchetypeAssets.Unknown
     }

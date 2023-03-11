@@ -81,6 +81,10 @@ class GetPokemonSpeciesDetailsUseCase(
     }
 
     private fun makeArchetype(stats: Map<PokemonStat, Int>): PokemonArchetype {
+        if (stats.values.distinct().size == 1) {
+            return PokemonArchetype.PerfectlyBalanced
+        }
+
         return when (stats.maxByOrNull { it.value }?.key) {
             PokemonStat.SpAttack -> PokemonArchetype.SpecialAttacker
             PokemonStat.Attack -> PokemonArchetype.PhysicalAttacker
