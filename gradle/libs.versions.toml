@@ -13,7 +13,7 @@ kotlin-coroutines-gmsIntegration = { module = "org.jetbrains.kotlinx:kotlinx-cor
 
 kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
 kotlin-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
-kotlin-reflection = "org.jetbrains.kotlin:kotlin-reflect:1.8.0"
+kotlin-reflection = "org.jetbrains.kotlin:kotlin-reflect:1.8.10"
 
 android-core = "androidx.core:core-ktx:1.9.0"
 android-lifecycle-runtime = "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
