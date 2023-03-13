@@ -39,7 +39,7 @@ junit4-core = "junit:junit:4.13.2"
 
 coil-compose-base = "io.coil-kt:coil-compose-base:2.2.2"
 
-arrow-core = "io.arrow-kt:arrow-core:1.1.2"
+arrow-core = "io.arrow-kt:arrow-core:1.1.5"
 
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
