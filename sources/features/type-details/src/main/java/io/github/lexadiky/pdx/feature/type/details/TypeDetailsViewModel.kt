@@ -30,11 +30,11 @@ internal class TypeDetailsViewModel(
 
     init {
         viewModelScope.launch {
-            val data = getPokemonTypeDamageRelations().mapLeft { UIError.default() }
-                .zip(getPokemonPreviewUseCase().mapLeft { UIError.default() })
+            val data = getPokemonTypeDamageRelations().mapLeft { UIError.generic() }
+                .zip(getPokemonPreviewUseCase().mapLeft { UIError.generic() })
 
             state = when (val result = data) {
-                is Either.Left -> state.copy(error = UIError.default())
+                is Either.Left -> state.copy(error = UIError.generic())
                 is Either.Right -> onStateLoaded(result.value.first, result.value.second)
             }
         }

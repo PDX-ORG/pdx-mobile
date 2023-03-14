@@ -37,7 +37,7 @@ internal class HomePageViewModel(
     init {
         viewModelScope.launch {
             state = when (val data = getPokemonPreview(FEATURED_POKEMON_SAMPLE_SIZE)) {
-                is Either.Left -> state.copy(error = UIError.default())
+                is Either.Left -> state.copy(error = UIError.generic())
                 is Either.Right -> state.copy(
                     featuredPokemon = makeFeaturedPokemon(data.value)
                 )
@@ -47,7 +47,7 @@ internal class HomePageViewModel(
         viewModelScope.launch {
             navigator.currentAbsoluteRouteFlow.map {
                 when (val data = getLatestViewedPokemonUseCase(FEATURED_POKEMON_SAMPLE_SIZE)) {
-                    is Either.Left -> state.copy(error = UIError.default())
+                    is Either.Left -> state.copy(error = UIError.generic())
                     is Either.Right -> state.copy(
                         latestViewedPokemon = makeFeaturedPokemon(data.value)
                     )

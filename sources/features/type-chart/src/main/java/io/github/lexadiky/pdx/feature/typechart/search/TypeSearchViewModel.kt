@@ -7,7 +7,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
@@ -38,13 +37,13 @@ internal class TypeSearchViewModel(
     init {
         viewModelScope.launch {
             state = when (val data = getPokemonPreview()) {
-                is Either.Left -> state.copy(error = UIError.default())
+                is Either.Left -> state.copy(error = UIError.generic())
                 is Either.Right -> state.copy(allPokemon = data.value.toUi())
             }
         }
         viewModelScope.launch {
             state = when (val data = getPokemonDamageRelations()) {
-                is Either.Left -> state.copy(error = UIError.default())
+                is Either.Left -> state.copy(error = UIError.generic())
                 is Either.Right -> state.copy(
                     damageRelationsSubState = state.damageRelationsSubState.copy(
                         damageRelations = data.value

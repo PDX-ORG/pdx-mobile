@@ -67,7 +67,7 @@ class GenericListViewModel<T : GenericListItem>(
 
     private fun loadFreshData() = viewModelScope.launch {
         state = when (val data = dataSource.load().zip(bannerSource.load())) {
-            is Either.Left -> state.copy(uiError = UIError.default())
+            is Either.Left -> state.copy(uiError = UIError.generic())
             is Either.Right -> state.copy(items = data.value.first, banners = data.value.second)
         }
     }

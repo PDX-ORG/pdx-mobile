@@ -33,11 +33,11 @@ internal class PokemonDetailsViewModel(
     init {
         viewModelScope.launch {
             state = when (val data = getAvailableDetailsSections()) {
-                is Either.Left -> state.copy(error = UIError.default())
+                is Either.Left -> state.copy(error = UIError.generic())
                 is Either.Right -> state.copy(availableDetailsSections = data.value)
             }
             state = when (val details = getPokemonDetails(pokemonId)) {
-                is Either.Left -> state.copy(error = UIError.default())
+                is Either.Left -> state.copy(error = UIError.generic())
                 is Either.Right -> {
                     launch { markPokemonSpeciesAsViewedUseCase.invoke(details.value) }
                     createUpdatedState(details.value)

@@ -8,8 +8,12 @@ interface UIError {
 
     companion object {
 
-        fun default(): UIError = object : UIError {
+        fun generic(): UIError = object : UIError {
             override val message: StringResource = StringResource.from(R.string.error_handler_error_message_unknown)
+        }
+
+        fun network(): UIError = object : UIError {
+            override val message: StringResource = StringResource.from(R.string.error_handler_error_message_network)
         }
     }
 }

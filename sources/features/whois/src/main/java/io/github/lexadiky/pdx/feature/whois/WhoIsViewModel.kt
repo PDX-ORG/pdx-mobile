@@ -39,7 +39,7 @@ internal class WhoIsViewModel(
     init {
         viewModelScope.launch {
             state = when (val data = getPokemonPreviewUseCase()) {
-                is Either.Left -> state.copy(error = UIError.default())
+                is Either.Left -> state.copy(error = UIError.generic())
                 is Either.Right -> state.copy(allPokemon = data.value.toVariants())
             }.reshuffleNew()
         }

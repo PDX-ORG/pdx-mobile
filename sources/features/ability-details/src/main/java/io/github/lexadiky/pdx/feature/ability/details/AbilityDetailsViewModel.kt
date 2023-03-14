@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetAbilityUseCase
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.lib.errorhandler.classify
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from
 import kotlinx.coroutines.launch
@@ -22,8 +22,8 @@ internal class AbilityDetailsViewModel(
 
     init {
         viewModelScope.launch {
-            state = when (val data = getAbilityDetails(id, false)) {
-                is Either.Left -> state.copy(error = UIError.default())
+            state = when (val data = getAbilityDetails(id, false).classify("AbilityDetailsViewModel")) {
+                is Either.Left -> state.copy(error = data.value)
                 is Either.Right -> state.copy(
                     title = StringResource.from(data.value.nameLocale),
                     subtitle = StringResource.from(data.value.flavourText.lastOrNull()?.textLocale.orEmpty()),

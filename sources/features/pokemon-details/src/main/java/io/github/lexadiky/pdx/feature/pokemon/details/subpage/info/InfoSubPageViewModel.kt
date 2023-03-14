@@ -1,6 +1,5 @@
 package io.github.lexadiky.pdx.feature.pokemon.details.subpage.info
 
-import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -32,7 +31,7 @@ internal class InfoSubPageViewModel(
     init {
         viewModelScope.launch {
             state = when (val data = getPokemonPokedexDescriptions(species.name)) {
-                is Either.Left -> state.copy(error = UIError.default())
+                is Either.Left -> state.copy(error = UIError.generic())
                 is Either.Right -> state.copy(
                     descriptions = data.value.toData(),
                     dimensions = extractDimensions(species, pokemon, true)

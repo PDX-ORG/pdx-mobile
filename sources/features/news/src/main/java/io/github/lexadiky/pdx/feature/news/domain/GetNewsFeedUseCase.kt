@@ -43,4 +43,4 @@ internal class GetNewsFeedUseCase(private val redditNewsClient: RedditNewsClient
     }
 }
 
-internal object GetNewsFeedUseCaseError : UIError by UIError.default()
+internal object GetNewsFeedUseCaseError : UIError by UIError.generic()
