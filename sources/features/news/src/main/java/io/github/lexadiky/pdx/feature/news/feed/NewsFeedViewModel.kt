@@ -6,15 +6,15 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
+import io.github.lexadiky.akore.lechuck.Navigator
+import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.feature.news.domain.GetNewsFeedUseCase
 import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
-import io.github.lexadiky.pdx.lib.navigation.Navigator
-import io.github.lexadiky.pdx.lib.navigation.util.navigate
 import kotlinx.coroutines.launch
 
 internal class NewsFeedViewModel(
     private val getNewsFeedUseCase: GetNewsFeedUseCase,
-    private val navigator: Navigator
+    private val navigator: Navigator,
 ) : ViewModel() {
 
     var state by mutableStateOf(NewsFeedState())

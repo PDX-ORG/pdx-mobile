@@ -7,7 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
-import io.github.lexadiky.pdx.lib.navigation.Navigator
+import io.github.lexadiky.akore.lechuck.Navigator
+import io.github.lexadiky.akore.lechuck.utils.navigate
 import kotlinx.coroutines.launch
 
 internal class TypeChartViewModel(

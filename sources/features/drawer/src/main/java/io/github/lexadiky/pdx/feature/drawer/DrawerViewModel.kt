@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.lexadiky.pdx.feature.drawer.domain.DrawerItemSource
 import io.github.lexadiky.pdx.feature.drawer.entity.DrawerItem
-import io.github.lexadiky.pdx.lib.navigation.Navigator
+import io.github.lexadiky.akore.lechuck.Navigator
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

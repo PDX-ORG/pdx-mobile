@@ -9,7 +9,8 @@ import io.github.lexadiky.pdx.lib.dynbanner.domain.DynamicBannerRepository
 import io.github.lexadiky.pdx.lib.dynbanner.entity.Banner
 import io.github.lexadiky.pdx.lib.dynbanner.entity.BannerAction
 import io.github.lexadiky.pdx.lib.dynbanner.entity.BannerType
-import io.github.lexadiky.pdx.lib.navigation.Navigator
+import io.github.lexadiky.akore.lechuck.Navigator
+import io.github.lexadiky.akore.lechuck.utils.navigate
 import kotlinx.coroutines.launch
 
 internal class DynamicBannerViewModel(

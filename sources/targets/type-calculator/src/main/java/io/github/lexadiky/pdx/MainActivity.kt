@@ -18,11 +18,16 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
 import androidx.core.view.WindowCompat
 import io.github.lexadiky.akore.alice.robo.DIApplication
+import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
-import io.github.lexadiky.pdx.lib.navigation.NavigationFeature
-import io.github.lexadiky.pdx.lib.navigation.NavigationHost
-import io.github.lexadiky.pdx.lib.navigation.Navigator
+import io.github.lexadiky.akore.lechuck.Navigator
+import io.github.lexadiky.akore.lechuck.robo.LocalComposeNavigationContext
+import io.github.lexadiky.akore.lechuck.robo.NavigationFeature
+import io.github.lexadiky.akore.lechuck.robo.NavigationHost
+import io.github.lexadiky.akore.lechuck.utils.navigate
+import io.github.lexadiky.pdx.lib.navigation.NavigationHostStyles
+import io.github.lexadiky.pdx.lib.navigation.NavigationModule
 import io.github.lexadiky.pdx.ui.uikit.theme.PdxTheme
 import kotlinx.coroutines.launch
 
@@ -43,7 +48,11 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun Content() {
         PdxTheme {
-            NavigationFeature(routing(), "pdx://type") {
+            NavigationFeature(
+                routing = routing(),
+                startDestination = "pdx://type",
+                style = NavigationHostStyles.default()
+            ) {
                 val navigator = di.inject<Navigator>()
                 val scope = rememberCoroutineScope()
 
@@ -62,7 +71,9 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     )
-                    NavigationHost()
+                    DIFeature(NavigationModule(LocalComposeNavigationContext.current)) {
+                        NavigationHost()
+                    }
                 }
             }
         }

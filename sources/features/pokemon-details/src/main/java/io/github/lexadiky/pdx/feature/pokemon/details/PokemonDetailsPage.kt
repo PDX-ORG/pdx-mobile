@@ -71,9 +71,10 @@ import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDetailsSect
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.info.InfoSubPage
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.stats.StatsSubPage
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
-import io.github.lexadiky.pdx.lib.navigation.decoration.Decoration
-import io.github.lexadiky.pdx.lib.navigation.fsdialog.FullScreenDialogAnchor
-import io.github.lexadiky.pdx.lib.navigation.page.PageContext
+import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
+import io.github.lexadiky.akore.lechuck.robo.fsdialog.FullScreenDialogAnchor
+import io.github.lexadiky.akore.lechuck.robo.page.PageContext
+import io.github.lexadiky.pdx.lib.navigation.FullScreenDialogStyles
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
@@ -255,7 +256,10 @@ private fun BoxScope.SpriteButtonIcon(
             .padding(end = MaterialTheme.grid.x2)
     ) {
         Box(contentAlignment = Alignment.Center) {
-            FullScreenDialogAnchor()
+            FullScreenDialogAnchor(
+                tag = "pokemon_image",
+                FullScreenDialogStyles.circularExpansion()
+            )
             Icon(
                 painter = painterResource(id = R.drawable.uikit_ic_camera),
                 contentDescription = null,
@@ -280,7 +284,6 @@ private fun BoxScope.FavoriteButtonIcon(
             .padding(start = MaterialTheme.grid.x2)
     ) {
         Box(contentAlignment = Alignment.Center) {
-            FullScreenDialogAnchor()
             Icon(
                 imageVector = Icons.Default.Star,
                 contentDescription = null,

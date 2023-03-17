@@ -1,19 +1,12 @@
 package io.github.lexadiky.pdx.lib.navigation
 
-import androidx.navigation.NavGraph
-import androidx.navigation.NavHostController
 import io.github.lexadiky.akore.alice.eagerModule
 import io.github.lexadiky.akore.alice.util.single
-import io.github.lexadiky.pdx.generated.analytics.NavigationEventsSpec
-import io.github.lexadiky.pdx.lib.navigation.decoration.DecorationController
+import io.github.lexadiky.akore.lechuck.robo.ComposeNavigationContext
 
-internal fun NavigationModule(controller: NavHostController, navGraph: NavGraph) = eagerModule("navigation") {
-    single { controller }
-    single { navGraph }
-    single { Navigator(inject(), inject(), inject(), inject()) }
-    single { DecorationController(inject()) }
-
-    internal {
-        single { NavigationEventsSpec(inject()) }
-    }
+fun NavigationModule(context: ComposeNavigationContext) = eagerModule("library-navigation") {
+    single { context.navGraph }
+    single { context.navigator }
+    single { context.controller }
+    single { context.decorationController }
 }

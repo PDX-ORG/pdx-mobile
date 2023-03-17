@@ -9,6 +9,9 @@ android {
 
 dependencies {
     api(libs.android.navigation.compose)
+
+    api(libs.akore.lechuck.robo)
+
     implementation(libs.akore.alice.robo)
     implementation(projects.libs.analytics)
     implementation(projects.libs.uikit)

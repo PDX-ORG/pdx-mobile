@@ -13,7 +13,8 @@ import androidx.compose.ui.Modifier
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
-import io.github.lexadiky.pdx.lib.navigation.Navigator
+import io.github.lexadiky.akore.lechuck.Navigator
+import kotlinx.coroutines.runBlocking
 
 @Composable
 internal fun NavigationGraphPanelPage() {
@@ -28,9 +29,10 @@ private fun NavigationGraphPanelPageImpl() {
     LazyColumn(
         modifier = Modifier.fillMaxWidth()
     ) {
-        items(navigator.listRoutes()) { route ->
+        // TODO remove run blocking
+        items(runBlocking { navigator.routes() }) { route ->
             ListItem(
-                headlineText = { Text(route) }
+                headlineText = { Text(route.asString()) }
             )
         }
     }

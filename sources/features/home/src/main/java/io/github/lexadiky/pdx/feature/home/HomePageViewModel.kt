@@ -14,7 +14,8 @@ import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonItem
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonType
 import io.github.lexadiky.pdx.generated.analytics.HomeEventsSpec
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
-import io.github.lexadiky.pdx.lib.navigation.Navigator
+import io.github.lexadiky.akore.lechuck.Navigator
+import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
@@ -45,7 +46,7 @@ internal class HomePageViewModel(
 
         }
         viewModelScope.launch {
-            navigator.currentAbsoluteRouteFlow.map {
+            navigator.currentRoute.map {
                 when (val data = getLatestViewedPokemonUseCase(FEATURED_POKEMON_SAMPLE_SIZE)) {
                     is Either.Left -> state.copy(error = UIError.generic())
                     is Either.Right -> state.copy(

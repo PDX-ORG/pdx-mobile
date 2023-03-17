@@ -12,14 +12,18 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import io.github.lexadiky.akore.alice.robo.DIApplication
+import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.feature.drawer.Drawer
 import io.github.lexadiky.pdx.feature.toolbar.Toolbar
 import io.github.lexadiky.pdx.feature.toolbar.rememberToolbarConnector
-import io.github.lexadiky.pdx.lib.navigation.NavigationFeature
-import io.github.lexadiky.pdx.lib.navigation.NavigationHost
-import io.github.lexadiky.pdx.lib.navigation.Navigator
+import io.github.lexadiky.akore.lechuck.Navigator
+import io.github.lexadiky.akore.lechuck.robo.LocalComposeNavigationContext
+import io.github.lexadiky.akore.lechuck.robo.NavigationFeature
+import io.github.lexadiky.akore.lechuck.robo.NavigationHost
+import io.github.lexadiky.pdx.lib.navigation.NavigationHostStyles
+import io.github.lexadiky.pdx.lib.navigation.NavigationModule
 import io.github.lexadiky.pdx.ui.uikit.theme.PdxTheme
 import io.github.lexadiky.pdx.ui.uikit.widget.scaffold.PdxScaffold
 import kotlinx.coroutines.delay
@@ -49,11 +53,15 @@ class MainActivity : ComponentActivity() {
                 onDrawerToggled = { if (drawerState.isOpen) drawerState.close() else drawerState.open() }
             )
 
-            NavigationFeature(routing(), "pdx://home") {
-                val navigator = di.inject<Navigator>()
+            NavigationFeature(
+                routing = routing(),
+                startDestination = "pdx://home",
+                style = NavigationHostStyles.default()
+            ) {
+                val navigator = LocalComposeNavigationContext.current.navigator
 
                 LaunchedEffect(Unit) {
-                    navigator.currentAbsoluteRouteFlow
+                    navigator.currentRoute
                         .distinctUntilChanged()
                         .collectLatest {
                             delay(DRAWER_CLOSE_DELAY.milliseconds)
@@ -61,16 +69,18 @@ class MainActivity : ComponentActivity() {
                         }
                 }
 
-                PdxScaffold(
-                    drawerState = drawerState,
-                    drawerContent = { Drawer() },
-                    topBar = { Toolbar(toolbarConnector) },
-                    content = { paddingValues ->
-                        Box(modifier = Modifier.padding(paddingValues)) {
-                            NavigationHost()
+                DIFeature(NavigationModule(LocalComposeNavigationContext.current)) {
+                    PdxScaffold(
+                        drawerState = drawerState,
+                        drawerContent = { Drawer() },
+                        topBar = { Toolbar(toolbarConnector) },
+                        content = { paddingValues ->
+                            Box(modifier = Modifier.padding(paddingValues)) {
+                                NavigationHost()
+                            }
                         }
-                    }
-                )
+                    )
+                }
             }
         }
     }

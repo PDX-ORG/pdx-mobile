@@ -5,7 +5,8 @@ import androidx.lifecycle.viewModelScope
 import io.github.lexadiky.pdx.domain.achievement.AchievementManager
 import io.github.lexadiky.pdx.domain.achievement.library.DebugAchievement
 import io.github.lexadiky.pdx.feature.debugpanel.util.KashpirovskyException
-import io.github.lexadiky.pdx.lib.navigation.Navigator
+import io.github.lexadiky.akore.lechuck.Navigator
+import io.github.lexadiky.akore.lechuck.utils.navigate
 import kotlinx.coroutines.launch
 
 class DebugPanelViewModel(

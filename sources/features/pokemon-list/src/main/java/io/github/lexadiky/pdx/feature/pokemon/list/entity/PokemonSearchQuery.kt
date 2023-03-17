@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.generic.list.entity.SearchQuery
-import io.github.lexadiky.pdx.lib.navigation.page.PageContext
+import io.github.lexadiky.akore.lechuck.robo.page.PageContext
 
 data class PokemonSearchQuery(
     val text: String = "",

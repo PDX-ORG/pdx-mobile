@@ -1,6 +1,6 @@
 package io.github.lexadiky.pdx.feature.drawer.entity
 
-import io.github.lexadiky.pdx.lib.navigation.NavigationRoute
+import io.github.lexadiky.akore.lechuck.NavigationRoute
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 
