@@ -19,60 +19,62 @@ import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.resources.from
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 
 internal class DrawerItemSource(private val navigator: Navigator) {
 
     suspend fun get(): Flow<List<DrawerItem>> {
-        return navigator.currentRoute.map { currentRoute ->
-            listOfNotNull(
-                DrawerItem.UserAccount,
-                createNavigationItem(
-                    icon = ImageResource.from(Icons.Default.Home),
-                    title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_home_title),
-                    route = "pdx://home",
-                    currentRoute = currentRoute.asString()
-                ),
-                DrawerItem.Divider,
-                createNavigationItem(
-                    icon = ImageResource.from(R.drawable.uikit_ic_pokeball),
-                    title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_pokemon_title),
-                    route = "pdx://pokemon",
-                    currentRoute = currentRoute.asString()
-                ),
-                createNavigationItem(
-                    icon = ImageResource.from(Icons.Default.Star),
-                    title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_type_chart_title),
-                    route = "pdx://type",
-                    currentRoute = currentRoute.asString()
-                ),
-                createNavigationItem(
-                    icon = ImageResource.from(Icons.Default.Favorite),
-                    title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_who_is),
-                    route = "pdx://game/whois",
-                    currentRoute = currentRoute.asString()
-                ),
-                DrawerItem.Divider,
-                newsItem(currentRoute),
-                createNavigationItem(
-                    icon = ImageResource.from(Icons.Default.Settings),
-                    title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_settings_title),
-                    route = "pdx://settings",
-                    currentRoute = currentRoute.asString()
-                ),
-                DrawerItem.Divider,
-                DrawerItem.Login,
-                *debugPanelItem(currentRoute)
-            )
-        }
+        return navigator.currentRoute.filterNotNull()
+            .map { currentRoute ->
+                listOfNotNull(
+                    DrawerItem.UserAccount,
+                    createNavigationItem(
+                        icon = ImageResource.from(Icons.Default.Home),
+                        title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_home_title),
+                        route = "pdx://home",
+                        currentRoute = currentRoute.asString()
+                    ),
+                    DrawerItem.Divider,
+                    createNavigationItem(
+                        icon = ImageResource.from(R.drawable.uikit_ic_pokeball),
+                        title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_pokemon_title),
+                        route = "pdx://pokemon",
+                        currentRoute = currentRoute.asString()
+                    ),
+                    createNavigationItem(
+                        icon = ImageResource.from(Icons.Default.Star),
+                        title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_type_chart_title),
+                        route = "pdx://type",
+                        currentRoute = currentRoute.asString()
+                    ),
+                    createNavigationItem(
+                        icon = ImageResource.from(Icons.Default.Favorite),
+                        title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_who_is),
+                        route = "pdx://game/whois",
+                        currentRoute = currentRoute.asString()
+                    ),
+                    DrawerItem.Divider,
+                    newsItem(currentRoute),
+                    createNavigationItem(
+                        icon = ImageResource.from(Icons.Default.Settings),
+                        title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_settings_title),
+                        route = "pdx://settings",
+                        currentRoute = currentRoute.asString()
+                    ),
+                    DrawerItem.Divider,
+                    DrawerItem.Login,
+                    *debugPanelItem(currentRoute)
+                )
+            }
     }
 
     private fun createNavigationItem(
         icon: ImageResource,
         title: StringResource,
         route: String,
-        currentRoute: String?
+        currentRoute: String?,
     ) = DrawerItem.Navigation(
         icon = icon,
         title = title,

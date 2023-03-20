@@ -62,7 +62,6 @@ class MainActivity : ComponentActivity() {
 
                 LaunchedEffect(Unit) {
                     navigator.currentRoute
-                        .distinctUntilChanged()
                         .collectLatest {
                             delay(DRAWER_CLOSE_DELAY.milliseconds)
                             drawerState.close() // TODO causes some weired animation lag
