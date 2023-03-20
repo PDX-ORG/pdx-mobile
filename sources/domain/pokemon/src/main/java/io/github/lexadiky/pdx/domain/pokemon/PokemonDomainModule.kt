@@ -25,6 +25,7 @@ import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.util.CacheSettings
 import io.lexadiky.pokeapi.util.PokeApiClientLogger
 import java.io.File
+import kotlin.time.Duration.Companion.seconds
 
 val PokemonDomainModule by module("domain-pokemon") {
     import(LocaleManagerModule)
@@ -53,6 +54,7 @@ val PokemonDomainModule by module("domain-pokemon") {
         single {
             PokeApiClient {
                 cache = CacheSettings.FileStorage(File(System.getProperty("java.io.tmpdir"), "pokeapi"))
+                timeout = 30.seconds
                 logger = object : PokeApiClientLogger {
                     override fun onNetworkReceive(method: String, statusCode: Int, url: String) =
                         BLogger.tag("PokeApi").info("RECEIVE: $method/$statusCode <= $url")

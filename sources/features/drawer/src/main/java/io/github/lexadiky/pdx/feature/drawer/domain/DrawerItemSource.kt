@@ -11,6 +11,8 @@ import io.github.lexadiky.akore.lechuck.NavigationRoute
 import io.github.lexadiky.pdx.feature.drawer.entity.DrawerItem
 import io.github.lexadiky.pdx.lib.ifEnabled
 import io.github.lexadiky.akore.lechuck.Navigator
+import io.github.lexadiky.pdx.feature.drawer.entity.AuthInDrawerFeatureToggle
+import io.github.lexadiky.pdx.lib.FeatureToggleManager
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
@@ -23,13 +25,17 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 
-internal class DrawerItemSource(private val navigator: Navigator) {
+internal class DrawerItemSource(
+    private val navigator: Navigator,
+    private val toggleManager: FeatureToggleManager
+) {
 
     suspend fun get(): Flow<List<DrawerItem>> {
         return navigator.currentRoute.filterNotNull()
             .map { currentRoute ->
                 listOfNotNull(
-                    DrawerItem.UserAccount,
+                    DrawerItem.UserAccount
+                        .takeIf { toggleManager.resolve(AuthInDrawerFeatureToggle) },
                     createNavigationItem(
                         icon = ImageResource.from(Icons.Default.Home),
                         title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_home_title),
@@ -63,8 +69,10 @@ internal class DrawerItemSource(private val navigator: Navigator) {
                         route = "pdx://settings",
                         currentRoute = currentRoute.asString()
                     ),
-                    DrawerItem.Divider,
-                    DrawerItem.Login,
+                    DrawerItem.Divider
+                        .takeIf { toggleManager.resolve(AuthInDrawerFeatureToggle) },
+                    DrawerItem.Login
+                        .takeIf { toggleManager.resolve(AuthInDrawerFeatureToggle) },
                     *debugPanelItem(currentRoute)
                 )
             }

@@ -64,7 +64,7 @@ class MainActivity : ComponentActivity() {
                     navigator.currentRoute
                         .collectLatest {
                             delay(DRAWER_CLOSE_DELAY.milliseconds)
-                            drawerState.close() // TODO causes some weired animation lag
+                            drawerState.close()
                         }
                 }
 
