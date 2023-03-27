@@ -37,7 +37,7 @@ android-test-espresso = "androidx.test.espresso:espresso-core:3.4.0"
 
 junit4-core = "junit:junit:4.13.2"
 
-coil-compose-base = "io.coil-kt:coil-compose-base:2.2.2"
+coil-compose-base = "io.coil-kt:coil-compose-base:2.3.0"
 
 arrow-core = "io.arrow-kt:arrow-core:1.1.5"
 
