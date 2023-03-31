@@ -35,8 +35,8 @@ private fun AchievementSettingsPageImpl(viewModel: AchievementSettingsViewModel 
     LazyColumn {
         items(viewModel.state.availableAchievements) { achievement ->
             ListItem(
-                headlineText = { Text(achievement.name.render()) },
-                supportingText = { Text(achievement.description.render()) },
+                headlineContent = { Text(achievement.name.render()) },
+                supportingContent = { Text(achievement.description.render()) },
                 trailingContent = {
                     Icon(
                         painter = achievement.icon?.render()
@@ -50,8 +50,8 @@ private fun AchievementSettingsPageImpl(viewModel: AchievementSettingsViewModel 
             item { Divider() }
             item {
                 ListItem(
-                    headlineText = { Text(stringResource(id = R.string.settings_achievements_option_forget_title)) },
-                    supportingText = { Text(stringResource(id = R.string.settings_achievements_option_forget_subtitle)) },
+                    headlineContent = { Text(stringResource(id = R.string.settings_achievements_option_forget_title)) },
+                    supportingContent = { Text(stringResource(id = R.string.settings_achievements_option_forget_subtitle)) },
                     trailingContent = { Icon(Icons.Default.Delete, null) },
                     modifier = Modifier.clickable { viewModel.dropAllAchievementData() }
                 )
@@ -59,8 +59,8 @@ private fun AchievementSettingsPageImpl(viewModel: AchievementSettingsViewModel 
         } else {
             item {
                 ListItem(
-                    headlineText = { Text(stringResource(id = R.string.settings_achievements_option_onboarding_title)) },
-                    supportingText = { Text(
+                    headlineContent = { Text(stringResource(id = R.string.settings_achievements_option_onboarding_title)) },
+                    supportingContent = { Text(
                         stringResource(id = R.string.settings_achievements_option_onboarding_subtitle)
                     ) },
                     trailingContent = { Icon(Icons.Default.Star, null) },

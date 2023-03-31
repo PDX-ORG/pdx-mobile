@@ -34,21 +34,21 @@ private fun DebugPanelPageImpl(viewModel: DebugPanelViewModel = di.inject()) {
     ) {
         item {
             ListItem(
-                headlineText = { Text(text = "Give Debug Achievement") },
+                headlineContent = { Text(text = "Give Debug Achievement") },
                 trailingContent = { Icon(Icons.Default.Star, null) },
                 modifier = Modifier.clickable { viewModel.giveAchievement() }
             )
         }
         item {
             ListItem(
-                headlineText = { Text(text = "Navigation Schema") },
+                headlineContent = { Text(text = "Navigation Schema") },
                 trailingContent = { Icon(Icons.Default.ArrowForward, null) },
                 modifier = Modifier.clickable { viewModel.openNavigationSchema() }
             )
         }
         item {
             ListItem(
-                headlineText = { Text(text = "Force crash") },
+                headlineContent = { Text(text = "Force crash") },
                 trailingContent = { Icon(Icons.Default.ExitToApp, null) },
                 modifier = Modifier.clickable { viewModel.throwKashpirovskyException() }
             )

@@ -32,7 +32,7 @@ private fun NavigationGraphPanelPageImpl() {
         // TODO remove run blocking
         items(runBlocking { navigator.routes() }) { route ->
             ListItem(
-                headlineText = { Text(route.asString()) }
+                headlineContent = { Text(route.asString()) }
             )
         }
     }

@@ -81,8 +81,8 @@ private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
         }
         item {
             ListItem(
-                headlineText = { Text(text = stringResource(id = SettingsStrings.settings_language_use_romaji_header)) },
-                supportingText = { Text(text = stringResource(id = SettingsStrings.settings_language_use_romaji_description)) },
+                headlineContent = { Text(text = stringResource(id = SettingsStrings.settings_language_use_romaji_header)) },
+                supportingContent = { Text(text = stringResource(id = SettingsStrings.settings_language_use_romaji_description)) },
                 trailingContent = {
                     Switch(
                         checked = viewModel.state.romajiEnabled,
@@ -97,8 +97,8 @@ private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
         }
         item {
             ListItem(
-                headlineText = { Text(text = stringResource(id = SettingsStrings.settings_achievements_header)) },
-                supportingText = { Text(text = stringResource(id = SettingsStrings.settings_achievements_description)) },
+                headlineContent = { Text(text = stringResource(id = SettingsStrings.settings_achievements_header)) },
+                supportingContent = { Text(text = stringResource(id = SettingsStrings.settings_achievements_description)) },
                 trailingContent = {
                     Icon(Icons.Default.Star, null)
                 },
@@ -107,8 +107,8 @@ private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
         }
         item {
             ListItem(
-                headlineText = { Text(text = stringResource(id = SettingsStrings.settings_github_header)) },
-                supportingText = { Text(text = stringResource(id = SettingsStrings.settings_github_description)) },
+                headlineContent = { Text(text = stringResource(id = SettingsStrings.settings_github_header)) },
+                supportingContent = { Text(text = stringResource(id = SettingsStrings.settings_github_description)) },
                 trailingContent = {
                     Icon(painterResource(R.drawable.uikit_ic_github), null)
                 },
@@ -117,8 +117,8 @@ private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
         }
         item {
             ListItem(
-                headlineText = { Text(text = stringResource(id = SettingsStrings.settings_cache_header)) },
-                supportingText = { Text(text = stringResource(id = SettingsStrings.settings_cache_description)) },
+                headlineContent = { Text(text = stringResource(id = SettingsStrings.settings_cache_header)) },
+                supportingContent = { Text(text = stringResource(id = SettingsStrings.settings_cache_description)) },
                 trailingContent = {
                     Icon(Icons.Default.Delete, null)
                 },

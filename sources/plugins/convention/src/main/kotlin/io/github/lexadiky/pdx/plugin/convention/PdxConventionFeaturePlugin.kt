@@ -42,7 +42,7 @@ class PdxConventionFeaturePlugin : Plugin<Project> {
             targetCompatibility = JavaVersion.VERSION_17
         }
         composeOptions {
-            kotlinCompilerExtensionVersion = "1.4.0"
+            kotlinCompilerExtensionVersion = "1.4.4"
         }
         buildFeatures {
             compose = true

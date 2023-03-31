@@ -4,10 +4,10 @@ plugins {
     id("com.android.application").version("8.0.0-beta01").apply(false)
     id("com.android.library").version("8.0.0-beta01").apply(false)
 
-    id("org.jetbrains.kotlin.android").version("1.8.0").apply(false)
-    id("org.jetbrains.kotlin.jvm").version("1.8.0").apply(false)
+    id("org.jetbrains.kotlin.android").version("1.8.10").apply(false)
+    id("org.jetbrains.kotlin.jvm").version("1.8.10").apply(false)
 
-    kotlin("plugin.serialization").version("1.8.0").apply(false)
+    kotlin("plugin.serialization").version("1.8.10").apply(false)
 
     id("io.github.lexadiky.pdx.plugin.eve").apply(false)
 

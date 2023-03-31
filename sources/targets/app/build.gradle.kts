@@ -34,14 +34,9 @@ dependencies {
     implementation(projects.features.debugPanel)
     implementation(projects.features.abilityDetails)
 
-    implementation(projects.features.widget.launcher)
-
     implementation(libs.akore.alice.robo)
 
     testImplementation(libs.junit4.core)
     androidTestImplementation(libs.android.test.junit4)
     androidTestImplementation(libs.android.test.espresso)
-    androidTestImplementation(libs.android.compose.ui.test)
-    debugImplementation(libs.android.compose.ui.tooling)
-    debugImplementation(libs.android.compose.ui.test.manifest)
 }

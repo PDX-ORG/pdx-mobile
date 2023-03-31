@@ -16,6 +16,8 @@ dependencies {
     api(libs.android.material)
     api(libs.android.lifecycle.runtime)
     api(libs.android.activity.compose)
+
+    implementation(platform(libs.android.compose.bom))
     api(libs.android.compose.ui.core)
     api(libs.android.compose.ui.graphics)
     api(libs.android.compose.ui.preview)

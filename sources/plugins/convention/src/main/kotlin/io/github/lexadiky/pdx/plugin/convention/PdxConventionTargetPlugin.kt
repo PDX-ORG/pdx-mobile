@@ -25,8 +25,8 @@ class PdxConventionTargetPlugin : Plugin<Project> {
         defaultConfig {
             minSdk = 24
             targetSdk = 33
-            versionCode = 2
-            versionName = "0.1.1"
+            versionCode = 3
+            versionName = "0.1.2"
 
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
             vectorDrawables {
@@ -51,7 +51,7 @@ class PdxConventionTargetPlugin : Plugin<Project> {
             compose = true
         }
         composeOptions {
-            kotlinCompilerExtensionVersion = "1.4.0"
+            kotlinCompilerExtensionVersion = "1.4.4"
         }
         packagingOptions {
             resources {
