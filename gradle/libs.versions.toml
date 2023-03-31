@@ -58,8 +58,8 @@ accompanist-pager = { module = "com.google.accompanist:accompanist-pager", versi
 
 akore-blogger-core = { module = "com.github.akore-org.blogger:core", version.ref = "akore" }
 akore-blogger-logcat = { module = "com.github.akore-org.blogger:logcat", version.ref = "akore" }
-akore-alice-core = { module = "com.github.akore-org.alice:core", version.ref = "akore" }
-akore-alice-robo = { module = "com.github.akore-org.alice:robo", version.ref = "akore" }
+akore-alice-core = { module = "com.github.akore-org.alice:core", version = "8f3a85a617" }
+akore-alice-robo = { module = "com.github.akore-org.alice:robo", version = "8f3a85a617" }
 akore-lechuck-core = { module = "com.github.akore-org.lechuck:core", version.ref = "akore" }
 akore-lechuck-robo = { module = "com.github.akore-org.lechuck:robo", version.ref = "akore" }
 

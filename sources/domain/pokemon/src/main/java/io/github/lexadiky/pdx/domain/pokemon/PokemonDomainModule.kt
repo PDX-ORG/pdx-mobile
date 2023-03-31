@@ -22,7 +22,7 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokem
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
 import io.github.lexadiky.pdx.lib.locale.LocaleManagerModule
 import io.lexadiky.pokeapi.PokeApiClient
-import io.lexadiky.pokeapi.util.CacheSettings
+import io.lexadiky.pokeapi.network.CacheSettings
 import io.lexadiky.pokeapi.util.PokeApiClientLogger
 import java.io.File
 import kotlin.time.Duration.Companion.seconds
