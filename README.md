@@ -4,16 +4,16 @@
 ![Stars](https://img.shields.io/github/stars/PDX-ORG/pdx-mobile-android)
 ![Lines](https://img.shields.io/tokei/lines/github/PDX-ORG/pdx-mobile-android)
 
-**The** open-source Pokèdex
+**The** open-source Pokèdex.
+
+Google Play closed beta available. 
+Please request access by sending email with your account to 'customers.pdxapp@gmail.com'
 
 ## Screenshots
 
 Home |                          Pokemon Details                           | Settings
 :---:|:------------------------------------------------------------------:|:-------------------------: 
 ![home_sample.png](assets%2Fhome_sample.png)  | ![pokemon_details_sample.png](assets%2Fpokemon_details_sample.png) | ![settings_sample.png](assets%2Fsettings_sample.png)
-
-
-
 
 ## Features
 
@@ -51,7 +51,9 @@ Home |                          Pokemon Details                           | Sett
 ### Module structure
 
 There are 4 types of modules:
-- library - small reusable peace of code, that does not contain any app specific or core domain logic
+
+- library - small reusable peace of code, that does not contain any app specific or core domain
+  logic
 - domain - domain module of application, we do not separate data/domain/e.t.c. layers KISS
 - feature - small self-contained screen or set of app screens
 - target - application root module
