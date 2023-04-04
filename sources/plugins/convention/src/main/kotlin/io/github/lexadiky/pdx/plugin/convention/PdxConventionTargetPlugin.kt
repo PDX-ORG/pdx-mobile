@@ -17,6 +17,8 @@ class PdxConventionTargetPlugin : Plugin<Project> {
 
         target.extensions.findByType(BaseAppModuleExtension::class.java)!!
             .apply { androidSettings() }
+
+        TestMixin.mix(target)
     }
 
     private fun BaseAppModuleExtension.androidSettings() {

@@ -7,5 +7,6 @@ class PdxConventionLibraryJvmPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
         target.plugins.apply("org.jetbrains.kotlin.jvm")
+        TestMixin.mix(target)
     }
 }

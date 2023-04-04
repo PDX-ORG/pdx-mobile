@@ -4,10 +4,7 @@
 ![Stars](https://img.shields.io/github/stars/PDX-ORG/pdx-mobile-android)
 ![Lines](https://img.shields.io/tokei/lines/github/PDX-ORG/pdx-mobile-android)
 
-**The** open-source Pokèdex.
-
-Google Play closed beta available. 
-Please request access by sending email with your account to 'customers.pdxapp@gmail.com'
+**The** open-source Pokèdex. [Google Play](https://play.google.com/store/apps/details?id=io.github.lexadiky.pdx) open beta available.
 
 ## Screenshots
 

@@ -14,6 +14,7 @@ class PdxConventionFeaturePlugin : Plugin<Project> {
 
         target.extensions.findByType(LibraryExtension::class.java)!!
             .apply { androidSettings() }
+        TestMixin.mix(target)
     }
 
     private fun LibraryExtension.androidSettings() {
