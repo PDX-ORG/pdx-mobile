@@ -86,7 +86,7 @@ private fun <T : GenericListItem> GenericListPageImpl(
         LazyColumn(
             state = columnState,
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
-            contentPadding = PaddingValues(MaterialTheme.grid.x2)
+            contentPadding = PaddingValues(horizontal = MaterialTheme.grid.x2)
         ) {
             item(SEARCH_QUERY_ITEM_ID) {
                 val shouldShowFilter =
