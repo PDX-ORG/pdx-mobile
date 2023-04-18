@@ -12,6 +12,8 @@ plugins {
     id("io.github.lexadiky.pdx.plugin.eve").apply(false)
 
     id("io.gitlab.arturbosch.detekt").version("1.22.0")
+
+    id("io.github.lexadiky.pdx.plugin.pm.catkeeper")
 }
 
 buildscript {
