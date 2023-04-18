@@ -13,7 +13,7 @@ dependencies {
     api(libs.akore.lechuck.robo)
 
     implementation(libs.akore.alice.robo)
-    implementation(projects.libs.analytics)
+    implementation(projects.libs.analytics.core)
     implementation(projects.libs.uikit)
     implementation(libs.accompanist.navigation.material)
 }

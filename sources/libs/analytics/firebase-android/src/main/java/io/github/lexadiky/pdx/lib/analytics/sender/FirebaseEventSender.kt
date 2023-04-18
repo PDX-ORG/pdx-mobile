@@ -5,7 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
 
-internal class FirebaseEventSender(context: Context) : EventSender {
+class FirebaseEventSender(context: Context) : EventSender {
 
     @SuppressLint("MissingPermission")
     private val firebaseAnalytics = FirebaseAnalytics.getInstance(context)

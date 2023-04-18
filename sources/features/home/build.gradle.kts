@@ -13,7 +13,7 @@ dependencies {
 
     implementation(projects.libs.uikit)
     implementation(projects.libs.navigation)
-    implementation(projects.libs.analytics)
+    implementation(projects.libs.analytics.core)
     implementation(projects.libs.errorHandler)
     implementation(projects.libs.dynamicBanner)
 

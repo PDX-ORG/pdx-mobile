@@ -15,7 +15,6 @@ dependencies {
     implementation(projects.libs.featureToggle)
     implementation(projects.libs.network)
     implementation(projects.libs.navigation)
-    implementation(projects.libs.analytics)
     implementation(libs.akore.blogger.core)
     implementation(projects.libs.target)
     implementation(projects.domain.achievement)
@@ -39,4 +38,6 @@ dependencies {
     testImplementation(libs.junit4.core)
     androidTestImplementation(libs.android.test.junit4)
     androidTestImplementation(libs.android.test.espresso)
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
 }

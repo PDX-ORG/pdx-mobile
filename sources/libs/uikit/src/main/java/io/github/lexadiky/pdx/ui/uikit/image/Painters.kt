@@ -12,12 +12,17 @@ import io.github.lexadiky.akore.blogger.error
 import io.github.lexadiky.akore.blogger.verbose
 
 @Composable
-fun rememberAsyncImagePainter(model: Any, builder: ImageRequest.Builder.() -> Unit = {}): Painter {
+internal fun rememberAsyncImagePainter(url: String, builder: ImageRequest.Builder.() -> Unit = {}): Painter {
+    if (url.isBlank()) {
+        BLogger.tag("rememberAsyncImagePainter")
+            .error("can't load image from empty url", IllegalArgumentException())
+    }
+
     val context = LocalContext.current
 
-    val request = remember(model, builder) {
+    val request = remember(url, builder) {
         ImageRequest.Builder(context)
-            .data(model)
+            .data(url)
             .apply(builder)
             .build()
     }
@@ -30,7 +35,7 @@ fun rememberAsyncImagePainter(model: Any, builder: ImageRequest.Builder.() -> Un
             when (state) {
                 is AsyncImagePainter.State.Error ->
                     BLogger.tag("rememberAsyncImagePainter")
-                        .error("can't load image: $model", state.result.throwable)
+                        .error("can't load image: $url", state.result.throwable)
                 else ->
                     BLogger.tag("rememberAsyncImagePainter")
                         .verbose("image loading status ${state::class}")

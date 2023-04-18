@@ -4,4 +4,4 @@ import android.content.Context
 import android.content.pm.ApplicationInfo
 
 val Context.isDebug: Boolean get() =
-    0 == (applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE)
+    0 != (applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE)

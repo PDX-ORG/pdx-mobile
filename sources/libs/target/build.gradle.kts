@@ -7,7 +7,8 @@ android {
 }
 
 dependencies {
-    implementation(projects.libs.analytics)
+    implementation(projects.libs.analytics.core)
+    implementation(projects.libs.analytics.firebaseAndroid)
     implementation(projects.libs.featureToggle)
     implementation(projects.libs.network)
     implementation(projects.libs.uikit)

@@ -1,8 +1,9 @@
-package io.github.lexadiky.pdx.lib.analytics
+package io.github.lexadiky.pdx.lib.target
 
 import android.content.Context
 import io.github.lexadiky.akore.alice.module
 import io.github.lexadiky.akore.alice.util.single
+import io.github.lexadiky.pdx.lib.analytics.AnalyticsManager
 import io.github.lexadiky.pdx.lib.analytics.sender.BloggerEventSender
 import io.github.lexadiky.pdx.lib.analytics.sender.FirebaseEventSender
 

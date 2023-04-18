@@ -14,12 +14,12 @@ kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.
 kotlin-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
 kotlin-reflection = "org.jetbrains.kotlin:kotlin-reflect:1.8.10"
 
-android-core = "androidx.core:core-ktx:1.9.0"
-android-lifecycle-runtime = "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
-android-activity-compose = "androidx.activity:activity-compose:1.6.1"
+android-core = "androidx.core:core-ktx:1.10.0"
+android-lifecycle-runtime = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
+android-activity-compose = "androidx.activity:activity-compose:1.7.0"
 android-material = "com.google.android.material:material:1.9.0-beta01"
 
-android-compose-bom = "androidx.compose:compose-bom:2023.03.00"
+android-compose-bom = "androidx.compose:compose-bom:2023.04.00"
 android-compose-ui-core = { module = "androidx.compose.ui:ui" }
 android-compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
 android-compose-ui-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
@@ -27,15 +27,15 @@ android-compose-ui-test = { module = "androidx.compose.ui:ui-test-junit4" }
 android-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 android-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 
-android-compose-material3 = "androidx.compose.material3:material3:1.1.0-beta01"
-android-compose-viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+android-compose-material3 = "androidx.compose.material3:material3:1.1.0-beta02"
+android-compose-viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
 
 android-navigation-compose = "androidx.navigation:navigation-compose:2.5.3"
 
-android-test-junit4 = "androidx.test.ext:junit:1.1.3"
-android-test-espresso = "androidx.test.espresso:espresso-core:3.4.0"
+android-test-junit4 = "androidx.test.ext:junit:1.1.5"
+android-test-espresso = "androidx.test.espresso:espresso-core:3.5.1"
 
-junit4-core = "junit:junit:4.13.2"
+junit4-core = "junit:junit:4.101"
 
 coil-compose-base = "io.coil-kt:coil-compose-base:2.3.0"
 
@@ -46,7 +46,7 @@ ktor-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 
-firebase-bom = "com.google.firebase:firebase-bom:31.1.0"
+firebase-bom = "com.google.firebase:firebase-bom:31.5.0"
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-remoteConfig = { module = "com.google.firebase:firebase-config" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
@@ -58,8 +58,8 @@ accompanist-pager = { module = "com.google.accompanist:accompanist-pager", versi
 
 akore-blogger-core = { module = "com.github.akore-org.blogger:core", version.ref = "akore" }
 akore-blogger-logcat = { module = "com.github.akore-org.blogger:logcat", version.ref = "akore" }
-akore-alice-core = { module = "com.github.akore-org.alice:core", version = "8f3a85a617" }
-akore-alice-robo = { module = "com.github.akore-org.alice:robo", version = "8f3a85a617" }
+akore-alice-core = { module = "com.github.akore-org.alice:core", version = "07dfa09ff5" }
+akore-alice-robo = { module = "com.github.akore-org.alice:robo", version = "07dfa09ff5" }
 akore-lechuck-core = { module = "com.github.akore-org.lechuck:core", version.ref = "akore" }
 akore-lechuck-robo = { module = "com.github.akore-org.lechuck:robo", version.ref = "akore" }
 

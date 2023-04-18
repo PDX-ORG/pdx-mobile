@@ -8,7 +8,6 @@ import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.logcat.logcat
 import io.github.lexadiky.pdx.domain.pokemon.PokemonDomainModule
 import io.github.lexadiky.pdx.lib.FeatureToggleModule
-import io.github.lexadiky.pdx.lib.analytics.AnalyticsModule
 import io.github.lexadiky.pdx.lib.firebase.FirebaseModule
 import io.github.lexadiky.pdx.lib.fs.RoboFsModule
 import io.github.lexadiky.pdx.lib.network.NetworkModule
