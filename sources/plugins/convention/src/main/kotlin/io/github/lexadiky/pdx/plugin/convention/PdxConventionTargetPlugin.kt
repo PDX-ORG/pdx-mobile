@@ -4,6 +4,7 @@ import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.dependencies
 
 @Suppress("MagicNumber")
 class PdxConventionTargetPlugin : Plugin<Project> {
@@ -17,6 +18,10 @@ class PdxConventionTargetPlugin : Plugin<Project> {
 
         target.extensions.findByType(BaseAppModuleExtension::class.java)!!
             .apply { androidSettings() }
+
+        target.dependencies {
+            add("coreLibraryDesugaring", "com.android.tools:desugar_jdk_libs:2.0.3")
+        }
 
         TestMixin.mix(target)
     }
