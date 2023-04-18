@@ -96,6 +96,7 @@ class GetPokemonSpeciesDetailsUseCase(
     private fun extractSprites(defaultVariety: Pokemon) = PokemonSprites(
         default = defaultVariety.sprites.frontDefault ?: "",
         all = extractAllSpritesWithReflection(defaultVariety.sprites)
+            .filter { it.isNotBlank() }
     )
 
     // TODO maybe should consider something more sane
