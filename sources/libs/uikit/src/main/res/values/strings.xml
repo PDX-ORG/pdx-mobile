@@ -6,4 +6,6 @@
 
     <string name="uikit_national_id_template">#%d</string>
 
+    <string name="uikit_generic_app_title">PDX</string>
+
 </resources>

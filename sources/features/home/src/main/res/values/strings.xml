@@ -10,4 +10,6 @@
     <string name="home_section_featured_pokemon_title">Featured pokemon</string>
     <string name="home_section_last_viewed_pokemon_title">Last viewed</string>
 
+    <string name="home_title_share_chip">Share App</string>
+
 </resources>

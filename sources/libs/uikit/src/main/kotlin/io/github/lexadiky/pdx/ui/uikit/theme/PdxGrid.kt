@@ -11,6 +11,7 @@ class PdxGrid {
     val x1 = x(1f)
     val x1p5 = x(1.5f)
     val x2 = x(2f)
+    val x3 = x(3f)
     val x4 = x(4f)
     val x5 = x(5f)
     val x8 = x(8f)

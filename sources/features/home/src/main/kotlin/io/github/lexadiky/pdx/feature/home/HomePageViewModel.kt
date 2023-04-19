@@ -16,6 +16,7 @@ import io.github.lexadiky.pdx.generated.analytics.HomeEventsSpec
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.akore.lechuck.utils.navigate
+import io.github.lexadiky.pdx.lib.navigation.ShareIntentSender
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
@@ -29,7 +30,8 @@ internal class HomePageViewModel(
     private val navigator: Navigator,
     private val getPokemonPreview: GetPokemonPreviewSampleUseCase,
     private val getLatestViewedPokemonUseCase: GetLatestViewedPokemonUseCase,
-    private val eventSpec: HomeEventsSpec
+    private val eventSpec: HomeEventsSpec,
+    private val shareIntentSender: ShareIntentSender
 ) : ViewModel() {
 
     var state by mutableStateOf(HomePageState())
@@ -98,6 +100,10 @@ internal class HomePageViewModel(
                 nationalDexId = UikitStringFormatter.nationalId(it.nationalDexNumber),
             )
         }
+    }
+
+    fun openApplicationShare() {
+        shareIntentSender.shareApplication()
     }
 
     companion object {

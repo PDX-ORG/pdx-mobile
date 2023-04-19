@@ -9,4 +9,5 @@ fun NavigationModule(context: ComposeNavigationContext) = eagerModule("library-n
     single { context.navigator }
     single { context.controller }
     single { context.decorationController }
+    single { ShareIntentSender(inject()) }
 }

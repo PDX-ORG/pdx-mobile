@@ -11,6 +11,6 @@ val HomePageModule by module("feature-home-page") {
     import(PokemonDomainModule)
     internal {
         single { HomeEventsSpec(inject()) }
-        singleViewModel { HomePageViewModel(inject(), inject(), inject(), inject()) }
+        singleViewModel { HomePageViewModel(inject(), inject(), inject(), inject(), inject()) }
     }
 }
