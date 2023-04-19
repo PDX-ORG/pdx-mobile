@@ -8,7 +8,7 @@ import io.github.lexadiky.pdx.lib.fs.statist.RoboStaticResourceProvider
 import io.github.lexadiky.pdx.lib.fs.statist.StaticResourceProvider
 
 val RoboFsModule by module("robo-fs") {
-    single<FsManager> { RoboFsManager(inject(), inject()) }
+    single<FsManager> { RoboFsManager(inject()) }
     single { inject<FsManager>().static() }
     single { RoboStaticResourceProvider(inject(), inject()) }
     single { BundleStaticResourceProvider(inject()) }

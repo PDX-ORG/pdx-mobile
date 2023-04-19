@@ -15,6 +15,7 @@ dependencies {
     implementation(projects.libs.uikit)
     implementation(projects.libs.errorHandler)
     implementation(projects.libs.navigation)
+    implementation(projects.libs.microdata)
     implementation(projects.libs.fs.core)
 
     implementation(libs.akore.blogger.core)

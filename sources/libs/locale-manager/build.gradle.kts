@@ -3,6 +3,6 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.libs.fs.core)
+    implementation(projects.libs.microdata)
     implementation(libs.akore.alice.core)
 }

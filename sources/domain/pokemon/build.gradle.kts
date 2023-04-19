@@ -6,6 +6,7 @@ plugins {
 dependencies {
     implementation(projects.libs.network)
     implementation(projects.libs.resources)
+    implementation(projects.libs.microdata)
     implementation(projects.libs.fs.core)
     implementation(projects.libs.localeManager)
     implementation(projects.libs.core)

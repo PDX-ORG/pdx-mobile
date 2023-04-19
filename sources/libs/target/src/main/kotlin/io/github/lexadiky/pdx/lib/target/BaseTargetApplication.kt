@@ -30,6 +30,7 @@ abstract class BaseTargetApplication : Application() {
                 FeatureToggleModule,
                 UikitModule,
                 RoboFsModule,
+                MicrodataModule
             )
             .inspector(DIContainerWatchdog.create(this))
             .build()

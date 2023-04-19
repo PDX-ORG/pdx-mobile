@@ -16,6 +16,8 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
 import io.github.lexadiky.pdx.feature.whois.entity.WhoIsPokemonVariant
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.fs.FsManager
+import io.github.lexadiky.pdx.lib.microdata.Microdata
+import io.github.lexadiky.pdx.lib.microdata.MicrodataManager
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
@@ -23,20 +25,28 @@ import io.github.lexadiky.pdx.lib.resources.string.from
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
+import kotlinx.coroutines.flow.collectLatest
 
 internal class WhoIsViewModel(
     private val getPokemonPreviewUseCase: GetPokemonPreviewUseCase,
     private val achievementManager: AchievementManager,
-    fsManager: FsManager
+    microdataManager: MicrodataManager,
 ) : ViewModel() {
 
-    private var streakFsState by fsManager.atomic("whois")
-        .int("streak", 0)
+    private val microdata = microdataManager.acquire(this, "who_is_game")
 
-    var state by mutableStateOf(WhoIsState(streak = streakFsState))
+    private var streakFsState = microdata.integer("streak")
+
+    var state by mutableStateOf(WhoIsState())
         private set
 
     init {
+        viewModelScope.launch {
+            streakFsState.observe().collectLatest { streak ->
+                state = state.copy(streak = streak ?: 0)
+            }
+        }
+
         viewModelScope.launch {
             state = when (val data = getPokemonPreviewUseCase()) {
                 is Either.Left -> state.copy(error = UIError.generic())
@@ -67,12 +77,20 @@ internal class WhoIsViewModel(
         }
     }
 
-    private fun recordNewStreak(newStreak: Int) {
-        streakFsState = newStreak
+    private suspend fun recordNewStreak(newStreak: Int) {
+        streakFsState.set(newStreak)
         when {
-            newStreak >= ACHIEVEMENT_THRESHOLD_CHAMPION -> achievementManager.give(WhoIsChampionAchievement())
-            newStreak >= ACHIEVEMENT_THRESHOLD_TRAINER -> achievementManager.give(WhoIsTrainerAchievement())
-            newStreak >= ACHIEVEMENT_THRESHOLD_BEGINNER -> achievementManager.give(WhoIsBeginnerAchievement())
+            newStreak >= ACHIEVEMENT_THRESHOLD_CHAMPION -> achievementManager.give(
+                WhoIsChampionAchievement()
+            )
+
+            newStreak >= ACHIEVEMENT_THRESHOLD_TRAINER -> achievementManager.give(
+                WhoIsTrainerAchievement()
+            )
+
+            newStreak >= ACHIEVEMENT_THRESHOLD_BEGINNER -> achievementManager.give(
+                WhoIsBeginnerAchievement()
+            )
         }
     }
 

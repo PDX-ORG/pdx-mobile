@@ -5,6 +5,7 @@ import io.github.lexadiky.akore.alice.util.single
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.info
 import io.github.lexadiky.pdx.domain.pokemon.repository.FavoritePokemonRepository
+import io.github.lexadiky.pdx.domain.pokemon.repository.ViewedPokemonRepository
 import io.github.lexadiky.pdx.domain.pokemon.usecase.FindPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetAbilityUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonAbilitiesUseCase
@@ -38,7 +39,7 @@ val PokemonDomainModule by module("domain-pokemon") {
     single { GetPokemonVarietyDetails(inject()) }
 
     single { MarkPokemonSpeciesAsViewedUseCase(inject()) }
-    single { GetLatestViewedPokemonUseCase(inject(), inject()) }
+    single { GetLatestViewedPokemonUseCase(inject()) }
     single { GetPokemonAbilitiesUseCase(inject(), inject()) }
     single { GetAbilityUseCase(inject(), inject()) }
 
@@ -65,5 +66,6 @@ val PokemonDomainModule by module("domain-pokemon") {
             }
         }
         single { FavoritePokemonRepository(inject()) }
+        single { ViewedPokemonRepository(inject(), inject()) }
     }
 }

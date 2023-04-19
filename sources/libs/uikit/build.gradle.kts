@@ -10,7 +10,7 @@ dependencies {
     implementation(projects.libs.buildConfig)
 
     api(projects.libs.resources)
-    api(projects.libs.fs.core)
+    api(projects.libs.microdata)
 
     api(libs.android.core)
     api(libs.android.material)

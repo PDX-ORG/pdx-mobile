@@ -32,7 +32,7 @@ internal class SettingsPageViewModel(
         )
     }
 
-    fun onThemeSelected(theme: CustomTheme) {
+    fun onThemeSelected(theme: CustomTheme) = viewModelScope.launch {
         themeManager.set(theme.id)
         state = state.copy(
             currentTheme = themeManager.current()
@@ -40,7 +40,7 @@ internal class SettingsPageViewModel(
     }
 
     fun dropCaches() = viewModelScope.launch {
-        fsManager.drop()
+        // TODO not implemented
     }
 
     fun openGithub() {
@@ -55,7 +55,7 @@ internal class SettingsPageViewModel(
         }
     }
 
-    fun switchRomaji(isEnabled: Boolean) {
+    fun switchRomaji(isEnabled: Boolean) = viewModelScope.launch {
         state = state.copy(romajiEnabled = isEnabled)
         if (isEnabled) {
             localeManager.addFlag(UseRomajiLocaleFlag)

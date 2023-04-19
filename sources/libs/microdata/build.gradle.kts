@@ -3,6 +3,5 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.akore.blogger.core)
-    api(libs.arrow.core)
+    implementation(libs.android.mops.datastore)
 }
