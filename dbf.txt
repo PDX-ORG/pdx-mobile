@@ -1,0 +1,5 @@
+{
+    pdx://toolbar/actions={
+        pdx://pokemon?types={types}=androidx.compose.runtime.internal.ComposableLambdaImpl@d978511,
+        pdx://pokemon/{id}=androidx.compose.runtime.internal.ComposableLambdaImpl@d978511},
+    pdx://toolbar/title={pdx://pokemon?types={types}=androidx.compose.runtime.internal.ComposableLambdaImpl@b6b9cda, pdx://pokemon/{id}=androidx.compose.runtime.internal.ComposableLambdaImpl@e0c048e}}

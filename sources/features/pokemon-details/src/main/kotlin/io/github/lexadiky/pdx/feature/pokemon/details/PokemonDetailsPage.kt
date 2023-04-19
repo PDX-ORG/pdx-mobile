@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalPagerApi::class)
-
 package io.github.lexadiky.pdx.feature.pokemon.details
 
 import android.annotation.SuppressLint
@@ -187,7 +185,7 @@ private fun HeaderImagePager(
     openSprites: () -> Unit,
     toggleFavorite: () -> Unit
 ) {
-    Crossfade(targetState = state.isLoaded) { isLoaded ->
+    Crossfade(targetState = state.isLoaded, label = "header-image-pager-cf") { isLoaded ->
         if (isLoaded) {
             val pagerState = rememberPagerState()
             LaunchedEffect(pagerState.currentPage) {
@@ -257,8 +255,7 @@ private fun BoxScope.SpriteButtonIcon(
     ) {
         Box(contentAlignment = Alignment.Center) {
             FullScreenDialogAnchor(
-                tag = "pokemon_image",
-                FullScreenDialogStyles.circularExpansion()
+                style = FullScreenDialogStyles.circularExpansion()
             )
             Icon(
                 painter = painterResource(id = R.drawable.uikit_ic_camera),

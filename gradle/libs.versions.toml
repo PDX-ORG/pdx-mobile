@@ -63,8 +63,6 @@ akore-blogger-core = { module = "com.github.akore-org.blogger:core", version.ref
 akore-blogger-logcat = { module = "com.github.akore-org.blogger:logcat", version.ref = "akore" }
 akore-alice-core = { module = "com.github.akore-org.alice:core", version = "07dfa09ff5" }
 akore-alice-robo = { module = "com.github.akore-org.alice:robo", version = "07dfa09ff5" }
-akore-lechuck-core = { module = "com.github.akore-org.lechuck:core", version.ref = "akore" }
-akore-lechuck-robo = { module = "com.github.akore-org.lechuck:robo", version.ref = "akore" }
 
 pokeapi = "com.github.lexa-diky:pokeapi-kotlin:-SNAPSHOT"
 

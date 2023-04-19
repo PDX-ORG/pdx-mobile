@@ -27,7 +27,7 @@ includeRecursive("sources")
 
 fun includeRecursive(path: String) {
     val dir = file(path)
-    dir.walkTopDown().maxDepth(4).forEach { subDir ->
+    dir.walkTopDown().maxDepth(5).forEach { subDir ->
         if (isModule(subDir)) {
             val moduleName = createModuleName(subDir, dir)
 
@@ -40,7 +40,7 @@ fun includeRecursive(path: String) {
 }
 
 fun isModule(dir: File): Boolean {
-    return File(dir, "build.gradle.kts").exists() || File(dir, "build.gradle.kts.kts").exists()
+    return File(dir, "build.gradle").exists() || File(dir, "build.gradle.kts").exists()
 }
 
 fun createModuleName(subDir: File, dir: File): String {
