@@ -11,6 +11,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
 
+@Suppress("PrivatePropertyName")
+private val STATIC_PREFERENCES_DATASTORE_CACHE = HashMap<String, DataStore<Preferences>>()
+
 class AndroidMicrodataManager(private val context: Context) : MicrodataManager {
 
     private val scope = CoroutineScope(
@@ -19,8 +22,10 @@ class AndroidMicrodataManager(private val context: Context) : MicrodataManager {
     private val dummyDs: DataStore<Preferences>? = null
 
     override fun acquire(owner: Any, database: String): Microdata {
-        val datastore = preferencesDataStore(database)
-            .getValue(context, ::dummyDs)
+        val datastore = STATIC_PREFERENCES_DATASTORE_CACHE.getOrPut(database) {
+            preferencesDataStore(database)
+                .getValue(context, ::dummyDs)
+        }
         return Microdata(datastore, scope)
     }
 }

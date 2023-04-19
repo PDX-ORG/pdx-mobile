@@ -3,9 +3,7 @@ package io.github.lexadiky.pdx.feature.pokemon.details
 import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.Image
@@ -17,17 +15,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -46,16 +40,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
@@ -85,6 +75,8 @@ import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.util.scroll.LocalPrimeScrollState
 import io.github.lexadiky.pdx.ui.uikit.util.toColorScheme
 import io.github.lexadiky.pdx.ui.uikit.widget.PagerDotIndicator
+import io.github.lexadiky.pdx.ui.uikit.widget.ToolbarContent
+import kotlinx.coroutines.Job
 
 private const val HEADER_IMAGE_ID = "__header_image__"
 
@@ -105,8 +97,7 @@ private fun PokemonDetailsPageImpl(
 
     AnimatedVisibility(visible = color != null, enter = fadeIn()) {
         MaterialTheme(colorScheme = createColorScheme(color)) {
-            TitleDecoration(viewModel.state.name)
-            TypeStripDecoration(viewModel.state.types, viewModel::openTypeDetails)
+            TitleDecoration(viewModel.state.name, viewModel.state.types, viewModel::openTypeDetails)
             ErrorDialog(viewModel.state.error) {
                 viewModel.hideError()
             }
@@ -119,7 +110,12 @@ private fun PokemonDetailsPageImpl(
                     .animateContentSize()
             ) {
                 item(HEADER_IMAGE_ID) {
-                    HeaderImagePager(viewModel.state, viewModel::selectVariety, viewModel::openSprites, viewModel::toggleFavorite)
+                    HeaderImagePager(
+                        viewModel.state,
+                        viewModel::selectVariety,
+                        viewModel::openSprites,
+                        viewModel::toggleFavorite
+                    )
                 }
                 item {
                     DataCard(viewModel)
@@ -156,9 +152,12 @@ private fun DataCard(viewModel: PokemonDetailsViewModel) {
             ) {
                 viewModel.state.availableDetailsSections.forEach { tab ->
                     val indexOfCurrentTab = viewModel.state.availableDetailsSections.indexOf(tab)
-                    Tab(selected = selectedTab == indexOfCurrentTab, onClick = { selectedTab = indexOfCurrentTab }, text = {
-                        Text(text = tab.title.render())
-                    })
+                    Tab(
+                        selected = selectedTab == indexOfCurrentTab,
+                        onClick = { selectedTab = indexOfCurrentTab },
+                        text = {
+                            Text(text = tab.title.render())
+                        })
                 }
             }
             when (currentTab) {
@@ -166,10 +165,12 @@ private fun DataCard(viewModel: PokemonDetailsViewModel) {
                     viewModel.state.pokemonSpeciesDetails,
                     viewModel.state.selectedVariety
                 )
+
                 PokemonDetailsSection.Info -> InfoSubPage(
                     viewModel.state.pokemonSpeciesDetails,
                     viewModel.state.selectedVariety
                 )
+
                 PokemonDetailsSection.Evolution -> Unit
                 PokemonDetailsSection.Battle -> Unit
                 null -> Unit
@@ -198,8 +199,9 @@ private fun HeaderImagePager(
                         state.availableVarieties,
                         state = pagerState
                     ) { page ->
-                        val image = state.pokemonSpeciesDetails?.varieties?.get(page)?.sprites?.default
-                            ?.let { ImageResource.from(it) }
+                        val image =
+                            state.pokemonSpeciesDetails?.varieties?.get(page)?.sprites?.default
+                                ?.let { ImageResource.from(it) }
                         HeaderImage(image)
                     }
                     Box(
@@ -338,7 +340,10 @@ private fun BoxScope.PhysicalDimensions(
 }
 
 @Composable
-private fun rememberPagerHeaderLabelsAlpha(pagerState: PagerState, state: PokemonDetailsState): Float {
+private fun rememberPagerHeaderLabelsAlpha(
+    pagerState: PagerState,
+    state: PokemonDetailsState
+): Float {
     val isSpritesIconVisible = !pagerState.isScrollInProgress || state.availableVarieties == 1
     val spriteIconAlpha by animateFloatAsState(
         if (isSpritesIconVisible) 1f else 0f,
@@ -348,35 +353,38 @@ private fun rememberPagerHeaderLabelsAlpha(pagerState: PagerState, state: Pokemo
 }
 
 @Composable
-private fun TitleDecoration(name: StringResource?) {
+private fun TitleDecoration(
+    name: StringResource?,
+    types: List<PokemonType>,
+    onClick: (PokemonType) -> Job
+) {
     if (name != null) {
         Decoration("pdx://toolbar/title") {
-            Text(
-                text = name.render(),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-        }
-    }
-}
-
-@Composable
-private fun TypeStripDecoration(types: List<PokemonType>, onClick: (PokemonType) -> Unit) {
-    Decoration("pdx://toolbar/actions") {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x05),
-            modifier = Modifier.padding(end = MaterialTheme.grid.x2)
-        ) {
-            types.forEach { type ->
-                Image(
-                    painter = type.assets.icon.render(),
-                    contentDescription = type.assets.title.render(),
-                    modifier = Modifier
-                        .size(MaterialTheme.grid.x4)
-                        .shadow(MaterialTheme.grid.x1, MaterialTheme.shapes.circular)
-                        .clickable { onClick(type) }
-                )
-            }
+            ToolbarContent(
+                start = {
+                    Text(
+                        text = name.render(),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                },
+                end = {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x05),
+                        modifier = Modifier.padding(end = MaterialTheme.grid.x2)
+                    ) {
+                        types.forEach { type ->
+                            Image(
+                                painter = type.assets.icon.render(),
+                                contentDescription = type.assets.title.render(),
+                                modifier = Modifier
+                                    .size(MaterialTheme.grid.x4)
+                                    .shadow(MaterialTheme.grid.x1, MaterialTheme.shapes.circular)
+                                    .clickable { onClick(type) }
+                            )
+                        }
+                    }
+                })
         }
     }
 }

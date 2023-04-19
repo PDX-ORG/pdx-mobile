@@ -12,8 +12,10 @@ import androidx.compose.animation.with
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -42,6 +44,7 @@ import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.animation
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
+import io.github.lexadiky.pdx.ui.uikit.widget.ToolbarContent
 
 @Composable
 fun WhoIsPage() {
@@ -53,19 +56,29 @@ fun WhoIsPage() {
 @Composable
 private fun WhoIsPageImpl(viewModel: WhoIsViewModel) {
     Decoration("pdx://toolbar/title") {
-        Text(text = stringResource(id = R.string.whois_title))
+        ToolbarContent(
+            start = {
+                Text(text = stringResource(id = R.string.whois_title))
+            },
+            end = {
+                TextButton(onClick = { /*TODO*/ }) {
+                    Text(
+                        text = stringResource(
+                            id = R.string.whois_streak_label,
+                            viewModel.state.streak
+                        )
+                    )
+                }
+            })
     }
-    Decoration("pdx://toolbar/actions") {
-        TextButton(onClick = { /*TODO*/ }) {
-            Text(text = stringResource(id = R.string.whois_streak_label, viewModel.state.streak))
-        }
-    }
+
     ErrorDialog(error = viewModel.state.error) {
         viewModel.hideError()
     }
 
     Column {
         AnimatedContent(
+            label = "who-is-content",
             targetState = viewModel.state.whoisTarget,
             transitionSpec = {
                 fadeIn() with fadeOut()

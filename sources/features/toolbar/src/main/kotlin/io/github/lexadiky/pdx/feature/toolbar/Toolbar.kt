@@ -47,11 +47,6 @@ internal fun ToolbarImpl(viewModel: ToolbarViewModel) {
                 onClick = { scope.launch { viewModel.openDrawer() } },
                 content = { Icon(Icons.Default.Menu, null) }
             )
-        },
-        actions = {
-            DecorationHost("pdx://toolbar/actions") {
-                // nothing
-            }
         }
     )
 }
