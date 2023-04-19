@@ -125,6 +125,6 @@ class GetPokemonSpeciesDetailsUseCase(
 
     companion object {
 
-        private const val POKEMON_DIMENSION_MODIFIER = 100
+        private const val POKEMON_DIMENSION_MODIFIER = 10
     }
 }
