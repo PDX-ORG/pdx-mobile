@@ -12,11 +12,12 @@ import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.ui.uikit.theme.custom.CustomTheme
 import io.github.lexadiky.pdx.ui.uikit.theme.custom.ThemeManager
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 internal class SettingsPageViewModel(
     private val themeManager: ThemeManager,
-    private val fsManager: FsManager,
     private val navigator: Navigator,
     private val localeManager: LocaleManager
 ) : ViewModel() {
@@ -27,16 +28,18 @@ internal class SettingsPageViewModel(
     init {
         state = state.copy(
             availableThemes = themeManager.list(),
-            currentTheme = themeManager.current(),
             romajiEnabled = localeManager.settings.has(UseRomajiLocaleFlag)
         )
+
+        viewModelScope.launch {
+            themeManager.observe().collectLatest { theme ->
+                state = state.copy(currentTheme = theme)
+            }
+        }
     }
 
     fun onThemeSelected(theme: CustomTheme) = viewModelScope.launch {
         themeManager.set(theme.id)
-        state = state.copy(
-            currentTheme = themeManager.current()
-        )
     }
 
     fun dropCaches() = viewModelScope.launch {

@@ -49,7 +49,7 @@ class DecorationController(
 
         var contentHolder by remember { mutableStateOf(defaultContent) }
         LaunchedEffect(content, Unit) {
-            delay(100)
+            delay(50)
             contentHolder = content
         }
 

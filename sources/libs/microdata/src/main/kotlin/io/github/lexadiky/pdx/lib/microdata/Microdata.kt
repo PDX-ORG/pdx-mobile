@@ -12,9 +12,12 @@ import java.util.concurrent.ThreadFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class Microdata(
     private val ds: DataStore<Preferences>,
@@ -47,8 +50,12 @@ class EditableMicrodata<T : Any> internal constructor(
 
 
     init {
+        runBlocking {
+            currentValue = ds.data.first()[key]
+        }
+
         currentValueJob = scope.launch {
-            ds.data.mapNotNull { it[key] }.collectLatest {
+            ds.data.mapNotNull { it[key] }.collect {
                 currentValue = it
             }
         }

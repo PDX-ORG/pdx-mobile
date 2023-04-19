@@ -15,6 +15,7 @@ import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.ui.uikit.image.ProvideLocalImageLoader
 import io.github.lexadiky.pdx.ui.uikit.theme.custom.ThemeManager
 import io.github.lexadiky.pdx.ui.uikit.theme.custom.ThemeModule
+import io.github.lexadiky.pdx.ui.uikit.theme.custom.current
 import io.github.lexadiky.pdx.ui.uikit.util.scroll.ProvideLocalPrimeScrollState
 
 @Composable

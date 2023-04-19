@@ -1,13 +1,18 @@
 package io.github.lexadiky.pdx.ui.uikit.theme.custom
 
 import android.content.Context
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.error
 import io.github.lexadiky.akore.blogger.info
 import io.github.lexadiky.akore.blogger.verbose
 import io.github.lexadiky.pdx.lib.microdata.MicrodataManager
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class ThemeManager(
     private val context: Context,
@@ -49,7 +54,17 @@ class ThemeManager(
         return true
     }
 
-    fun current(): CustomTheme {
-        return currentTheme.value
+    fun default(): CustomTheme {
+        return factory.default(isDark)
     }
+
+    fun observe(): Flow<CustomTheme> = selectedThemeId.observe()
+        .map { id -> list().firstOrNull { it.id == id && it.isDark == isDark } }
+        .map { it ?: default() }
+}
+
+@Composable
+fun ThemeManager.current(): CustomTheme {
+    return observe().collectAsState(initial = remember { default() })
+        .value
 }
