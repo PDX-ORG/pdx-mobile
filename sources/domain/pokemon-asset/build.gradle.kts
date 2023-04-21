@@ -9,8 +9,8 @@ android {
 
 dependencies {
     implementation(projects.domain.pokemon)
-    implementation(projects.libs.network)
     implementation(projects.libs.resources)
-    implementation(libs.akore.blogger.core)
+    implementation(projects.libs.navigation)
+
     implementation(libs.arrow.core)
 }

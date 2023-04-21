@@ -54,6 +54,7 @@ fun <T : GenericListItem> GenericListPage(
 private const val SEARCH_QUERY_ITEM_ID = "search_query_item"
 
 @Composable
+@Suppress("LongMethod") // TODO fix
 private fun <T : GenericListItem> GenericListPageImpl(
     filterBlock: FilterBlock<T>?,
     viewModel: GenericListViewModel<T>,

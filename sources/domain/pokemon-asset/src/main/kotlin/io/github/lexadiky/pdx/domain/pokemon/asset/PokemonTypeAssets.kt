@@ -7,9 +7,7 @@ import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from
-import kotlinx.serialization.Serializable
 
-@Serializable
 @Suppress("MagicNumber")
 enum class PokemonTypeAssets(
     nameResource: Int,

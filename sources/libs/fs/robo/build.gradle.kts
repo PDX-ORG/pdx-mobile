@@ -10,11 +10,11 @@ dependencies {
     api(projects.libs.fs.core)
 
     implementation(projects.libs.network)
-
     implementation(projects.libs.firebase)
 
     implementation(libs.akore.blogger.core)
     implementation(libs.akore.alice.robo)
     implementation(libs.arrow.core)
     implementation(libs.kotlin.coroutines)
+    implementation(libs.kotlin.serialization.json)
 }

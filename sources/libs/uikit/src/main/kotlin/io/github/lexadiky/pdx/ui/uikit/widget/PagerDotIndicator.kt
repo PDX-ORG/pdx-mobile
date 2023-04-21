@@ -14,13 +14,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import io.github.lexadiky.pdx.ui.uikit.theme.animation
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
-@OptIn(ExperimentalPagerApi::class)
+private const val EXPANDED_SCALE = 1.5f
+private const val DEFAULT_SCALE = 1f
+
 @Composable
 fun PagerDotIndicator(pagerState: PagerState) {
     if (pagerState.pageCount < 2) {
@@ -41,10 +42,14 @@ fun PagerDotIndicator(pagerState: PagerState) {
             }
         }
         val coverDotPosition by animateDpAsState(
+            label = "cover-dot-position",
             targetValue = MaterialTheme.grid.x1 * pagerState.currentPage * 2,
             animationSpec = MaterialTheme.animation.overShootFast()
         )
-        val coverDotScale by animateFloatAsState(targetValue = if (pagerState.isScrollInProgress) 1.5f else 1f)
+        val coverDotScale by animateFloatAsState(
+            label = "cover-dot-scale",
+            targetValue = if (pagerState.isScrollInProgress) EXPANDED_SCALE else DEFAULT_SCALE
+        )
         Box(
             modifier = Modifier
                 .offset(x = coverDotPosition)

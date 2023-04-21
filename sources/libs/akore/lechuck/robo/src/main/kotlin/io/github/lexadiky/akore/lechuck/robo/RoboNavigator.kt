@@ -74,7 +74,6 @@ class RoboNavigator internal constructor(
 
     companion object {
 
-        private const val QUERY_SEPARATOR = "?"
         private const val ROUTE_INTENT_KEY = "android-support-nav:controller:deepLinkIntent"
     }
 }

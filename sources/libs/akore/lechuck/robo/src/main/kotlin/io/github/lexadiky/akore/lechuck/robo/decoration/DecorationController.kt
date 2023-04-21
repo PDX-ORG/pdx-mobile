@@ -49,7 +49,7 @@ class DecorationController(
 
         var contentHolder by remember { mutableStateOf(defaultContent) }
         LaunchedEffect(content, Unit) {
-            delay(50)
+            delay(DECORATION_CHANGE_DEBOUNCE_MILLIS)
             contentHolder = content
         }
 
@@ -60,7 +60,7 @@ class DecorationController(
 
     companion object {
 
-        private const val DEFAULT_ROUTE = "__default__"
+        private const val DECORATION_CHANGE_DEBOUNCE_MILLIS = 50L
     }
 }
 

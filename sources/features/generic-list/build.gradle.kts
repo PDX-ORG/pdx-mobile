@@ -7,15 +7,13 @@ android {
 }
 
 dependencies {
-    implementation(libs.akore.alice.robo)
     implementation(projects.libs.uikit)
     implementation(projects.libs.network)
     implementation(projects.libs.errorHandler)
     implementation(projects.libs.navigation)
     implementation(projects.libs.dynamicBanner)
-    implementation(libs.akore.blogger.core)
-    implementation(libs.arrow.core)
-
     implementation(projects.domain.pokemon)
     implementation(projects.domain.achievement)
+
+    implementation(libs.arrow.core)
 }

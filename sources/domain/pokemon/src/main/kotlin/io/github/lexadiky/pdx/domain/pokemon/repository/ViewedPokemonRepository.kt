@@ -24,9 +24,9 @@ internal class ViewedPokemonRepository(
         Either.catch {
             val filteredVisited = visited.get().orEmpty().filter { pokemon.name !in it }.toSet()
             visited.set(
-                (filteredVisited + "${System.currentTimeMillis()}:${pokemon.name}")
+                (filteredVisited + "${System.currentTimeMillis()}$VALUE_SEPARATOR${pokemon.name}")
                     .sortedDescending()
-                    .take(10)
+                    .take(SAMPLE_SIZE)
                     .toSet()
             )
         }.mapLeft { error ->
@@ -40,7 +40,7 @@ internal class ViewedPokemonRepository(
         val latestVisitedSample = Either.catch {
             visited.get().orEmpty().sortedDescending()
                 .take(size)
-                .map { it.split(":").last() }
+                .map { it.split(VALUE_SEPARATOR).last() }
         }.bind()
 
         latestVisitedSample.map {
@@ -55,4 +55,10 @@ internal class ViewedPokemonRepository(
     }
 
     object Error
+
+    companion object {
+
+        private const val VALUE_SEPARATOR = ":"
+        private const val SAMPLE_SIZE = 10
+    }
 }

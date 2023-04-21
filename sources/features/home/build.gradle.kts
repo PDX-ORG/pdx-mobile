@@ -10,7 +10,6 @@ android {
 dependencies {
     implementation(projects.domain.pokemonAsset)
     implementation(projects.domain.pokemon)
-
     implementation(projects.libs.uikit)
     implementation(projects.libs.navigation)
     implementation(projects.libs.analytics.core)

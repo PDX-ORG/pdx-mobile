@@ -71,10 +71,9 @@ private fun StatsSubPageImpl(viewModel: StatsSubPageViewModel) {
             .fillMaxWidth()
     ) {
         val anchorColor = viewModel.state.types.firstOrNull()?.assets?.color?.render() ?: Color.Transparent
-        viewModel.state.baseStats.forEach { (type, value) ->
+        viewModel.state.baseStats.forEach { description ->
             StatBar(
-                stat = type,
-                value = value,
+                description = description,
                 color = anchorColor,
                 modifier = Modifier.padding(horizontal = MaterialTheme.grid.x2)
             )
@@ -174,8 +173,7 @@ private fun AbilityItem(title: String, subtitle: String, onClick: () -> Unit) {
 
 @Composable
 private fun StatBar(
-    stat: PokemonStat,
-    value: Int,
+    description: StatsSubPageState.StatDescription,
     color: Color,
     modifier: Modifier = Modifier
 ) {
@@ -185,7 +183,7 @@ private fun StatBar(
         modifier = modifier
     ) {
         Text(
-            text = stat.assets.shortTitle.render(),
+            text = description.stat.assets.shortTitle.render(),
             fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .fillMaxWidth(0.2f)
@@ -198,8 +196,8 @@ private fun StatBar(
                 .wrapContentHeight()
         ) {
             val anim = remember { Animatable(0.1f) }
-            LaunchedEffect(value) {
-                anim.animateTo(value / 225f, MaterialTheme.animation.linearSlow())
+            LaunchedEffect(description.value) {
+                anim.animateTo(description.normalValue, MaterialTheme.animation.linearSlow())
             }
 
             Box(
@@ -210,7 +208,7 @@ private fun StatBar(
                     .wrapContentHeight()
             ) {
                 Text(
-                    text = value.toString(),
+                    text = description.value.toString(),
                     maxLines = 1,
                     color = MaterialTheme.colorScheme.onPrimary,
                     fontWeight = FontWeight.Light,

@@ -11,7 +11,7 @@ import kotlin.random.Random
 
 class GetPokemonPreviewSampleUseCase(private val getPokemonPreview: GetPokemonPreviewUseCase) {
 
-    private val randomGenerator = Random(Clock.System.now().epochSeconds / (60 * 60 * 24))
+    private val randomGenerator = Random(Clock.System.now().epochSeconds / SECONDS_IN_DAY)
 
     suspend operator fun invoke(size: Int): Either<Error, List<PokemonPreview>> = withContext(Dispatchers.IO) {
         getPokemonPreview.invoke()
@@ -27,4 +27,9 @@ class GetPokemonPreviewSampleUseCase(private val getPokemonPreview: GetPokemonPr
     }
 
     object Error
+
+    companion object {
+
+        private const val SECONDS_IN_DAY = 60 * 60 * 24
+    }
 }

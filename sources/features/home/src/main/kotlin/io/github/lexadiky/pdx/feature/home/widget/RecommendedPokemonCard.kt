@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredSizeIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -30,7 +31,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonItem
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
@@ -95,40 +98,56 @@ internal fun RecommendedPokemonCard(
             }
         }
         if (isExpanded) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
-                modifier = Modifier.padding(MaterialTheme.grid.x2)
-                    .fillMaxWidth()
+            PokemonList(items, openPokemonDetails)
+        }
+    }
+}
+
+private const val MAX_ITEM_SIZE_SCREEN_WIDTH_MULTIPLIER = 0.25f
+
+@Composable
+private fun PokemonList(
+    items: List<SuggestedPokemonItem>,
+    openPokemonDetails: (SuggestedPokemonItem) -> Unit,
+) {
+    val configuration = LocalConfiguration.current
+    val maxItemSize = configuration.screenWidthDp * MAX_ITEM_SIZE_SCREEN_WIDTH_MULTIPLIER
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
+        modifier = Modifier
+            .padding(MaterialTheme.grid.x2)
+            .fillMaxWidth()
+    ) {
+        items.forEach { item ->
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .weight(1f)
             ) {
-                items.forEach { item ->
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
+                Box(
+                    modifier = Modifier
+                        .requiredSizeIn(maxWidth = maxItemSize.dp, maxHeight = maxItemSize.dp)
+                ) {
+                    Image(
+                        painter = item.image.render(
+                            transformations = listOf(ImageTransformation.CropTransparent)
+                        ),
+                        contentDescription = null,
                         modifier = Modifier
-                            .weight(1f)
-                    ) {
-                        Box {
-                            Image(
-                                painter = item.image.render(
-                                    transformations = listOf(ImageTransformation.CropTransparent)
-                                ),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .aspectRatio(1f)
-                            )
-                            Box(
-                                modifier = Modifier
-                                    .scale(1.2f)
-                                    .matchParentSize()
-                                    .clip(MaterialTheme.shapes.circular)
-                                    .clickable { openPokemonDetails(item) }
-                            )
-                        }
-                        Text(
-                            text = item.name.render(),
-                            fontWeight = FontWeight.Medium
-                        )
-                    }
+                            .aspectRatio(1f)
+                    )
+                    Box(
+                        modifier = Modifier
+                            .scale(1.2f)
+                            .matchParentSize()
+                            .clip(MaterialTheme.shapes.circular)
+                            .clickable { openPokemonDetails(item) }
+                    )
                 }
+                Text(
+                    text = item.name.render(),
+                    fontWeight = FontWeight.Medium
+                )
             }
         }
     }

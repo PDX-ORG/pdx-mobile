@@ -27,7 +27,7 @@ class StatsSubPageViewModel(
     init {
         state = state.copy(
             baseStats = selectedVariety.stats.toSortedMap(Comparator.comparing { it.ordinal })
-                .map { it.key to it.value },
+                .map { StatsSubPageState.StatDescription(it.key, it.value) },
             types = selectedVariety.types,
             archetype = selectedVariety.archetype,
         )

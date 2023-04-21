@@ -124,7 +124,6 @@ private fun HomeDecoration(onShareClicked: () -> Unit) {
                     )
                 )
             }, end = {
-                val context = LocalContext.current
                 AssistChip(
                     onClick = { onShareClicked() },
                     label = { Text(stringResource(id = R.string.home_title_share_chip)) },
@@ -243,7 +242,7 @@ private fun RowScope.HomePageFeaturedCard(
                     .fillMaxWidth(0.7f)
                     .aspectRatio(1f)
                     .align(Alignment.BottomEnd)
-                    .offset(16.dp, 16.dp)
+                    .offset(MaterialTheme.grid.x2, MaterialTheme.grid.x2)
             )
             Text(
                 text = title.render(),

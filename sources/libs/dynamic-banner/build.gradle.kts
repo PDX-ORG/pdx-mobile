@@ -10,6 +10,7 @@ android {
 dependencies {
     implementation(libs.akore.alice.robo)
     implementation(libs.akore.blogger.core)
+
     implementation(projects.libs.uikit)
     implementation(projects.libs.network)
     implementation(projects.libs.navigation)

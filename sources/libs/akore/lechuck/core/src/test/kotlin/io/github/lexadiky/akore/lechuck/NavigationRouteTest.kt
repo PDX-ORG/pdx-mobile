@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource
 class NavigationRouteTest {
 
     @Nested
-    inner class isHttp() {
+    inner class isHttp {
 
         @CsvSource(
             "http://sample.com, true",
@@ -31,7 +31,7 @@ class NavigationRouteTest {
     }
 
     @Nested
-    internal class scheme() {
+    internal class scheme {
 
         @Test
         fun `GIVEN uri without scheme THEN return null`() {
