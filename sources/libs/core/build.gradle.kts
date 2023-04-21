@@ -5,4 +5,5 @@ plugins {
 dependencies {
     implementation(libs.akore.blogger.core)
     api(libs.arrow.core)
+    api(libs.kotlin.coroutines)
 }

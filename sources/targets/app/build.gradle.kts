@@ -34,8 +34,4 @@ dependencies {
     implementation(projects.features.abilityDetails)
 
     implementation(libs.akore.alice.robo)
-
-    testImplementation(libs.junit4.core)
-    androidTestImplementation(libs.android.test.junit4)
-    androidTestImplementation(libs.android.test.espresso)
 }
