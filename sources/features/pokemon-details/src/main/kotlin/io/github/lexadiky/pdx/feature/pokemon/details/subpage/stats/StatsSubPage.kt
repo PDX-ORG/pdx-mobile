@@ -171,6 +171,9 @@ private fun AbilityItem(title: String, subtitle: String, onClick: () -> Unit) {
     }
 }
 
+private const val STAT_TITLE_SPACE_RATIO = 0.2f
+private const val STAT_FILL_BG_ALPHA = 0.5f
+
 @Composable
 private fun StatBar(
     description: StatsSubPageState.StatDescription,
@@ -186,12 +189,12 @@ private fun StatBar(
             text = description.stat.assets.shortTitle.render(),
             fontWeight = FontWeight.Bold,
             modifier = Modifier
-                .fillMaxWidth(0.2f)
+                .fillMaxWidth(STAT_TITLE_SPACE_RATIO)
         )
         Box(
             modifier = Modifier
                 .clip(MaterialTheme.shapes.circular)
-                .background(MaterialTheme.colorScheme.secondary.copy(alpha = 0.5f))
+                .background(MaterialTheme.colorScheme.secondary.copy(alpha = STAT_FILL_BG_ALPHA))
                 .fillMaxWidth()
                 .wrapContentHeight()
         ) {

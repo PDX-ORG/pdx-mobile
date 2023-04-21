@@ -46,6 +46,8 @@ import io.github.lexadiky.pdx.ui.uikit.theme.animation
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.widget.ToolbarContent
 
+private const val ANSWER_BUTTON_WIDTH_RATIO = 0.75f
+
 @Composable
 fun WhoIsPage() {
     DIFeature(WhoIsModule) {
@@ -116,7 +118,7 @@ private fun WhoIsPageImpl(viewModel: WhoIsViewModel) {
                     colors = ButtonDefaults.outlinedButtonColors(
                         containerColor = buttonColor
                     ),
-                    modifier = Modifier.fillMaxWidth(0.75f)
+                    modifier = Modifier.fillMaxWidth(ANSWER_BUTTON_WIDTH_RATIO)
                 ) {
                     AnimatedContent(
                         targetState = variant.name.render(),
