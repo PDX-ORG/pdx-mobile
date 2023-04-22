@@ -9,13 +9,14 @@ fun <T> Result<T>.asEither(): Either<Throwable, T> = if (isSuccess) {
     Either.Left(exceptionOrNull()!!)
 }
 
-fun <E, T> Either<E, T>.asLce(): Lce<E, T> = when (this) {
-    is Either.Left -> Lce.Error(value)
-    is Either.Right -> Lce.Content(value)
-}
-
 fun <E, T> Result<T>.asLce(onError: (Throwable) -> E): Lce<E, T> = if (isSuccess) {
     Lce.Content(getOrThrow())
 } else {
     Lce.Error(onError(exceptionOrNull()!!))
+}
+
+
+fun <E, T> Either<E, T>.asLce(): Lce<E, T> = when (this) {
+    is Either.Left -> Lce.Error(value)
+    is Either.Right -> Lce.Content(value)
 }

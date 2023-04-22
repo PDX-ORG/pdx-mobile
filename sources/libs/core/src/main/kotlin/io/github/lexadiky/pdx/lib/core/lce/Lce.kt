@@ -1,5 +1,10 @@
 package io.github.lexadiky.pdx.lib.core.lce
 
+/**
+ * Abstraction over Loading -> Content | Error behaviour
+ *
+ * Supports primitive monad operations and conversion into [Either] and [Result]
+ */
 sealed interface Lce<out E, out V> {
 
     object Loading : Lce<Nothing, Nothing>
