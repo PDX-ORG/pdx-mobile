@@ -4,6 +4,7 @@ ktor = "2.2.4"
 accompanist = "0.30.1"
 akore = "-SNAPSHOT"
 coroutines = "1.6.4"
+datastore = "1.0.0"
 
 [libraries]
 
@@ -35,8 +36,8 @@ android-navigation-compose = "androidx.navigation:navigation-compose:2.5.3"
 android-test-junit4 = "androidx.test.ext:junit:1.1.5"
 android-test-espresso = "androidx.test.espresso:espresso-core:3.5.1"
 
-android-mops-datastore-android = "androidx.datastore:datastore-preferences:1.0.0"
-android-mops-datastore = "androidx.datastore:datastore-preferences-core:1.0.0"
+android-mops-datastore-android = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+android-mops-datastore = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastore" }
 
 junit4-core = "junit:junit:4.101"
 
