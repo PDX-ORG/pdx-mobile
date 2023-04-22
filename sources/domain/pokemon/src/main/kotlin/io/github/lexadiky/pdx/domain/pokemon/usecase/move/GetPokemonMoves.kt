@@ -4,13 +4,16 @@ import arrow.core.Either
 import arrow.core.continuations.either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonMove
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
+import io.github.lexadiky.pdx.domain.pokemon.util.ofCurrentLocale
 import io.github.lexadiky.pdx.lib.core.ErrorType
 import io.github.lexadiky.pdx.lib.core.collection.replaced
 import io.github.lexadiky.pdx.lib.core.lce.Lce
 import io.github.lexadiky.pdx.lib.core.lce.lceFlow
 import io.github.lexadiky.pdx.lib.core.utils.asEither
 import io.github.lexadiky.pdx.lib.core.utils.asLce
+import io.github.lexadiky.pdx.lib.locale.LocaleManager
 import io.lexadiky.pokeapi.PokeApiClient
+import io.lexadiky.pokeapi.entity.move.Move
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
@@ -24,7 +27,8 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
 class GetPokemonMoves(
-    private val client: PokeApiClient
+    private val client: PokeApiClient,
+    private val localeManager: LocaleManager
 ) {
 
     suspend operator fun invoke(
@@ -35,9 +39,17 @@ class GetPokemonMoves(
         lceFlow(pokemon.moves) { moveSlot ->
             client.move.get(moveSlot)
                 .asEither()
-                .map { item -> PokemonMove(item.name) }
+                .map { item -> mapToDomain(item) }
                 .mapLeft { Error }
         }
+    }
+
+    private fun mapToDomain(item: Move): PokemonMove {
+        return PokemonMove(
+            name = item.name,
+            localeName = item.names
+                .ofCurrentLocale(localeManager),
+        )
     }
 
     object Error : ErrorType.Any, Throwable("can't load pokemon moves")

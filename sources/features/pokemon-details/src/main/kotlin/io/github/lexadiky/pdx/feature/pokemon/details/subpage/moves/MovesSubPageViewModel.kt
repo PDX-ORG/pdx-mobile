@@ -42,7 +42,10 @@ class MovesSubPageViewModel(
     private fun mapToData(value: Flow<List<Lce<GetPokemonMoves.Error, PokemonMove>>>): Flow<List<Lce<*, PokemonMoveData>>> {
         return value.map { lces ->
             lces.mapLce { item ->
-                PokemonMoveData(item.name)
+                PokemonMoveData(
+                    name = item.name,
+                    localeName = item.localeName
+                )
             }
         }
     }

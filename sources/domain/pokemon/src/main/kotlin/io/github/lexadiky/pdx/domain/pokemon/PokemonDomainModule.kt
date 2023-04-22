@@ -50,7 +50,7 @@ val PokemonDomainModule by module("domain-pokemon") {
     single { GetPokemonPokedexDescriptions(inject(), inject(), inject()) }
     single { GetPokemonGameVersion(inject(), inject()) }
 
-    single { GetPokemonMoves(inject()) }
+    single { GetPokemonMoves(inject(), inject()) }
 
     single { PrefetchPokemonData(inject()) }
 
