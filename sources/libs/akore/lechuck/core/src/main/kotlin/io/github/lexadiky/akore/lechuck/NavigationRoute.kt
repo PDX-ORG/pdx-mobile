@@ -7,7 +7,10 @@ import java.net.URLEncoder
 @JvmInline
 value class NavigationRoute private constructor(private val value: String) {
 
-    val scheme: String? get() = value.split(SCHEME_SPLITTER).firstOrNull()
+    val scheme: String?
+        get() = value.split(SCHEME_SPLITTER)
+            .takeIf { it.size > 1 }
+            ?.firstOrNull()
 
     val isHttp
         get() = scheme == LINK_PREFIX_HTTP ||
