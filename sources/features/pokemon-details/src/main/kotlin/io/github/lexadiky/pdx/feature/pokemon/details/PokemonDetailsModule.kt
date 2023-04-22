@@ -7,6 +7,7 @@ import io.github.lexadiky.akore.alice.util.single
 import io.github.lexadiky.pdx.domain.pokemon.PokemonDomainModule
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.info.InfoSubPage
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.info.InfoSubPageViewModel
+import io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.MovesSubPageViewModel
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.stats.StatsSubPageViewModel
 import io.github.lexadiky.pdx.feature.pokemon.details.usecase.GetAvailableDetailsSections
 
@@ -18,5 +19,6 @@ internal val PokemonDetailsModule = eagerModule("pokemon-details") {
         singleViewModel { args -> PokemonDetailsViewModel(pokemonId = args.get(), inject(), inject(), inject(), inject(), inject(), inject()) }
         singleViewModel { args -> StatsSubPageViewModel(args.get(), args.get(), inject(), inject()) }
         singleViewModel { args -> InfoSubPageViewModel(args.get(), args.get(), inject()) }
+        singleViewModel { args -> MovesSubPageViewModel(args.get(), args.get(), inject()) }
     }
 }

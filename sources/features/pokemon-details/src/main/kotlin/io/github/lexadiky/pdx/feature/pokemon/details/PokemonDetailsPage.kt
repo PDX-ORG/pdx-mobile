@@ -62,6 +62,7 @@ import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
 import io.github.lexadiky.akore.lechuck.robo.fsdialog.FullScreenDialogAnchor
 import io.github.lexadiky.akore.lechuck.robo.page.PageContext
+import io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.MovesSubPage
 import io.github.lexadiky.pdx.lib.navigation.FullScreenDialogStyles
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
@@ -172,7 +173,10 @@ private fun DataCard(viewModel: PokemonDetailsViewModel) {
                 )
 
                 PokemonDetailsSection.Evolution -> Unit
-                PokemonDetailsSection.Battle -> Unit
+                PokemonDetailsSection.Battle -> MovesSubPage(
+                    viewModel.state.pokemonSpeciesDetails,
+                    viewModel.state.selectedVariety
+                )
                 null -> Unit
             }
         }
