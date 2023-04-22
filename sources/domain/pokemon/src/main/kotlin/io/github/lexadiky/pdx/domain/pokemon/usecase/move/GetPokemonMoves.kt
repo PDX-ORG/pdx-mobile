@@ -7,11 +7,18 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.lib.core.ErrorType
 import io.github.lexadiky.pdx.lib.core.collection.replaced
 import io.github.lexadiky.pdx.lib.core.lce.Lce
+import io.github.lexadiky.pdx.lib.core.lce.lceFlow
+import io.github.lexadiky.pdx.lib.core.utils.asEither
+import io.github.lexadiky.pdx.lib.core.utils.asLce
 import io.lexadiky.pokeapi.PokeApiClient
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -24,27 +31,12 @@ class GetPokemonMoves(
         pokemonDetails: PokemonSpeciesDetails
     ): Either<Error, Flow<List<Lce<Error, PokemonMove>>>> = either {
         val pokemon = client.pokemon.get(pokemonDetails.name).bind { Error }
-        val mutex = Mutex()
-        var readyBuffer: List<Lce<Error, PokemonMove>> = List(pokemon.moves.size) { Lce.Loading }
 
-        flow {
-            emit(readyBuffer)
-            pokemon.moves.forEachIndexed { index, moveSlot ->
-                val detailsResult = client.move.get(moveSlot)
-                if (detailsResult.isFailure) {
-                    mutex.withLock {
-                        readyBuffer = readyBuffer.replaced(index, Lce.Error(Error))
-                        emit(readyBuffer)
-                    }
-                } else {
-                    val details = detailsResult.getOrThrow()
-                    mutex.withLock {
-                        readyBuffer =
-                            readyBuffer.replaced(index, Lce.Content(PokemonMove(details.name)))
-                        emit(readyBuffer)
-                    }
-                }
-            }
+        lceFlow(pokemon.moves) { moveSlot ->
+            client.move.get(moveSlot)
+                .asEither()
+                .map { item -> PokemonMove(item.name) }
+                .mapLeft { Error }
         }
     }
 
