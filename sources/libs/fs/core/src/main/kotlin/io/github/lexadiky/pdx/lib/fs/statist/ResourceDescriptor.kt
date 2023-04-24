@@ -8,6 +8,8 @@ interface ResourceDescriptor<T> {
 
     sealed interface Error {
 
-        class Unknown(val reason: Throwable) : Error
+        val reason: Throwable
+
+        class Unknown(override val reason: Throwable) : Error
     }
 }

@@ -16,6 +16,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.asLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.asPokemonStat
 import io.github.lexadiky.pdx.domain.pokemon.entity.asType
 import io.github.lexadiky.pdx.domain.pokemon.util.asPokemonLanguage
+import io.github.lexadiky.pdx.lib.core.error.GenericError
 import io.github.lexadiky.pdx.lib.locale.LocaleManager
 import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.entity.pokemon.Pokemon
@@ -32,7 +33,7 @@ class GetPokemonSpeciesDetailsUseCase(
     private val localeManager: LocaleManager
 ) {
 
-    suspend operator fun invoke(id: String): Either<Error, PokemonSpeciesDetails> = either {
+    suspend operator fun invoke(id: String): Either<GenericError, PokemonSpeciesDetails> = either {
         withContext(Dispatchers.IO) {
             val species = pokeApiClient.pokemonSpecies.get(name = id).bind(::identity)
             val defaultVariety = pokeApiClient.pokemon.get(species.varieties.first { it.isDefault })
@@ -60,9 +61,7 @@ class GetPokemonSpeciesDetailsUseCase(
             )
         }
     }.mapLeft { error ->
-        BLogger.tag("GetPokemonSpeciesDetailsUseCase")
-            .error("can't load pokemon species", error)
-        Error
+        GenericError("can't load pokemon species", error)
     }
 
     private fun mapPokemonDetails(variety: Pokemon): PokemonDetails {
@@ -120,8 +119,6 @@ class GetPokemonSpeciesDetailsUseCase(
                 ?.let { extractAllSpritesWithReflection(it) }
                 .orEmpty()
         }
-
-    object Error
 
     companion object {
 

@@ -13,6 +13,8 @@ dependencies {
     implementation(projects.libs.navigation)
     implementation(projects.libs.resources)
     implementation(projects.libs.fs.core)
+    implementation(projects.libs.core)
+    implementation(projects.libs.errorHandler)
 
     implementation(libs.akore.alice.robo)
     implementation(libs.akore.blogger.core)

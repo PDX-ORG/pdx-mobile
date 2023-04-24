@@ -3,9 +3,9 @@ package io.github.lexadiky.pdx.lib.errorhandler
 import arrow.core.Either
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.error
-import io.github.lexadiky.pdx.lib.core.ErrorType
+import io.github.lexadiky.pdx.lib.core.error.ErrorType
 
-fun <E, T> Either<E, T>.classify(tag: String): Either<UIError, T> where E : ErrorType.Any, E : Throwable {
+internal fun <E, T> Either<E, T>.classify(tag: String): Either<UIError, T> where E : ErrorType.Any, E : Throwable {
     if (this is Either.Left) {
         BLogger.tag(tag)
             .error(this.value.message ?: "no error message", this.value)
@@ -18,3 +18,7 @@ fun <E, T> Either<E, T>.classify(tag: String): Either<UIError, T> where E : Erro
         }
     }
 }
+
+fun <E, T> Either<E, T>.classify(by: Any): Either<UIError, T> where E : ErrorType.Any, E : Throwable =
+    classify(by::class.toString())
+

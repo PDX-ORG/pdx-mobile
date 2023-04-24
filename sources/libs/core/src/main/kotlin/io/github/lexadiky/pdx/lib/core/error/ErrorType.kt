@@ -1,4 +1,4 @@
-package io.github.lexadiky.pdx.lib.core
+package io.github.lexadiky.pdx.lib.core.error
 
 sealed interface ErrorType {
 

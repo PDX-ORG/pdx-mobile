@@ -16,6 +16,7 @@ import io.github.lexadiky.pdx.feature.pokemon.details.usecase.GetAvailableDetail
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.akore.lechuck.utils.navigate
+import io.github.lexadiky.pdx.lib.errorhandler.classify
 import kotlinx.coroutines.launch
 
 internal class PokemonDetailsViewModel(
@@ -37,8 +38,9 @@ internal class PokemonDetailsViewModel(
                 is Either.Left -> state.copy(error = UIError.generic())
                 is Either.Right -> state.copy(availableDetailsSections = data.value)
             }
-            state = when (val details = getPokemonDetails(pokemonId)) {
-                is Either.Left -> state.copy(error = UIError.generic())
+
+            state = when (val details =  getPokemonDetails(pokemonId).classify(this)) {
+                is Either.Left -> state.copy(error = details.value)
                 is Either.Right -> {
                     launch { markPokemonSpeciesAsViewedUseCase.invoke(details.value) }
                     createUpdatedState(details.value)

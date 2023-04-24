@@ -3,16 +3,14 @@ package io.github.lexadiky.pdx.domain.pokemon.usecase
 import arrow.core.Either
 import arrow.core.flatMap
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonAbility
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.asLanguage
 import io.github.lexadiky.pdx.domain.pokemon.util.asPokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.util.normalizePokeApiText
 import io.github.lexadiky.pdx.domain.pokemon.util.ofCurrentLocale
-import io.github.lexadiky.pdx.lib.core.ErrorType
+import io.github.lexadiky.pdx.lib.core.error.ErrorType
 import io.github.lexadiky.pdx.lib.locale.LocaleManager
 import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.entity.ability.Ability
-import java.lang.Exception
 
 class GetAbilityUseCase(
     private val pokeApiClient: PokeApiClient,

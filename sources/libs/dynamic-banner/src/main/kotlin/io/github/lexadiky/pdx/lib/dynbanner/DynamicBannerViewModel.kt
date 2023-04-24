@@ -5,12 +5,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import arrow.core.Either
 import io.github.lexadiky.pdx.lib.dynbanner.domain.DynamicBannerRepository
 import io.github.lexadiky.pdx.lib.dynbanner.entity.Banner
 import io.github.lexadiky.pdx.lib.dynbanner.entity.BannerAction
 import io.github.lexadiky.pdx.lib.dynbanner.entity.BannerType
 import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.akore.lechuck.utils.navigate
+import io.github.lexadiky.pdx.lib.errorhandler.classify
 import kotlinx.coroutines.launch
 
 internal class DynamicBannerViewModel(
@@ -25,7 +27,9 @@ internal class DynamicBannerViewModel(
 
     init {
         viewModelScope.launch {
-            banner = repository.fetch(bannerId).orNull()
+            banner = repository.fetch(bannerId)
+                .classify(this)
+                .getOrNull()
         }
     }
 
