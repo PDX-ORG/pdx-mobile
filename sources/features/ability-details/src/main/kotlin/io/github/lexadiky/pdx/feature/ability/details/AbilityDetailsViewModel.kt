@@ -22,7 +22,7 @@ internal class AbilityDetailsViewModel(
 
     init {
         viewModelScope.launch {
-            state = when (val data = getAbilityDetails(id, false).classify("AbilityDetailsViewModel")) {
+            state = when (val data = getAbilityDetails(id, false).classify(this)) {
                 is Either.Left -> state.copy(error = data.value)
                 is Either.Right -> state.copy(
                     title = StringResource.from(data.value.nameLocale),

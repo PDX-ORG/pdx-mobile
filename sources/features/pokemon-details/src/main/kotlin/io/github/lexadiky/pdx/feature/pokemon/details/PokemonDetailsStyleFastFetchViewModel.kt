@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.usecase.FindPokemonPreviewUseCase
+import io.github.lexadiky.pdx.lib.errorhandler.classify
 import io.github.lexadiky.pdx.lib.resources.color.ColorResource
 import kotlinx.coroutines.launch
 
@@ -23,8 +24,8 @@ internal class PokemonDetailsStyleFastFetchViewModel(
 
     init {
         viewModelScope.launch {
-            when (val data = findPokemonPreview.invoke(pokemonId)) {
-                is Either.Left -> Unit
+            when (val data = findPokemonPreview.invoke(pokemonId).classify(this)) {
+                is Either.Left -> Unit // TODO show error
                 is Either.Right -> state = state.copy(color = data.value.types.first().assets.color)
             }
         }
