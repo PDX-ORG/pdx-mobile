@@ -1,20 +1,23 @@
+@file:OptIn(ExperimentalFoundationApi::class)
+
 package io.github.lexadiky.pdx.ui.uikit.widget
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import com.google.accompanist.pager.PagerState
 import io.github.lexadiky.pdx.ui.uikit.theme.animation
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
@@ -23,8 +26,8 @@ private const val EXPANDED_SCALE = 1.5f
 private const val DEFAULT_SCALE = 1f
 
 @Composable
-fun PagerDotIndicator(pagerState: PagerState) {
-    if (pagerState.pageCount < 2) {
+fun PagerDotIndicator(pagerState: PagerState, pageCount: Int) {
+    if (pageCount < 2) {
         return
     }
 
@@ -32,7 +35,7 @@ fun PagerDotIndicator(pagerState: PagerState) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1),
         ) {
-            repeat(pagerState.pageCount) { idx ->
+            repeat(pageCount) { idx ->
                 Box(
                     modifier = Modifier
                         .clip(MaterialTheme.shapes.circular)

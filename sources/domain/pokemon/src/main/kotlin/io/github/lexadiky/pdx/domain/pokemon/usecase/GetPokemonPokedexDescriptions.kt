@@ -5,7 +5,7 @@ import arrow.core.continuations.either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPokedexDescription
 import io.github.lexadiky.pdx.domain.pokemon.entity.asLanguage
 import io.github.lexadiky.pdx.domain.pokemon.util.asPokemonLanguage
-import io.github.lexadiky.pdx.domain.pokemon.util.normalizePokeApiText
+import io.github.lexadiky.pdx.lib.core.utils.removeNewLines
 import io.github.lexadiky.pdx.lib.locale.LocaleManager
 import io.lexadiky.pokeapi.PokeApiClient
 
@@ -23,7 +23,7 @@ class GetPokemonPokedexDescriptions(
         species.flavorTextEntries.filter { it.language.asLanguage() == language }
             .map { entry ->
                 PokemonPokedexDescription(
-                    text = entry.flavorText.normalizePokeApiText(),
+                    text = entry.flavorText.removeNewLines(),
                     gameVersion = getPokemonVersion(entry.version.name!!)
                         .mapLeft { Error }
                         .bind()

@@ -58,13 +58,13 @@ firebase-performance = { module = "com.google.firebase:firebase-perf-ktx" }
 
 accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
 accompanist-navigation-material = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
-accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist" }
+accompanist-placeholder = { module = "com.google.accompanist:accompanist-placeholder", version.ref = "accompanist" }
 
 akore-blogger-core = { module = "com.github.akore-org.blogger:core", version.ref = "akore" }
 akore-blogger-logcat = { module = "com.github.akore-org.blogger:logcat", version.ref = "akore" }
 akore-alice-core = { module = "com.github.akore-org.alice:core", version = "07dfa09ff5" }
 akore-alice-robo = { module = "com.github.akore-org.alice:robo", version = "07dfa09ff5" }
 
-pokeapi = "com.github.lexa-diky:pokeapi-kotlin:-SNAPSHOT"
+pokeapi = "com.github.lexa-diky:pokeapi-kotlin:57ef13a22e"
 
 [plugins]

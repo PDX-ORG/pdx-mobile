@@ -5,9 +5,9 @@ import arrow.core.flatMap
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonAbility
 import io.github.lexadiky.pdx.domain.pokemon.entity.asLanguage
 import io.github.lexadiky.pdx.domain.pokemon.util.asPokemonLanguage
-import io.github.lexadiky.pdx.domain.pokemon.util.normalizePokeApiText
 import io.github.lexadiky.pdx.domain.pokemon.util.ofCurrentLocale
 import io.github.lexadiky.pdx.lib.core.error.ErrorType
+import io.github.lexadiky.pdx.lib.core.utils.removeNewLines
 import io.github.lexadiky.pdx.lib.locale.LocaleManager
 import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.entity.ability.Ability
@@ -47,7 +47,7 @@ class GetAbilityUseCase(
         return ability.flavorTextEntries.filter { it.language.asLanguage() == localeManager.settings.system.asPokemonLanguage() }
             .map {
                 PokemonAbility.Flavour(
-                    textLocale = it.flavorText.normalizePokeApiText(),
+                    textLocale = it.flavorText.removeNewLines(),
                 )
             }
     }

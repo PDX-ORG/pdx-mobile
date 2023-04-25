@@ -32,6 +32,7 @@ dependencies {
     implementation(projects.features.spriteGallery)
     implementation(projects.features.debugPanel)
     implementation(projects.features.abilityDetails)
+    implementation(projects.features.move.details)
 
     implementation(libs.akore.alice.robo)
 }

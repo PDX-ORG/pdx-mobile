@@ -18,3 +18,9 @@ object PdxColors {
 
 @Suppress("UnusedReceiverParameter")
 val ColorScheme.pdx get() = PdxColors
+
+
+/**
+ * Alias for accessing [Color.Transparent]
+ */
+val ColorScheme.transparent: Color get() = Color.Transparent

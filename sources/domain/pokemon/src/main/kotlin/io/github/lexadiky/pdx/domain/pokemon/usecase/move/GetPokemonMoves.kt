@@ -4,11 +4,15 @@ import arrow.core.Either
 import arrow.core.continuations.either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonMove
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
+import io.github.lexadiky.pdx.domain.pokemon.entity.asLanguage
+import io.github.lexadiky.pdx.domain.pokemon.entity.asType
+import io.github.lexadiky.pdx.domain.pokemon.util.asPokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.util.ofCurrentLocale
 import io.github.lexadiky.pdx.lib.core.error.ErrorType
 import io.github.lexadiky.pdx.lib.core.lce.Lce
 import io.github.lexadiky.pdx.lib.core.lce.lceFlow
 import io.github.lexadiky.pdx.lib.core.utils.asEither
+import io.github.lexadiky.pdx.lib.core.utils.removeNewLines
 import io.github.lexadiky.pdx.lib.locale.LocaleManager
 import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.entity.move.Move
@@ -33,10 +37,17 @@ class GetPokemonMoves(
     }
 
     private fun mapToDomain(item: Move): PokemonMove {
+        val flavorText = item.flavorTextEntries
+            .lastOrNull { it.language.asLanguage() == localeManager.settings.system.asPokemonLanguage() }
+            ?: item.flavorTextEntries.firstOrNull()
+
         return PokemonMove(
             name = item.name,
             localeName = item.names
                 .ofCurrentLocale(localeManager),
+            localeFlavourText = flavorText?.flavorText?.removeNewLines(),
+            type = item.type.asType(),
+            pp = item.pp
         )
     }
 

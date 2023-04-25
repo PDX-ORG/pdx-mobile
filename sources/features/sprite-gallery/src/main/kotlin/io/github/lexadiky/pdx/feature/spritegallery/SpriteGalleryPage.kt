@@ -1,18 +1,18 @@
-@file:OptIn(ExperimentalPagerApi::class)
+@file:OptIn(ExperimentalFoundationApi::class)
 
 package io.github.lexadiky.pdx.feature.spritegallery
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
@@ -47,7 +47,7 @@ private fun SpriteGalleryPageImpl(viewModel: SpriteGalleryPageViewModel) {
             )
     ) {
         HorizontalPager(
-            count = viewModel.state.items.size,
+            viewModel.state.items.size,
             userScrollEnabled = true
         ) { spriteIdx ->
             val (title, image) = viewModel.state.items[spriteIdx]

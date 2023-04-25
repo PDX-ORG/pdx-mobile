@@ -14,6 +14,11 @@ sealed interface Lce<out E, out V> {
     data class Error<out E>(val value: E): Lce<E, Nothing>
 }
 
+fun <E, T> Lce<E, T>.contentOrNull(): T? = when (this) {
+    is Lce.Content -> value
+    else -> null
+}
+
 @Suppress("UNCHECKED_CAST")
 fun <E, V, V2> Lce<E, V>.map(transformer: (V) -> V2): Lce<E, V2> = when (this) {
     is Lce.Content -> Lce.Content(transformer(this.value))

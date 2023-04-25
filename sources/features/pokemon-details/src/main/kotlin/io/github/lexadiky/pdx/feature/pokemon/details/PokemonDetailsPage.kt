@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalFoundationApi::class)
+
 package io.github.lexadiky.pdx.feature.pokemon.details
 
 import android.annotation.SuppressLint
@@ -6,6 +8,7 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.fadeIn
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,6 +24,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
@@ -46,26 +52,22 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.PagerState
-import com.google.accompanist.pager.rememberPagerState
 import com.google.android.material.color.utilities.Scheme
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
+import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
+import io.github.lexadiky.akore.lechuck.robo.fsdialog.FullScreenDialogAnchor
+import io.github.lexadiky.akore.lechuck.robo.page.PageContext
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDetailsSection
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.info.InfoSubPage
+import io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.MovesSubPage
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.stats.StatsSubPage
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
-import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
-import io.github.lexadiky.akore.lechuck.robo.fsdialog.FullScreenDialogAnchor
-import io.github.lexadiky.akore.lechuck.robo.page.PageContext
-import io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.MovesSubPage
 import io.github.lexadiky.pdx.lib.navigation.FullScreenDialogStyles
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
-import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
@@ -203,10 +205,7 @@ private fun HeaderImagePager(
                         state.availableVarieties,
                         state = pagerState
                     ) { page ->
-                        val image =
-                            state.pokemonSpeciesDetails?.varieties?.get(page)?.sprites?.default
-                                ?.let { ImageResource.from(it) }
-                        HeaderImage(image)
+                        HeaderImage(state.image)
                     }
                     Box(
                         contentAlignment = Alignment.Center,
@@ -214,7 +213,7 @@ private fun HeaderImagePager(
                             .fillMaxWidth()
                             .padding(top = MaterialTheme.grid.x1)
                     ) {
-                        PagerDotIndicator(pagerState)
+                        PagerDotIndicator(pagerState, state.availableVarieties)
                     }
                 }
 

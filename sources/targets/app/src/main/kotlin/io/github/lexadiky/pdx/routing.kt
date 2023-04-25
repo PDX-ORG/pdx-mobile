@@ -1,5 +1,6 @@
 package io.github.lexadiky.pdx
 
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import io.github.lexadiky.akore.alice.robo.di
@@ -20,6 +21,7 @@ import io.github.lexadiky.pdx.feature.whois.WhoIsPage
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
 import io.github.lexadiky.pdx.lib.ifEnabled
 import io.github.lexadiky.akore.lechuck.robo.NaviNavGraphBuilder
+import io.github.lexadiky.pdx.feature.move.details.MoveDetailsPage
 
 @Composable
 fun routing(): NaviNavGraphBuilder.() -> Unit {
@@ -48,6 +50,9 @@ fun routing(): NaviNavGraphBuilder.() -> Unit {
             }
             modal("pdx://ability/{id}") {
                 AbilityDetailsPage(id = argument("id"))
+            }
+            modal("pdx://move/{id}?is_modal=true") {
+                MoveDetailsPage(moveId = this.argument("id"))
             }
 
             DebugPanelFeature.routing(this, toggleManager)

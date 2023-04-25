@@ -5,6 +5,7 @@ import io.github.lexadiky.pdx.lib.core.collection.replaced
 import io.github.lexadiky.pdx.lib.core.utils.asLce
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
