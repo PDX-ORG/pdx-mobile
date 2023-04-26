@@ -5,5 +5,7 @@ data class PokemonMove(
     val localeName: String,
     val localeFlavourText: String?,
     val type: PokemonType,
-    val pp: Int?
+    val pp: Int?,
+    val power: Int?,
+    val accuracy: Int?
 )

@@ -31,5 +31,7 @@
     <string name="feature_pokemon_move_sort_by_name">By name</string>
     <string name="feature_pokemon_move_sort_by_type">By type</string>
     <string name="feature_pokemon_move_sort_by_pp">By PP</string>
+    <string name="feature_pokemon_move_sort_by_power">By Power</string>
+    <string name="feature_pokemon_move_sort_by_accuracy">By Accuracy</string>
 
 </resources>

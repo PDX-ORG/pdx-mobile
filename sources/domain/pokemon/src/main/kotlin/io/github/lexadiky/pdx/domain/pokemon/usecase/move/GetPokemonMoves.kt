@@ -47,7 +47,9 @@ class GetPokemonMoves(
                 .ofCurrentLocale(localeManager),
             localeFlavourText = flavorText?.flavorText?.removeNewLines(),
             type = item.type.asType(),
-            pp = item.pp
+            pp = item.pp,
+            power = item.power,
+            accuracy = item.accuracy
         )
     }
 

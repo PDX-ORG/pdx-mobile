@@ -1,8 +1,13 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.sort
 
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ElevatedFilterChip
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -26,7 +31,8 @@ private fun MoveSortWidgetImpl(onUpdated: (MoveSort) -> Unit, vm: MoveSortWidget
         onUpdated(vm.state.sort)
     }
 
-    AssistChip(
+    ElevatedFilterChip(
+        selected = vm.state.isSet,
         onClick = { vm.openBuild() },
         label = { Text(text = vm.state.title.render()) }
 
@@ -36,9 +42,7 @@ private fun MoveSortWidgetImpl(onUpdated: (MoveSort) -> Unit, vm: MoveSortWidget
         expanded = vm.state.isMenuOpen,
         onDismissRequest = { vm.dismissBuild() },
     ) {
-        val builder = vm.state.builder
-
-        when (builder) {
+        when (val builder = vm.state.builder) {
             is MoveSortDirectionBuilder -> MoveSortWidgetDirectionDropdown(
                 builder = builder,
                 onDirectionClicked = { vm.selectDirection(it) }

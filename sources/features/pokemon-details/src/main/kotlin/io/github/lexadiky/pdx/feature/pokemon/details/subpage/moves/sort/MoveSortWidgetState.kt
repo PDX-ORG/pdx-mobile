@@ -21,4 +21,6 @@ data class MoveSortWidgetState(
     }
 
     val isMenuOpen = builder != null
+
+    val isSet = sort != MoveSort()
 }

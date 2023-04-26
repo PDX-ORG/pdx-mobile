@@ -11,7 +11,7 @@ sealed interface Lce<out E, out V> {
 
     data class Content<out V>(val value: V) : Lce<Nothing, V>
 
-    data class Error<out E>(val value: E): Lce<E, Nothing>
+    data class Error<out E>(val value: E) : Lce<E, Nothing>
 }
 
 fun <E, T> Lce<E, T>.contentOrNull(): T? = when (this) {
@@ -27,5 +27,13 @@ fun <E, V, V2> Lce<E, V>.map(transformer: (V) -> V2): Lce<E, V2> = when (this) {
 
 fun <E, V, V2> List<Lce<E, V>>.mapLce(transformer: (V) -> V2): List<Lce<E, V2>> =
     this.map { lce: Lce<E, V> -> lce.map(transformer) }
+
+fun <E, V> List<Lce<E, V>>.filterLce(
+    includeNonContent: Boolean = true,
+    predicate: (V) -> Boolean,
+): List<Lce<E, V>> = this.filter { lce: Lce<E, V> ->
+    lce.contentOrNull()?.let(predicate) ?: includeNonContent
+}
+
 
 

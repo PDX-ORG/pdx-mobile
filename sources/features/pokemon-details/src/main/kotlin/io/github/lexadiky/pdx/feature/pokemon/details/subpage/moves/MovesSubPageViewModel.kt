@@ -41,7 +41,7 @@ class MovesSubPageViewModel(
 
             state = when (data) {
                 is Either.Left -> state.copy(error = data.value)
-                is Either.Right -> state.copy(moves = mapToData(data.value))
+                is Either.Right -> state.copy(movesRaw = mapToData(data.value))
             }
         }
     }
@@ -54,6 +54,14 @@ class MovesSubPageViewModel(
         navigator.navigate("pdx://type/${type.id}")
     }
 
+    fun onQueryUpdated(query: String) {
+        state = state.copy(filter = state.filter.copy(query = query))
+    }
+
+    fun onSortUpdated(sort: MoveSort) {
+        state = state.copy(sortStrategy = sort)
+    }
+
     private fun mapToData(value: Flow<List<Lce<GetPokemonMoves.Error, PokemonMove>>>): Flow<List<Lce<*, PokemonMoveData>>> {
         return value.map { lces ->
             lces.mapLce { item ->
@@ -62,16 +70,11 @@ class MovesSubPageViewModel(
                     localeName = StringResource.from(item.localeName),
                     localeFlavourText = StringResource.from(item.localeFlavourText.orEmpty()),
                     type = item.type,
-                    ppLabel = StringResource.from(item.pp?.toString().orEmpty()),
-                    ppValue = item.pp ?: 0
+                    pp = item.pp,
+                    power = item.power,
+                    accuracy = item.accuracy
                 )
             }
         }
-    }
-
-    fun onSortUpdated(it: MoveSort) {
-        state = state.copy(
-            sortStrategy = it
-        )
     }
 }

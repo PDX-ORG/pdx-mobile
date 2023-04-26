@@ -10,7 +10,11 @@ data class MoveSort(
     val direction: MoveSortDirection = MoveSortDirection.ASCENDING
 ) {
     fun apply(items: List<Lce<*, PokemonMoveData>>): List<Lce<*, PokemonMoveData>> {
-        val comparator = type.asComparator() ?: return items
+        val baseComparator = type.asComparator() ?: return items
+
+        val comparator = baseComparator.thenComparing { arg ->
+            arg.contentOrNull()?.name.orEmpty()
+        }
 
         return when (direction) {
             MoveSortDirection.ASCENDING -> items.sortedWith(comparator)
@@ -22,6 +26,8 @@ data class MoveSort(
         MoveSortType.Default -> null
         MoveSortType.Name -> Comparator.comparing { it.contentOrNull()?.name ?: "" }
         MoveSortType.Type -> Comparator.comparing {  it.contentOrNull()?.type ?: PokemonType.BUG }
-        MoveSortType.PP -> Comparator.comparing {  it.contentOrNull()?.ppValue ?: 0 }
+        MoveSortType.PP -> Comparator.comparing {  it.contentOrNull()?.pp ?: 0 }
+        MoveSortType.Power -> Comparator.comparing {  it.contentOrNull()?.power ?: 0 }
+        MoveSortType.Accuracy -> Comparator.comparing {  it.contentOrNull()?.accuracy ?: 0 }
     }
 }
