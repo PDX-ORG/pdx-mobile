@@ -28,6 +28,6 @@ data class MoveSort(
         MoveSortType.Type -> Comparator.comparing {  it.contentOrNull()?.type ?: PokemonType.BUG }
         MoveSortType.PP -> Comparator.comparing {  it.contentOrNull()?.pp ?: 0 }
         MoveSortType.Power -> Comparator.comparing {  it.contentOrNull()?.power ?: 0 }
-        MoveSortType.Accuracy -> Comparator.comparing {  it.contentOrNull()?.accuracy ?: 0 }
+        MoveSortType.Accuracy -> Comparator.comparing {  it.contentOrNull()?.accuracy ?: Int.MAX_VALUE }
     }
 }
