@@ -18,7 +18,9 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonVarietyDetails
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonGameVersion
 import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.IsPokemonFavorite
 import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.SaveFavoritePokemon
+import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetMoveDetails
 import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetPokemonMoves
+import io.github.lexadiky.pdx.domain.pokemon.usecase.move.MoveDomainMapper
 import io.github.lexadiky.pdx.domain.pokemon.usecase.prefetch.PrefetchPokemonData
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
@@ -51,6 +53,7 @@ val PokemonDomainModule by module("domain-pokemon") {
     single { GetPokemonGameVersion(inject(), inject()) }
 
     single { GetPokemonMoves(inject(), inject()) }
+    single { GetMoveDetails(inject(), inject()) }
 
     single { PrefetchPokemonData(inject()) }
 
@@ -70,5 +73,6 @@ val PokemonDomainModule by module("domain-pokemon") {
         }
         single { FavoritePokemonRepository(inject()) }
         single { ViewedPokemonRepository(inject(), inject()) }
+        single { MoveDomainMapper(inject()) }
     }
 }

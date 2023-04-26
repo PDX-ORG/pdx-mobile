@@ -18,9 +18,9 @@ import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.entity.move.Move
 import kotlinx.coroutines.flow.Flow
 
-class GetPokemonMoves(
+class GetPokemonMoves internal constructor(
     private val client: PokeApiClient,
-    private val localeManager: LocaleManager
+    private val domainMapper: MoveDomainMapper
 ) {
 
     suspend operator fun invoke(
@@ -31,26 +31,9 @@ class GetPokemonMoves(
         lceFlow(pokemon.moves) { moveSlot ->
             client.move.get(moveSlot)
                 .asEither()
-                .map { item -> mapToDomain(item) }
+                .map { item -> domainMapper.map(item) }
                 .mapLeft { Error }
         }
-    }
-
-    private fun mapToDomain(item: Move): PokemonMove {
-        val flavorText = item.flavorTextEntries
-            .lastOrNull { it.language.asLanguage() == localeManager.settings.system.asPokemonLanguage() }
-            ?: item.flavorTextEntries.firstOrNull()
-
-        return PokemonMove(
-            name = item.name,
-            localeName = item.names
-                .ofCurrentLocale(localeManager),
-            localeFlavourText = flavorText?.flavorText?.removeNewLines(),
-            type = item.type.asType(),
-            pp = item.pp,
-            power = item.power,
-            accuracy = item.accuracy
-        )
     }
 
     object Error : ErrorType.Any, Throwable("can't load pokemon moves")

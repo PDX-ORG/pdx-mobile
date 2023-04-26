@@ -5,6 +5,6 @@ import io.github.lexadiky.akore.alice.robo.singleViewModel
 
 val MoveDetailsModule by module("feature-move-details") {
     internal {
-        singleViewModel { args -> MoveDetailsViewModel(args.get()) }
+        singleViewModel { args -> MoveDetailsViewModel(args.get(), inject(), inject()) }
     }
 }
