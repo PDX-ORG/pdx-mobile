@@ -26,7 +26,7 @@ internal class PokemonDetailsViewModel(
     private val getAvailableDetailsSections: GetAvailableDetailsSections,
     private val markPokemonSpeciesAsViewedUseCase: MarkPokemonSpeciesAsViewedUseCase,
     private val isPokemonFavorite: IsPokemonFavorite,
-    private val saveFavoritePokemon: SaveFavoritePokemon
+    private val saveFavoritePokemon: SaveFavoritePokemon,
 ) : ViewModel() {
 
     var state: PokemonDetailsState by mutableStateOf(PokemonDetailsState(pokemonId))
@@ -39,7 +39,7 @@ internal class PokemonDetailsViewModel(
                 is Either.Right -> state.copy(availableDetailsSections = data.value)
             }
 
-            state = when (val details =  getPokemonDetails(pokemonId).classify(this)) {
+            state = when (val details = getPokemonDetails(pokemonId).classify(PokemonDetailsViewModel::class)) {
                 is Either.Left -> state.copy(error = details.value)
                 is Either.Right -> {
                     launch { markPokemonSpeciesAsViewedUseCase.invoke(details.value) }
@@ -66,7 +66,8 @@ internal class PokemonDetailsViewModel(
     }
 
     fun selectVariety(varietyIndex: Int) = viewModelScope.launch {
-        val selectedVariety = state.pokemonSpeciesDetails?.varieties?.get(varietyIndex) ?: return@launch
+        val selectedVariety =
+            state.pokemonSpeciesDetails?.varieties?.get(varietyIndex) ?: return@launch
         state = state.copy(
             selectedVariety = selectedVariety,
             isFavorite = isPokemonFavorite(selectedVariety)

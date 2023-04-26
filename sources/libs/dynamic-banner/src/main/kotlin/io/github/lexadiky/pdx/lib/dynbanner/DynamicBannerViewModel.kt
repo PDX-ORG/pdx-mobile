@@ -28,7 +28,7 @@ internal class DynamicBannerViewModel(
     init {
         viewModelScope.launch {
             banner = repository.fetch(bannerId)
-                .classify(this)
+                .classify(DynamicBannerViewModel::class)
                 .getOrNull()
         }
     }

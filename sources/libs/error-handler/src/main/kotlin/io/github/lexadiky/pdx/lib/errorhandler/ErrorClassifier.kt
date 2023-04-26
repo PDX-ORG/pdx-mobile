@@ -4,6 +4,7 @@ import arrow.core.Either
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.error
 import io.github.lexadiky.pdx.lib.core.error.ErrorType
+import kotlin.reflect.KClass
 
 internal fun <E, T> Either<E, T>.classify(tag: String): Either<UIError, T> where E : ErrorType.Any, E : Throwable {
     if (this is Either.Left) {
@@ -19,6 +20,6 @@ internal fun <E, T> Either<E, T>.classify(tag: String): Either<UIError, T> where
     }
 }
 
-fun <E, T> Either<E, T>.classify(by: Any): Either<UIError, T> where E : ErrorType.Any, E : Throwable =
-    classify(by::class.toString())
+fun <E, T> Either<E, T>.classify(by: KClass<*>): Either<UIError, T> where E : ErrorType.Any, E : Throwable =
+    classify(by.toString())
 

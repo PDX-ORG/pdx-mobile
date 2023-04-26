@@ -37,7 +37,7 @@ class MovesSubPageViewModel(
     init {
         viewModelScope.launch {
             val data = getPokemonMoves(pokemonSpeciesDetails)
-                .classify(this)
+                .classify(MovesSubPageViewModel::class)
 
             state = when (data) {
                 is Either.Left -> state.copy(error = data.value)

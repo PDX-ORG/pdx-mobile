@@ -24,7 +24,7 @@ internal class PokemonDetailsStyleFastFetchViewModel(
 
     init {
         viewModelScope.launch {
-            when (val data = findPokemonPreview.invoke(pokemonId).classify(this)) {
+            when (val data = findPokemonPreview.invoke(pokemonId).classify(PokemonDetailsStyleFastFetchViewModel::class)) {
                 is Either.Left -> Unit // TODO show error
                 is Either.Right -> state = state.copy(color = data.value.types.first().assets.color)
             }

@@ -27,7 +27,7 @@ internal class MoveDetailsViewModel(
 
     init {
         viewModelScope.launch {
-            state = when (val data = getMoveDetails(moveId).classify(this@MoveDetailsViewModel)) {
+            state = when (val data = getMoveDetails(moveId).classify(MoveDetailsViewModel::class)) {
                 is Either.Left -> state.copy(error = data.value)
                 is Either.Right -> moveDetailsState(data.value)
             }
