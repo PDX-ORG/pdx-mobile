@@ -11,7 +11,7 @@ import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSortDirec
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSortType
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSortTypeBuilder
 
-class MoveSortWidgetViewModel : ViewModel() {
+internal class MoveSortWidgetViewModel : ViewModel() {
 
     var state by mutableStateOf(MoveSortWidgetState())
         private set
