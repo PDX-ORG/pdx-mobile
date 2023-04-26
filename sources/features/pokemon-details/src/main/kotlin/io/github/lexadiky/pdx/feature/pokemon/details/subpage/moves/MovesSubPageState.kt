@@ -1,6 +1,6 @@
 package io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves
 
-import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.MoveSort
+import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSort
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
 import io.github.lexadiky.pdx.lib.core.lce.Lce
 import io.github.lexadiky.pdx.lib.errorhandler.UIError

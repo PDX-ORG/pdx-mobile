@@ -58,7 +58,7 @@ firebase-performance = { module = "com.google.firebase:firebase-perf-ktx" }
 
 accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
 accompanist-navigation-material = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
-accompanist-placeholder = { module = "com.google.accompanist:accompanist-placeholder", version.ref = "accompanist" }
+accompanist-placeholder = { module = "com.google.accompanist:accompanist-placeholder-material3", version.ref = "accompanist" }
 
 akore-blogger-core = { module = "com.github.akore-org.blogger:core", version.ref = "akore" }
 akore-blogger-logcat = { module = "com.github.akore-org.blogger:logcat", version.ref = "akore" }

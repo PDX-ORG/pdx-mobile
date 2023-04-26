@@ -1,4 +1,4 @@
-package io.github.lexadiky.pdx.feature.pokemon.details.entitiy
+package io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move
 
 import io.github.lexadiky.pdx.feature.pokemon.details.R
 import io.github.lexadiky.pdx.lib.resources.string.StringResource

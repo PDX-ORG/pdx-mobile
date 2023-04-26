@@ -23,7 +23,6 @@
     <!-- Move sort filter -->
     <string name="feature_pokemon_move_sort_type_ascending">Ascending</string>
     <string name="feature_pokemon_move_sort_type_descending">Descending</string>
-    <string name="feature_pokemon_move_sort_type_back">Back</string>
 
     <string name="feature_pokemon_move_sort_state_default">Default sort</string>
     <string name="feature_pokemon_move_sort_state_selected">Sort: %s</string>
@@ -32,6 +31,5 @@
     <string name="feature_pokemon_move_sort_by_name">By name</string>
     <string name="feature_pokemon_move_sort_by_type">By type</string>
     <string name="feature_pokemon_move_sort_by_pp">By PP</string>
-    <string name="feature_pokemon_move_sort_by_cancel">Cancel</string>
 
 </resources>

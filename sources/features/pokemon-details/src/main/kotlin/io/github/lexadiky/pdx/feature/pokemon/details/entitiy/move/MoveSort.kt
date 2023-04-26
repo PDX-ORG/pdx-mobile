@@ -1,6 +1,7 @@
-package io.github.lexadiky.pdx.feature.pokemon.details.entitiy
+package io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move
 
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
+import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
 import io.github.lexadiky.pdx.lib.core.lce.Lce
 import io.github.lexadiky.pdx.lib.core.lce.contentOrNull
 

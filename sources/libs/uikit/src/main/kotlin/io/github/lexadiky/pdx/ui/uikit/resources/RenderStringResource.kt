@@ -18,33 +18,6 @@ import io.github.lexadiky.pdx.lib.resources.string.TemporalStringResource
 import java.util.Date
 
 @Composable
-private fun StringResource.renderAsState(): State<String> {
-    return when (this) {
-        is LiteralStringResource -> remember(this.value) { mutableStateOf(this.value) }
-        is ResStringResource -> {
-            val text = stringResource(id = this.stringRes)
-            remember(this.stringRes, text) { mutableStateOf(text) }
-        }
-
-        is TemporalStringResource -> {
-            val context = LocalContext.current
-            return remember(this.instant) {
-                val formatted = DateFormat.getDateFormat(context)
-                    .format(Date(instant.epochSeconds * 1000))
-                mutableStateOf(formatted)
-            }
-        }
-
-        is FormattedStringResource -> {
-            val renderedBase by this.base.renderAsState()
-            remember {
-                derivedStateOf { renderedBase.format(*this.arguments) }
-            }
-        }
-    }
-}
-
-@Composable
 fun StringResource.render(): String {
     val rendered by renderAsState()
     return rendered
@@ -53,11 +26,31 @@ fun StringResource.render(): String {
 fun StringResource.render(context: Context): String {
     return when (this) {
         is FormattedStringResource -> this.base.render(context)
-            .format(*this.arguments)
+            .formatWithResources(this.arguments, context)
         is LiteralStringResource -> this.value
         is ResStringResource -> context.getString(this.stringRes)
         is TemporalStringResource -> DateFormat.getDateFormat(context)
             .format(Date(instant.epochSeconds * 1000))
 
     }
+}
+
+@Composable
+private fun StringResource.renderAsState(): State<String> {
+    val context = LocalContext.current
+    return remember(this, context) {
+        mutableStateOf(render(context))
+    }
+}
+
+@Suppress("UNCHECKED_CAST")
+private fun String.formatWithResources(arguments: Array<out Any>, context: Context): String {
+    arguments.indices.forEach { idx ->
+        val arg = arguments[idx]
+        if (arg is StringResource) {
+            (arguments as Array<Any>)[idx] = arg.render(context)
+        }
+    }
+
+    return format(*arguments)
 }

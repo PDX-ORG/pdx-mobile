@@ -14,6 +14,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetPokemonMoves
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
+import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSort
 import io.github.lexadiky.pdx.lib.core.lce.Lce
 import io.github.lexadiky.pdx.lib.core.lce.mapLce
 import io.github.lexadiky.pdx.lib.errorhandler.classify
@@ -66,5 +67,11 @@ class MovesSubPageViewModel(
                 )
             }
         }
+    }
+
+    fun onSortUpdated(it: MoveSort) {
+        state = state.copy(
+            sortStrategy = it
+        )
     }
 }

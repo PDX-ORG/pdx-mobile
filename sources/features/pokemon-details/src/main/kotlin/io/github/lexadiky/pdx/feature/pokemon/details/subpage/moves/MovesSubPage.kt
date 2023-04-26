@@ -1,11 +1,14 @@
 package io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.lazy.LazyColumn
@@ -31,18 +34,20 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.placeholder.placeholder
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
+import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSort
+import io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.sort.MoveSortWidget
 import io.github.lexadiky.pdx.lib.core.lce.Lce
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.theme.transparent
+import io.github.lexadiky.pdx.ui.uikit.widget.placeholder
 
 @Composable
 internal fun MovesSubPage(
@@ -54,6 +59,8 @@ internal fun MovesSubPage(
     }
 }
 
+private const val EMPTY_PLACEHOLDER_SIZE = 10
+
 @Composable
 private fun MovesSubPageImpl(viewModel: MovesSubPageViewModel) {
     val moves by viewModel.state.movesSorted.collectAsState(initial = emptyList())
@@ -63,26 +70,41 @@ private fun MovesSubPageImpl(viewModel: MovesSubPageViewModel) {
             .sizeIn(maxHeight = configuration.screenHeightDp.dp)
     ) {
         item {
-            ControlPanel()
+            ControlPanel(
+                onSortUpdated = { viewModel.onSortUpdated(it) }
+            )
         }
-        items(moves) { lce ->
-            Column {
-                when (lce) {
-                    is Lce.Content ->
-                        MoveCard(
-                            move = lce.value,
-                            onItemClick = { viewModel.onMoveClicked(lce.value) },
-                            onTypeClick = { viewModel.onTypeClicked(lce.value.type) }
-                        )
-                    else -> Unit
+        if (moves.isNotEmpty()) {
+            items(moves) { lce ->
+                Column {
+                    Crossfade(
+                        targetState = lce,
+                        label = "move-card-cross-fade"
+                    ) { currentLce ->
+                        when (currentLce) {
+                            is Lce.Content ->
+                                MoveCard(
+                                    move = currentLce.value,
+                                    onItemClick = { viewModel.onMoveClicked(currentLce.value) },
+                                    onTypeClick = { viewModel.onTypeClicked(currentLce.value.type) }
+                                )
+
+                            is Lce.Loading -> MoveCardPlaceholder()
+                            else -> Unit
+                        }
+                    }
                 }
+            }
+        } else {
+            items(EMPTY_PLACEHOLDER_SIZE) {
+                MoveCardPlaceholder()
             }
         }
     }
 }
 
 @Composable
-private fun ControlPanel() {
+private fun ControlPanel(onSortUpdated: (MoveSort) -> Unit) {
     LazyRow(
         contentPadding = PaddingValues(
             start = MaterialTheme.grid.x2,
@@ -91,22 +113,7 @@ private fun ControlPanel() {
         )
     ) {
         item {
-            var isMenuOpen by remember { mutableStateOf(false) }
-            AssistChip(
-                onClick = { isMenuOpen = !isMenuOpen },
-                label = { Text(text = "Sort by") }
-
-            )
-
-            DropdownMenu(
-                expanded = isMenuOpen,
-                onDismissRequest = { isMenuOpen = false },
-
-            ) {
-                repeat(10) {
-                    DropdownMenuItem(text = { Text(text = "My Option") }, onClick = { /*TODO*/ })
-                }
-            }
+            MoveSortWidget(onUpdated = onSortUpdated)
         }
     }
 }
@@ -115,7 +122,7 @@ private fun ControlPanel() {
 private fun MoveCard(
     move: PokemonMoveData,
     onItemClick: () -> Unit,
-    onTypeClick: () -> Unit
+    onTypeClick: () -> Unit,
 ) {
     ListItem(
         headlineContent = {
@@ -155,5 +162,54 @@ private fun MoveCard(
         ),
         modifier = Modifier
             .clickable { onItemClick() }
+    )
+}
+
+@Composable
+@Suppress("MagicNumber")
+private fun MoveCardPlaceholder() {
+    ListItem(
+        headlineContent = {
+            Text(
+                text = "",
+                modifier = Modifier
+                    .fillMaxWidth(0.5f)
+                    .placeholder(true, 0.8f)
+            )
+        },
+        leadingContent = {
+            Box(
+                modifier = Modifier
+                    .size(MaterialTheme.grid.x4)
+                    .placeholder(true, shape = MaterialTheme.shapes.circular)
+            )
+        },
+        trailingContent = {
+            Text(
+                text = "25",
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.placeholder(true)
+            )
+        },
+        supportingContent = {
+            Column {
+                Text(
+                    text = "",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .placeholder(true, 0.8f)
+                )
+                Text(
+                    text = "",
+                    modifier = Modifier
+                        .fillMaxWidth(0.8f)
+                        .placeholder(true, 0.8f)
+                )
+            }
+
+        },
+        colors = ListItemDefaults.colors(
+            containerColor = MaterialTheme.colorScheme.transparent
+        ),
     )
 }
