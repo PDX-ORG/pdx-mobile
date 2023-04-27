@@ -9,13 +9,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.font.FontWeight
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.move.details.MoveDetailsState
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
+import io.github.lexadiky.pdx.ui.uikit.widget.BottomSheetHeaderScaffold
 
 @Composable
 internal fun MoveDetailsHeader(state: MoveDetailsState, onTypeClicked: (PokemonType) -> Unit) {
@@ -36,7 +36,7 @@ private fun Content(
     state: MoveDetailsState,
     onTypeClicked: (PokemonType) -> Unit,
 ) {
-    MoveDetailsHeaderScaffold(
+    BottomSheetHeaderScaffold(
         icon = {
             state.type?.let { type ->
                 Image(
@@ -51,18 +51,16 @@ private fun Content(
         },
         title = {
             state.localeName?.let { name ->
-                Text(
-                    text = name.render(),
-                    style = MaterialTheme.typography.titleLarge
-                )
+                Text(text = name.render())
             }
         },
-        ppLabel = {
-            Text(
-                text = state.ppLabel.render(),
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold
-            )
+        subtitle = {
+            state.localeFlavourText?.let { text ->
+                Text(text = text.render())
+            }
+        },
+        endDecoration = {
+            Text(text = state.ppLabel.render())
         }
     )
 }

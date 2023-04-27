@@ -1,7 +1,6 @@
 package io.github.lexadiky.pdx.feature.ability.details
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,6 +16,7 @@ import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
+import io.github.lexadiky.pdx.ui.uikit.widget.BottomSheetHeaderScaffold
 
 @Composable
 fun AbilityDetailsPage(id: String) {
@@ -36,17 +36,11 @@ private fun AbilityDetailsPageImpl(viewModel: AbilityDetailsViewModel) {
         modifier = Modifier.padding(MaterialTheme.grid.x2)
     ) {
         item {
-            Column {
-                Text(
-                    text = viewModel.state.title.render(),
-                    style = MaterialTheme.typography.titleLarge
-                )
-                Text(
-                    text = viewModel.state.subtitle.render(),
-                    style = MaterialTheme.typography.bodyMedium
-                )
+            BottomSheetHeaderScaffold(
+                title = { Text(text = viewModel.state.title.render()) },
+                subtitle = { Text(text = viewModel.state.subtitle.render()) }) {
+                
             }
-
         }
         item {
             Card {

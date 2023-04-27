@@ -44,13 +44,13 @@ private fun MoveDetailsPageImpl(vm: MoveDetailsViewModel) {
             state = vm.state,
             onTypeClicked = { vm.onTypeClicked(it) }
         )
-        FlavourCard(vm.state)
+        DescriptionCard(vm.state)
         Box(modifier = Modifier.height(500.dp))
     }
 }
 
 @Composable
-private fun FlavourCard(state: MoveDetailsState) {
+private fun DescriptionCard(state: MoveDetailsState) {
     Card(
         modifier = Modifier
             .fillMaxWidth()

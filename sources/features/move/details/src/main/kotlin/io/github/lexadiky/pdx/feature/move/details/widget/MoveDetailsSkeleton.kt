@@ -1,6 +1,8 @@
 package io.github.lexadiky.pdx.feature.move.details.widget
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -8,11 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
+import io.github.lexadiky.pdx.ui.uikit.widget.BottomSheetHeaderScaffold
+import io.github.lexadiky.pdx.ui.uikit.widget.PlaceholderDefaults
 import io.github.lexadiky.pdx.ui.uikit.widget.placeholder
 
 @Composable
 internal fun MoveDetailsSkeleton() {
-    MoveDetailsHeaderScaffold(
+    BottomSheetHeaderScaffold(
         icon = {
             Box(
                 modifier = Modifier
@@ -27,7 +31,23 @@ internal fun MoveDetailsSkeleton() {
                     .placeholder(true)
             )
         },
-        ppLabel = {
+        subtitle = {
+            Column {
+                Text(
+                    text = "Placeholder",
+                    modifier = Modifier
+                        .fillMaxWidth(0.8f)
+                        .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
+                )
+                Text(
+                    text = "Placeholder",
+                    modifier = Modifier
+                        .fillMaxWidth(0.6f)
+                        .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
+                )
+            }
+        },
+        endDecoration = {
             Text(
                 text = "PP",
                 modifier = Modifier
