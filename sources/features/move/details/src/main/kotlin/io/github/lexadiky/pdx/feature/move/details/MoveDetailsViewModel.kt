@@ -37,6 +37,7 @@ internal class MoveDetailsViewModel(
     private fun moveDetailsState(move: PokemonMove) = state.copy(
         localeName = StringResource.from(move.localeName),
         localeFlavourText = move.localeFlavourText?.let { StringResource.from(it) },
+        localeShortEffect = move.localeShortEffect?.let { StringResource.from(it) },
         type = move.type,
         pp = move.pp
     )

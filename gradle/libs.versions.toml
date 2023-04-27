@@ -65,6 +65,6 @@ akore-blogger-logcat = { module = "com.github.akore-org.blogger:logcat", version
 akore-alice-core = { module = "com.github.akore-org.alice:core", version = "07dfa09ff5" }
 akore-alice-robo = { module = "com.github.akore-org.alice:robo", version = "07dfa09ff5" }
 
-pokeapi = "com.github.lexa-diky:pokeapi-kotlin:57ef13a22e"
+pokeapi = "com.github.lexa-diky:pokeapi-kotlin:df8b8355bb"
 
 [plugins]

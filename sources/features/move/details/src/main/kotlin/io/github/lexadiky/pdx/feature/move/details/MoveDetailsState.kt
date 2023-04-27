@@ -8,6 +8,7 @@ import io.github.lexadiky.pdx.lib.resources.string.from
 data class MoveDetailsState(
     val localeName: StringResource? = null,
     val localeFlavourText: StringResource? = null,
+    val localeShortEffect: StringResource? = null,
     val type: PokemonType? = null,
     val error: UIError? = null,
     val pp: Int? = null

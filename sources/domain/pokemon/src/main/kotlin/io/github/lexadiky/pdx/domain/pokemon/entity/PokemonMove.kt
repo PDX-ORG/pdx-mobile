@@ -10,5 +10,6 @@ data class PokemonMove(
     val pp: Int?,
     val power: Int?,
     val accuracy: Int?,
-    val ftsIndex: FtsIndex
+    val ftsIndex: FtsIndex,
+    val localeShortEffect: String?
 )

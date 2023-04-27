@@ -11,13 +11,17 @@ import io.github.lexadiky.pdx.lib.locale.LocaleManager
 import io.lexadiky.pokeapi.entity.move.Move
 
 internal class MoveDomainMapper(
-    private val localeManager: LocaleManager
+    private val localeManager: LocaleManager,
 ) {
 
     fun map(item: Move): PokemonMove {
         val flavorText = item.flavorTextEntries
             .lastOrNull { it.language.asLanguage() == localeManager.settings.system.asPokemonLanguage() }
             ?: item.flavorTextEntries.firstOrNull()
+
+        val localeShortEffect = item.effectEntries
+            .lastOrNull { it.language.asLanguage() == localeManager.settings.system.asPokemonLanguage() }
+            ?: item.effectEntries.firstOrNull()
 
         return PokemonMove(
             name = item.name,
@@ -28,9 +32,14 @@ internal class MoveDomainMapper(
             pp = item.pp,
             power = item.power,
             accuracy = item.accuracy,
-            ftsIndex = createFtsIndex(item)
+            ftsIndex = createFtsIndex(item),
+            localeShortEffect = localeShortEffect?.shortEffect
+                ?.formatPokeApi(item)
         )
     }
+
+    private fun String.formatPokeApi(move: Move) =
+        replace("\$effect_chance%", "${move.effectChance}%")
 
     private fun createFtsIndex(item: Move): FtsIndex {
         val index = FtsIndex.buildable()

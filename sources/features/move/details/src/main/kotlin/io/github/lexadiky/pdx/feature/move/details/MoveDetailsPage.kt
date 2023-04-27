@@ -57,11 +57,13 @@ private fun DescriptionCard(state: MoveDetailsState) {
             .placeholder(state.isLoading)
             .animateContentSize()
     ) {
-        if (state.localeFlavourText != null) {
-            Text(
-                text = state.localeFlavourText.render(),
-                modifier = Modifier.padding(MaterialTheme.grid.x2)
-            )
+        if (!state.isLoading) {
+            state.localeShortEffect?.let { text ->
+                Text(
+                    text = text.render(),
+                    modifier = Modifier.padding(MaterialTheme.grid.x2)
+                )
+            }
         } else {
             Text(
                 text = "\n\n",
