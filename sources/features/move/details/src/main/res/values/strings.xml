@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="move_details_attr_power">Power</string>
+    <string name="move_details_attr_accuracy">Accuracy</string>
+    <string name="move_details_attr_pp">PP</string>
+    <string name="move_details_attr_effect_chance">Effect Chance</string>
+    <string name="move_details_attr_type">Type</string>
+
 </resources>

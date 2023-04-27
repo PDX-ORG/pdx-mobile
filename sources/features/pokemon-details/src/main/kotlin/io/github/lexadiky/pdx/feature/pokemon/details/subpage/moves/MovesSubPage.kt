@@ -3,11 +3,11 @@ package io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -120,7 +120,8 @@ private fun ControlPanel(
         SearchField(
             text = searchQuery,
             onTextChanged = { onSearchQueryUpdated(it) },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(
                     horizontal = MaterialTheme.grid.x2,
                     vertical = MaterialTheme.grid.x1
@@ -149,25 +150,24 @@ private fun MoveCard(
         headlineContent = {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1)
             ) {
                 Text(text = move.localeName.render())
-
-                Spacer(modifier = Modifier.size(MaterialTheme.grid.x1))
-
-                if (move.power != null) {
-                    MoveStatLabel(
-                        icon = painterResource(id = R.drawable.uikit_ic_swords),
-                        label = move.powerLabel.render()
-                    )
-                }
-
-                Spacer(modifier = Modifier.size(MaterialTheme.grid.x1))
-
-                if (move.accuracy != null) {
-                    MoveStatLabel(
-                        icon = painterResource(id = R.drawable.uikit_ic_accuracy),
-                        label = move.accuracyLabel.render()
-                    )
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x05)
+                ) {
+                    if (move.power != null) {
+                        MoveStatLabel(
+                            icon = painterResource(id = R.drawable.uikit_ic_swords),
+                            label = move.powerLabel.render()
+                        )
+                    }
+                    if (move.accuracy != null) {
+                        MoveStatLabel(
+                            icon = painterResource(id = R.drawable.uikit_ic_accuracy),
+                            label = move.accuracyLabel.render()
+                        )
+                    }
                 }
             }
         },
@@ -190,7 +190,7 @@ private fun MoveCard(
         },
         supportingContent = {
             Text(
-                text = move.localeFlavourText.render(),
+                text = move.localeEffectText.render(),
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
@@ -205,16 +205,20 @@ private fun MoveCard(
 
 @Composable
 private fun MoveStatLabel(icon: Painter, label: String) {
-    Icon(
-        painter = icon,
-        contentDescription = null,
-        modifier = Modifier.size(MaterialTheme.grid.x2)
-    )
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            painter = icon,
+            contentDescription = null,
+            modifier = Modifier.size(MaterialTheme.grid.x2)
+        )
 
-    Text(
-        text = label,
-        maxLines = 1
-    )
+        Text(
+            text = label,
+            maxLines = 1
+        )
+    }
 }
 
 @Composable
@@ -248,13 +252,7 @@ private fun MoveCardPlaceholder() {
                 Text(
                     text = "",
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
-                )
-                Text(
-                    text = "",
-                    modifier = Modifier
-                        .fillMaxWidth(0.8f)
+                        .fillMaxWidth(0.5f)
                         .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
                 )
             }

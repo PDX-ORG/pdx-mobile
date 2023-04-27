@@ -67,7 +67,7 @@ internal class MovesSubPageViewModel(
                 PokemonMoveData(
                     name = item.name,
                     localeName = StringResource.from(item.localeName),
-                    localeFlavourText = StringResource.from(item.localeFlavourText.orEmpty()),
+                    localeEffectText = StringResource.from(item.localeShortEffect.orEmpty()),
                     type = item.type,
                     pp = item.pp,
                     power = item.power,

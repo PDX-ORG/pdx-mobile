@@ -34,7 +34,8 @@ internal class MoveDomainMapper(
             accuracy = item.accuracy,
             ftsIndex = createFtsIndex(item),
             localeShortEffect = localeShortEffect?.shortEffect
-                ?.formatPokeApi(item)
+                ?.formatPokeApi(item),
+            effectChance = item.effectChance
         )
     }
 
