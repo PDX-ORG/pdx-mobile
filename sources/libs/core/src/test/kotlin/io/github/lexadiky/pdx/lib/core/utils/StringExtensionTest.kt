@@ -12,7 +12,7 @@ class StringExtensionTest {
 
         @TestFactory
         fun variants(): List<DynamicTest> =
-            listOf("abc" to "abc", "" to "", "a\nb" to "ab", "\n" to "").map { (input, expected) ->
+            listOf("abc" to "abc", "" to "", "a\nb" to "a b", "\n" to " ").map { (input, expected) ->
                 DynamicTest.dynamicTest("GIVEN '$input' THEN '$expected'") {
                     Assertions.assertEquals(expected, input.removeNewLines())
                 }

@@ -17,6 +17,7 @@
     <string name="feature_pokemon_details_section_ability_type_normal">Ability</string>
     <string name="feature_pokemon_details_section_ability_type_hidden">Hidden Ability</string>
 
+    <string name="feature_pokemon_info_section_description_title_0">Some games</string>
     <string name="feature_pokemon_info_section_description_title_joiner_2">%s &amp; %s</string>
     <string name="feature_pokemon_info_section_description_title_joiner_x">%s, %s and others</string>
 

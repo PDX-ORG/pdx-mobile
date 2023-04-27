@@ -1,7 +1,6 @@
 package io.github.lexadiky.pdx.feature.pokemon.details
 
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDetailsSection
@@ -11,7 +10,6 @@ import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
-import io.github.lexadiky.pdx.lib.resources.string.format
 import io.github.lexadiky.pdx.lib.resources.string.from
 
 internal data class PokemonDetailsState(
@@ -30,9 +28,6 @@ internal data class PokemonDetailsState(
     val name: StringResource? = pokemonSpeciesDetails?.localeName
         ?.let { StringResource.from(it) }
 
-    val image: ImageResource? = selectedVariety?.sprites?.default
-        ?.let { ImageResource.from(it) }
-
     val types: List<PokemonType> get() = selectedVariety?.types.orEmpty()
 
     val dimensions: List<PokemonPhysicalDimension> = extractDimensions(
@@ -40,4 +35,9 @@ internal data class PokemonDetailsState(
         selectedVariety,
         false
     )
+
+    fun image(index: Int): ImageResource? {
+        return pokemonSpeciesDetails?.varieties?.get(index)?.sprites?.default
+            ?.let { ImageResource.from(it) }
+    }
 }

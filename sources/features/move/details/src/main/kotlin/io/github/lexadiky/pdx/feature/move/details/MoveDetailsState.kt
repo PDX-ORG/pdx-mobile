@@ -14,4 +14,6 @@ data class MoveDetailsState(
 ) {
 
     val ppLabel = StringResource.from(pp?.toString().orEmpty())
+
+    val isLoading: Boolean = localeName == null
 }

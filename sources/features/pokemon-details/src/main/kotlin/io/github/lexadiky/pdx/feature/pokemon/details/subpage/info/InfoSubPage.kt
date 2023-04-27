@@ -1,74 +1,147 @@
 package io.github.lexadiky.pdx.feature.pokemon.details.subpage.info
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Divider
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.unit.dp
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonPhysicalDimension
+import io.github.lexadiky.pdx.lib.core.lce.Lce
+import io.github.lexadiky.pdx.lib.core.lce.contentOrNull
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
+import io.github.lexadiky.pdx.ui.uikit.theme.transparent
+import io.github.lexadiky.pdx.ui.uikit.widget.PlaceholderDefaults
+import io.github.lexadiky.pdx.ui.uikit.widget.placeholder
 
 @Composable
 internal fun InfoSubPage(
     pokemonSpeciesDetails: PokemonSpeciesDetails?,
-    pokemonDetails: PokemonDetails?
+    pokemonDetails: PokemonDetails?,
 ) {
     if (pokemonSpeciesDetails != null && pokemonDetails != null) {
         InfoSubPageImpl(di.viewModel(pokemonSpeciesDetails, pokemonDetails))
     }
 }
 
+private const val DESCRIPTION_PLACEHOLDER_SIZE = 10
+private const val ITEM_KEY_TOP_SPACER = "ITEM_KEY_TOP_SPACER"
+
 @Composable
 private fun InfoSubPageImpl(
-    viewModel: InfoSubPageViewModel
+    viewModel: InfoSubPageViewModel,
 ) {
     ErrorDialog(viewModel.state.error) {
         viewModel.hideError()
     }
 
-    Column(
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
-        modifier = Modifier.padding(MaterialTheme.grid.x2)
-    ) {
-        ElevatedCard(
-            modifier = Modifier.fillMaxWidth()
+    Column {
+        val configuration = LocalConfiguration.current
+        val descriptions by viewModel.state.descriptions.collectAsState(
+            List(DESCRIPTION_PLACEHOLDER_SIZE) { Lce.Loading }
+        )
+
+        LazyColumn(
+            contentPadding = PaddingValues(vertical = MaterialTheme.grid.x2),
+            modifier = Modifier
+                .heightIn(max = configuration.screenHeightDp.dp)
         ) {
-            Row(
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier
-                    .padding(MaterialTheme.grid.x2)
-                    .fillMaxWidth()
-            ) {
-                viewModel.state.dimensions.forEach { dimension ->
-                    DimensionItem(dimension = dimension)
+            item {
+                ElevatedCard(
+                    modifier = Modifier
+                        .padding(horizontal = MaterialTheme.grid.x2)
+                        .fillMaxWidth()
+                ) {
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        modifier = Modifier
+                            .padding(MaterialTheme.grid.x2)
+                            .fillMaxWidth()
+                    ) {
+                        viewModel.state.dimensions.forEach { dimension ->
+                            DimensionItem(dimension = dimension)
+                        }
+                    }
                 }
             }
-        }
-
-        viewModel.state.descriptions.forEachIndexed { index, description ->
-            Column {
-                Text(
-                    text = description.title.render(),
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Text(text = description.text.render())
+            item(ITEM_KEY_TOP_SPACER) {
+                Box(modifier = Modifier.height(MaterialTheme.grid.x2))
             }
-            if (viewModel.state.descriptions.lastIndex != index) {
-                Divider()
+            itemsIndexed(
+                items = descriptions,
+                key = { index, item ->
+                    item.contentOrNull()?.artificialId ?: index
+                }
+            ) { index, item ->
+                when (item) {
+                    is Lce.Content -> {
+                        ListItem(
+                            headlineContent = { Text(text = item.value.title.render()) },
+                            supportingContent = { Text(text = item.value.text.render()) },
+                            colors = ListItemDefaults.colors(
+                                containerColor = MaterialTheme.colorScheme.transparent
+                            )
+                        )
+                    }
+
+                    Lce.Loading -> {
+                        ListItem(
+                            headlineContent = {
+                                Text(
+                                    text = "",
+                                    modifier = Modifier
+                                        .fillMaxWidth(0.6f)
+                                        .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
+                                )
+                            },
+                            supportingContent = {
+                                Column {
+                                    Text(
+                                        text = "",
+                                        modifier = Modifier
+                                            .fillMaxWidth(0.8f)
+                                            .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
+                                    )
+                                    Text(
+                                        text = "",
+                                        modifier = Modifier
+                                            .fillMaxWidth(0.7f)
+                                            .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
+                                    )
+                                }
+                            },
+                            colors = ListItemDefaults.colors(
+                                containerColor = MaterialTheme.colorScheme.transparent
+                            )
+                        )
+                    }
+
+                    else -> Unit
+                }
             }
         }
     }

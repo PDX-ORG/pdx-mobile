@@ -1,5 +1,7 @@
 package io.github.lexadiky.pdx.lib.core.lce
 
+import kotlinx.coroutines.flow.Flow
+
 /**
  * Abstraction over Loading -> Content | Error behaviour
  *
@@ -13,6 +15,8 @@ sealed interface Lce<out E, out V> {
 
     data class Error<out E>(val value: E) : Lce<E, Nothing>
 }
+
+typealias DynamicLceList<E, V> = Flow<List<Lce<E, V>>>
 
 fun <E, T> Lce<E, T>.contentOrNull(): T? = when (this) {
     is Lce.Content -> value

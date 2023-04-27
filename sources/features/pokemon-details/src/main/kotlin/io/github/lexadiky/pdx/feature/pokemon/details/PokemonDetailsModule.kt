@@ -1,11 +1,9 @@
 package io.github.lexadiky.pdx.feature.pokemon.details
 
-import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.akore.alice.eagerModule
 import io.github.lexadiky.akore.alice.robo.singleViewModel
 import io.github.lexadiky.akore.alice.util.single
 import io.github.lexadiky.pdx.domain.pokemon.PokemonDomainModule
-import io.github.lexadiky.pdx.feature.pokemon.details.subpage.info.InfoSubPage
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.info.InfoSubPageViewModel
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.MovesSubPageViewModel
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.sort.MoveSortWidgetViewModel

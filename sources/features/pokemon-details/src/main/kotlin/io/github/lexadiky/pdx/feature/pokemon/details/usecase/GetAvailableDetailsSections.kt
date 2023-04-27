@@ -11,7 +11,7 @@ internal class GetAvailableDetailsSections {
                 PokemonDetailsSection.Stats,
                 PokemonDetailsSection.Info,
                 PokemonDetailsSection.Battle,
-                PokemonDetailsSection.Evolution
+                // TODO add PokemonDetailsSection.Evolution
             )
         )
     }

@@ -15,12 +15,11 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetPokemonMoves
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSort
-import io.github.lexadiky.pdx.lib.core.lce.Lce
+import io.github.lexadiky.pdx.lib.core.lce.DynamicLceList
 import io.github.lexadiky.pdx.lib.core.lce.mapLce
 import io.github.lexadiky.pdx.lib.errorhandler.classify
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -62,7 +61,7 @@ internal class MovesSubPageViewModel(
         state = state.copy(sortStrategy = sort)
     }
 
-    private fun mapToData(value: Flow<List<Lce<GetPokemonMoves.Error, PokemonMove>>>): Flow<List<Lce<*, PokemonMoveData>>> {
+    private fun mapToData(value: DynamicLceList<*, PokemonMove>): DynamicLceList<*, PokemonMoveData> {
         return value.map { lces ->
             lces.mapLce { item ->
                 PokemonMoveData(
@@ -72,7 +71,8 @@ internal class MovesSubPageViewModel(
                     type = item.type,
                     pp = item.pp,
                     power = item.power,
-                    accuracy = item.accuracy
+                    accuracy = item.accuracy,
+                    ftsIndex = item.ftsIndex
                 )
             }
         }

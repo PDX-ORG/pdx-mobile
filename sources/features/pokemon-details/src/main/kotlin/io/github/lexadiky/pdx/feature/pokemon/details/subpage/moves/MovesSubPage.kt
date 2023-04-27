@@ -14,7 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
@@ -41,11 +41,13 @@ import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSort
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.sort.MoveSortWidget
 import io.github.lexadiky.pdx.lib.core.lce.Lce
+import io.github.lexadiky.pdx.lib.core.lce.contentOrNull
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.theme.transparent
+import io.github.lexadiky.pdx.ui.uikit.widget.PlaceholderDefaults
 import io.github.lexadiky.pdx.ui.uikit.widget.SearchField
 import io.github.lexadiky.pdx.ui.uikit.widget.placeholder
 
@@ -76,8 +78,11 @@ private fun MovesSubPageImpl(viewModel: MovesSubPageViewModel) {
                 onSearchQueryUpdated = { viewModel.onQueryUpdated(it) }
             )
         }
-        if (moves.isNotEmpty()) {
-            items(moves) { lce ->
+        if (moves.isNotEmpty())  {
+            itemsIndexed(
+                items = moves,
+                key = { idx, lce -> lce.contentOrNull()?.name ?: idx }
+            ) { idx, lce ->
                 Column {
                     Crossfade(
                         targetState = lce,
@@ -221,7 +226,7 @@ private fun MoveCardPlaceholder() {
                 text = "",
                 modifier = Modifier
                     .fillMaxWidth(0.5f)
-                    .placeholder(true, 0.8f)
+                    .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
             )
         },
         leadingContent = {
@@ -244,13 +249,13 @@ private fun MoveCardPlaceholder() {
                     text = "",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .placeholder(true, 0.8f)
+                        .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
                 )
                 Text(
                     text = "",
                     modifier = Modifier
                         .fillMaxWidth(0.8f)
-                        .placeholder(true, 0.8f)
+                        .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
                 )
             }
 

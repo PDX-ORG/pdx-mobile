@@ -1,5 +1,7 @@
 package io.github.lexadiky.pdx.domain.pokemon.entity
 
+import io.github.lexadiky.pdx.lib.core.fts.FtsIndex
+
 data class PokemonMove(
     val name: String,
     val localeName: String,
@@ -7,5 +9,6 @@ data class PokemonMove(
     val type: PokemonType,
     val pp: Int?,
     val power: Int?,
-    val accuracy: Int?
+    val accuracy: Int?,
+    val ftsIndex: FtsIndex
 )

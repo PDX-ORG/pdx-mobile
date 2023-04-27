@@ -22,6 +22,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,15 +37,17 @@ import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonStat
 import io.github.lexadiky.pdx.feature.pokemon.details.R
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonAbilityData
+import io.github.lexadiky.pdx.lib.core.lce.Lce
+import io.github.lexadiky.pdx.lib.core.lce.contentOrNull
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.animation
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.util.saturation
 import io.github.lexadiky.pdx.ui.uikit.widget.PillChip
+import io.github.lexadiky.pdx.ui.uikit.widget.placeholder
 
 @Composable
 internal fun StatsSubPage(
@@ -126,28 +130,34 @@ private fun StatInfoBar(
     }
 }
 
+private const val ABILITY_PLACEHOLDER_SIZE = 3
+
 @Composable
 private fun AbilityBar(state: StatsSubPageState, onClick: (PokemonAbilityData) -> Unit) {
     Column(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1)
     ) {
-        state.abilities.forEach { ability ->
+        val abilities by state.abilities.collectAsState(
+            initial = List(ABILITY_PLACEHOLDER_SIZE) { Lce.Loading }
+        )
+        abilities.forEach { ability ->
             AbilityItem(
-                title = ability.localeName.render(),
-                subtitle = ability.type.render(),
-                onClick = { onClick.invoke(ability) }
+                ability = ability.contentOrNull(),
+                onClick = { ability.contentOrNull()?.let { onClick.invoke(it) } }
             )
         }
     }
 }
 
 @Composable
-private fun AbilityItem(title: String, subtitle: String, onClick: () -> Unit) {
+private fun AbilityItem(ability: PokemonAbilityData?, onClick: () -> Unit) {
     Box(
         modifier = Modifier.padding(horizontal = MaterialTheme.grid.x2)
     ) {
         ElevatedCard(
-            onClick = onClick
+            onClick = onClick,
+            modifier = Modifier
+                .placeholder(ability == null)
         ) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -160,8 +170,14 @@ private fun AbilityItem(title: String, subtitle: String, onClick: () -> Unit) {
                     )
             ) {
                 Column {
-                    Text(text = title, fontWeight = FontWeight.SemiBold)
-                    Text(text = subtitle, style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        text = ability?.localeName?.render() ?: "Placeholder",
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Text(
+                        text = ability?.type?.render() ?: "Placholder",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                 }
                 IconButton(onClick = { onClick() }) {
                     Icon(painter = rememberVectorPainter(Icons.Outlined.Info), contentDescription = null)

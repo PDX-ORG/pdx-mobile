@@ -10,6 +10,10 @@ import com.google.accompanist.placeholder.material3.fade
 import com.google.accompanist.placeholder.material3.placeholder
 import io.github.lexadiky.pdx.ui.uikit.util.alpha
 
+object PlaceholderDefaults {
+    const val SHRIEKED_TEXT_HEIGHT = 0.8f
+}
+
 @Composable
 fun Modifier.placeholder(
     visible: Boolean,

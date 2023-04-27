@@ -68,6 +68,7 @@ import io.github.lexadiky.pdx.feature.pokemon.details.subpage.stats.StatsSubPage
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.navigation.FullScreenDialogStyles
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
+import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
@@ -94,7 +95,7 @@ fun PageContext.PokemonDetailsPage(pokemonId: String) {
 @Composable
 private fun PokemonDetailsPageImpl(
     viewModel: PokemonDetailsViewModel,
-    styleFastFetchViewModel: PokemonDetailsStyleFastFetchViewModel
+    styleFastFetchViewModel: PokemonDetailsStyleFastFetchViewModel,
 ) {
     val color = styleFastFetchViewModel.state.color?.render()
 
@@ -179,6 +180,7 @@ private fun DataCard(viewModel: PokemonDetailsViewModel) {
                     viewModel.state.pokemonSpeciesDetails,
                     viewModel.state.selectedVariety
                 )
+
                 null -> Unit
             }
         }
@@ -190,7 +192,7 @@ private fun HeaderImagePager(
     state: PokemonDetailsState,
     onVarietyChanged: (Int) -> Unit,
     openSprites: () -> Unit,
-    toggleFavorite: () -> Unit
+    toggleFavorite: () -> Unit,
 ) {
     Crossfade(targetState = state.isLoaded, label = "header-image-pager-cf") { isLoaded ->
         if (isLoaded) {
@@ -205,7 +207,7 @@ private fun HeaderImagePager(
                         state.availableVarieties,
                         state = pagerState
                     ) { page ->
-                        HeaderImage(state.image)
+                        HeaderImage(state.image(page))
                     }
                     Box(
                         contentAlignment = Alignment.Center,
@@ -302,7 +304,7 @@ private fun BoxScope.FavoriteButtonIcon(
 @Composable
 private fun BoxScope.PhysicalDimensions(
     alpha: Float,
-    state: PokemonDetailsState
+    state: PokemonDetailsState,
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1),
@@ -345,7 +347,7 @@ private fun BoxScope.PhysicalDimensions(
 @Composable
 private fun rememberPagerHeaderLabelsAlpha(
     pagerState: PagerState,
-    state: PokemonDetailsState
+    state: PokemonDetailsState,
 ): Float {
     val isSpritesIconVisible = !pagerState.isScrollInProgress || state.availableVarieties == 1
     val spriteIconAlpha by animateFloatAsState(
@@ -359,7 +361,7 @@ private fun rememberPagerHeaderLabelsAlpha(
 private fun TitleDecoration(
     name: StringResource?,
     types: List<PokemonType>,
-    onClick: (PokemonType) -> Job
+    onClick: (PokemonType) -> Job,
 ) {
     if (name != null) {
         Decoration("pdx://toolbar/title") {

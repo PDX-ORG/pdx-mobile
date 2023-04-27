@@ -1,6 +1,7 @@
 package io.github.lexadiky.pdx.feature.pokemon.details.entitiy
 
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
+import io.github.lexadiky.pdx.lib.core.fts.FtsIndex
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from
 
@@ -11,7 +12,8 @@ data class PokemonMoveData(
     val type: PokemonType,
     val pp: Int?,
     val power: Int?,
-    val accuracy: Int?
+    val accuracy: Int?,
+    val ftsIndex: FtsIndex
 ) {
 
     val ppLabel: StringResource = StringResource.from(pp?.toString().orEmpty())
