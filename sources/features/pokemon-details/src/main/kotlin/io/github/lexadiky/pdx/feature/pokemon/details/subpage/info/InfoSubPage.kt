@@ -1,5 +1,6 @@
 package io.github.lexadiky.pdx.feature.pokemon.details.subpage.info
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -96,51 +97,62 @@ private fun InfoSubPageImpl(
                 key = { index, item ->
                     item.contentOrNull()?.artificialId ?: index
                 }
-            ) { index, item ->
-                when (item) {
-                    is Lce.Content -> {
-                        ListItem(
-                            headlineContent = { Text(text = item.value.title.render()) },
-                            supportingContent = { Text(text = item.value.text.render()) },
-                            colors = ListItemDefaults.colors(
-                                containerColor = MaterialTheme.colorScheme.transparent
-                            )
-                        )
-                    }
-
-                    Lce.Loading -> {
-                        ListItem(
-                            headlineContent = {
-                                Text(
-                                    text = "",
-                                    modifier = Modifier
-                                        .fillMaxWidth(0.6f)
-                                        .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
+            ) { index, lce ->
+                Crossfade(
+                    label = "description-crossfade",
+                    targetState = lce
+                ) { item ->
+                    when (item) {
+                        is Lce.Content -> {
+                            ListItem(
+                                headlineContent = { Text(text = item.value.title.render()) },
+                                supportingContent = { Text(text = item.value.text.render()) },
+                                colors = ListItemDefaults.colors(
+                                    containerColor = MaterialTheme.colorScheme.transparent
                                 )
-                            },
-                            supportingContent = {
-                                Column {
-                                    Text(
-                                        text = "",
-                                        modifier = Modifier
-                                            .fillMaxWidth(0.8f)
-                                            .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
-                                    )
-                                    Text(
-                                        text = "",
-                                        modifier = Modifier
-                                            .fillMaxWidth(0.7f)
-                                            .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
-                                    )
-                                }
-                            },
-                            colors = ListItemDefaults.colors(
-                                containerColor = MaterialTheme.colorScheme.transparent
                             )
-                        )
-                    }
+                        }
 
-                    else -> Unit
+                        Lce.Loading -> {
+                            ListItem(
+                                headlineContent = {
+                                    Text(
+                                        text = "",
+                                        modifier = Modifier
+                                            .fillMaxWidth(0.6f)
+                                            .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
+                                    )
+                                },
+                                supportingContent = {
+                                    Column {
+                                        Text(
+                                            text = "",
+                                            modifier = Modifier
+                                                .fillMaxWidth(0.8f)
+                                                .placeholder(
+                                                    true,
+                                                    PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT
+                                                )
+                                        )
+                                        Text(
+                                            text = "",
+                                            modifier = Modifier
+                                                .fillMaxWidth(0.7f)
+                                                .placeholder(
+                                                    true,
+                                                    PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT
+                                                )
+                                        )
+                                    }
+                                },
+                                colors = ListItemDefaults.colors(
+                                    containerColor = MaterialTheme.colorScheme.transparent
+                                )
+                            )
+                        }
+
+                        else -> Unit
+                    }
                 }
             }
         }
