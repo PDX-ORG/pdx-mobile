@@ -2,7 +2,6 @@
 
 package io.github.lexadiky.pdx.feature.home
 
-import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -27,12 +26,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.startActivity
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
@@ -138,7 +134,7 @@ private fun LazyListScope.pokemonSuggestionSection(
     title: Int,
     icon: Int,
     items: List<SuggestedPokemonItem>,
-    openPokemonDetails: (SuggestedPokemonItem) -> Unit
+    openPokemonDetails: (SuggestedPokemonItem) -> Unit,
 ) {
     if (items.isEmpty()) {
         return
@@ -214,13 +210,15 @@ enum class HomePageFeaturedCardShape {
     Card, Box
 }
 
+private const val FEATURE_IMAGE_WIDTH_RATIO = 0.7f
+
 @Composable
 private fun RowScope.HomePageFeaturedCard(
     title: StringResource,
     image: ImageResource,
     shape: HomePageFeaturedCardShape,
     weight: Float,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     ElevatedCard(
         onClick = { onClick() },
@@ -239,7 +237,7 @@ private fun RowScope.HomePageFeaturedCard(
                 painter = image.render(listOf(ImageTransformation.CropTransparent)),
                 contentDescription = null,
                 modifier = Modifier
-                    .fillMaxWidth(0.7f)
+                    .fillMaxWidth(FEATURE_IMAGE_WIDTH_RATIO)
                     .aspectRatio(1f)
                     .align(Alignment.BottomEnd)
                     .offset(MaterialTheme.grid.x2, MaterialTheme.grid.x2)

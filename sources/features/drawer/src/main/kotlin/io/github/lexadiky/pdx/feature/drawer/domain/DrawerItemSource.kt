@@ -8,10 +8,9 @@ import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
 import io.github.lexadiky.akore.lechuck.NavigationRoute
-import io.github.lexadiky.pdx.feature.drawer.entity.DrawerItem
-import io.github.lexadiky.pdx.lib.ifEnabled
 import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.pdx.feature.drawer.entity.AuthInDrawerFeatureToggle
+import io.github.lexadiky.pdx.feature.drawer.entity.DrawerItem
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
@@ -20,9 +19,7 @@ import io.github.lexadiky.pdx.lib.resources.string.from
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.resources.from
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 
 internal class DrawerItemSource(
@@ -72,9 +69,8 @@ internal class DrawerItemSource(
                     DrawerItem.Divider
                         .takeIf { toggleManager.resolve(AuthInDrawerFeatureToggle) },
                     DrawerItem.Login
-                        .takeIf { toggleManager.resolve(AuthInDrawerFeatureToggle) },
-                    *debugPanelItem(currentRoute)
-                )
+                        .takeIf { toggleManager.resolve(AuthInDrawerFeatureToggle) }
+                ) + debugPanelItem(currentRoute)
             }
     }
 

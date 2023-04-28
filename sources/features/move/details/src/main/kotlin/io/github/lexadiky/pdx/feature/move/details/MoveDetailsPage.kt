@@ -68,10 +68,6 @@ private fun Attributes(state: MoveDetailsState) {
                     is MoveAttribute.Text -> TextAttribute(attr = attribute)
                 }
             }
-        } else {
-            repeat(3) {
-                AttributePlaceholder()
-            }
         }
     }
 }
@@ -101,11 +97,6 @@ private fun TextAttribute(attr: MoveAttribute.Text) {
             fontWeight = FontWeight.SemiBold
         )
     }
-}
-
-@Composable
-private fun AttributePlaceholder() {
-
 }
 
 @Composable

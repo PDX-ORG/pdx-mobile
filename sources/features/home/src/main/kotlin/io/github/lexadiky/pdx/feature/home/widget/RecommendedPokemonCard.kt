@@ -104,6 +104,7 @@ internal fun RecommendedPokemonCard(
 }
 
 private const val MAX_ITEM_SIZE_SCREEN_WIDTH_MULTIPLIER = 0.25f
+private const val CLICKABLE_AREA_SCALE = 1.2f
 
 @Composable
 private fun PokemonList(
@@ -138,7 +139,7 @@ private fun PokemonList(
                     )
                     Box(
                         modifier = Modifier
-                            .scale(1.2f)
+                            .scale(CLICKABLE_AREA_SCALE)
                             .matchParentSize()
                             .clip(MaterialTheme.shapes.circular)
                             .clickable { openPokemonDetails(item) }

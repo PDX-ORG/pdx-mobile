@@ -21,14 +21,14 @@ internal fun MoveDetailsSkeleton() {
             Box(
                 modifier = Modifier
                     .size(MaterialTheme.grid.x3)
-                    .placeholder(true, shape = MaterialTheme.shapes.circular)
+                    .placeholder(shape = MaterialTheme.shapes.circular)
             )
         },
         title = {
             Text(
                 text = "Placeholder",
                 modifier = Modifier
-                    .placeholder(true)
+                    .placeholder()
             )
         },
         subtitle = {
@@ -36,14 +36,14 @@ internal fun MoveDetailsSkeleton() {
                 Text(
                     text = "Placeholder",
                     modifier = Modifier
-                        .fillMaxWidth(0.8f)
-                        .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
+                        .fillMaxWidth(PlaceholderDefaults.Width.Large)
+                        .placeholder(scaleHeight = PlaceholderDefaults.ShrinkedTextHeight)
                 )
                 Text(
                     text = "Placeholder",
                     modifier = Modifier
-                        .fillMaxWidth(0.6f)
-                        .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
+                        .fillMaxWidth(PlaceholderDefaults.Width.Medium)
+                        .placeholder(scaleHeight = PlaceholderDefaults.ShrinkedTextHeight)
                 )
             }
         },

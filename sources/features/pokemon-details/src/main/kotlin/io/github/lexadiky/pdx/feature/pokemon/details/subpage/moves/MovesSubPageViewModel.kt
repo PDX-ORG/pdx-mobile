@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import arrow.core.Either
 import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.akore.lechuck.utils.navigate
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonMove
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
@@ -25,7 +24,6 @@ import kotlinx.coroutines.launch
 
 internal class MovesSubPageViewModel(
     pokemonSpeciesDetails: PokemonSpeciesDetails,
-    pokemonDetails: PokemonDetails,
     getPokemonMoves: GetPokemonMoves,
     private val navigator: Navigator
 ) : ViewModel() {

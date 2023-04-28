@@ -18,7 +18,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.di
-import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
@@ -47,13 +46,15 @@ internal fun TypeChartPage(viewModel: TypeChartViewModel = di.viewModel()) {
     }
 }
 
+private const val TYPE_ROW_CHUNK = 3
+
 @Composable
 private fun TypeSelectionCard(state: TypeChartState, onTypeClicked: (PokemonType) -> Unit) {
     Card(modifier = Modifier.padding(MaterialTheme.grid.x2)) {
         Column(
             modifier = Modifier.padding(MaterialTheme.grid.x2)
         ) {
-            state.allTypes.chunked(3).forEach { typeChunk ->
+            state.allTypes.chunked(TYPE_ROW_CHUNK).forEach { typeChunk ->
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1)
                 ) {

@@ -36,7 +36,6 @@ import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.feature.pokemon.details.R
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonAbilityData
 import io.github.lexadiky.pdx.lib.core.lce.Lce
@@ -50,19 +49,11 @@ import io.github.lexadiky.pdx.ui.uikit.widget.PillChip
 import io.github.lexadiky.pdx.ui.uikit.widget.placeholder
 
 @Composable
-internal fun StatsSubPage(
-    pokemonSpeciesDetails: PokemonSpeciesDetails?,
-    selectedVariety: PokemonDetails?,
-) {
-    if (pokemonSpeciesDetails == null || selectedVariety == null) {
+internal fun StatsSubPage(selectedVariety: PokemonDetails?) {
+    if (selectedVariety == null) {
         return
     }
-    StatsSubPageImpl(
-        viewModel = di.viewModel(
-            pokemonSpeciesDetails,
-            selectedVariety
-        )
-    )
+    StatsSubPageImpl(viewModel = di.viewModel(selectedVariety))
 }
 
 @Composable
@@ -189,6 +180,7 @@ private fun AbilityItem(ability: PokemonAbilityData?, onClick: () -> Unit) {
 
 private const val STAT_TITLE_SPACE_RATIO = 0.2f
 private const val STAT_FILL_BG_ALPHA = 0.5f
+private const val INITIAL_STAT_WIDTH_RATIO = 0.1f
 
 @Composable
 private fun StatBar(
@@ -214,7 +206,7 @@ private fun StatBar(
                 .fillMaxWidth()
                 .wrapContentHeight()
         ) {
-            val anim = remember { Animatable(0.1f) }
+            val anim = remember { Animatable(INITIAL_STAT_WIDTH_RATIO) }
             LaunchedEffect(description.value) {
                 anim.animateTo(description.normalValue, MaterialTheme.animation.linearSlow())
             }

@@ -1,6 +1,7 @@
 package io.github.lexadiky.pdx.feature.debugpanel
 
 import io.github.lexadiky.akore.lechuck.robo.NaviNavGraphBuilder
+import io.github.lexadiky.pdx.feature.debugpanel.subpage.NavigationGraphPanelPage
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
 
 object DebugPanelFeature {

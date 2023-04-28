@@ -9,7 +9,6 @@ import arrow.core.Either
 import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.usecase.ability.GetPokemonAbilitiesUseCase
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonAbilityData
 import io.github.lexadiky.pdx.lib.core.lce.mapLce
@@ -18,7 +17,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 internal class StatsSubPageViewModel(
-    pokemonSpeciesDetails: PokemonSpeciesDetails,
     private val selectedVariety: PokemonDetails,
     private val getPokemonAbilities: GetPokemonAbilitiesUseCase,
     private val navigator: Navigator

@@ -15,7 +15,7 @@ import io.github.lexadiky.akore.blogger.verbose
 internal fun rememberAsyncImagePainter(url: String, builder: ImageRequest.Builder.() -> Unit = {}): Painter {
     if (url.isBlank()) {
         BLogger.tag("rememberAsyncImagePainter")
-            .error("can't load image from empty url", IllegalArgumentException())
+            .error("can't load image from empty url")
     }
 
     val context = LocalContext.current

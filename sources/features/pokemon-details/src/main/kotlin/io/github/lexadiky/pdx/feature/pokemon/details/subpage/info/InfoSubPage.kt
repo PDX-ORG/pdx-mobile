@@ -103,60 +103,59 @@ private fun InfoSubPageImpl(
                     targetState = lce
                 ) { item ->
                     when (item) {
-                        is Lce.Content -> {
-                            ListItem(
-                                headlineContent = { Text(text = item.value.title.render()) },
-                                supportingContent = { Text(text = item.value.text.render()) },
-                                colors = ListItemDefaults.colors(
-                                    containerColor = MaterialTheme.colorScheme.transparent
-                                )
+                        Lce.Loading -> DescriptionPlacholder()
+                        is Lce.Content -> ListItem(
+                            headlineContent = { Text(text = item.value.title.render()) },
+                            supportingContent = { Text(text = item.value.text.render()) },
+                            colors = ListItemDefaults.colors(
+                                containerColor = MaterialTheme.colorScheme.transparent
                             )
-                        }
-
-                        Lce.Loading -> {
-                            ListItem(
-                                headlineContent = {
-                                    Text(
-                                        text = "",
-                                        modifier = Modifier
-                                            .fillMaxWidth(0.6f)
-                                            .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
-                                    )
-                                },
-                                supportingContent = {
-                                    Column {
-                                        Text(
-                                            text = "",
-                                            modifier = Modifier
-                                                .fillMaxWidth(0.8f)
-                                                .placeholder(
-                                                    true,
-                                                    PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT
-                                                )
-                                        )
-                                        Text(
-                                            text = "",
-                                            modifier = Modifier
-                                                .fillMaxWidth(0.7f)
-                                                .placeholder(
-                                                    true,
-                                                    PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT
-                                                )
-                                        )
-                                    }
-                                },
-                                colors = ListItemDefaults.colors(
-                                    containerColor = MaterialTheme.colorScheme.transparent
-                                )
-                            )
-                        }
-
+                        )
                         else -> Unit
                     }
                 }
             }
         }
     }
+}
+
+@Composable
+private fun DescriptionPlacholder() {
+    ListItem(
+        headlineContent = {
+            Text(
+                text = "",
+                modifier = Modifier
+                    .fillMaxWidth(PlaceholderDefaults.Width.Medium)
+                    .placeholder(true, PlaceholderDefaults.ShrinkedTextHeight)
+            )
+        },
+        supportingContent = {
+            Column {
+                Text(
+                    text = "",
+                    modifier = Modifier
+                        .fillMaxWidth(PlaceholderDefaults.Width.Large)
+                        .placeholder(
+                            true,
+                            PlaceholderDefaults.ShrinkedTextHeight
+                        )
+                )
+                Text(
+                    text = "",
+                    modifier = Modifier
+                        .fillMaxWidth(PlaceholderDefaults.Width.Big)
+                        .placeholder(
+                            true,
+                            PlaceholderDefaults.ShrinkedTextHeight
+                        )
+                )
+            }
+        },
+        colors = ListItemDefaults.colors(
+            containerColor = MaterialTheme.colorScheme.transparent
+        )
+    )
 }
 
 @Composable

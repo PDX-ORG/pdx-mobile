@@ -15,23 +15,18 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.flowlayout.FlowRow
-import com.google.android.material.color.utilities.Scheme
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
-import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
@@ -43,7 +38,6 @@ import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.theme.pdx
 import io.github.lexadiky.pdx.ui.uikit.util.alpha
 import io.github.lexadiky.pdx.ui.uikit.util.saturation
-import io.github.lexadiky.pdx.ui.uikit.util.toColorScheme
 import io.github.lexadiky.pdx.ui.uikit.widget.PillChip
 import io.github.lexadiky.pdx.ui.uikit.widget.PillChipDefaults
 import io.github.lexadiky.pdx.ui.uikit.widget.SmallWikiPreview
@@ -54,6 +48,9 @@ fun TypeDetailsPage(typeId: String) {
         TypeDetailsPageImpl(viewModel = di.viewModel(typeId))
     }
 }
+
+private const val BACKGROUND_ALPHA = 0.5f
+private const val MIN_HEIGHT_DP = 400
 
 @SuppressLint("RestrictedApi")
 @Composable
@@ -66,7 +63,7 @@ internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
 
     val backgroundBrush = Brush.linearGradient(
         colors = listOf(
-            primaryColor.saturation().alpha(0.5f),
+            primaryColor.saturation().alpha(BACKGROUND_ALPHA),
             MaterialTheme.colorScheme.surface
         )
     )
@@ -75,7 +72,7 @@ internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
         modifier = Modifier
             .background(backgroundBrush)
             .fillMaxWidth()
-            .defaultMinSize(minHeight = 400.dp)
+            .defaultMinSize(minHeight = MIN_HEIGHT_DP.dp)
             .padding(MaterialTheme.grid.x2)
     ) {
         item {
@@ -129,6 +126,8 @@ internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
     }
 }
 
+private const val MOVES_LINK_WIDTH_RATIO = 0.85f
+
 @Composable
 private fun MovesListLink(
     openMovesList: () -> Unit,
@@ -142,7 +141,7 @@ private fun MovesListLink(
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primary
             ),
-            modifier = Modifier.fillMaxWidth(0.85f)
+            modifier = Modifier.fillMaxWidth(MOVES_LINK_WIDTH_RATIO)
         ) {
             Text(
                 text = stringResource(id = R.string.type_moves_button)

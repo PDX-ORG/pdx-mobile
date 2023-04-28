@@ -35,7 +35,6 @@ import androidx.compose.ui.unit.dp
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSort
@@ -52,12 +51,9 @@ import io.github.lexadiky.pdx.ui.uikit.widget.SearchField
 import io.github.lexadiky.pdx.ui.uikit.widget.placeholder
 
 @Composable
-internal fun MovesSubPage(
-    pokemonSpeciesDetails: PokemonSpeciesDetails?,
-    pokemonDetails: PokemonDetails?,
-) {
-    if (pokemonSpeciesDetails != null && pokemonDetails != null) {
-        MovesSubPageImpl(di.viewModel(pokemonSpeciesDetails, pokemonDetails))
+internal fun MovesSubPage(pokemonSpeciesDetails: PokemonSpeciesDetails?) {
+    if (pokemonSpeciesDetails != null) {
+        MovesSubPageImpl(di.viewModel(pokemonSpeciesDetails))
     }
 }
 
@@ -230,7 +226,7 @@ private fun MoveCardPlaceholder() {
                 text = "",
                 modifier = Modifier
                     .fillMaxWidth(0.5f)
-                    .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
+                    .placeholder(true, PlaceholderDefaults.ShrinkedTextHeight)
             )
         },
         leadingContent = {
@@ -253,7 +249,7 @@ private fun MoveCardPlaceholder() {
                     text = "",
                     modifier = Modifier
                         .fillMaxWidth(0.5f)
-                        .placeholder(true, PlaceholderDefaults.SHRIEKED_TEXT_HEIGHT)
+                        .placeholder(true, PlaceholderDefaults.ShrinkedTextHeight)
                 )
             }
 

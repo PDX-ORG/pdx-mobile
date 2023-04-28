@@ -22,10 +22,13 @@ import androidx.compose.ui.draw.clip
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.util.delayState
-import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
+import kotlinx.coroutines.launch
 
 private const val ITEM_CHUNK = 100
+private const val HEIGHT_RATIO = 0.5f
+private const val SCROLL_WHEEL_ALPHA = 0.5f
+private const val BACKGROUND_TINT = 0.75f
 
 @Composable
 fun <T> FastScrollWheel(
@@ -51,8 +54,8 @@ fun <T> FastScrollWheel(
             modifier = Modifier
                 .padding(MaterialTheme.grid.x1)
                 .clip(MaterialTheme.shapes.circular)
-                .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
-                .fillMaxHeight(0.5f)
+                .background(MaterialTheme.colorScheme.surface.copy(alpha = SCROLL_WHEEL_ALPHA))
+                .fillMaxHeight(HEIGHT_RATIO)
         ) {
             items(items.chunked(ITEM_CHUNK).indices.toList()) { idx ->
                 Text(
@@ -65,7 +68,7 @@ fun <T> FastScrollWheel(
                                 columnState.scrollToItem(offset + idx * ITEM_CHUNK)
                             }
                         }
-                        .background(MaterialTheme.colorScheme.surfaceTint.copy(alpha = 0.75f),)
+                        .background(MaterialTheme.colorScheme.surfaceTint.copy(alpha = BACKGROUND_TINT))
                         .padding(MaterialTheme.grid.x1)
                 )
             }

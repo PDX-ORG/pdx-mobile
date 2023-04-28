@@ -41,7 +41,7 @@ interface MutableFtsIndex : FtsIndex {
  */
 private class MatrixFtsIndex : MutableFtsIndex {
 
-    private val matrix: MutableList<String> = ArrayList(16)
+    private val matrix: MutableList<String> = ArrayList(EXPECTED_INDEX_SIZE)
 
     override fun addClosure(closure: String) {
         matrix += closure.lowercase()
@@ -55,6 +55,11 @@ private class MatrixFtsIndex : MutableFtsIndex {
         val sanitizedQuery = query.lowercase()
 
         return matrix.any { closure -> sanitizedQuery in closure }
+    }
+
+    companion object {
+
+        private const val EXPECTED_INDEX_SIZE = 16
     }
 }
 

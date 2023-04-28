@@ -12,7 +12,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -48,11 +47,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
-import com.google.android.material.color.utilities.Scheme
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
@@ -62,13 +59,13 @@ import io.github.lexadiky.akore.lechuck.robo.page.PageContext
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDetailsSection
+import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.EvolutionSubPage
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.info.InfoSubPage
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.MovesSubPage
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.stats.StatsSubPage
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.navigation.FullScreenDialogStyles
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
-import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
@@ -76,8 +73,8 @@ import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.animation
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
+import io.github.lexadiky.pdx.ui.uikit.util.createColorSchemeFromColor
 import io.github.lexadiky.pdx.ui.uikit.util.scroll.LocalPrimeScrollState
-import io.github.lexadiky.pdx.ui.uikit.util.toColorScheme
 import io.github.lexadiky.pdx.ui.uikit.widget.PagerDotIndicator
 import io.github.lexadiky.pdx.ui.uikit.widget.ToolbarContent
 import kotlinx.coroutines.Job
@@ -100,7 +97,7 @@ private fun PokemonDetailsPageImpl(
     val color = styleFastFetchViewModel.state.color?.render()
 
     AnimatedVisibility(visible = color != null, enter = fadeIn()) {
-        MaterialTheme(colorScheme = createColorScheme(color)) {
+        MaterialTheme(colorScheme = createColorSchemeFromColor(color)) {
             TitleDecoration(viewModel.state.name, viewModel.state.types, viewModel::openTypeDetails)
             ErrorDialog(viewModel.state.error) {
                 viewModel.hideError()
@@ -127,13 +124,6 @@ private fun PokemonDetailsPageImpl(
             }
         }
     }
-}
-
-@Composable
-private fun createColorScheme(color: Color?) = if (isSystemInDarkTheme()) {
-    Scheme.dark(color?.toArgb() ?: Color.Red.toArgb()).toColorScheme()
-} else {
-    Scheme.light(color?.toArgb() ?: Color.Green.toArgb()).toColorScheme()
 }
 
 @Composable
@@ -164,28 +154,40 @@ private fun DataCard(viewModel: PokemonDetailsViewModel) {
                         })
                 }
             }
-            when (currentTab) {
-                PokemonDetailsSection.Stats -> StatsSubPage(
-                    viewModel.state.pokemonSpeciesDetails,
-                    viewModel.state.selectedVariety
-                )
-
-                PokemonDetailsSection.Info -> InfoSubPage(
-                    viewModel.state.pokemonSpeciesDetails,
-                    viewModel.state.selectedVariety
-                )
-
-                PokemonDetailsSection.Evolution -> Unit
-                PokemonDetailsSection.Battle -> MovesSubPage(
-                    viewModel.state.pokemonSpeciesDetails,
-                    viewModel.state.selectedVariety
-                )
-
-                null -> Unit
-            }
+            Content(currentTab, viewModel)
         }
     }
 }
+
+@Composable
+private fun Content(
+    currentTab: PokemonDetailsSection?,
+    viewModel: PokemonDetailsViewModel,
+) {
+    when (currentTab) {
+        PokemonDetailsSection.Stats -> StatsSubPage(
+            viewModel.state.selectedVariety
+        )
+
+        PokemonDetailsSection.Info -> InfoSubPage(
+            viewModel.state.pokemonSpeciesDetails,
+            viewModel.state.selectedVariety
+        )
+
+        PokemonDetailsSection.Evolution -> EvolutionSubPage(
+            viewModel.state.pokemonSpeciesDetails,
+            viewModel.state.selectedVariety
+        )
+
+        PokemonDetailsSection.Battle -> MovesSubPage(
+            viewModel.state.pokemonSpeciesDetails,
+        )
+
+        null -> Unit
+    }
+}
+
+private const val PROGRESS_BOX_SIZE_RATIO = 0.5f
 
 @Composable
 private fun HeaderImagePager(
@@ -231,7 +233,7 @@ private fun HeaderImagePager(
             ) {
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth(0.5f)
+                        .fillMaxWidth(PROGRESS_BOX_SIZE_RATIO)
                         .aspectRatio(1f)
                         .align(Alignment.Center)
                 ) {
@@ -394,6 +396,8 @@ private fun TitleDecoration(
     }
 }
 
+private const val HEADER_IMAGE_WIDTH_RATIO = 0.5f
+
 @Composable
 private fun HeaderImage(
     image: ImageResource?,
@@ -403,7 +407,7 @@ private fun HeaderImage(
             painter = img.render(listOf(ImageTransformation.CropTransparent)),
             contentDescription = null,
             modifier = Modifier
-                .fillMaxWidth(0.5f)
+                .fillMaxWidth(HEADER_IMAGE_WIDTH_RATIO)
                 .aspectRatio(1f)
         )
     }
