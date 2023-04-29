@@ -14,6 +14,7 @@ gradlePlugin {
         create("eve") {
             id = "io.github.lexadiky.pdx.plugin.eve"
             implementationClass = "io.github.lexadiky.pdx.plugin.eve.EvePlugin"
+            version = "indev"
         }
     }
 }

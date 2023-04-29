@@ -87,3 +87,10 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.22.0" }
 buildHealth = { id = "com.autonomousapps.dependency-analysis", version = "1.19.0" }
+
+pdx-convention-target = { id = "io.github.lexadiky.pdx.plugin.module.target", version = "indev" }
+pdx-convention-feature = { id = "io.github.lexadiky.pdx.plugin.module.feature", version = "indev" }
+pdx-convention-android = { id = "io.github.lexadiky.pdx.plugin.module.android", version = "indev" }
+pdx-convention-jvm = { id = "io.github.lexadiky.pdx.plugin.module.jvm", version = "indev" }
+pdx-catkeeper = { id = "io.github.lexadiky.pdx.plugin.pm.catkeeper", version = "indev" }
+pdx-eve = { id = "io.github.lexadiky.pdx.plugin.eve", version = "indev" }
