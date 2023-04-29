@@ -17,6 +17,8 @@ kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.
 kotlin-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
 kotlin-reflection = "org.jetbrains.kotlin:kotlin-reflect:1.8.10"
 
+kotlin-plugin-android = { module = "org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin", version.ref = "kotlin" }
+
 android-core = "androidx.core:core-ktx:1.10.0"
 android-lifecycle-runtime = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
 android-activity-compose = "androidx.activity:activity-compose:1.7.0"
@@ -40,6 +42,8 @@ android-test-espresso = "androidx.test.espresso:espresso-core:3.5.1"
 
 android-mops-datastore-android = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 android-mops-datastore = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastore" }
+
+android-agp = { module = "com.android.application:com.android.application.gradle.plugin", version.ref = "agp" }
 
 junit4-core = "junit:junit:4.101"
 
@@ -68,6 +72,9 @@ akore-alice-core = { module = "com.github.akore-org.alice:core", version = "07df
 akore-alice-robo = { module = "com.github.akore-org.alice:robo", version = "07dfa09ff5" }
 
 pokeapi = "com.github.lexa-diky:pokeapi-kotlin:d4fa57d81f"
+
+snakeyaml = "org.yaml:snakeyaml:2.0"
+kotlinpoet = "com.squareup:kotlinpoet:1.13.0"
 
 [plugins]
 
