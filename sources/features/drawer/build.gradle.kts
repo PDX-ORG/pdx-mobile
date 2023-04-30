@@ -12,5 +12,4 @@ dependencies {
     implementation(projects.libs.uikit)
     implementation(projects.libs.featureToggle)
     implementation(projects.libs.navigation)
-    implementation(projects.libs.featureToggle)
 }
