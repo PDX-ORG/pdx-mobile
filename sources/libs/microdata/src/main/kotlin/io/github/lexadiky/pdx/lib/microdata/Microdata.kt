@@ -18,6 +18,9 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.util.concurrent.locks.ReentrantReadWriteLock
+import kotlin.concurrent.read
+import kotlin.concurrent.write
 
 class Microdata(
     private val ds: DataStore<Preferences>,
@@ -44,14 +47,16 @@ class EditableMicrodata<T : Any> internal constructor(
     internal val scope: CoroutineScope,
     internal val key: Preferences.Key<T>,
 ) {
-
+    private val rwl = ReentrantReadWriteLock()
     private var currentValue: T? = null
     private var currentValueJob: Job? = null
 
 
     init {
-        runBlocking {
-            currentValue = ds.data.first()[key]
+        scope.launch {
+            rwl.write {
+                currentValue = ds.data.first()[key]
+            }
         }
 
         currentValueJob = scope.launch {
@@ -79,7 +84,7 @@ class EditableMicrodata<T : Any> internal constructor(
         }
     }
 
-    fun get(): T? = currentValue
+    fun get(): T? = rwl.read { currentValue }
 
 
     internal fun finalize() {
