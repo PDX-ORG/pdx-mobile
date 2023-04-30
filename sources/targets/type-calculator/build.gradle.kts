@@ -20,5 +20,5 @@ dependencies {
     implementation(libs.akore.blogger.core)
     implementation(projects.domain.achievement)
     implementation(projects.features.settings)
-    implementation(projects.features.typeChart)
+    implementation(projects.features.type.chart)
 }
