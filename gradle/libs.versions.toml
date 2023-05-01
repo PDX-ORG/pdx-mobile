@@ -86,7 +86,7 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.22.0" }
-buildHealth = { id = "com.autonomousapps.dependency-analysis", version = "1.19.0" }
+buildHealth = { id = "com.autonomousapps.dependency-analysis", version = "1.20.0" }
 
 pdx-convention-target = { id = "io.github.lexadiky.pdx.plugin.module.target", version = "indev" }
 pdx-convention-feature = { id = "io.github.lexadiky.pdx.plugin.module.feature", version = "indev" }
