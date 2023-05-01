@@ -74,7 +74,7 @@ akore-alice-robo = { module = "com.github.akore-org.alice:robo", version = "07df
 pokeapi = "com.github.lexa-diky:pokeapi-kotlin:d4fa57d81f"
 
 snakeyaml = "org.yaml:snakeyaml:2.0"
-kotlinpoet = "com.squareup:kotlinpoet:1.13.0"
+kotlinpoet = "com.squareup:kotlinpoet:1.13.1"
 
 [plugins]
 
