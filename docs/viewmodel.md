@@ -42,7 +42,7 @@ fun ErrorDialog(vm: ErrorDialogViewModel) {
 Use `classify` function to convert `UseCase`s domain error to `UIError`. Then consume either value or error with `when` statement.
 
 ```kotlin
-state = when (val data = getData(id).classify(this)) {
+state = when (val data = getData(id).classify(MyClass::class)) {
     is Either.Left -> state.copy(error = data.value)
     is Either.Right -> state.copy(value = data.value)
 }
