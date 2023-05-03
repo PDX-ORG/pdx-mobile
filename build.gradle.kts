@@ -8,10 +8,9 @@ plugins {
     alias(libs.plugins.kotlin.jvm).apply(false)
     alias(libs.plugins.kotlin.serialization).apply(false)
 
-    alias(libs.plugins.detekt).apply(false)
-    alias(libs.plugins.buildHealth).apply(false)
-
-    id("io.github.lexadiky.pdx.plugin.pm.catkeeper")
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.buildHealth)
+    alias(libs.plugins.pdx.catkeeper)
 }
 
 buildscript {

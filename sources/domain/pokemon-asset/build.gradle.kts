@@ -1,6 +1,6 @@
 plugins {
-    id("io.github.lexadiky.pdx.plugin.module.library.android")
-    kotlin("plugin.serialization")
+    alias(libs.plugins.pdx.convention.library.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {

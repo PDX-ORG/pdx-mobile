@@ -1,5 +1,5 @@
 plugins {
-    id("io.github.lexadiky.pdx.plugin.module.feature")
+    alias(libs.plugins.pdx.convention.feature)
 }
 
 android {

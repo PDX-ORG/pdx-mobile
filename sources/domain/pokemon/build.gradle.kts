@@ -1,6 +1,6 @@
 plugins {
-    id("io.github.lexadiky.pdx.plugin.module.library.jvm")
-    kotlin("plugin.serialization")
+    alias(libs.plugins.pdx.convention.library.jvm)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 dependencies {

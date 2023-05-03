@@ -1,3 +1,3 @@
 plugins {
-    id("io.github.lexadiky.pdx.plugin.module.library.jvm")
+    alias(libs.plugins.pdx.convention.library.jvm)
 }
