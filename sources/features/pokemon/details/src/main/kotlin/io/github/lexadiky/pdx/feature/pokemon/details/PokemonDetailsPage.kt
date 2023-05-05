@@ -223,7 +223,9 @@ private fun HeaderImagePager(
 
                 val alpha = rememberPagerHeaderLabelsAlpha(pagerState, state)
 
-                SpriteButtonIcon(alpha, openSprites)
+                if (state.isSpritesViewerEnabled) {
+                    SpriteButtonIcon(alpha, openSprites)
+                }
                 PhysicalDimensions(alpha, state)
                 FavoriteButtonIcon(alpha, state, toggleFavorite)
             }

@@ -18,7 +18,8 @@ internal data class PokemonDetailsState(
     val selectedVariety: PokemonDetails? = null,
     val availableDetailsSections: List<PokemonDetailsSection> = emptyList(),
     val error: UIError? = null,
-    val isFavorite: Boolean = false
+    val isFavorite: Boolean = false,
+    val isSpritesViewerEnabled: Boolean = false,
 ) {
 
     val isLoaded: Boolean get() = pokemonSpeciesDetails != null

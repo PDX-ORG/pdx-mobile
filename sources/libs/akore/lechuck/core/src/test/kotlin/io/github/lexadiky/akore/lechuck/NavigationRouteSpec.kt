@@ -30,6 +30,5 @@ class NavigationRouteSpec : DescribeSpec({
             val scheme = NavigationRoute.from("a.com").scheme
             scheme shouldBe null
         }
-
     }
 })

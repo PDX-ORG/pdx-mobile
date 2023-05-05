@@ -11,6 +11,7 @@ dependencies {
     implementation(projects.libs.uikit)
     implementation(projects.libs.network)
     implementation(projects.libs.errorHandler)
+    implementation(projects.libs.featureToggle)
     implementation(projects.libs.navigation)
     implementation(libs.akore.blogger.core)
     implementation(libs.arrow.core)
