@@ -20,7 +20,6 @@ dependencies {
     implementation(platform(libs.android.compose.bom))
     api(libs.android.compose.ui.core)
     api(libs.android.compose.ui.graphics)
-    api(libs.android.compose.ui.preview)
     api(libs.android.compose.material3)
 
     api(libs.accompanist.flowlayout)

@@ -20,7 +20,7 @@ dependencyResolutionManagement {
         }
     }
 }
-rootProject.name = "pdx-mobile"
+rootProject.name = "pdx-mobile-android"
 
 includeBuild("sources/plugins")
 includeRecursive("sources")

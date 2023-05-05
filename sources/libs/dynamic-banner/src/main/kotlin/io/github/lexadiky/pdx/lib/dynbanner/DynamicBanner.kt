@@ -23,6 +23,7 @@ import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
+@Deprecated("requires rework")
 fun DynamicBanner(
     id: String,
     modifier: Modifier = Modifier,

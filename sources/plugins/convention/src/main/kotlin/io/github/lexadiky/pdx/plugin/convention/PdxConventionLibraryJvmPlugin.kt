@@ -1,5 +1,6 @@
 package io.github.lexadiky.pdx.plugin.convention
 
+import io.github.lexadiky.pdx.plugin.convention.mixin.TestMixin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

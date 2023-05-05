@@ -1,7 +1,9 @@
 package io.github.lexadiky.pdx.plugin.convention
 
 import com.android.build.api.dsl.LibraryExtension
-import org.gradle.api.JavaVersion
+import io.github.lexadiky.pdx.plugin.convention.mixin.AndroidCommonMixin
+import io.github.lexadiky.pdx.plugin.convention.mixin.DeshugaringMixin
+import io.github.lexadiky.pdx.plugin.convention.mixin.TestMixin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -12,44 +14,19 @@ class PdxConventionFeaturePlugin : Plugin<Project> {
         target.plugins.apply("com.android.library")
         target.plugins.apply("org.jetbrains.kotlin.android")
 
+        AndroidCommonMixin.mix(target)
         target.extensions.findByType(LibraryExtension::class.java)!!
             .apply { androidSettings() }
         TestMixin.mix(target)
+        DeshugaringMixin.mix(target)
     }
 
     private fun LibraryExtension.androidSettings() {
-        compileSdk = 33
-
-        defaultConfig {
-            minSdk = 24
-
-            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-            vectorDrawables {
-                useSupportLibrary = true
-            }
-        }
-
-        buildTypes {
-            release {
-                isMinifyEnabled = true
-                proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
-            }
-        }
-        compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
-            isCoreLibraryDesugaringEnabled = true
-        }
-        composeOptions {
-            kotlinCompilerExtensionVersion = "1.4.4"
-        }
         buildFeatures {
             compose = true
         }
-        packagingOptions {
-            resources {
-                excludes += "/META-INF/{AL2.0,LGPL2.1}"
-            }
+        composeOptions {
+            kotlinCompilerExtensionVersion = "1.4.4"
         }
     }
 }

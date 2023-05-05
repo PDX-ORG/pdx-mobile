@@ -37,7 +37,7 @@ import io.github.lexadiky.pdx.domain.pokemon.asset.PokemonTypeAssets
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonItem
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonType
 import io.github.lexadiky.pdx.feature.home.widget.RecommendedPokemonCard
-import io.github.lexadiky.pdx.lib.dynbanner.DynamicBanner
+import io.github.lexadiky.pdx.lib.arc.Page
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
@@ -57,13 +57,13 @@ fun HomePage() {
 }
 
 @Composable
-private fun HomePageImpl(viewModel: HomePageViewModel = di.viewModel()) {
-    HomeDecoration(
-        onShareClicked = { viewModel.openApplicationShare() }
-    )
+internal fun HomePageImpl(viewModel: HomePageSocket = di.viewModel()) = Page(viewModel) { state, act ->
+    HomeDecoration {
+        act(HomePageAction.Navigate.ApplicationShare)
+    }
 
-    ErrorDialog(viewModel.state.error) {
-        viewModel.hideError()
+    ErrorDialog(state.error) {
+        act(HomePageAction.HideError)
     }
 
     LazyColumn(
@@ -71,40 +71,36 @@ private fun HomePageImpl(viewModel: HomePageViewModel = di.viewModel()) {
         state = LocalPrimeScrollState.current.asLazyListState()
     ) {
         item {
-            FeaturedBlock(viewModel)
+            FeaturedBlock(state, act)
         }
         pokemonSuggestionSection(
             title = R.string.home_section_featured_pokemon_title,
             icon = io.github.lexadiky.pdx.domain.pokemon.asset.R.drawable.domain_pokemon_ic_type_fairy,
-            items = viewModel.state.featuredPokemon,
-            openPokemonDetails = {
-                viewModel.openPokemonDetails(
-                    it,
-                    SuggestedPokemonType.Suggested
+            items = state.featuredPokemon,
+            openPokemonDetails = { item ->
+                act(
+                    HomePageAction.Navigate.PokemonDetails(
+                        item,
+                        SuggestedPokemonType.Suggested
+                    )
                 )
             }
         )
         pokemonSuggestionSection(
             title = R.string.home_section_last_viewed_pokemon_title,
             io.github.lexadiky.pdx.domain.pokemon.asset.R.drawable.domain_pokemon_ic_type_dragon,
-            items = viewModel.state.latestViewedPokemon,
-            openPokemonDetails = {
-                viewModel.openPokemonDetails(
-                    it,
-                    SuggestedPokemonType.LAST_VIEWED
+            items = state.latestViewedPokemon,
+            openPokemonDetails = { item ->
+                act(
+                    HomePageAction.Navigate.PokemonDetails(
+                        item,
+                        SuggestedPokemonType.LAST_VIEWED
+                    )
                 )
             }
         )
         item {
             Spacer(modifier = Modifier.size(MaterialTheme.grid.x12))
-        }
-        item {
-            DynamicBanner(
-                id = "donate_author",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(MaterialTheme.grid.x2)
-            )
         }
     }
 }
@@ -151,7 +147,7 @@ private fun LazyListScope.pokemonSuggestionSection(
 }
 
 @Composable
-private fun FeaturedBlock(viewModel: HomePageViewModel) {
+private fun FeaturedBlock(state: HomePageState, act: (HomePageAction) -> Unit) {
     Column(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
         modifier = Modifier.padding(horizontal = MaterialTheme.grid.x2)
@@ -166,7 +162,7 @@ private fun FeaturedBlock(viewModel: HomePageViewModel) {
                 image = PokemonTypeAssets.GRASS.icon,
                 shape = HomePageFeaturedCardShape.Card,
                 weight = 1.5f,
-                onClick = { viewModel.openPokemonList() }
+                onClick = { act(HomePageAction.Navigate.PokemonList) }
             )
             HomePageFeaturedCard(
                 title = StringResource.from(R.string.home_featured_title_team),
@@ -186,21 +182,21 @@ private fun FeaturedBlock(viewModel: HomePageViewModel) {
                 image = PokemonTypeAssets.PSYCHIC.icon,
                 shape = HomePageFeaturedCardShape.Box,
                 weight = 1f,
-                onClick = { viewModel.openWhoIs() }
+                onClick = { act(HomePageAction.Navigate.WhoIs) }
             )
             HomePageFeaturedCard(
                 title = StringResource.from(R.string.home_featured_title_news),
                 image = PokemonTypeAssets.FLYING.icon,
                 shape = HomePageFeaturedCardShape.Box,
                 weight = 1f,
-                onClick = { viewModel.openNews() }
+                onClick = { act(HomePageAction.Navigate.News) }
             )
             HomePageFeaturedCard(
                 title = StringResource.from(R.string.home_featured_title_achievements),
                 image = PokemonTypeAssets.ELECTRIC.icon,
                 shape = HomePageFeaturedCardShape.Box,
                 weight = 1f,
-                onClick = { viewModel.openAchievements() }
+                onClick = { act(HomePageAction.Navigate.Achievements)}
             )
         }
     }

@@ -8,11 +8,9 @@ import io.github.lexadiky.akore.alice.eagerModule
 import io.github.lexadiky.akore.alice.util.single
 
 fun FirebaseModule(context: Context): DIModule {
-    val application = FirebaseApp.initializeApp(context)!!
-    
     return eagerModule("firebase") {
-        single { application }
+        single { FirebaseApp.initializeApp(context)!! }
         single { FirebaseRemoteConfigProvider(inject()) }
-        single { FirebaseRemoteConfig.getInstance(application) } // TODO use fs implementation
+        single { FirebaseRemoteConfig.getInstance(inject()) } // TODO use fs implementation
     }
 }

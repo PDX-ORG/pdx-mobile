@@ -15,4 +15,8 @@ pluginManagement {
 
 rootProject.name = "plugins"
 
-include(":eve", ":convention", "project-management")
+include(
+    ":eve",
+    ":convention",
+    "project-management"
+)
