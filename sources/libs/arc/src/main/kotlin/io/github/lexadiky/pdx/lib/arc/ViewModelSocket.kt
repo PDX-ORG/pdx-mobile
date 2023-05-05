@@ -14,14 +14,9 @@ abstract class ViewModelSocket<S, A>(initialState: S) : Socket<S, A>, ViewModel(
     override var state: S by mutableStateOf(initialState)
         protected set
 
-    init {
-        viewModelScope.launch { initialize() }
-    }
     final override fun act(action: A) {
         viewModelScope.launch(Dispatchers.Default + Job()) { onAction(action) }
     }
-
-    open suspend fun initialize() = Unit
 
     protected abstract suspend fun onAction(action: A)
 }

@@ -20,7 +20,6 @@ import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.util.UikitStringFormatter
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -35,8 +34,8 @@ class HomePageSocketImpl(
     private val shareIntentSender: ShareIntentSender
 ) : HomePageSocket(HomePageState()) {
 
-    override suspend fun initialize(): Unit = coroutineScope {
-        launch {
+    init {
+        viewModelScope.launch {
             state = when (val data = getPokemonPreview(FEATURED_POKEMON_SAMPLE_SIZE)) {
                 is Either.Left -> state.copy(error = UIError.generic())
                 is Either.Right -> state.copy(
@@ -45,7 +44,7 @@ class HomePageSocketImpl(
             }
 
         }
-        launch {
+        viewModelScope.launch {
             navigator.currentRoute.map {
                 when (val data = getLatestViewedPokemonUseCase(FEATURED_POKEMON_SAMPLE_SIZE)) {
                     is Either.Left -> state.copy(error = UIError.generic())

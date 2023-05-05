@@ -10,6 +10,8 @@ val HomePageModule by module("feature-home-page") {
     import(PokemonDomainModule)
     internal {
         single { HomeEventsSpec(inject()) }
-        singleViewModel<HomePageSocket> { HomePageSocketImpl(inject(), inject(), inject(), inject(), inject()) }
+        singleViewModel<HomePageSocket> {
+            HomePageSocketImpl(inject(), inject(), inject(), inject(), inject())
+        }
     }
 }
