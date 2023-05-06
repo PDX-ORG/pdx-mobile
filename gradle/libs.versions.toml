@@ -28,7 +28,6 @@ android-compose-bom = "androidx.compose:compose-bom:2023.04.01"
 android-compose-ui-core = { module = "androidx.compose.ui:ui" }
 android-compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
 android-compose-ui-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
-android-compose-ui-test = { module = "androidx.compose.ui:ui-test-junit4" }
 android-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 android-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 
@@ -37,15 +36,12 @@ android-compose-viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.
 
 android-navigation-compose = "androidx.navigation:navigation-compose:2.5.3"
 
-android-test-junit4 = "androidx.test.ext:junit:1.1.5"
 android-test-espresso = "androidx.test.espresso:espresso-core:3.5.1"
 
 android-mops-datastore-android = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 android-mops-datastore = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastore" }
 
 android-agp = { module = "com.android.application:com.android.application.gradle.plugin", version.ref = "agp" }
-
-junit4-core = "junit:junit:4.101"
 
 coil-compose-base = "io.coil-kt:coil-compose-base:2.3.0"
 
