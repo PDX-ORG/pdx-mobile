@@ -2,6 +2,7 @@ package io.github.lexadiky.pdx.plugin.convention
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import io.github.lexadiky.pdx.plugin.convention.mixin.AndroidCommonMixin
+import io.github.lexadiky.pdx.plugin.convention.mixin.ComposeMixin
 import io.github.lexadiky.pdx.plugin.convention.mixin.DeshugaringMixin
 import io.github.lexadiky.pdx.plugin.convention.mixin.TestMixin
 import org.gradle.api.Plugin
@@ -23,6 +24,7 @@ class PdxConventionTargetPlugin : Plugin<Project> {
         target.extensions.findByType(BaseAppModuleExtension::class.java)!!
             .apply { androidSettings(target) }
         TestMixin.mix(target)
+        ComposeMixin.mix(target)
         DeshugaringMixin.mix(target)
     }
 
@@ -31,15 +33,6 @@ class PdxConventionTargetPlugin : Plugin<Project> {
             targetSdk = 33
             versionCode = target.extra["pdx.version.code"].toString().toInt()
             versionName = target.extra["pdx.version.name"].toString()
-        }
-        buildFeatures {
-            compose = true
-        }
-        composeOptions {
-            kotlinCompilerExtensionVersion = "1.4.4"
-        }
-        lint {
-            disable += "Instantiatable"
         }
     }
 }

@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.pdx.convention.feature)
+    alias(libs.plugins.pdx.convention.library.compose)
     alias(libs.plugins.pdx.eve)
 }
 
