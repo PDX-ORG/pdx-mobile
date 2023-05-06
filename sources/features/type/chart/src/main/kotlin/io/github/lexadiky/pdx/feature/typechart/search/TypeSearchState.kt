@@ -13,10 +13,8 @@ data class TypeSearchState(
     val error: UIError? = null,
     val damageRelationsSubState: DamageRelationsSubState = DamageRelationsSubState()
 ) {
-
-    val selectedTypes get() = damageRelationsSubState.selectedTypes
-    val attackDamageRelationTable: List<TypeDamageValue> get() = damageRelationsSubState.attackDamageRelationTable
-    val defenceDamageRelationTable: List<TypeDamageValue> get() = damageRelationsSubState.defenceDamageRelationTable
+    val attackDamageRelationTable: List<TypeDamageValue> = damageRelationsSubState.attackDamageRelationTable
+    val defenceDamageRelationTable: List<TypeDamageValue> = damageRelationsSubState.defenceDamageRelationTable
 
     fun setSelectedPokemon(selectedPokemon: PokemonTypeSearchItem?): TypeSearchState {
         return copy(
