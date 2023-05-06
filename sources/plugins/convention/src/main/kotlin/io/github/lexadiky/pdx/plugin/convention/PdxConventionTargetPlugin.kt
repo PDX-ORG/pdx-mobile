@@ -6,6 +6,7 @@ import io.github.lexadiky.pdx.plugin.convention.mixin.DeshugaringMixin
 import io.github.lexadiky.pdx.plugin.convention.mixin.TestMixin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.extra
 
 @Suppress("MagicNumber")
 class PdxConventionTargetPlugin : Plugin<Project> {
@@ -20,16 +21,16 @@ class PdxConventionTargetPlugin : Plugin<Project> {
 
         AndroidCommonMixin.mix(target)
         target.extensions.findByType(BaseAppModuleExtension::class.java)!!
-            .apply { androidSettings() }
+            .apply { androidSettings(target) }
         TestMixin.mix(target)
         DeshugaringMixin.mix(target)
     }
 
-    private fun BaseAppModuleExtension.androidSettings() {
+    private fun BaseAppModuleExtension.androidSettings(target: Project) {
         defaultConfig {
             targetSdk = 33
-            versionCode = 5
-            versionName = "0.2.0"
+            versionCode = target.extra["pdx.version.code"].toString().toInt()
+            versionName = target.extra["pdx.version.name"].toString()
         }
         buildFeatures {
             compose = true
