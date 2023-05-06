@@ -2,9 +2,6 @@ package io.github.lexadiky.pdx.feature.typechart.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,25 +34,20 @@ internal fun EffectChart(
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
-            Card(
-                modifier = Modifier.fillMaxWidth()
+            FlowRow(
+                mainAxisSpacing = MaterialTheme.grid.x1,
+                crossAxisSpacing = MaterialTheme.grid.x1,
             ) {
-                FlowRow(
-                    mainAxisSpacing = MaterialTheme.grid.x1,
-                    crossAxisSpacing = MaterialTheme.grid.x1,
-                    modifier = Modifier.padding(MaterialTheme.grid.x2)
-                ) {
-                    table.forEach { relation ->
-                        val labelColor = relation.type.assets.color.render()
-                        PillChip(
-                            label = { Text(text = relation.type.assets.title.render()) },
-                            labelColor = labelColor,
-                            trail = { Text(text = stringResource(id = R.string.type_chart_modifier, relation.value)) },
-                            trailColor = PillChipDefaults.trailColor(labelColor),
-                            textColor = MaterialTheme.colorScheme.onError,
-                            onClick = { onTypeClicked(relation.type) },
-                        )
-                    }
+                table.forEach { relation ->
+                    val labelColor = relation.type.assets.color.render()
+                    PillChip(
+                        label = { Text(text = relation.type.assets.title.render()) },
+                        labelColor = labelColor,
+                        trail = { Text(text = stringResource(id = R.string.type_chart_modifier, relation.value)) },
+                        trailColor = PillChipDefaults.trailColor(labelColor),
+                        textColor = MaterialTheme.colorScheme.onError,
+                        onClick = { onTypeClicked(relation.type) },
+                    )
                 }
             }
         }

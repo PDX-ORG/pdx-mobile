@@ -19,5 +19,5 @@ dependencies {
 
     implementation(libs.akore.alice.robo)
 
-    debugApi(projects.libs.preview)
+    debugImplementation(projects.libs.preview)
 }

@@ -18,4 +18,6 @@ dependencies {
     implementation(libs.akore.alice.robo)
     implementation(libs.akore.blogger.core)
     implementation(libs.arrow.core)
+
+    debugImplementation(projects.libs.preview)
 }
