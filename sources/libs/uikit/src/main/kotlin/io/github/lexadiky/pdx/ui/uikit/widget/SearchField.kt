@@ -28,19 +28,19 @@ fun SearchField(text: String, onTextChanged: (String) -> Unit, modifier: Modifie
         value = text,
         onValueChange = onTextChanged,
         decorationBox = @Composable { innerTextField ->
-            TextFieldDefaults.TextFieldDecorationBox(
+            TextFieldDefaults.DecorationBox(
                 value = text,
                 innerTextField = innerTextField,
                 enabled = true,
                 singleLine = true,
                 visualTransformation = VisualTransformation.None,
+                interactionSource = remember { MutableInteractionSource() },
                 placeholder = { Text(stringResource(id = R.string.uikit_search_field_placeholder)) },
                 trailingIcon = { Icon(Icons.Default.Search, null) },
                 shape = SearchBarDefaults.inputFieldShape,
-                contentPadding = TextFieldDefaults.textFieldWithoutLabelPadding(top = 0.dp, bottom = 0.dp),
-                container = {},
                 colors = SearchBarDefaults.inputFieldColors(),
-                interactionSource = remember { MutableInteractionSource() },
+                contentPadding = TextFieldDefaults.contentPaddingWithoutLabel(top = 0.dp, bottom = 0.dp),
+                container = {},
             )
         },
         modifier = modifier

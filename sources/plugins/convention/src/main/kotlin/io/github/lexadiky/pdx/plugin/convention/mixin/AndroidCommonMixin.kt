@@ -37,7 +37,7 @@ object AndroidCommonMixin {
                 targetCompatibility = JavaVersion.VERSION_17
                 isCoreLibraryDesugaringEnabled = true
             }
-            packagingOptions {
+            packaging {
                 resources {
                     excludes += listOf(
                         "/META-INF/{AL2.0,LGPL2.1}",
