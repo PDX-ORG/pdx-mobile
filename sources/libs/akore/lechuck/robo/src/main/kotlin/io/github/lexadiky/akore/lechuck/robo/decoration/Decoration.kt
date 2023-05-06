@@ -10,7 +10,7 @@ import io.github.lexadiky.akore.lechuck.robo.RoboNavigator
 fun Decoration(decoration: String, content: @Composable () -> Unit) {
     val controller: DecorationController = LocalComposeNavigationContext.current.decorationController
     val navigator: RoboNavigator =  LocalComposeNavigationContext.current.roboNavigator
-    val currentRoute = navigator.currentRoute.value
+    val currentRoute by navigator.currentRoute.collectAsState()
     controller.Render(decoration, currentRoute?.asString(), content)
 }
 

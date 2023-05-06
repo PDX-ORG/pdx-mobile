@@ -20,28 +20,33 @@ import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
-import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.typechart.R
 import io.github.lexadiky.pdx.feature.typechart.ui.EffectChart
+import io.github.lexadiky.pdx.lib.arc.Page
+import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
-internal fun TypeChartPage(viewModel: TypeChartViewModel = di.viewModel()) {
+internal fun TypeChartPage(viewModel: TypeChartSocket = di.viewModel()) = Page(viewModel) { state, act ->
+    ErrorDialog(state.error) {
+        act(TypeChartAction.HideError)
+    }
+
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-        TypeSelectionCard(viewModel.state, viewModel::onTypeClicked)
+        TypeSelectionCard(state, act)
 
         EffectChart(
             title = stringResource(id = R.string.type_chart_section_attack_title),
-            table = viewModel.state.attackDamageRelationTable,
+            table = state.attackDamageRelationTable,
             modifier = Modifier.padding(MaterialTheme.grid.x2),
-            onTypeClicked = { viewModel.openTypeDetails(it) }
+            onTypeClicked = { act(TypeChartAction.Navigate.TypeDetails(it)) }
         )
         EffectChart(
             title = stringResource(id = R.string.type_chart_section_defence_title),
-            table = viewModel.state.defenceDamageRelationTable,
+            table = state.defenceDamageRelationTable,
             modifier = Modifier.padding(MaterialTheme.grid.x2),
-            onTypeClicked = { viewModel.openTypeDetails(it) }
+            onTypeClicked = { act(TypeChartAction.Navigate.TypeDetails(it)) }
         )
     }
 }
@@ -49,7 +54,7 @@ internal fun TypeChartPage(viewModel: TypeChartViewModel = di.viewModel()) {
 private const val TYPE_ROW_CHUNK = 3
 
 @Composable
-private fun TypeSelectionCard(state: TypeChartState, onTypeClicked: (PokemonType) -> Unit) {
+private fun TypeSelectionCard(state: TypeChartState, act: (TypeChartAction) -> Unit) {
     Card(modifier = Modifier.padding(MaterialTheme.grid.x2)) {
         Column(
             modifier = Modifier.padding(MaterialTheme.grid.x2)
@@ -61,7 +66,7 @@ private fun TypeSelectionCard(state: TypeChartState, onTypeClicked: (PokemonType
                     typeChunk.forEach { type ->
                         FilterChip(
                             selected = type in state.selectedTypes,
-                            onClick = { onTypeClicked(type) },
+                            onClick = { act(TypeChartAction.TypeClicked(type)) },
                             colors = FilterChipDefaults.filterChipColors(
                                 selectedContainerColor = type.assets.color.render(),
                                 selectedLabelColor = MaterialTheme.colorScheme.onError
