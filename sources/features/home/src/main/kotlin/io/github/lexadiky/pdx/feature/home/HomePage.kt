@@ -71,7 +71,7 @@ internal fun HomePageImpl(viewModel: HomePageSocket = di.viewModel()) = Page(vie
         state = LocalPrimeScrollState.current.asLazyListState()
     ) {
         item {
-            FeaturedBlock(state, act)
+            FeaturedBlock(act)
         }
         pokemonSuggestionSection(
             title = R.string.home_section_featured_pokemon_title,
@@ -147,7 +147,7 @@ private fun LazyListScope.pokemonSuggestionSection(
 }
 
 @Composable
-private fun FeaturedBlock(state: HomePageState, act: (HomePageAction) -> Unit) {
+private fun FeaturedBlock(act: (HomePageAction) -> Unit) {
     Column(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
         modifier = Modifier.padding(horizontal = MaterialTheme.grid.x2)

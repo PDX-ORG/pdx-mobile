@@ -6,6 +6,7 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.get
 
+@Suppress("MagicNumber")
 object AndroidCommonMixin {
 
     fun mix(target: Project) {

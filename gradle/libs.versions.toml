@@ -15,16 +15,16 @@ kotlin-coroutines-gmsIntegration = { module = "org.jetbrains.kotlinx:kotlinx-cor
 
 kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
 kotlin-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
-kotlin-reflection = "org.jetbrains.kotlin:kotlin-reflect:1.8.10"
+kotlin-reflection = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
 kotlin-plugin-android = { module = "org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin", version.ref = "kotlin" }
 
 android-core = "androidx.core:core-ktx:1.10.0"
 android-lifecycle-runtime = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
-android-activity-compose = "androidx.activity:activity-compose:1.7.0"
-android-material = "com.google.android.material:material:1.9.0-beta01"
+android-activity-compose = "androidx.activity:activity-compose:1.7.1"
+android-material = "com.google.android.material:material:1.9.0-rc01"
 
-android-compose-bom = "androidx.compose:compose-bom:2023.04.00"
+android-compose-bom = "androidx.compose:compose-bom:2023.04.01"
 android-compose-ui-core = { module = "androidx.compose.ui:ui" }
 android-compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
 android-compose-ui-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
@@ -32,7 +32,7 @@ android-compose-ui-test = { module = "androidx.compose.ui:ui-test-junit4" }
 android-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 android-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 
-android-compose-material3 = "androidx.compose.material3:material3:1.1.0-beta02"
+android-compose-material3 = "androidx.compose.material3:material3:1.1.0-rc01"
 android-compose-viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
 
 android-navigation-compose = "androidx.navigation:navigation-compose:2.5.3"
@@ -56,7 +56,7 @@ ktor-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 
-firebase-bom = "com.google.firebase:firebase-bom:31.5.0"
+firebase-bom = "com.google.firebase:firebase-bom:32.0.0"
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-remoteConfig = { module = "com.google.firebase:firebase-config" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
