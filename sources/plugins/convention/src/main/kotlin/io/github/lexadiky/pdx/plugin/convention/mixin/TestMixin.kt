@@ -13,8 +13,6 @@ object TestMixin {
         }
 
         target.dependencies {
-            add("testRuntimeOnly", "org.junit.jupiter:junit-jupiter-engine:5.9.2")
-
             add("testImplementation", "io.kotest:kotest-runner-junit5:5.6.1")
             add("testImplementation", "io.kotest:kotest-property:5.6.1")
         }
