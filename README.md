@@ -44,6 +44,7 @@ Home |                          Pokemon Details                           | Sett
 - Kotlin Coroutines
 - Arrow
 - [Blogger](https://github.com/akore-org/blogger)
+- Kotest
 
 ## Architecture
 
