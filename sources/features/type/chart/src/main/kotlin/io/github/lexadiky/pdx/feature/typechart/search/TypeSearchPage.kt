@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -16,8 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.di
-import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.akore.alice.robo.viewModel
+import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.feature.typechart.R
 import io.github.lexadiky.pdx.feature.typechart.ui.EffectChart
@@ -37,20 +38,20 @@ internal fun TypeSearchPage(viewModel: TypeSearchViewModel = di.viewModel()) {
     ErrorDialog(viewModel.state.error) {
         viewModel.hideError()
     }
+    Decoration(decoration = "pdx://toolbar/title") {
+        SearchField(
+            text = viewModel.state.searchQuery,
+            onTextChanged = { viewModel.updateSearchQuery(it) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(MaterialTheme.grid.x5)
+        )
+    }
 
     LazyColumn(
         contentPadding = PaddingValues(MaterialTheme.grid.x2),
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2)
     ) {
-        item {
-            SearchField(
-                text = viewModel.state.searchQuery,
-                onTextChanged = { viewModel.updateSearchQuery(it) },
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-        }
-
         if (viewModel.state.selectedPokemon == null) {
             items(viewModel.state.suggestedPokemon) { pokemon ->
                 SmallWikiPreview(

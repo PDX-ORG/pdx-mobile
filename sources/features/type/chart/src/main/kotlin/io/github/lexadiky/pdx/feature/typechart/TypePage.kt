@@ -2,23 +2,28 @@
 
 package io.github.lexadiky.pdx.feature.typechart
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.animation.Crossfade
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
-import androidx.compose.material3.Text
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.pdx.feature.typechart.chart.TypeChartPage
-import io.github.lexadiky.pdx.feature.typechart.entity.TypePageTabs
 import io.github.lexadiky.pdx.feature.typechart.search.TypeSearchPage
-import io.github.lexadiky.pdx.ui.uikit.resources.render
+import io.github.lexadiky.pdx.ui.uikit.theme.grid
+import io.github.lexadiky.pdx.ui.uikit.widget.ToggleableFab
 
 @Composable
 fun TypePage() {
@@ -29,20 +34,28 @@ fun TypePage() {
 
 @Composable
 private fun TypePageImpl() {
-    val tabs = remember { TypePageTabs.values() }
-    var selectedTab by remember(tabs) { mutableStateOf(tabs.first()) }
+    var isSearchEnabled by remember { mutableStateOf(false) }
 
-    Column(modifier = Modifier.fillMaxWidth()) {
-        TabRow(selectedTabIndex = tabs.indexOf(selectedTab)) {
-            TypePageTabs.values().forEach { tab ->
-                Tab(selected = selectedTab == tab, onClick = { selectedTab = tab }, text = {
-                    Text(text = tab.title.render())
-                })
+    Box(modifier = Modifier.fillMaxSize()) {
+        Crossfade(
+            label = "type_page_corssfade",
+            targetState = isSearchEnabled
+        ) { isSearchEnabledState ->
+            if (isSearchEnabledState) {
+                TypeSearchPage()
+            } else {
+                TypeChartPage()
             }
         }
-        when (selectedTab) {
-            TypePageTabs.Chart -> TypeChartPage()
-            TypePageTabs.Search -> TypeSearchPage()
-        }
+
+        ToggleableFab(
+            isToggled = isSearchEnabled,
+            toggled = { Icon(Icons.Default.Close, null) },
+            untoggled = { Icon(Icons.Default.Search, null) },
+            onToggle = { isSearchEnabled = !isSearchEnabled },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(MaterialTheme.grid.x2)
+        )
     }
 }

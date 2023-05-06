@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
+import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.feature.typechart.R
 import io.github.lexadiky.pdx.feature.typechart.ui.EffectChart
@@ -31,6 +32,9 @@ import io.github.lexadiky.pdx.ui.uikit.theme.grid
 internal fun TypeChartPage(viewModel: TypeChartSocket = di.viewModel()) = Page(viewModel) { state, act ->
     ErrorDialog(state.error) {
         act(TypeChartAction.HideError)
+    }
+    Decoration(decoration = "pdx://toolbar/title") {
+        Text(text = stringResource(id = R.string.type_tab_chart_title))
     }
 
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
