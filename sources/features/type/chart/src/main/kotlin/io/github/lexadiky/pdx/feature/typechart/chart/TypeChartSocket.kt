@@ -10,7 +10,8 @@ import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
 import io.github.lexadiky.pdx.lib.errorhandler.classify
 import kotlinx.coroutines.launch
 
-typealias TypeChartSocket = ViewModelSocket<TypeChartState, TypeChartAction>
+abstract class TypeChartSocket(initialState: TypeChartState) :
+    ViewModelSocket<TypeChartState, TypeChartAction>(initialState)
 
 internal class TypeChartSocketImpl(
     private val getPokemonDamageRelations: GetPokemonTypeDamageRelations,

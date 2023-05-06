@@ -2,7 +2,6 @@ package io.github.lexadiky.pdx.feature.home
 
 import androidx.compose.runtime.Composable
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonItem
-import io.github.lexadiky.pdx.lib.arc.StaticSocket
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
@@ -13,12 +12,14 @@ import io.github.lexadiky.pdx.lib.system.PagePreview
 @[Composable DefaultPreview]
 internal fun _HomePagePreview() = PagePreview {
     HomePageImpl(
-        StaticSocket(
-            state = HomePageState(
+        object : HomePageSocket(
+            HomePageState(
                 featuredPokemon = generatePokemon(),
                 latestViewedPokemon = generatePokemon()
             )
-        )
+        ) {
+            override suspend fun onAction(action: HomePageAction) = Unit
+        }
     )
 }
 

@@ -4,14 +4,13 @@ import androidx.compose.runtime.Composable
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonTypeDamageRelation
 import io.github.lexadiky.pdx.feature.typechart.entity.DamageRelationsSubState
-import io.github.lexadiky.pdx.lib.arc.StaticSocket
 import io.github.lexadiky.pdx.lib.system.DefaultPreview
 import io.github.lexadiky.pdx.lib.system.PagePreview
 
 @[Composable DefaultPreview]
 internal fun _TypeChartPagePreview() = PagePreview {
     TypeChartPage(
-        StaticSocket(
+        object : TypeChartSocket(
             TypeChartState(
                 damageRelationsSubState = DamageRelationsSubState(
                     selectedTypes = listOf(PokemonType.DRAGON, PokemonType.FIRE),
@@ -40,6 +39,8 @@ internal fun _TypeChartPagePreview() = PagePreview {
                     )
                 )
             )
-        )
+        ) {
+            override suspend fun onAction(action: TypeChartAction) = Unit
+        }
     )
 }

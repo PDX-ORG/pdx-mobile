@@ -24,7 +24,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-typealias HomePageSocket = ViewModelSocket<HomePageState, HomePageAction>
+abstract class HomePageSocket(initialState: HomePageState) :
+    ViewModelSocket<HomePageState, HomePageAction>(initialState)
 
 class HomePageSocketImpl(
     private val navigator: Navigator,
