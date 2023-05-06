@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -170,11 +169,6 @@ private fun FeaturedPokemonSection(
                     transformations = listOf(ImageTransformation.CropTransparent)
                 ),
                 onClick = { openPokemonDetails(preview) },
-                isOutlined = true,
-                colors = CardDefaults.outlinedCardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant
-                        .copy(alpha = 0.4f)
-                )
             )
         }
     }
