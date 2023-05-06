@@ -1,7 +1,6 @@
 package io.github.lexadiky.pdx.feature.type.details
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,7 +20,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.flowlayout.FlowRow
@@ -36,8 +34,6 @@ import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.theme.pdx
-import io.github.lexadiky.pdx.ui.uikit.util.alpha
-import io.github.lexadiky.pdx.ui.uikit.util.saturation
 import io.github.lexadiky.pdx.ui.uikit.widget.PillChip
 import io.github.lexadiky.pdx.ui.uikit.widget.PillChipDefaults
 import io.github.lexadiky.pdx.ui.uikit.widget.SmallWikiPreview
@@ -49,28 +45,18 @@ fun TypeDetailsPage(typeId: String) {
     }
 }
 
-private const val BACKGROUND_ALPHA = 0.5f
 private const val MIN_HEIGHT_DP = 400
 
 @SuppressLint("RestrictedApi")
 @Composable
 internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
-    val primaryColor = viewModel.state.type.assets.color.render()
-
     ErrorDialog(viewModel.state.error) {
         viewModel.hideError()
     }
 
-    val backgroundBrush = Brush.linearGradient(
-        colors = listOf(
-            primaryColor.saturation().alpha(BACKGROUND_ALPHA),
-            MaterialTheme.colorScheme.surface
-        )
-    )
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
         modifier = Modifier
-            .background(backgroundBrush)
             .fillMaxWidth()
             .defaultMinSize(minHeight = MIN_HEIGHT_DP.dp)
             .padding(MaterialTheme.grid.x2)
