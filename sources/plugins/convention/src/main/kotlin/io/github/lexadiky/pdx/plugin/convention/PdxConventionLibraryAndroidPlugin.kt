@@ -12,6 +12,7 @@ class PdxConventionLibraryAndroidPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         target.plugins.apply("com.android.library")
         target.plugins.apply("org.jetbrains.kotlin.android")
+        target.plugins.apply("org.jetbrains.kotlinx.kover")
 
         AndroidCommonMixin.mix(target)
         TestMixin.mix(target)

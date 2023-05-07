@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.buildHealth)
     alias(libs.plugins.pdx.catkeeper)
+    alias(libs.plugins.kotlin.kover)
 }
 
 buildscript {
@@ -43,4 +44,12 @@ tasks.register("detektAll", Detekt::class.java) {
     reports {
         sarif.required.set(true)
     }
+}
+
+dependencies {
+    subprojects
+        .filter { sub -> sub.plugins.hasPlugin(libs.plugins.kotlin.kover.get().pluginId) }
+        .forEach { sub ->
+            kover(project(sub.path))
+        }
 }

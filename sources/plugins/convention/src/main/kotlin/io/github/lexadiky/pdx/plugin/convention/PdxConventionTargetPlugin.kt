@@ -18,7 +18,7 @@ class PdxConventionTargetPlugin : Plugin<Project> {
         target.plugins.apply("com.google.gms.google-services")
         target.plugins.apply("com.google.firebase.crashlytics")
         target.plugins.apply("com.google.firebase.firebase-perf")
-
+        target.plugins.apply("org.jetbrains.kotlinx.kover")
 
         AndroidCommonMixin.mix(target)
         target.extensions.findByType(BaseAppModuleExtension::class.java)!!
