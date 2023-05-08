@@ -20,10 +20,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.google.gms:google-services:4.3.15")
-        classpath("com.google.firebase:firebase-crashlytics-gradle:2.9.5")
-        classpath("com.google.firebase:perf-plugin:1.4.2")
-        classpath("com.autonomousapps.dependency-analysis:com.autonomousapps.dependency-analysis.gradle.plugin:1.20.0")
+        classpath(libs.classpath.google.services)
+        classpath(libs.classpath.firebase.crashlytics)
+        classpath(libs.classpath.firebase.preformance)
     }
 }
 

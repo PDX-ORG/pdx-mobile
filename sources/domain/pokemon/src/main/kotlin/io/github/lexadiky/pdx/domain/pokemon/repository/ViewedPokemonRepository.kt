@@ -5,11 +5,10 @@ import arrow.core.continuations.either
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.error
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
-import io.github.lexadiky.pdx.domain.pokemon.usecase.FindPokemonPreviewUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.FindPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
 import io.github.lexadiky.pdx.lib.microdata.MicrodataManager
-import java.lang.Exception
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

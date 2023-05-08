@@ -12,11 +12,9 @@ import io.github.lexadiky.pdx.domain.achievement.library.WhoIsChampionAchievemen
 import io.github.lexadiky.pdx.domain.achievement.library.WhoIsTrainerAchievement
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
-import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetAllPokemonPreviewsUseCase
 import io.github.lexadiky.pdx.feature.whois.entity.WhoIsPokemonVariant
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
-import io.github.lexadiky.pdx.lib.fs.FsManager
-import io.github.lexadiky.pdx.lib.microdata.Microdata
 import io.github.lexadiky.pdx.lib.microdata.MicrodataManager
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
@@ -28,7 +26,7 @@ import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.flow.collectLatest
 
 internal class WhoIsViewModel(
-    private val getPokemonPreviewUseCase: GetPokemonPreviewUseCase,
+    private val getAllPokemonPreviewsUseCase: GetAllPokemonPreviewsUseCase,
     private val achievementManager: AchievementManager,
     microdataManager: MicrodataManager,
 ) : ViewModel() {
@@ -48,7 +46,7 @@ internal class WhoIsViewModel(
         }
 
         viewModelScope.launch {
-            state = when (val data = getPokemonPreviewUseCase()) {
+            state = when (val data = getAllPokemonPreviewsUseCase()) {
                 is Either.Left -> state.copy(error = UIError.generic())
                 is Either.Right -> state.copy(allPokemon = data.value.toVariants())
             }.reshuffleNew()

@@ -10,7 +10,7 @@ import arrow.core.zip
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonTypeDamageRelation
-import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetAllPokemonPreviewsUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
 import io.github.lexadiky.pdx.feature.type.details.entity.TypePokemonPreview
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
@@ -22,7 +22,7 @@ import kotlin.random.Random
 internal class TypeDetailsViewModel(
     typeId: String,
     private val getPokemonTypeDamageRelations: GetPokemonTypeDamageRelations,
-    private val getPokemonPreviewUseCase: GetPokemonPreviewUseCase,
+    private val getAllPokemonPreviewsUseCase: GetAllPokemonPreviewsUseCase,
     private val navigator: Navigator
 ) : ViewModel() {
 
@@ -32,7 +32,7 @@ internal class TypeDetailsViewModel(
     init {
         viewModelScope.launch {
             val data = getPokemonTypeDamageRelations().mapLeft { UIError.generic() }
-                .zip(getPokemonPreviewUseCase().mapLeft { UIError.generic() })
+                .zip(getAllPokemonPreviewsUseCase().mapLeft { UIError.generic() })
 
             state = when (val result = data) {
                 is Either.Left -> state.copy(error = UIError.generic())

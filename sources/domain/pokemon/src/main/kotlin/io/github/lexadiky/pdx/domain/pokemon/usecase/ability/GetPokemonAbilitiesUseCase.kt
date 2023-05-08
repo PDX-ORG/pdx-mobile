@@ -4,7 +4,6 @@ import arrow.core.Either
 import arrow.core.continuations.either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonAbility
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
-import io.github.lexadiky.pdx.domain.pokemon.usecase.GetAbilityUseCase
 import io.github.lexadiky.pdx.lib.core.error.GenericError
 import io.github.lexadiky.pdx.lib.core.lce.DynamicLceList
 import io.github.lexadiky.pdx.lib.core.lce.lceFlow
@@ -21,12 +20,12 @@ class GetPokemonAbilitiesUseCase(
         val abilities = listAbilities(varietyDetails).bind()
         lceFlow(abilities) { slot ->
             getAbility(slot.ability.name!!, slot.isHidden)
-                .mapLeft { GenericError("can't load ability details") }
+                .mapLeft { GenericError("can't load ability details", it) }
         }
     }
 
     private suspend fun listAbilities(details: PokemonDetails): Either<GenericError, List<Pokemon.AbilitySlot>> =
         client.pokemon.get(details.name).map { it.abilities }
             .asEither()
-            .mapLeft { GenericError("can't load pokemon") }
+            .mapLeft { GenericError("can't load pokemon", it) }
 }

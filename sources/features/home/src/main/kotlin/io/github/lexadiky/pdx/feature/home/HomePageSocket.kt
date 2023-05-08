@@ -5,7 +5,7 @@ import arrow.core.Either
 import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
-import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewSampleUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPreviewSampleUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
 import io.github.lexadiky.pdx.feature.home.entitiy.HomeMenuItemType
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonItem

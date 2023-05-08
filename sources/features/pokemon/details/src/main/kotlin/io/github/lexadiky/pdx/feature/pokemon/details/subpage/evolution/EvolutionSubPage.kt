@@ -20,4 +20,5 @@ internal fun EvolutionSubPage(
 @Composable
 private fun EvolutionSubPageImpl(vm: EvolutionSubPageViewModel) {
     Text(text = "Evolution Info: ${vm.state.id}")
+
 }

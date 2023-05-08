@@ -1,7 +1,6 @@
-package io.github.lexadiky.pdx.domain.pokemon.usecase
+package io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon
 
 import arrow.core.Either
-import arrow.core.computations.ResultEffect.bind
 import arrow.core.continuations.either
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.error

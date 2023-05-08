@@ -1,4 +1,4 @@
-package io.github.lexadiky.pdx.domain.pokemon.usecase
+package io.github.lexadiky.pdx.domain.pokemon.usecase.ability
 
 import arrow.core.Either
 import arrow.core.flatMap

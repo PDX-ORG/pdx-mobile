@@ -4,4 +4,5 @@ plugins {
 
 dependencies {
     implementation(libs.android.mops.datastore)
+    implementation(libs.akore.alice.core)
 }

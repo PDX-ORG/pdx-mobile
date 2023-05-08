@@ -9,7 +9,7 @@ import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPokedexDescription
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
-import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPokedexDescriptions
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPokedexDescriptions
 import io.github.lexadiky.pdx.feature.pokemon.details.R
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDescriptionData
 import io.github.lexadiky.pdx.feature.pokemon.details.utils.extractDimensions

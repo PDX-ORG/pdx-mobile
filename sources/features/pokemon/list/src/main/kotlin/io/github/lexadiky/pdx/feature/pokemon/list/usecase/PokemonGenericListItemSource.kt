@@ -3,7 +3,7 @@ package io.github.lexadiky.pdx.feature.pokemon.list.usecase
 import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
-import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetAllPokemonPreviewsUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.IsPokemonFavorite
 import io.github.lexadiky.pdx.feature.generic.list.domain.GenericListItemDataSource
 import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
@@ -15,7 +15,7 @@ import io.github.lexadiky.pdx.lib.resources.string.from
 import io.github.lexadiky.pdx.ui.uikit.util.UikitStringFormatter
 
 internal class PokemonGenericListItemSource(
-    private val getPokemon: GetPokemonPreviewUseCase,
+    private val getPokemon: GetAllPokemonPreviewsUseCase,
     private val isPokemonFavorite: IsPokemonFavorite
 ) : GenericListItemDataSource<PokemonGenericListItem> {
 

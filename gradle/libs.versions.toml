@@ -6,7 +6,7 @@ akore = "-SNAPSHOT"
 coroutines = "1.7.0"
 datastore = "1.0.0"
 agp = "8.1.0-alpha11"
-kotlin = "1.8.10"
+kotlin = "1.8.21"
 
 [libraries]
 
@@ -72,6 +72,11 @@ pokeapi = "com.github.lexa-diky:pokeapi-kotlin:d4fa57d81f"
 snakeyaml = "org.yaml:snakeyaml:2.0"
 kotlinpoet = "com.squareup:kotlinpoet:1.13.1"
 
+# plugin deps
+classpath-google-services = "com.google.gms:google-services:4.3.15"
+classpath-firebase-crashlytics = "com.google.firebase:firebase-crashlytics-gradle:2.9.5"
+classpath-firebase-preformance = "com.google.firebase:perf-plugin:1.4.2"
+
 [plugins]
 
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -82,7 +87,7 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-kover = { id = "org.jetbrains.kotlinx.kover", version = "0.7.0-Beta" }
 
-detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.22.0" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.0-RC3" }
 buildHealth = { id = "com.autonomousapps.dependency-analysis", version = "1.20.0" }
 
 pdx-convention-target = { id = "io.github.lexadiky.pdx.plugin.module.target", version = "indev" }

@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
-import io.github.lexadiky.pdx.domain.pokemon.usecase.FindPokemonPreviewUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.FindPokemonPreviewUseCase
 import io.github.lexadiky.pdx.lib.errorhandler.classify
 import io.github.lexadiky.pdx.lib.resources.color.ColorResource
 import kotlinx.coroutines.launch

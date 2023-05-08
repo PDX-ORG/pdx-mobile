@@ -15,6 +15,7 @@ object TestMixin {
         target.dependencies {
             add("testImplementation", "io.kotest:kotest-runner-junit5:5.6.1")
             add("testImplementation", "io.kotest:kotest-property:5.6.1")
+            add("testImplementation", "io.mockk:mockk:1.13.5")
         }
     }
 }

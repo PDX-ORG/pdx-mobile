@@ -1,4 +1,4 @@
-package io.github.lexadiky.pdx.domain.pokemon.usecase
+package io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon
 
 import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.entity.DiscoveryPokemonPreview
@@ -8,7 +8,7 @@ import io.github.lexadiky.pdx.lib.fs.statist.StaticResourceProvider
 import io.github.lexadiky.pdx.lib.fs.statist.provide
 import io.github.lexadiky.pdx.lib.locale.LocaleManager
 
-class GetPokemonPreviewUseCase internal constructor(
+class GetAllPokemonPreviewsUseCase internal constructor(
     private val resourceProvider: StaticResourceProvider,
     private val localeManager: LocaleManager
 ) {

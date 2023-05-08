@@ -1,10 +1,11 @@
-package io.github.lexadiky.pdx.domain.pokemon.usecase
+package io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon
 
 import arrow.core.Either
 import arrow.core.continuations.either
 import arrow.core.traverse
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPokedexDescription
 import io.github.lexadiky.pdx.domain.pokemon.entity.asLanguage
+import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonGameVersion
 import io.github.lexadiky.pdx.domain.pokemon.util.asPokemonLanguage
 import io.github.lexadiky.pdx.lib.core.error.GenericError
 import io.github.lexadiky.pdx.lib.core.lce.DynamicLceList
@@ -24,7 +25,7 @@ class GetPokemonPokedexDescriptions(
             val language = localeManager.settings.system.asPokemonLanguage()
 
             val species = pokeApiClient.pokemonSpecies.get(name)
-                .bind { GenericError("can't get pokemon species") }
+                .bind { GenericError("can't get pokemon species", it) }
 
             val grouped = species.flavorTextEntries
                 .filter { it.language.asLanguage() == language }
@@ -35,7 +36,7 @@ class GetPokemonPokedexDescriptions(
             lceFlow(grouped) { (text, descriptions) ->
                 val versions = descriptions.traverse { entry ->
                     getPokemonVersion(entry.version.name!!)
-                        .mapLeft { GenericError("can't load game version") }
+                        .mapLeft { GenericError("can't load game version", it) }
                 }
 
                 versions.map { versionsUnpacked ->

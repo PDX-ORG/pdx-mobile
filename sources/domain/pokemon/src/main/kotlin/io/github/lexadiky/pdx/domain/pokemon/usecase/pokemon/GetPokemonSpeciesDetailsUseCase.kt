@@ -1,10 +1,8 @@
-package io.github.lexadiky.pdx.domain.pokemon.usecase
+package io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon
 
 import arrow.core.Either
 import arrow.core.continuations.either
 import arrow.core.identity
-import io.github.lexadiky.akore.blogger.BLogger
-import io.github.lexadiky.akore.blogger.error
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonArchetype
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
@@ -20,13 +18,13 @@ import io.github.lexadiky.pdx.lib.core.error.GenericError
 import io.github.lexadiky.pdx.lib.locale.LocaleManager
 import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.entity.pokemon.Pokemon
+import kotlin.reflect.KProperty1
+import kotlin.reflect.full.declaredMemberProperties
+import kotlin.reflect.typeOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
-import kotlin.reflect.KProperty1
-import kotlin.reflect.full.declaredMemberProperties
-import kotlin.reflect.typeOf
 
 class GetPokemonSpeciesDetailsUseCase(
     private val pokeApiClient: PokeApiClient,

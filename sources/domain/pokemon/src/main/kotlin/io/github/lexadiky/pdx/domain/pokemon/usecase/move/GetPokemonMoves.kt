@@ -19,14 +19,14 @@ class GetPokemonMoves internal constructor(
         pokemonDetails: PokemonSpeciesDetails
     ): Either<GenericError, DynamicLceList<GenericError, PokemonMove>> = either {
         val pokemon = client.pokemon.get(pokemonDetails.name).bind {
-            GenericError("can't load pokemon details")
+            GenericError("can't load pokemon details", it)
         }
 
         lceFlow(pokemon.moves) { moveSlot ->
             client.move.get(moveSlot)
                 .asEither()
                 .map { item -> domainMapper.map(item) }
-                .mapLeft { GenericError("can't load pokemon moves") }
+                .mapLeft { GenericError("can't load pokemon moves", it) }
         }
     }
 }

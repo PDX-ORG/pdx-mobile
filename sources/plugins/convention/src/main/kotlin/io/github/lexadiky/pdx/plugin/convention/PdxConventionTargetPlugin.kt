@@ -34,5 +34,8 @@ class PdxConventionTargetPlugin : Plugin<Project> {
             versionCode = target.extra["pdx.version.code"].toString().toInt()
             versionName = target.extra["pdx.version.name"].toString()
         }
+        lint {
+            disable += setOf("Instantiatable")
+        }
     }
 }

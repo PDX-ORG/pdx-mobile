@@ -9,7 +9,7 @@ import androidx.lifecycle.viewModelScope
 import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
-import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonPreviewUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetAllPokemonPreviewsUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
 import io.github.lexadiky.pdx.feature.typechart.entity.PokemonSuggester
 import io.github.lexadiky.pdx.feature.typechart.entity.PokemonTypeSearchItem
@@ -25,7 +25,7 @@ import io.github.lexadiky.pdx.ui.uikit.util.UikitStringFormatter
 import kotlinx.coroutines.launch
 
 internal class TypeSearchViewModel(
-    private val getPokemonPreview: GetPokemonPreviewUseCase,
+    private val getPokemonPreview: GetAllPokemonPreviewsUseCase,
     private val getPokemonDamageRelations: GetPokemonTypeDamageRelations,
     private val suggester: PokemonSuggester,
     private val navigator: Navigator,

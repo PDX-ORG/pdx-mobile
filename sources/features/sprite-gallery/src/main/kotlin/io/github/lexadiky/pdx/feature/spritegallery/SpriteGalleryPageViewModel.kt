@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
-import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonVarietyDetails
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonVarietyDetails
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
