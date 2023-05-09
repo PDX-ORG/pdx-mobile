@@ -7,5 +7,4 @@ dependencies {
     api(libs.arrow.core)
     api(libs.kotlin.datetime)
     api(libs.kotlin.coroutines)
-    api(libs.kotlin.collections.immutable)
 }

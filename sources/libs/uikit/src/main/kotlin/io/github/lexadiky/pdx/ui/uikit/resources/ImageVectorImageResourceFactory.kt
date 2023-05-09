@@ -1,6 +1,9 @@
+@file:OptIn(DelicateResourcesApi::class)
+
 package io.github.lexadiky.pdx.ui.uikit.resources
 
 import androidx.compose.ui.graphics.vector.ImageVector
+import io.github.lexadiky.pdx.lib.resources.DelicateResourcesApi
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.ImageVectorImageResource
 

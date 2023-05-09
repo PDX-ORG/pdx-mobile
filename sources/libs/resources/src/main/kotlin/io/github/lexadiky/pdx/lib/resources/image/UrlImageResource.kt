@@ -1,6 +1,6 @@
 package io.github.lexadiky.pdx.lib.resources.image
 
-class UrlImageResource(val url: String) : ImageResource
+class UrlImageResource internal constructor(val url: String) : ImageResource
 
 fun ImageResource.Companion.from(url: String): ImageResource {
     return UrlImageResource(url.normalizeUrl())

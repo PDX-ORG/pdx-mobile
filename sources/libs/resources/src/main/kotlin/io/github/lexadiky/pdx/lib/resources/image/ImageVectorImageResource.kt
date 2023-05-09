@@ -1,3 +1,5 @@
 package io.github.lexadiky.pdx.lib.resources.image
 
-class ImageVectorImageResource(val internalVector: Any) : ImageResource
+import io.github.lexadiky.pdx.lib.resources.DelicateResourcesApi
+
+class ImageVectorImageResource @DelicateResourcesApi constructor(val internalVector: Any) : ImageResource
