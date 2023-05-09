@@ -13,7 +13,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
 suspend fun <F, T, E> lceFlow(
-    input: ImmutableList<F>,
+    input: List<F>,
     mapper: suspend (F) -> Either<E, T>,
 ): DynamicLceList<E, T> {
     var readyBuffer: PersistentList<Lce<E, T>> = List(input.size) { Lce.Loading }
