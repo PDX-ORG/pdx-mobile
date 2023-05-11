@@ -29,7 +29,7 @@ jobs:
     - name: Build with Gradle
       uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
       with:
-        arguments: clean assemble test
+        arguments: clean assemble test --stacktrace
     - uses: actions/upload-artifact@v3
       name: Upload artifacts
       with:
