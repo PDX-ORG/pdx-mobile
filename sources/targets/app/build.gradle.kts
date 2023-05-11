@@ -15,7 +15,6 @@ dependencies {
     implementation(projects.libs.featureToggle)
     implementation(projects.libs.network)
     implementation(projects.libs.navigation)
-    implementation(libs.akore.blogger.core)
     implementation(projects.libs.target)
     implementation(projects.domain.achievement)
     implementation(projects.domain.pokemonAsset)
@@ -35,4 +34,5 @@ dependencies {
     implementation(projects.features.move.details)
 
     implementation(libs.akore.alice.robo)
+    implementation(libs.akore.blogger.core)
 }

@@ -4,9 +4,9 @@ plugins {
 }
 
 dependencies {
+    implementation(libs.classpath.kotlin.android)
     implementation(libs.snakeyaml)
     implementation(libs.kotlinpoet)
-    implementation(libs.kotlin.plugin.android)
 }
 
 gradlePlugin {

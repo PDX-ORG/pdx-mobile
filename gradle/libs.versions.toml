@@ -5,8 +5,9 @@ accompanist = "0.30.1"
 akore = "-SNAPSHOT"
 coroutines = "1.7.0"
 datastore = "1.0.0"
-agp = "8.2.0-alpha01"
+agp = "8.2.0-alpha03"
 kotlin = "1.8.21"
+baseline-profile = "1.2.0-alpha14"
 
 [libraries]
 
@@ -16,12 +17,12 @@ kotlin-coroutines-gmsIntegration = { module = "org.jetbrains.kotlinx:kotlinx-cor
 kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
 kotlin-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
 kotlin-reflection = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
-kotlin-plugin-android = { module = "org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin", version.ref = "kotlin" }
 
 android-core = "androidx.core:core-ktx:1.10.0"
 android-lifecycle-runtime = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
 android-activity-compose = "androidx.activity:activity-compose:1.7.1"
 android-material = "com.google.android.material:material:1.9.0-rc01"
+android-profileinstaller = "androidx.profileinstaller:profileinstaller:1.3.1"
 
 android-compose-bom = "androidx.compose:compose-bom:2023.05.00"
 android-compose-ui-core = { module = "androidx.compose.ui:ui" }
@@ -36,6 +37,9 @@ android-compose-viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.
 android-navigation-compose = "androidx.navigation:navigation-compose:2.5.3"
 
 android-test-espresso = "androidx.test.espresso:espresso-core:3.5.1"
+android-test-junit4 = "androidx.test.ext:junit:1.1.1"
+
+android-benchmark-macro-junit4 = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "baseline-profile" }
 
 android-mops-datastore-android = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 android-mops-datastore = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastore" }
@@ -75,11 +79,17 @@ kotlinpoet = "com.squareup:kotlinpoet:1.13.2"
 classpath-google-services = "com.google.gms:google-services:4.3.15"
 classpath-firebase-crashlytics = "com.google.firebase:firebase-crashlytics-gradle:2.9.5"
 classpath-firebase-preformance = "com.google.firebase:perf-plugin:1.4.2"
+classpath-android-agp = { module = "com.android.application:com.android.application.gradle.plugin", version.ref = "agp" }
+classpath-android-baseline = { module = "androidx.benchmark:benchmark-gradle-plugin", version.ref = "baseline-profile" }
+classpath-android-baseline-profile = { module = "androidx.benchmark:benchmark-baseline-profile-gradle-plugin", version.ref = "baseline-profile" }
+classpath-kotlin-android = { module = "org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin", version.ref = "kotlin" }
 
 [plugins]
 
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+android-test = { id = "com.android.test", version.ref = "agp" }
+android-baselineprofile = { id = "androidx.baselineprofile", version.ref = "baseline-profile" }
 
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -90,6 +100,7 @@ detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.0-RC3" }
 buildHealth = { id = "com.autonomousapps.dependency-analysis", version = "1.20.0" }
 
 pdx-convention-target = { id = "io.github.lexadiky.pdx.plugin.module.target", version = "indev" }
+pdx-convention-target-baseline = { id = "io.github.lexadiky.pdx.plugin.module.baseline", version = "indev" }
 pdx-convention-feature = { id = "io.github.lexadiky.pdx.plugin.module.feature", version = "indev" }
 pdx-convention-library-android = { id = "io.github.lexadiky.pdx.plugin.module.library.android", version = "indev" }
 pdx-convention-library-compose = { id = "io.github.lexadiky.pdx.plugin.module.library.compose", version = "indev" }

@@ -4,8 +4,9 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.kotlin.plugin.android)
-    implementation(libs.android.agp)
+    implementation(libs.classpath.kotlin.android)
+    implementation(libs.classpath.android.agp)
+    implementation(libs.classpath.android.baseline.profile)
 }
 
 gradlePlugin {
@@ -13,6 +14,11 @@ gradlePlugin {
         create("pdx-module-target") {
             id = "io.github.lexadiky.pdx.plugin.module.target"
             implementationClass = "io.github.lexadiky.pdx.plugin.convention.PdxConventionTargetPlugin"
+            version = "indev"
+        }
+        create("pdx-android-target-baseline") {
+            id = "io.github.lexadiky.pdx.plugin.module.baseline"
+            implementationClass = "io.github.lexadiky.pdx.plugin.convention.PdxConventionBaselinePlugin"
             version = "indev"
         }
         create("pdx-module-feature") {
