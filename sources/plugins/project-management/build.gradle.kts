@@ -1,3 +1,4 @@
+@file:Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("java-gradle-plugin")
     `kotlin-dsl`

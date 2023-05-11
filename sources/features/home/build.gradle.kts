@@ -1,3 +1,4 @@
+@file:Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.pdx.convention.feature)
     alias(libs.plugins.pdx.eve)

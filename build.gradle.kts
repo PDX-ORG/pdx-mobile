@@ -1,3 +1,4 @@
+@file:Suppress("DSL_SCOPE_VIOLATION")
 import io.gitlab.arturbosch.detekt.Detekt
 
 plugins {

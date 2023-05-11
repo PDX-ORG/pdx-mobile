@@ -1,4 +1,6 @@
+@file:Suppress("DSL_SCOPE_VIOLATION")
 plugins {
+    // TODO fix plugin resolution
     id(libs.plugins.pdx.convention.target.baseline.get().pluginId)
 }
 
