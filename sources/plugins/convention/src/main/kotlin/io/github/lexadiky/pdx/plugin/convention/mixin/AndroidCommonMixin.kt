@@ -1,17 +1,19 @@
 package io.github.lexadiky.pdx.plugin.convention.mixin
 
 import com.android.build.api.dsl.LibraryExtension
+import com.android.build.gradle.TestExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.get
 
 @Suppress("MagicNumber")
 object AndroidCommonMixin {
 
     fun mix(target: Project) {
         val android = target.extensions.findByType(LibraryExtension::class.java)
-            ?: target.extensions.findByType(BaseAppModuleExtension::class.java)!!
+            ?: target.extensions.findByType(BaseAppModuleExtension::class.java)
+            ?: target.extensions.findByType(TestExtension::class.java)
+            ?: throw IllegalStateException("can't setup android, no suitable extensions found")
 
         android.apply {
             compileSdk = 33
@@ -25,7 +27,7 @@ object AndroidCommonMixin {
                 }
             }
 
-            buildTypes["release"].apply {
+            buildTypes.findByName("release")?.apply {
                 isMinifyEnabled = true
                 proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
