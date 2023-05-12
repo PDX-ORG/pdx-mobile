@@ -19,6 +19,8 @@ class PdxGrid {
     val x12 = x(12f)
     val x20 = x(20f)
 
+    val s1 = 1.dp
+
     private fun x(multiplication: Float): Dp = 8.dp * multiplication
 
     companion object {

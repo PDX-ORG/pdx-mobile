@@ -48,6 +48,8 @@ class GetPokemonSpeciesDetailsUseCase(
                 name = species.name,
                 localeName = localeName,
                 primaryVariety = mapPokemonDetails(defaultVariety),
+                // TODO not really national pokedex
+                nationalDexNumber = species.pokedexNumbers.first().entryNumber,
                 isLegendary = species.isLegendary,
                 isMythical = species.isMythical,
                 varieties = species.varieties.map {
@@ -92,6 +94,7 @@ class GetPokemonSpeciesDetailsUseCase(
 
     private fun extractSprites(defaultVariety: Pokemon) = PokemonSprites(
         default = defaultVariety.sprites.frontDefault ?: "",
+        defaultShiny = defaultVariety.sprites.frontShiny ?: "",
         all = extractAllSpritesWithReflection(defaultVariety.sprites)
             .filter { it.isNotBlank() }
     )

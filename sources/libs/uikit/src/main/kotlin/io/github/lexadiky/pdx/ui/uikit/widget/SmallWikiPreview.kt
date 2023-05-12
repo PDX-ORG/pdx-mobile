@@ -13,7 +13,6 @@ import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,29 +24,18 @@ import io.github.lexadiky.pdx.ui.uikit.theme.grid
 @Composable
 fun SmallWikiPreview(
     title: String,
-    preTitle: String?,
     icon: Painter,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    isOutlined: Boolean = false,
-    colors: CardColors = if (!isOutlined) CardDefaults.cardColors() else CardDefaults.outlinedCardColors()
+    preTitle: String? = null,
+    colors: CardColors = CardDefaults.cardColors()
 ) {
-    if (!isOutlined) {
-        Card(
-            onClick = { onClick() },
-            colors = colors,
-            modifier = modifier
-        ) {
-            Content(title = title, preTitle = preTitle, icon = icon)
-        }
-    } else {
-        OutlinedCard(
-            onClick = { onClick() },
-            colors = colors,
-            modifier = modifier
-        ) {
-            Content(title = title, preTitle = preTitle, icon = icon)
-        }
+    Card(
+        onClick = { onClick() },
+        colors = colors,
+        modifier = modifier
+    ) {
+        Content(title = title, preTitle = preTitle, icon = icon)
     }
 }
 
