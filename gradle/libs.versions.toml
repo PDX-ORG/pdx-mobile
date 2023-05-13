@@ -23,6 +23,8 @@ android-lifecycle-runtime = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
 android-activity-compose = "androidx.activity:activity-compose:1.7.1"
 android-material = "com.google.android.material:material:1.9.0-rc01"
 android-profileinstaller = "androidx.profileinstaller:profileinstaller:1.3.1"
+android-play-review= "com.google.android.play:review-ktx:2.0.1"
+
 
 android-compose-bom = "androidx.compose:compose-bom:2023.05.00"
 android-compose-ui-core = { module = "androidx.compose.ui:ui" }

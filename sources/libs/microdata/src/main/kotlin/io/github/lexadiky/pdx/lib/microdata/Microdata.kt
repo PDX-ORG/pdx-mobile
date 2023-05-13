@@ -2,6 +2,7 @@ package io.github.lexadiky.pdx.lib.microdata
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -32,6 +33,8 @@ class Microdata(
     fun integer(key: String): EditableMicrodata<Int> = cached(intPreferencesKey(key))
 
     fun string(key: String): EditableMicrodata<String> = cached(stringPreferencesKey(key))
+
+    fun boolean(key: String): EditableMicrodata<Boolean> = cached(booleanPreferencesKey(key))
 
     fun strings(key: String): EditableMicrodata<Set<String>> = cached(stringSetPreferencesKey(key))
 

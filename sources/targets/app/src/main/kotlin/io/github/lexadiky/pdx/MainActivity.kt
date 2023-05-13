@@ -22,6 +22,7 @@ import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.akore.lechuck.robo.LocalComposeNavigationContext
 import io.github.lexadiky.akore.lechuck.robo.NavigationFeature
 import io.github.lexadiky.akore.lechuck.robo.NavigationHost
+import io.github.lexadiky.pdx.feature.rateapp.RateAppDialog
 import io.github.lexadiky.pdx.lib.navigation.NavigationHostStyles
 import io.github.lexadiky.pdx.lib.navigation.NavigationModule
 import io.github.lexadiky.pdx.ui.uikit.theme.PdxTheme
@@ -48,6 +49,8 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun Content() {
         PdxTheme {
+            RateAppDialog()
+
             val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
             val toolbarConnector = rememberToolbarConnector(
                 onDrawerToggled = { if (drawerState.isOpen) drawerState.close() else drawerState.open() }

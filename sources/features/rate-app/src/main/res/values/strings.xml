@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="rate_app_title">😎 How is your experience?</string>
+    <string name="rate_app_content">Your honest feedback will help make application better</string>
+    <string name="rate_app_like">In\'s awsome</string>
+    <string name="rate_app_dislike">Can be improved</string>
+
+</resources>
