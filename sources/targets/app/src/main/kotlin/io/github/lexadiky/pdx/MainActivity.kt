@@ -25,6 +25,7 @@ import io.github.lexadiky.akore.lechuck.robo.NavigationHost
 import io.github.lexadiky.pdx.feature.rateapp.RateAppDialog
 import io.github.lexadiky.pdx.lib.navigation.NavigationHostStyles
 import io.github.lexadiky.pdx.lib.navigation.NavigationModule
+import io.github.lexadiky.pdx.lib.system.SystemModule
 import io.github.lexadiky.pdx.ui.uikit.theme.PdxTheme
 import io.github.lexadiky.pdx.ui.uikit.widget.scaffold.PdxScaffold
 import kotlinx.coroutines.delay
@@ -49,8 +50,6 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun Content() {
         PdxTheme {
-            RateAppDialog()
-
             val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
             val toolbarConnector = rememberToolbarConnector(
                 onDrawerToggled = { if (drawerState.isOpen) drawerState.close() else drawerState.open() }
@@ -71,7 +70,11 @@ class MainActivity : ComponentActivity() {
                         }
                 }
 
-                DIFeature(NavigationModule(LocalComposeNavigationContext.current)) {
+                DIFeature(
+                    NavigationModule(LocalComposeNavigationContext.current),
+                    SystemModule(this@MainActivity)
+                ) {
+                    RateAppDialog()
                     PdxScaffold(
                         drawerState = drawerState,
                         drawerContent = { Drawer() },

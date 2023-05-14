@@ -10,8 +10,8 @@ android {
 dependencies {
     implementation(projects.libs.uikit)
     implementation(projects.libs.microdata)
+    implementation(projects.libs.system)
     implementation(projects.libs.arc)
 
     implementation(libs.akore.alice.robo)
-    implementation(libs.android.play.review)
 }

@@ -6,3 +6,9 @@ plugins {
 android {
     namespace = "io.github.lexadiky.pdx.lib.system"
 }
+
+dependencies {
+    implementation(libs.akore.alice.robo)
+    implementation(libs.android.play.review)
+    implementation(libs.kotlin.coroutines.gmsIntegration)
+}

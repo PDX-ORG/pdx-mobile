@@ -18,6 +18,7 @@ dependencies {
     implementation(projects.libs.featureToggle)
     implementation(projects.libs.network)
     implementation(projects.libs.navigation)
+    implementation(projects.libs.system)
     implementation(libs.akore.blogger.core)
     implementation(projects.domain.achievement)
     implementation(projects.features.settings)

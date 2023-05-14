@@ -16,6 +16,7 @@ dependencies {
     implementation(projects.libs.featureToggle)
     implementation(projects.libs.network)
     implementation(projects.libs.navigation)
+    implementation(projects.libs.system)
     implementation(projects.libs.target)
     implementation(projects.domain.achievement)
     implementation(projects.domain.pokemonAsset)
