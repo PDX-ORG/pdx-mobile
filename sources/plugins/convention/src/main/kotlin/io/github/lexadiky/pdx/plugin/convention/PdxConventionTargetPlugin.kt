@@ -24,16 +24,7 @@ class PdxConventionTargetPlugin : Plugin<Project> {
         target.plugins.apply("com.google.firebase.firebase-perf")
         target.plugins.apply("org.jetbrains.kotlinx.kover")
 
-        if (target.childProjects.contains("baseline")) {
-            target.plugins.apply("androidx.baselineprofile")
-            with(target.extensions.findByType<BaselineProfileConsumerExtension>()!!) {
-                saveInSrc = true
-                automaticGenerationDuringBuild = true
-            }
-            target.dependencies {
-                add("baselineProfile", project("${target.path}:baseline"))
-            }
-        }
+        baselineSettings(target)
 
         AndroidCommonMixin.mix(target)
         target.extensions.findByType(BaseAppModuleExtension::class.java)!!
@@ -41,6 +32,19 @@ class PdxConventionTargetPlugin : Plugin<Project> {
         TestMixin.mix(target)
         ComposeMixin.mix(target)
         DeshugaringMixin.mix(target)
+    }
+
+    private fun baselineSettings(target: Project) {
+        if (target.childProjects.contains("baseline")) {
+            target.plugins.apply("androidx.baselineprofile")
+            with(target.extensions.findByType<BaselineProfileConsumerExtension>()!!) {
+                saveInSrc = true
+                automaticGenerationDuringBuild = false // TODO disabled due to SDK license 'accept' problem
+            }
+            target.dependencies {
+                add("baselineProfile", project("${target.path}:baseline"))
+            }
+        }
     }
 
     private fun BaseAppModuleExtension.androidSettings(target: Project) {
