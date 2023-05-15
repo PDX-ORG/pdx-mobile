@@ -1,5 +1,7 @@
 package io.github.lexadiky.pdx.lib.core.lce
 
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -16,7 +18,7 @@ sealed interface Lce<out E, out V> {
     data class Error<out E>(val value: E) : Lce<E, Nothing>
 }
 
-typealias DynamicLceList<E, V> = Flow<List<Lce<E, V>>>
+typealias DynamicLceList<E, V> = Flow<ImmutableList<Lce<E, V>>>
 
 fun <E, T> Lce<E, T>.contentOrNull(): T? = when (this) {
     is Lce.Content -> value
@@ -29,15 +31,16 @@ fun <E, V, V2> Lce<E, V>.map(transformer: (V) -> V2): Lce<E, V2> = when (this) {
     else -> this as Lce<E, V2>
 }
 
-fun <E, V, V2> List<Lce<E, V>>.mapLce(transformer: (V) -> V2): List<Lce<E, V2>> =
+fun <E, V, V2> ImmutableList<Lce<E, V>>.mapLce(transformer: (V) -> V2): ImmutableList<Lce<E, V2>> =
     this.map { lce: Lce<E, V> -> lce.map(transformer) }
+        .toImmutableList()
 
-fun <E, V> List<Lce<E, V>>.filterLce(
+fun <E, V> ImmutableList<Lce<E, V>>.filterLce(
     includeNonContent: Boolean = true,
     predicate: (V) -> Boolean,
-): List<Lce<E, V>> = this.filter { lce: Lce<E, V> ->
+): ImmutableList<Lce<E, V>> = this.filter { lce: Lce<E, V> ->
     lce.contentOrNull()?.let(predicate) ?: includeNonContent
-}
+}.toImmutableList()
 
 
 

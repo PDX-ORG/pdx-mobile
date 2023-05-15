@@ -17,7 +17,7 @@ data class MovesSubPageState(
     val filter: MoveFilter = MoveFilter()
 ) {
     val moves = movesRaw
-        .flowOn(Dispatchers.IO)
-        .map { sortStrategy.apply(it) }
-        .map { filter.apply(it) }
+        .flowOn(Dispatchers.Default)
+        .map(sortStrategy::apply)
+        .map(filter::apply)
 }

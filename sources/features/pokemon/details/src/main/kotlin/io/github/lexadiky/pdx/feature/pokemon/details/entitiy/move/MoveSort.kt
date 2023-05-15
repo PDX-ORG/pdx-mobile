@@ -4,12 +4,14 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
 import io.github.lexadiky.pdx.lib.core.lce.Lce
 import io.github.lexadiky.pdx.lib.core.lce.contentOrNull
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 
 data class MoveSort(
     val type: MoveSortType = MoveSortType.Default,
     val direction: MoveSortDirection = MoveSortDirection.ASCENDING
 ) {
-    fun apply(items: List<Lce<*, PokemonMoveData>>): List<Lce<*, PokemonMoveData>> {
+    fun apply(items: ImmutableList<Lce<*, PokemonMoveData>>): ImmutableList<Lce<*, PokemonMoveData>> {
         val baseComparator = type.asComparator() ?: return items
 
         val comparator = baseComparator.thenComparing { arg ->
@@ -19,7 +21,7 @@ data class MoveSort(
         return when (direction) {
             MoveSortDirection.ASCENDING -> items.sortedWith(comparator)
             MoveSortDirection.DESCENDING -> items.sortedWith(comparator).reversed()
-        }
+        }.toImmutableList()
     }
 
     private fun MoveSortType.asComparator(): Comparator<Lce<*, PokemonMoveData>>? = when (type) {

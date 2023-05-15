@@ -18,6 +18,8 @@ kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.
 kotlin-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
 kotlin-reflection = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
+kotlin-collections-immutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
+
 android-core = "androidx.core:core-ktx:1.10.0"
 android-lifecycle-runtime = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
 android-activity-compose = "androidx.activity:activity-compose:1.7.1"
