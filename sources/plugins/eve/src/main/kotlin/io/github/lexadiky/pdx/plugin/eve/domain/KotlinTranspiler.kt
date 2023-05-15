@@ -12,12 +12,12 @@ import io.github.lexadiky.pdx.plugin.eve.entity.EveModule
 import io.github.lexadiky.pdx.plugin.eve.entity.EveType
 import io.github.lexadiky.pdx.plugin.eve.entity.TranspirationOutput
 import org.gradle.configurationcache.extensions.capitalized
-import java.lang.StringBuilder
 
 class KotlinTranspiler {
 
     private val analyticsManagerClass = ClassName.bestGuess(ANALYTICS_MANAGER_CLASS)
     private val stringClassName = ClassName.bestGuess(TYPE_STRING)
+    private val booleanClassName = ClassName.bestGuess(TYPE_BOOLEAN)
 
     fun transpile(module: EveModule): TranspirationOutput {
         val stringBuilder = StringBuilder()
@@ -76,6 +76,7 @@ class KotlinTranspiler {
 
     private fun EveEventArgument.typeClassName(): ClassName = when (type) {
         EveType.STRING -> stringClassName
+        EveType.BOOLEAN -> booleanClassName
     }
 
     private fun formatClassName(module: EveModule) =
@@ -102,5 +103,6 @@ class KotlinTranspiler {
         private const val ANALYTICS_MANAGER_CLASS = "io.github.lexadiky.pdx.lib.analytics.AnalyticsManager"
         private const val ANALYTICS_MANAGER_PROPERTY = "analyticsManager"
         private const val TYPE_STRING = "kotlin.String"
+        private const val TYPE_BOOLEAN = "kotlin.Boolean"
     }
 }

@@ -1,6 +1,7 @@
 package io.github.lexadiky.pdx.feature.rateapp
 
 import androidx.lifecycle.viewModelScope
+import io.github.lexadiky.pdx.generated.analytics.RateAppEventsSpec
 import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
 import io.github.lexadiky.pdx.lib.microdata.MicrodataManager
 import io.github.lexadiky.pdx.lib.system.ReviewRequester
@@ -13,7 +14,8 @@ import kotlinx.coroutines.withContext
 
 internal class RateAppSocket(
     private val reviewManager: ReviewRequester,
-    microdataManager: MicrodataManager
+    microdataManager: MicrodataManager,
+    private val analytics: RateAppEventsSpec
 ) : ViewModelSocket<RateAppState, RateAppAction>(RateAppState()) {
 
     private val microdata = microdataManager.acquire(this, MICRO_DATABASE_NAME)
@@ -25,6 +27,7 @@ internal class RateAppSocket(
             if (res != true) {
                 isReviewRequested.set(true)
                 delay(REVIEW_DELAY_MINUTES.minutes)
+                analytics.onDialogOpen()
                 state = state.copy(isDialogOpen = true)
             }
         }
@@ -32,8 +35,12 @@ internal class RateAppSocket(
 
     override suspend fun onAction(action: RateAppAction) {
         state = when (action) {
-            RateAppAction.DislikePressed -> state.copy(isDialogOpen = false)
+            RateAppAction.DislikePressed -> {
+                analytics.onDialogClicked(isPositive = false)
+                state.copy(isDialogOpen = false)
+            }
             RateAppAction.LikePressed -> {
+                analytics.onDialogClicked(isPositive = true)
                 requestReview()
                 state.copy(isDialogOpen = false)
             }

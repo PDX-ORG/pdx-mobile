@@ -1,0 +1,4 @@
+event:dialog_clicked:
+  arguments:
+    boolean:is_positive:
+event:dialog_open:
