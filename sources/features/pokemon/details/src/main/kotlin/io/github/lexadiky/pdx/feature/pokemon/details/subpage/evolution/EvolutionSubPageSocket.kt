@@ -43,13 +43,15 @@ internal class EvolutionSubPageSocket(
         return state.copy(
             evolvesFrom = node.from?.let { variation ->
                 EvolvesToVR(
-                    pokemon = pokemonPreviewToVR(variation.species)
+                    pokemon = pokemonPreviewToVR(variation.species),
+                    method = variation.method
                 )
             },
             current = pokemonPreviewToVR(pokemonSpeciesDetails.asPreview()),
             evolvesTo = node.to.map {  variation ->
                 EvolvesToVR(
-                    pokemon = pokemonPreviewToVR(variation.species)
+                    pokemon = pokemonPreviewToVR(variation.species),
+                    method = variation.method
                 )
             }
         )

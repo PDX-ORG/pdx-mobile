@@ -2,8 +2,8 @@ package io.github.lexadiky.pdx.domain.pokemon.usecase.evolution
 
 import arrow.core.Either
 import arrow.core.continuations.either
-import arrow.core.traverse
 import io.github.lexadiky.pdx.domain.pokemon.entity.EvolutionNode
+import io.github.lexadiky.pdx.domain.pokemon.entity.evolution.EvolutionMethod
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPreviewUseCase
 import io.github.lexadiky.pdx.lib.core.error.GenericError
 import io.lexadiky.pokeapi.PokeApiClient
@@ -21,21 +21,26 @@ class GetPokemonEvolutionDetails internal constructor(
             ?: return@either null
 
         EvolutionNode(
-            from = parent?.species?.let { loadVariation(it, current.evolutionDetails).bind() },
-            to = current.evolvesTo.traverse { childLink ->
+            // TODO find better implementation
+            from = parent?.species?.let { loadVariation(it, current.evolutionDetails).bind().first() },
+            to = current.evolvesTo.flatMap { childLink ->
                 loadVariation(childLink.species, childLink.evolutionDetails)
-            }.bind()
+                    .bind()
+            }
         )
     }
 
     private suspend fun loadVariation(
         species: ResourcePointer<PokemonSpecies>,
         details: List<EvolutionChain.EvolutionDetails>
-    ): Either<GenericError, EvolutionNode.Variation> = loadPreview(species.name!!)
+    ): Either<GenericError, List<EvolutionNode.Variation>> = loadPreview(species.name!!)
         .map { preview ->
-            EvolutionNode.Variation(
-                species = preview
-            )
+            details.map { evolutionDetails ->
+                EvolutionNode.Variation(
+                    species = preview,
+                    method = EvolutionMethod.LevelUp(evolutionDetails.minLevel ?: 0)
+                )
+            }
         }
 
     private suspend fun fetchPokeApiData(speciesId: String): Either<GenericError, Pair<EvolutionChain.ChainLink?, EvolutionChain.ChainLink>?> =

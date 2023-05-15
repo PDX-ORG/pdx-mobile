@@ -35,4 +35,8 @@
     <string name="feature_pokemon_move_sort_by_power">By Power</string>
     <string name="feature_pokemon_move_sort_by_accuracy">By Accuracy</string>
 
+    <!-- Evolution method -->
+    <string name="feature_pokemon_evolution_method_unkown">Evolution method unknown to application</string>
+    <string name="feature_pokemon_evolution_method_level_up">Evolves at level %s</string>
+
 </resources>
