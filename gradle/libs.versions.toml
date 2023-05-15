@@ -3,7 +3,7 @@
 ktor = "2.3.0"
 accompanist = "0.30.1"
 akore = "-SNAPSHOT"
-coroutines = "1.7.0"
+coroutines = "1.7.1"
 datastore = "1.0.0"
 agp = "8.2.0-alpha03"
 kotlin = "1.8.21"
