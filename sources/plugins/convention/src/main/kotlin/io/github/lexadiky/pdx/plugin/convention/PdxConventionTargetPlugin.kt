@@ -39,7 +39,7 @@ class PdxConventionTargetPlugin : Plugin<Project> {
             target.plugins.apply("androidx.baselineprofile")
             with(target.extensions.findByType<BaselineProfileConsumerExtension>()!!) {
                 saveInSrc = true
-                automaticGenerationDuringBuild = false // TODO disabled due to SDK license 'accept' problem
+                automaticGenerationDuringBuild = true
             }
             target.dependencies {
                 add("baselineProfile", project("${target.path}:baseline"))
