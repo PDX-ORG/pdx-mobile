@@ -9,8 +9,8 @@ import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from
-import kotlinx.datetime.Instant
 import java.net.URI
+import kotlinx.datetime.Instant
 
 internal class GetNewsFeedUseCase(private val redditNewsClient: RedditNewsClient) {
 
@@ -23,9 +23,7 @@ internal class GetNewsFeedUseCase(private val redditNewsClient: RedditNewsClient
                 title = StringResource.from(child.data.title),
                 author = child.data.author,
                 preview = child.data.preview?.images?.firstOrNull()?.resolutions?.lastOrNull()?.url?.let {
-                    ImageResource.from(
-                        it
-                    )
+                    ImageResource.from(it)
                 },
                 time = Instant.fromEpochSeconds(child.data.createdTimestamp.toLong())
                     .let { StringResource.from(it) }

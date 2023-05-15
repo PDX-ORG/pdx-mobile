@@ -21,8 +21,6 @@ import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,6 +37,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSort
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.sort.MoveSortWidget
+import io.github.lexadiky.pdx.lib.arc.Page
 import io.github.lexadiky.pdx.lib.core.lce.Lce
 import io.github.lexadiky.pdx.lib.core.lce.contentOrNull
 import io.github.lexadiky.pdx.lib.uikit.R
@@ -57,11 +56,8 @@ internal fun MovesSubPage(pokemonSpeciesDetails: PokemonSpeciesDetails?) {
     }
 }
 
-private const val EMPTY_PLACEHOLDER_SIZE = 10
-
 @Composable
-private fun MovesSubPageImpl(viewModel: MovesSubPageViewModel) {
-    val moves by viewModel.state.moves.collectAsState(initial = emptyList())
+private fun MovesSubPageImpl(vm: MovesSubPageSocket) = Page(vm) { state, act ->
     val configuration = LocalConfiguration.current
     LazyColumn(
         modifier = Modifier
@@ -69,14 +65,14 @@ private fun MovesSubPageImpl(viewModel: MovesSubPageViewModel) {
     ) {
         item {
             ControlPanel(
-                searchQuery = viewModel.state.filter.query,
-                onSortUpdated = { viewModel.onSortUpdated(it) },
-                onSearchQueryUpdated = { viewModel.onQueryUpdated(it) }
+                searchQuery = state.filter.query,
+                onSortUpdated = { act(MovesSubPageAction.SortUpdated(it)) },
+                onSearchQueryUpdated = { act(MovesSubPageAction.QueryUpdated(it)) }
             )
         }
-        if (moves.isNotEmpty())  {
+        if (state.moves.isNotEmpty()) {
             itemsIndexed(
-                items = moves,
+                items = state.moves,
                 key = { idx, lce -> lce.contentOrNull()?.name ?: idx }
             ) { idx, lce ->
                 Column {
@@ -88,8 +84,8 @@ private fun MovesSubPageImpl(viewModel: MovesSubPageViewModel) {
                             is Lce.Content ->
                                 MoveCard(
                                     move = currentLce.value,
-                                    onItemClick = { viewModel.onMoveClicked(currentLce.value) },
-                                    onTypeClick = { viewModel.onTypeClicked(currentLce.value.type) }
+                                    onItemClick = { act(MovesSubPageAction.Navigate.MoveDetails(currentLce.value)) },
+                                    onTypeClick = { act(MovesSubPageAction.Navigate.TypeDetails(currentLce.value.type))}
                                 )
 
                             is Lce.Loading -> MoveCardPlaceholder()
@@ -97,10 +93,6 @@ private fun MovesSubPageImpl(viewModel: MovesSubPageViewModel) {
                         }
                     }
                 }
-            }
-        } else {
-            items(EMPTY_PLACEHOLDER_SIZE) {
-                MoveCardPlaceholder()
             }
         }
     }

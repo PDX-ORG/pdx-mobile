@@ -19,8 +19,6 @@ import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -49,7 +47,6 @@ internal fun InfoSubPage(
     }
 }
 
-private const val DESCRIPTION_PLACEHOLDER_SIZE = 10
 private const val ITEM_KEY_TOP_SPACER = "ITEM_KEY_TOP_SPACER"
 
 @Composable
@@ -62,9 +59,6 @@ private fun InfoSubPageImpl(
 
     Column {
         val configuration = LocalConfiguration.current
-        val descriptions by viewModel.state.descriptions.collectAsState(
-            List(DESCRIPTION_PLACEHOLDER_SIZE) { Lce.Loading }
-        )
 
         LazyColumn(
             contentPadding = PaddingValues(vertical = MaterialTheme.grid.x2),
@@ -93,7 +87,7 @@ private fun InfoSubPageImpl(
                 Box(modifier = Modifier.height(MaterialTheme.grid.x2))
             }
             itemsIndexed(
-                items = descriptions,
+                items = viewModel.state.descriptions,
                 key = { index, item ->
                     item.contentOrNull()?.artificialId ?: index
                 }

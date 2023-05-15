@@ -1,9 +1,5 @@
 package io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
 import io.github.lexadiky.akore.lechuck.Navigator
@@ -14,41 +10,55 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetPokemonMoves
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSort
+import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
 import io.github.lexadiky.pdx.lib.core.lce.DynamicLceList
 import io.github.lexadiky.pdx.lib.core.lce.mapLce
 import io.github.lexadiky.pdx.lib.errorhandler.classify
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-internal class MovesSubPageViewModel(
+internal class MovesSubPageSocket(
     pokemonSpeciesDetails: PokemonSpeciesDetails,
     getPokemonMoves: GetPokemonMoves,
     private val navigator: Navigator
-) : ViewModel() {
+) : ViewModelSocket<MovesSubPageState, MovesSubPageAction>(MovesSubPageState()) {
 
-    var state by mutableStateOf(MovesSubPageState())
-        private set
+    override suspend fun onAction(action: MovesSubPageAction) = when (action) {
+        is MovesSubPageAction.QueryUpdated -> onQueryUpdated(action.query)
+        is MovesSubPageAction.SortUpdated -> onSortUpdated(action.sort)
+        is MovesSubPageAction.Navigate.MoveDetails -> onMoveClicked(action.value)
+        is MovesSubPageAction.Navigate.TypeDetails -> onTypeClicked(action.type)
+    }
 
     init {
         viewModelScope.launch {
             val data = getPokemonMoves(pokemonSpeciesDetails)
-                .classify(MovesSubPageViewModel::class)
+                .classify(MovesSubPageSocket::class)
 
-            state = when (data) {
-                is Either.Left -> state.copy(error = data.value)
-                is Either.Right -> state.copy(movesRaw = mapToData(data.value))
+            when (data) {
+                is Either.Left -> state = state.copy(error = data.value)
+                is Either.Right -> {
+                    mapToData(data.value).collectLatest { latest ->
+                        state = state.copy(movesRaw = latest)
+                    }
+                }
             }
         }
     }
 
-    fun onMoveClicked(value: PokemonMoveData) = viewModelScope.launch {
-        navigator.navigate("pdx://move/${value.name}?is_modal=true")
+    fun onMoveClicked(value: PokemonMoveData) {
+        viewModelScope.launch {
+            navigator.navigate("pdx://move/${value.name}?is_modal=true")
+        }
     }
 
-    fun onTypeClicked(type: PokemonType) = viewModelScope.launch {
-        navigator.navigate("pdx://type/${type.id}")
+    fun onTypeClicked(type: PokemonType) {
+        viewModelScope.launch {
+            navigator.navigate("pdx://type/${type.id}")
+        }
     }
 
     fun onQueryUpdated(query: String) {

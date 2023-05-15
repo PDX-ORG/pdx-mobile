@@ -8,4 +8,6 @@
 
     <string name="uikit_generic_app_title">PDX</string>
 
+    <string name="uikit_string_resource_placeholder">[placeholder]</string>
+
 </resources>

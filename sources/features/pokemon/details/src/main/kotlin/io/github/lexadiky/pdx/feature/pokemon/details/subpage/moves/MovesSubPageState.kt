@@ -3,21 +3,17 @@ package io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveFilter
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSort
-import io.github.lexadiky.pdx.lib.core.lce.DynamicLceList
+import io.github.lexadiky.pdx.lib.core.lce.Lce
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.emptyFlow
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 data class MovesSubPageState(
-    val movesRaw: DynamicLceList<*, PokemonMoveData> = emptyFlow(),
+    private val movesRaw: ImmutableList<Lce<*, PokemonMoveData>> = persistentListOf(),
     val sortStrategy: MoveSort = MoveSort(),
     val error: UIError? = null,
     val filter: MoveFilter = MoveFilter()
 ) {
-    val moves = movesRaw
-        .flowOn(Dispatchers.Default)
-        .map(sortStrategy::apply)
-        .map(filter::apply)
+    val moves = movesRaw.let(sortStrategy::apply)
+        .let(filter::apply)
 }

@@ -4,13 +4,14 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonArchetype
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonStat
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonAbilityData
-import io.github.lexadiky.pdx.lib.core.lce.DynamicLceList
-import kotlinx.coroutines.flow.emptyFlow
+import io.github.lexadiky.pdx.lib.core.lce.Lce
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 data class StatsSubPageState(
     val baseStats: List<StatDescription> = emptyList(),
     val types: List<PokemonType> = emptyList(),
-    val abilities: DynamicLceList<*, PokemonAbilityData> = emptyFlow(),
+    val abilities: ImmutableList<Lce<*, PokemonAbilityData>> = persistentListOf(),
     val archetype: PokemonArchetype? = null,
 ) {
 

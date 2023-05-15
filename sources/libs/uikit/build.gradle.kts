@@ -12,6 +12,7 @@ dependencies {
 
     api(projects.libs.resources)
     api(projects.libs.microdata)
+    api(projects.libs.core)
 
     api(libs.android.core)
     api(libs.android.material)

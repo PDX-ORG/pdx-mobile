@@ -5,7 +5,7 @@ data class PokemonSpeciesDetails(
     val nationalDexNumber: Int,
     val localeName: String,
     val primaryVariety: PokemonDetails,
-    val varieties: List<PokemonDetails>,
+    val availableVarietiesCount: Int,
     val isLegendary: Boolean,
     val isMythical: Boolean
 ) {

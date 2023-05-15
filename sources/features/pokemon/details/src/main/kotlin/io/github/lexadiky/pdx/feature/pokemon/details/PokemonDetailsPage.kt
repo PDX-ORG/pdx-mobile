@@ -55,7 +55,6 @@ import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
 import io.github.lexadiky.akore.lechuck.robo.fsdialog.FullScreenDialogAnchor
-import io.github.lexadiky.akore.lechuck.robo.page.PageContext
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDetailsSection
@@ -63,6 +62,8 @@ import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.Evolutio
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.info.InfoSubPage
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.MovesSubPage
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.stats.StatsSubPage
+import io.github.lexadiky.pdx.lib.arc.Page
+import io.github.lexadiky.pdx.lib.core.lce.Lce
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.navigation.FullScreenDialogStyles
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
@@ -77,12 +78,11 @@ import io.github.lexadiky.pdx.ui.uikit.util.createColorSchemeFromColor
 import io.github.lexadiky.pdx.ui.uikit.util.scroll.LocalPrimeScrollState
 import io.github.lexadiky.pdx.ui.uikit.widget.PagerDotIndicator
 import io.github.lexadiky.pdx.ui.uikit.widget.ToolbarContent
-import kotlinx.coroutines.Job
 
 private const val HEADER_IMAGE_ID = "__header_image__"
 
 @Composable
-fun PageContext.PokemonDetailsPage(pokemonId: String) {
+fun PokemonDetailsPage(pokemonId: String) {
     DIFeature(PokemonDetailsModule) {
         PokemonDetailsPageImpl(di.viewModel(pokemonId), di.viewModel(pokemonId))
     }
@@ -91,46 +91,51 @@ fun PageContext.PokemonDetailsPage(pokemonId: String) {
 @SuppressLint("RestrictedApi")
 @Composable
 private fun PokemonDetailsPageImpl(
-    viewModel: PokemonDetailsViewModel,
-    styleFastFetchViewModel: PokemonDetailsStyleFastFetchViewModel,
+    viewModel: PokemonDetailsSocket,
+    styleFastFetchViewModel: PokemonDetailsStyleFastFetchSocket,
 ) {
     val color = styleFastFetchViewModel.state.color?.render()
 
     AnimatedVisibility(visible = color != null, enter = fadeIn()) {
         MaterialTheme(colorScheme = createColorSchemeFromColor(color)) {
-            TitleDecoration(viewModel.state.name, viewModel.state.types, viewModel::openTypeDetails)
-            ErrorDialog(viewModel.state.error) {
-                viewModel.hideError()
-            }
-
-            val scrollState = LocalPrimeScrollState.current
-            LazyColumn(
-                state = scrollState.asLazyListState(),
-                modifier = Modifier
-                    .fillMaxSize()
-                    .animateContentSize()
-            ) {
-                item(HEADER_IMAGE_ID) {
-                    HeaderImagePager(
-                        viewModel.state,
-                        viewModel::selectVariety,
-                        viewModel::openSprites,
-                        viewModel::toggleFavorite
-                    )
-                }
-                item {
-                    DataCard(viewModel)
-                }
-            }
+            PokemonDetailsPageThemedContent(viewModel)
         }
     }
 }
 
 @Composable
-private fun DataCard(viewModel: PokemonDetailsViewModel) {
+private fun PokemonDetailsPageThemedContent(vm: PokemonDetailsSocket) = Page(vm) { state, act ->
+    TitleDecoration(state.name, state.types) {
+        act(PokemonDetailsAction.OpenTypeDetails(it))
+    }
+    ErrorDialog(state.error) {
+        act(PokemonDetailsAction.HideError)
+    }
+
+    val scrollState = LocalPrimeScrollState.current
+    LazyColumn(
+        state = scrollState.asLazyListState(),
+        modifier = Modifier
+            .fillMaxSize()
+            .animateContentSize()
+    ) {
+        item(HEADER_IMAGE_ID) {
+            HeaderImagePager(
+                state,
+                act
+            )
+        }
+        item {
+            DataCard(state)
+        }
+    }
+}
+
+@Composable
+private fun DataCard(state: PokemonDetailsState) {
     AnimatedVisibility(
         enter = fadeIn(),
-        visible = viewModel.state.availableDetailsSections.isNotEmpty()
+        visible = state.availableDetailsSections.isNotEmpty()
     ) {
         Card(
             Modifier
@@ -139,13 +144,13 @@ private fun DataCard(viewModel: PokemonDetailsViewModel) {
                 .animateContentSize()
         ) {
             var selectedTab by remember { mutableStateOf(0) }
-            val currentTab = viewModel.state.availableDetailsSections.getOrNull(selectedTab)
+            val currentTab = state.availableDetailsSections.getOrNull(selectedTab)
             ScrollableTabRow(
                 selectedTabIndex = selectedTab,
                 containerColor = Color.Transparent
             ) {
-                viewModel.state.availableDetailsSections.forEach { tab ->
-                    val indexOfCurrentTab = viewModel.state.availableDetailsSections.indexOf(tab)
+                state.availableDetailsSections.forEach { tab ->
+                    val indexOfCurrentTab = state.availableDetailsSections.indexOf(tab)
                     Tab(
                         selected = selectedTab == indexOfCurrentTab,
                         onClick = { selectedTab = indexOfCurrentTab },
@@ -154,7 +159,7 @@ private fun DataCard(viewModel: PokemonDetailsViewModel) {
                         })
                 }
             }
-            Content(currentTab, viewModel)
+            Content(currentTab, state)
         }
     }
 }
@@ -162,28 +167,31 @@ private fun DataCard(viewModel: PokemonDetailsViewModel) {
 @Composable
 private fun Content(
     currentTab: PokemonDetailsSection?,
-    viewModel: PokemonDetailsViewModel,
+    state: PokemonDetailsState,
 ) {
-    when (currentTab) {
-        PokemonDetailsSection.Stats -> StatsSubPage(
-            viewModel.state.selectedVariety
-        )
+    val selectedVariety = state.selectedVariety
+    if (selectedVariety is Lce.Content) {
+        when (currentTab) {
+            PokemonDetailsSection.Stats -> StatsSubPage(
+                selectedVariety.value
+            )
 
-        PokemonDetailsSection.Info -> InfoSubPage(
-            viewModel.state.pokemonSpeciesDetails,
-            viewModel.state.selectedVariety
-        )
+            PokemonDetailsSection.Info -> InfoSubPage(
+                state.pokemonSpeciesDetails,
+                selectedVariety.value
+            )
 
-        PokemonDetailsSection.Evolution -> EvolutionSubPage(
-            viewModel.state.pokemonSpeciesDetails,
-            viewModel.state.selectedVariety
-        )
+            PokemonDetailsSection.Evolution -> EvolutionSubPage(
+                state.pokemonSpeciesDetails,
+                selectedVariety.value
+            )
 
-        PokemonDetailsSection.Battle -> MovesSubPage(
-            viewModel.state.pokemonSpeciesDetails,
-        )
+            PokemonDetailsSection.Battle -> MovesSubPage(
+                state.pokemonSpeciesDetails,
+            )
 
-        null -> Unit
+            null -> Unit
+        }
     }
 }
 
@@ -192,15 +200,13 @@ private const val PROGRESS_BOX_SIZE_RATIO = 0.5f
 @Composable
 private fun HeaderImagePager(
     state: PokemonDetailsState,
-    onVarietyChanged: (Int) -> Unit,
-    openSprites: () -> Unit,
-    toggleFavorite: () -> Unit,
+    act: (PokemonDetailsAction) -> Unit,
 ) {
     Crossfade(targetState = state.isLoaded, label = "header-image-pager-cf") { isLoaded ->
         if (isLoaded) {
             val pagerState = rememberPagerState()
             LaunchedEffect(pagerState.currentPage) {
-                onVarietyChanged(pagerState.currentPage)
+                act(PokemonDetailsAction.SelectVariety(pagerState.currentPage))
             }
 
             Box {
@@ -224,10 +230,14 @@ private fun HeaderImagePager(
                 val alpha = rememberPagerHeaderLabelsAlpha(pagerState, state)
 
                 if (state.isSpritesViewerEnabled) {
-                    SpriteButtonIcon(alpha, openSprites)
+                    SpriteButtonIcon(alpha) {
+                        act(PokemonDetailsAction.Navigate.Sprites)
+                    }
                 }
                 PhysicalDimensions(alpha, state)
-                FavoriteButtonIcon(alpha, state, toggleFavorite)
+                FavoriteButtonIcon(alpha, state) {
+                    act(PokemonDetailsAction.ToggleFavorite)
+                }
             }
         } else {
             Box(
@@ -365,7 +375,7 @@ private fun rememberPagerHeaderLabelsAlpha(
 private fun TitleDecoration(
     name: StringResource?,
     types: List<PokemonType>,
-    onClick: (PokemonType) -> Job,
+    onClick: (PokemonType) -> Unit,
 ) {
     if (name != null) {
         Decoration("pdx://toolbar/title") {
@@ -402,9 +412,9 @@ private const val HEADER_IMAGE_WIDTH_RATIO = 0.5f
 
 @Composable
 private fun HeaderImage(
-    image: ImageResource?,
+    image: ImageResource,
 ) {
-    image?.let { img ->
+    image.let { img ->
         Image(
             painter = img.render(listOf(ImageTransformation.CropTransparent)),
             contentDescription = null,

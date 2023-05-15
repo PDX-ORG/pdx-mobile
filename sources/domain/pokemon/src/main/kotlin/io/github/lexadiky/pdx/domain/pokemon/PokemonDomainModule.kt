@@ -6,16 +6,9 @@ import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.info
 import io.github.lexadiky.pdx.domain.pokemon.repository.FavoritePokemonRepository
 import io.github.lexadiky.pdx.domain.pokemon.repository.ViewedPokemonRepository
-import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.FindPokemonPreviewUseCase
-import io.github.lexadiky.pdx.domain.pokemon.usecase.ability.GetAbilityUseCase
-import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetAllPokemonPreviewsUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonGameVersion
-import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPokedexDescriptions
-import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPreviewSampleUseCase
-import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPreviewUseCase
-import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonSpeciesDetailsUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
-import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonVarietyDetails
+import io.github.lexadiky.pdx.domain.pokemon.usecase.ability.GetAbilityUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.ability.GetPokemonAbilitiesUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.evolution.GetPokemonEvolutionDetails
 import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.IsPokemonFavorite
@@ -23,6 +16,14 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.SaveFavoritePokemo
 import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetMoveDetails
 import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetPokemonMoves
 import io.github.lexadiky.pdx.domain.pokemon.usecase.move.MoveDomainMapper
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.FindPokemonPreviewUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetAllPokemonPreviewsUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonDetailsBySpeciesUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPokedexDescriptions
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPreviewSampleUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPreviewUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonSpeciesDetailsUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonVarietyDetails
 import io.github.lexadiky.pdx.domain.pokemon.usecase.prefetch.PrefetchPokemonData
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
@@ -38,7 +39,7 @@ val PokemonDomainModule by module("domain-pokemon") {
 
     single { GetAllPokemonPreviewsUseCase(inject(), inject()) }
     single { GetPokemonTypeDamageRelations(inject()) }
-    single { GetPokemonSpeciesDetailsUseCase(inject(), inject()) }
+    single { GetPokemonSpeciesDetailsUseCase(inject(), inject(), inject()) }
     single { FindPokemonPreviewUseCase(inject()) }
     single { GetPokemonPreviewSampleUseCase(inject()) }
     single { GetPokemonVarietyDetails(inject()) }
@@ -47,6 +48,7 @@ val PokemonDomainModule by module("domain-pokemon") {
     single { GetLatestViewedPokemonUseCase(inject()) }
     single { GetPokemonAbilitiesUseCase(inject(), inject()) }
     single { GetAbilityUseCase(inject(), inject()) }
+    single { GetPokemonDetailsBySpeciesUseCase(inject(), inject()) }
 
     single { SaveFavoritePokemon(inject()) }
     single { IsPokemonFavorite(inject()) }
@@ -61,7 +63,7 @@ val PokemonDomainModule by module("domain-pokemon") {
     single { GetPokemonEvolutionDetails(inject(), inject()) }
 
     single { PrefetchPokemonData(inject()) }
-    
+
     internal {
         single {
             PokeApiClient {

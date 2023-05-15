@@ -9,8 +9,10 @@ import coil.transform.Transformation
 import io.github.lexadiky.pdx.lib.bildconf.PdxBuildConfig
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.ImageVectorImageResource
+import io.github.lexadiky.pdx.lib.resources.image.PlaceholderImageResource
 import io.github.lexadiky.pdx.lib.resources.image.ResImageResource
 import io.github.lexadiky.pdx.lib.resources.image.UrlImageResource
+import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.image.rememberAsyncImagePainter
 import io.github.lexadiky.pdx.ui.uikit.image.transformation.CropTransparentTransformation
 import io.github.lexadiky.pdx.ui.uikit.image.transformation.MaskImageTransformation
@@ -24,6 +26,7 @@ fun ImageResource.render(transformations: List<ImageTransformation> = emptyList(
             transformations(prepareTransformations(transformations))
         }
         is ResImageResource -> painterResource(id = this.id)
+        PlaceholderImageResource -> painterResource(id = R.drawable.uikit_ic_pokeball)
     }
 }
 

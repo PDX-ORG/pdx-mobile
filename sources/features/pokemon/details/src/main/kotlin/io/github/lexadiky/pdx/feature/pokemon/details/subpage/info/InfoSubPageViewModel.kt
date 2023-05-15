@@ -20,6 +20,7 @@ import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.format
 import io.github.lexadiky.pdx.lib.resources.string.from
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -38,11 +39,13 @@ internal class InfoSubPageViewModel(
         )
 
         viewModelScope.launch {
-            state = when (val data = getPokemonPokedexDescriptions(species.name)) {
-                is Either.Left -> state.copy(error = UIError.generic())
-                is Either.Right -> state.copy(
-                    descriptions = data.value.toData(),
-                )
+            when (val data = getPokemonPokedexDescriptions(species.name)) {
+                is Either.Left -> state = state.copy(error = UIError.generic())
+                is Either.Right -> {
+                    data.value.toData().collectLatest { descriptions ->
+                        state = state.copy(descriptions = descriptions)
+                    }
+                }
             }
         }
     }
@@ -60,6 +63,7 @@ internal class InfoSubPageViewModel(
                     1 -> StringResource.from(gameVersions.first().localeName)
                     2 -> StringResource.from(R.string.feature_pokemon_info_section_description_title_joiner_2)
                         .format(gameVersions.first().localeName, gameVersions.last().localeName)
+
                     else -> StringResource.from(R.string.feature_pokemon_info_section_description_title_joiner_x)
                         .format(gameVersions.first().localeName, gameVersions.last().localeName)
                 }

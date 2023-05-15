@@ -22,8 +22,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,8 +36,9 @@ import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.feature.pokemon.details.R
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonAbilityData
-import io.github.lexadiky.pdx.lib.core.lce.Lce
+import io.github.lexadiky.pdx.lib.arc.Page
 import io.github.lexadiky.pdx.lib.core.lce.contentOrNull
+import io.github.lexadiky.pdx.lib.resources.string.orPlaceholder
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.animation
 import io.github.lexadiky.pdx.ui.uikit.theme.circular
@@ -53,11 +52,11 @@ internal fun StatsSubPage(selectedVariety: PokemonDetails?) {
     if (selectedVariety == null) {
         return
     }
-    StatsSubPageImpl(viewModel = di.viewModel(selectedVariety))
+    StatsSubPageImpl(di.viewModel(selectedVariety))
 }
 
 @Composable
-private fun StatsSubPageImpl(viewModel: StatsSubPageViewModel) {
+private fun StatsSubPageImpl(vm: StatsSubPageSocket) = Page(vm) { state, act ->
     Column(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
         modifier = Modifier
@@ -65,8 +64,8 @@ private fun StatsSubPageImpl(viewModel: StatsSubPageViewModel) {
             .wrapContentHeight()
             .fillMaxWidth()
     ) {
-        val anchorColor = viewModel.state.types.firstOrNull()?.assets?.color?.render() ?: Color.Transparent
-        viewModel.state.baseStats.forEach { description ->
+        val anchorColor = state.types.firstOrNull()?.assets?.color?.render() ?: Color.Transparent
+        state.baseStats.forEach { description ->
             StatBar(
                 description = description,
                 color = anchorColor,
@@ -74,7 +73,7 @@ private fun StatsSubPageImpl(viewModel: StatsSubPageViewModel) {
             )
         }
         StatInfoBar(
-            state = viewModel.state,
+            state = state,
             anchorColor = anchorColor,
             modifier = Modifier.padding(horizontal = MaterialTheme.grid.x2)
         )
@@ -82,8 +81,8 @@ private fun StatsSubPageImpl(viewModel: StatsSubPageViewModel) {
             modifier = Modifier.padding(horizontal = MaterialTheme.grid.x2)
         )
         AbilityBar(
-            state = viewModel.state,
-            onClick = { viewModel.openAbilityDetails(it) }
+            state = state,
+            onClick = { act(StatsSubPageAction.Navigate.AbilityDetails(it)) }
         )
     }
 }
@@ -128,10 +127,7 @@ private fun AbilityBar(state: StatsSubPageState, onClick: (PokemonAbilityData) -
     Column(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1)
     ) {
-        val abilities by state.abilities.collectAsState(
-            initial = List(ABILITY_PLACEHOLDER_SIZE) { Lce.Loading }
-        )
-        abilities.forEach { ability ->
+        state.abilities.forEach { ability ->
             AbilityItem(
                 ability = ability.contentOrNull(),
                 onClick = { ability.contentOrNull()?.let { onClick.invoke(it) } }
@@ -162,11 +158,11 @@ private fun AbilityItem(ability: PokemonAbilityData?, onClick: () -> Unit) {
             ) {
                 Column {
                     Text(
-                        text = ability?.localeName?.render() ?: "Placeholder",
+                        text = ability?.localeName.orPlaceholder().render(),
                         fontWeight = FontWeight.SemiBold
                     )
                     Text(
-                        text = ability?.type?.render() ?: "Placholder",
+                        text = ability?.type.orPlaceholder().render(),
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }

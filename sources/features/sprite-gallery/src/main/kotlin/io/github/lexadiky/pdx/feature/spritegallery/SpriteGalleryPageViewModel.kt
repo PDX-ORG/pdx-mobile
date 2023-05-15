@@ -25,7 +25,7 @@ internal class SpriteGalleryPageViewModel(
 
     init {
         viewModelScope.launch {
-            state = when (val data = getPokemonVarietyDetails(speciesId, varietyId)) {
+            state = when (val data = getPokemonVarietyDetails(varietyId)) {
                 is Either.Left -> state.copy(error = UIError.generic())
                 is Either.Right -> state.copy(
                     items = data.value.sprites.all.map {

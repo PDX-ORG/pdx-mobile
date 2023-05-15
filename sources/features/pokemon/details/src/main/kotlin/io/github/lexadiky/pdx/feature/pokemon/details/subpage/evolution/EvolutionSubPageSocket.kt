@@ -15,6 +15,7 @@ import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
 import io.github.lexadiky.pdx.lib.errorhandler.classify
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
+import io.github.lexadiky.pdx.lib.resources.image.orPlaceholder
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from
 import kotlinx.coroutines.launch
@@ -58,7 +59,8 @@ internal class EvolutionSubPageSocket(
         EvolutionLinkPokemonVR(
             speciesId = species.name,
             localName = StringResource.from(species.localeName),
-            image = ImageResource.from(species.normalSprite ?: "") // TODO add stub image
+            image = species.normalSprite?.let { ImageResource.from(it) }
+                .orPlaceholder()
         )
 
     override suspend fun onAction(action: EvolutionSubPageAction) = when(action) {
