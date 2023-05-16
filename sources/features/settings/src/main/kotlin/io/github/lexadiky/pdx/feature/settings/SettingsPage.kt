@@ -89,7 +89,7 @@ private fun SettingsPageImpl(viewModel: SettingsPageViewModel) {
                         onCheckedChange = { viewModel.switchRomaji(it) }
                     )
                 },
-                modifier = Modifier.clickable { viewModel.openAchievements() }
+                modifier = Modifier.clickable { viewModel.switchRomaji(!viewModel.state.romajiEnabled) }
             )
         }
         item {
