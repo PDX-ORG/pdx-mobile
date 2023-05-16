@@ -68,7 +68,13 @@ class HomePageSocketImpl(
             is HomePageAction.Navigate.PokemonDetails -> openPokemonDetails(action.item, action.type)
             HomePageAction.Navigate.PokemonList -> openPokemonList()
             HomePageAction.Navigate.WhoIs -> openWhoIs()
+            HomePageAction.Navigate.Types -> openTypes()
         }
+    }
+
+    private fun openTypes() = viewModelScope.launch {
+        eventSpec.onMenuClicked(HomeMenuItemType.TYPES.tag)
+        navigator.navigate("pdx://type")
     }
 
     private fun openPokemonList() = viewModelScope.launch {

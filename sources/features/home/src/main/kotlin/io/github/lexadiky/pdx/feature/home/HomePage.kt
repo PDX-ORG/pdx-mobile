@@ -88,7 +88,7 @@ internal fun HomePageImpl(viewModel: HomePageSocket = di.viewModel()) = Page(vie
         )
         pokemonSuggestionSection(
             title = R.string.home_section_last_viewed_pokemon_title,
-            io.github.lexadiky.pdx.domain.pokemon.asset.R.drawable.domain_pokemon_ic_type_dragon,
+            io.github.lexadiky.pdx.domain.pokemon.asset.R.drawable.domain_pokemon_ic_type_fire,
             items = state.latestViewedPokemon,
             openPokemonDetails = { item ->
                 act(
@@ -165,11 +165,11 @@ private fun FeaturedBlock(act: (HomePageAction) -> Unit) {
                 onClick = { act(HomePageAction.Navigate.PokemonList) }
             )
             HomePageFeaturedCard(
-                title = StringResource.from(R.string.home_featured_title_team),
+                title = StringResource.from(R.string.home_featured_title_types),
                 image = PokemonTypeAssets.FIGHTING.icon,
                 shape = HomePageFeaturedCardShape.Card,
                 weight = 1f,
-                onClick = {}
+                onClick = { act(HomePageAction.Navigate.Types) }
             )
         }
         Row(
@@ -196,7 +196,7 @@ private fun FeaturedBlock(act: (HomePageAction) -> Unit) {
                 image = PokemonTypeAssets.ELECTRIC.icon,
                 shape = HomePageFeaturedCardShape.Box,
                 weight = 1f,
-                onClick = { act(HomePageAction.Navigate.Achievements)}
+                onClick = { act(HomePageAction.Navigate.Achievements) }
             )
         }
     }

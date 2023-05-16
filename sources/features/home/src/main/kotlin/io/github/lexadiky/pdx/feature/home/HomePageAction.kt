@@ -17,6 +17,8 @@ sealed interface HomePageAction {
 
         object Achievements : Navigate
 
+        object Types : Navigate
+
         object ApplicationShare : Navigate
 
         data class PokemonDetails(
