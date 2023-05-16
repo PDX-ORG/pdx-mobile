@@ -29,9 +29,9 @@ class PdxConventionBaselinePlugin : Plugin<Project> {
 
             targetProjectPath = target.parent!!.path
 
-            GradleManagedDevice.all.forEach { managedDevice ->
+            GradleManagedDevice.values().forEach { managedDevice ->
                 testOptions.managedDevices.devices.create(managedDevice.id, ManagedVirtualDevice::class.java) {
-                    device = managedDevice.name
+                    device = managedDevice.readable
                     apiLevel = managedDevice.apiLevel
                     systemImageSource = managedDevice.systemImageSource
                 }
@@ -39,7 +39,7 @@ class PdxConventionBaselinePlugin : Plugin<Project> {
         }
 
         with(target.extensions.findByType<BaselineProfileProducerExtension>()!!) {
-            managedDevices += GradleManagedDevice.all.map { it.id }
+            managedDevices += GradleManagedDevice.values().map { it.id }
             useConnectedDevices = false
         }
     }

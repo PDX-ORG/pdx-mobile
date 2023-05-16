@@ -48,7 +48,7 @@ class FullScreenDialogNavigator : Navigator<FullScreenDialogNavigator.Destinatio
         val transitionsInProgressEntries by transitionsInProgress.collectAsState()
 
         val latestEntry = backStackEntries.lastOrNull { entry ->
-            entry.getLifecycle().currentState.isAtLeast(Lifecycle.State.STARTED)
+            entry.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)
         }
 
         DisposableEffect(backStackEntries) {

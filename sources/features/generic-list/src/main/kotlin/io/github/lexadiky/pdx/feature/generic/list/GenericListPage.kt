@@ -3,7 +3,6 @@
 package io.github.lexadiky.pdx.feature.generic.list
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,7 +22,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
 import io.github.lexadiky.pdx.feature.generic.list.entity.SearchQuery
@@ -173,7 +171,7 @@ private fun genericListItemPreviewPainter(
     item: GenericListItem,
     useAlternativeImages: Boolean,
 ): Painter {
-    return if (!useAlternativeImages && item.secondaryImage != null) {
+    return if (useAlternativeImages && item.secondaryImage != null) {
         item.secondaryImage!!.render(listOf(ImageTransformation.CropTransparent))
     } else {
         item.primaryImage.render(listOf(ImageTransformation.CropTransparent))

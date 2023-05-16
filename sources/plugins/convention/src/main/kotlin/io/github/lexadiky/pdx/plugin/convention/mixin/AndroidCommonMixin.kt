@@ -5,6 +5,7 @@ import com.android.build.gradle.TestExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.extra
 
 @Suppress("MagicNumber")
 object AndroidCommonMixin {
@@ -16,10 +17,10 @@ object AndroidCommonMixin {
             ?: throw IllegalStateException("can't setup android, no suitable extensions found")
 
         android.apply {
-            compileSdk = 33
+            compileSdk = target.extra["pdx.android.target-sdk"].toString().toInt()
 
             defaultConfig {
-                minSdk = 24
+                minSdk = target.extra["pdx.android.min-sdk"].toString().toInt()
 
                 testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 vectorDrawables {

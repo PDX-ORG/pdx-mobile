@@ -55,8 +55,8 @@ class GetPokemonVarietyDetails(
     }
 
     private fun extractSprites(defaultVariety: Pokemon) = PokemonSprites(
-        default = defaultVariety.sprites.frontDefault ?: "",
-        defaultShiny = defaultVariety.sprites.frontShiny ?: "",
+        default = defaultVariety.sprites.frontDefault,
+        defaultShiny = defaultVariety.sprites.frontShiny,
         all = extractAllSpritesWithReflection(defaultVariety.sprites)
             .filter { it.isNotBlank() }
     )

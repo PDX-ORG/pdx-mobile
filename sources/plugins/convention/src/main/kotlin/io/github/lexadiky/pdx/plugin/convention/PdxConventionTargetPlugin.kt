@@ -49,7 +49,7 @@ class PdxConventionTargetPlugin : Plugin<Project> {
 
     private fun BaseAppModuleExtension.androidSettings(target: Project) {
         defaultConfig {
-            targetSdk = 33
+            targetSdk = target.extra["pdx.android.target-sdk"].toString().toInt()
             versionCode = target.extra["pdx.version.code"].toString().toInt()
             versionName = target.extra["pdx.version.name"].toString()
         }
