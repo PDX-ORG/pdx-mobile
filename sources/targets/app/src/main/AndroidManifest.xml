@@ -20,9 +20,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Pdx.Splash"
-            tools:ignore="LockedOrientationActivity">
+            android:theme="@style/Theme.Pdx.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

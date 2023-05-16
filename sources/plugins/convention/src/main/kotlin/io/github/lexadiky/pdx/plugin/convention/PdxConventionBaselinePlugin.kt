@@ -8,6 +8,7 @@ import io.github.lexadiky.pdx.plugin.convention.mixin.AndroidCommonMixin
 import io.github.lexadiky.pdx.plugin.convention.mixin.DeshugaringMixin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.findByType
 
 class PdxConventionBaselinePlugin : Plugin<Project> {
@@ -24,7 +25,7 @@ class PdxConventionBaselinePlugin : Plugin<Project> {
             namespace = "io.github.lexadiky.baselineprofile"
 
             defaultConfig {
-                minSdk = 28
+                minSdk = target.extra["pdx.android.baseline.min-sdk"].toString().toInt()
             }
 
             targetProjectPath = target.parent!!.path

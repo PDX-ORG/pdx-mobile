@@ -4,9 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.akore.lechuck.robo.NaviNavGraphBuilder
 import io.github.lexadiky.pdx.feature.ability.details.AbilityDetailsPage
 import io.github.lexadiky.pdx.feature.debugpanel.DebugPanelFeature
 import io.github.lexadiky.pdx.feature.home.HomePage
+import io.github.lexadiky.pdx.feature.move.details.MoveDetailsPage
 import io.github.lexadiky.pdx.feature.news.NewsFeatureToggle
 import io.github.lexadiky.pdx.feature.news.feed.NewsFeedPage
 import io.github.lexadiky.pdx.feature.pokemon.details.PokemonDetailsPage
@@ -19,8 +21,6 @@ import io.github.lexadiky.pdx.feature.typechart.TypePage
 import io.github.lexadiky.pdx.feature.whois.WhoIsPage
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
 import io.github.lexadiky.pdx.lib.ifEnabled
-import io.github.lexadiky.akore.lechuck.robo.NaviNavGraphBuilder
-import io.github.lexadiky.pdx.feature.move.details.MoveDetailsPage
 
 @Composable
 fun routing(): NaviNavGraphBuilder.() -> Unit {
@@ -45,7 +45,7 @@ fun routing(): NaviNavGraphBuilder.() -> Unit {
             }
             page("pdx://game/whois") { WhoIsPage() }
             fullScreen("pdx://pokemon/{speciesId}/{varietyId}/sprites") {
-                SpriteGalleryPage(argument(name = "speciesId"), argument(name = "varietyId"))
+                SpriteGalleryPage(argument(name = "varietyId"))
             }
             modal("pdx://ability/{id}") {
                 AbilityDetailsPage(id = argument("id"))

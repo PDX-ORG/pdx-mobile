@@ -4,13 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.activity.OnBackPressedDispatcher
 import androidx.navigation.NavDestination
-import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.error
-import io.github.lexadiky.akore.blogger.info
 import io.github.lexadiky.akore.lechuck.NavigationRoute
 import io.github.lexadiky.akore.lechuck.Navigator
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,11 +17,10 @@ import kotlinx.coroutines.sync.withLock
 class RoboNavigator internal constructor(
     private val context: Context,
     internal val controller: NavHostController,
-    private val navGraph: NavGraph,
 ) : Navigator {
-    private var latestNavigatedRouteExpression: String? = navGraph.startDestinationRoute
-    private val mutex = Mutex()
 
+    private var latestNavigatedRouteExpression: String? = null
+    private val mutex = Mutex()
     override val currentRoute: MutableStateFlow<NavigationRoute?> = MutableStateFlow(null)
 
     init {
@@ -50,11 +46,11 @@ class RoboNavigator internal constructor(
     }
 
     override suspend fun hasRoute(route: NavigationRoute): Boolean = mutex.withLock {
-        return navGraph.findNode(route.asString()) != null
+        return controller.graph.findNode(route.asString()) != null
     }
 
     override suspend fun routes(): List<NavigationRoute> = mutex.withLock {
-        return navGraph.toList()
+        return controller.graph.toList()
             .mapNotNull { it.route }
             .map { NavigationRoute.from(it) }
     }

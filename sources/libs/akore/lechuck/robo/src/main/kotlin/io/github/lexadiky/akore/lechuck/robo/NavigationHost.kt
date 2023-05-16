@@ -4,9 +4,6 @@
 package io.github.lexadiky.akore.lechuck.robo
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.lifecycle.ViewModelStore
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
@@ -18,7 +15,6 @@ import io.github.lexadiky.akore.lechuck.robo.style.NavigationHostStyle
 
 @Composable
 fun NavigationFeature(
-    routing: NaviNavGraphBuilder.() -> Unit,
     startDestination: String,
     style: NavigationHostStyle,
     content: @Composable NavigationFeatureContext.() -> Unit,
@@ -27,26 +23,13 @@ fun NavigationFeature(
     val bottomSheetNavigator = rememberBottomSheetNavigator()
     val controller = rememberNavController(bottomSheetNavigator, fullScreenDialogNavigator)
 
-    val navGraph = remember(controller, routing) {
-        val builder = NaviNavGraphBuilder(
-            internal = NavGraphBuilder(
-                provider = controller.navigatorProvider,
-                startDestination = startDestination,
-                route = null
-            )
-        )
-        builder.apply(routing)
-        controller.setViewModelStore(ViewModelStore())
-        builder.build()
-    }
-
     FullScreenDialogLayout(fullScreenDialogNavigator) {
         ModalBottomSheetLayout(
             bottomSheetNavigator = bottomSheetNavigator,
             sheetShape = style.bottomSheet.shape,
             sheetBackgroundColor = style.bottomSheet.background
         ) {
-            WithLocalComposeNavigationContext(controller, navGraph) {
+            WithLocalComposeNavigationContext(controller, startDestination) {
                 NavigationFeatureContext.content()
             }
         }
@@ -54,9 +37,11 @@ fun NavigationFeature(
 }
 
 @Composable
-fun NavigationFeatureContext.NavigationHost() {
+fun NavigationFeatureContext.NavigationHost(routing: NaviNavGraphBuilder.() -> Unit) {
     val context = LocalComposeNavigationContext.current
-    NavHost(context.controller, context.navGraph)
+    NavHost(context.controller, context.startDestination) {
+        NaviNavGraphBuilder(this).apply(routing)
+    }
 }
 
 /**

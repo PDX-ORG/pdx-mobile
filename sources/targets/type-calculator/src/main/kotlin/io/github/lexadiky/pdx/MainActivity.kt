@@ -52,7 +52,6 @@ class MainActivity : ComponentActivity() {
     private fun Content() {
         PdxTheme {
             NavigationFeature(
-                routing = routing(),
                 startDestination = "pdx://type",
                 style = NavigationHostStyles.default()
             ) {
@@ -75,7 +74,7 @@ class MainActivity : ComponentActivity() {
                         }
                     )
                     DIFeature(NavigationModule(LocalComposeNavigationContext.current)) {
-                        NavigationHost()
+                        NavigationHost(routing())
                     }
                 }
             }

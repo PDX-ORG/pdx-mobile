@@ -5,6 +5,7 @@ class GenericError constructor(message: String, cause: Throwable) :
 
     companion object {
 
+        @Suppress("ThrowingExceptionsWithoutMessageOrCause")
         fun originate(message: String): GenericError = GenericError(message, Throwable())
     }
 }

@@ -120,8 +120,6 @@ private fun StatInfoBar(
     }
 }
 
-private const val ABILITY_PLACEHOLDER_SIZE = 3
-
 @Composable
 private fun AbilityBar(state: StatsSubPageState, onClick: (PokemonAbilityData) -> Unit) {
     Column(

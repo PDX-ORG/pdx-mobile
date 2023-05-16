@@ -38,7 +38,6 @@ fun PagePreview(
     DIApplication(diContainer) {
         PdxTheme {
             NavigationFeature(
-                routing = {},
                 startDestination = "pdx-preview://start",
                 style = NavigationHostStyles.default(),
                 content = {

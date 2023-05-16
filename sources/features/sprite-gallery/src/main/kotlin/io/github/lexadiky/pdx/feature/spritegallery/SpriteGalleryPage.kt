@@ -22,10 +22,10 @@ import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 
 @Composable
-fun SpriteGalleryPage(speciesId: String, varietyId: String) {
+fun SpriteGalleryPage(varietyId: String) {
     DIFeature(SpriteGalleryPageModule) {
         SpriteGalleryPageImpl(
-            di.viewModel(speciesId, varietyId)
+            di.viewModel(varietyId)
         )
     }
 }

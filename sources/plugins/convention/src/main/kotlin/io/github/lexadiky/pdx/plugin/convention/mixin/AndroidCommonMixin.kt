@@ -14,7 +14,7 @@ object AndroidCommonMixin {
         val android = target.extensions.findByType(LibraryExtension::class.java)
             ?: target.extensions.findByType(BaseAppModuleExtension::class.java)
             ?: target.extensions.findByType(TestExtension::class.java)
-            ?: throw IllegalStateException("can't setup android, no suitable extensions found")
+            ?: error("can't setup android, no suitable extensions found")
 
         android.apply {
             compileSdk = target.extra["pdx.android.target-sdk"].toString().toInt()

@@ -15,7 +15,6 @@ import io.github.lexadiky.pdx.lib.resources.string.from
 import kotlinx.coroutines.launch
 
 internal class SpriteGalleryPageViewModel(
-    private val speciesId: String,
     private val varietyId: String,
     private val getPokemonVarietyDetails: GetPokemonVarietyDetails,
 ) : ViewModel() {
