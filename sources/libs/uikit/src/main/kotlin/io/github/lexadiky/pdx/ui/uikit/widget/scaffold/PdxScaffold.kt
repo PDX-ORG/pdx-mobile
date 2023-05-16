@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -29,10 +28,7 @@ fun PdxScaffold(
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            ModalDrawerSheet(
-                modifier = Modifier
-                    .fillMaxWidth(PdxScaffoldTokens.DrawerWidth)
-            ) {
+            ModalDrawerSheet() {
                 Column(
                     modifier = Modifier.padding(PdxScaffoldTokens.DrawerContentPadding.dp)
                 ) {
