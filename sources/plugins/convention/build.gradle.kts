@@ -42,5 +42,10 @@ gradlePlugin {
             implementationClass = "io.github.lexadiky.pdx.plugin.convention.PdxConventionLibraryJvmPlugin"
             version = "indev"
         }
+        create("pdx-module-library-multiplatform") {
+            id = "io.github.lexadiky.pdx.plugin.module.library.multiplatform"
+            implementationClass = "io.github.lexadiky.pdx.plugin.convention.PdxConventionLibraryKmpPlugin"
+            version = "indev"
+        }
     }
 }

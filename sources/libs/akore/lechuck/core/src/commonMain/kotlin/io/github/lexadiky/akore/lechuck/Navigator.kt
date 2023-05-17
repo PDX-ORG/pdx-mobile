@@ -1,6 +1,5 @@
 package io.github.lexadiky.akore.lechuck
 
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 
 interface Navigator {

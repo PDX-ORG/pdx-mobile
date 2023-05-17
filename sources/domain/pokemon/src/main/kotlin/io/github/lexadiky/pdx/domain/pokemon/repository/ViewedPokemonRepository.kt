@@ -7,7 +7,7 @@ import io.github.lexadiky.akore.blogger.error
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.FindPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
-import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
+import io.github.lexadiky.pdx.lib.core.error.GenericError
 import io.github.lexadiky.pdx.lib.microdata.MicrodataManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -19,7 +19,7 @@ internal class ViewedPokemonRepository(
     private val microdata = microdataManager.acquire(this, "viewed_pokemon")
     private var visited = microdata.strings("viewed_time_id")
 
-    suspend fun saveLatest(pokemon: PokemonSpeciesDetails) = withContext(Dispatchers.IO) {
+    suspend fun saveLatest(pokemon: PokemonSpeciesDetails): Either<GenericError, Unit> = withContext(Dispatchers.IO) {
         Either.catch {
             val filteredVisited = visited.get().orEmpty().filter { pokemon.name !in it }.toSet()
             visited.set(
@@ -28,10 +28,8 @@ internal class ViewedPokemonRepository(
                     .take(SAMPLE_SIZE)
                     .toSet()
             )
-        }.mapLeft { error ->
-            BLogger.tag("MarkPokemonSpeciesAsViewedUseCase")
-                .error("can't mark pokemon as viewed", error)
-            MarkPokemonSpeciesAsViewedUseCase.Error
+        }.mapLeft {
+            GenericError("can't save latest viewed pokemon", it)
         }
     }
 

@@ -1,4 +1,4 @@
-package io.github.lexadiky.pdx.lib.network
+package network
 
 import io.github.lexadiky.akore.alice.module
 import io.github.lexadiky.akore.alice.util.single

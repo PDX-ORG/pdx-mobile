@@ -1,13 +1,19 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
+
+import io.github.lexadiky.pdx.plugin.convention.multiplatform.dependencies
+
 plugins {
-    alias(libs.plugins.pdx.convention.library.jvm)
+    alias(libs.plugins.pdx.convention.library.multiplatform)
 }
 
 dependencies {
-    api(libs.ktor.core)
+    common {
+        api(libs.ktor.core)
 
-    implementation(libs.akore.alice.core)
-    implementation(libs.ktor.okhttp)
-    implementation(libs.ktor.json)
-    implementation(libs.ktor.contentNegotiation)
+        implementation(libs.ktor.okhttp)
+        implementation(libs.ktor.json)
+        implementation(libs.ktor.contentNegotiation)
+
+        implementation(libs.akore.alice.core)
+    }
 }

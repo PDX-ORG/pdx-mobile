@@ -71,8 +71,9 @@ accompanist-placeholder = { module = "com.google.accompanist:accompanist-placeho
 
 akore-blogger-core = { module = "com.github.akore-org.blogger:core", version.ref = "akore" }
 akore-blogger-logcat = { module = "com.github.akore-org.blogger:logcat", version.ref = "akore" }
-akore-alice-core = { module = "com.github.akore-org.alice:core", version = "07dfa09ff5" }
-akore-alice-robo = { module = "com.github.akore-org.alice:robo", version = "07dfa09ff5" }
+
+akore-alice-core = { module = "com.github.akore-org.alice:core", version = "b1e9b45eb9" }
+akore-alice-robo = { module = "com.github.akore-org.alice:robo", version = "9bf3816e80" }
 
 pokeapi = "com.github.lexa-diky:pokeapi-kotlin:d4fa57d81f"
 
@@ -109,5 +110,6 @@ pdx-convention-feature = { id = "io.github.lexadiky.pdx.plugin.module.feature", 
 pdx-convention-library-android = { id = "io.github.lexadiky.pdx.plugin.module.library.android", version = "indev" }
 pdx-convention-library-compose = { id = "io.github.lexadiky.pdx.plugin.module.library.compose", version = "indev" }
 pdx-convention-library-jvm = { id = "io.github.lexadiky.pdx.plugin.module.library.jvm", version = "indev" }
+pdx-convention-library-multiplatform = { id = "io.github.lexadiky.pdx.plugin.module.library.multiplatform", version = "indev" }
 pdx-catkeeper = { id = "io.github.lexadiky.pdx.plugin.pm.catkeeper", version = "indev" }
 pdx-eve = { id = "io.github.lexadiky.pdx.plugin.eve", version = "indev" }

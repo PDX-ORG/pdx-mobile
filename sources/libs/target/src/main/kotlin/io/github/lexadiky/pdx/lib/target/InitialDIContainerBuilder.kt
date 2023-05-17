@@ -7,7 +7,7 @@ import io.github.lexadiky.pdx.domain.pokemon.PokemonDomainModule
 import io.github.lexadiky.pdx.lib.FeatureToggleModule
 import io.github.lexadiky.pdx.lib.firebase.FirebaseModule
 import io.github.lexadiky.pdx.lib.fs.RoboFsModule
-import io.github.lexadiky.pdx.lib.network.NetworkModule
+import network.NetworkModule
 import io.github.lexadiky.pdx.lib.target.util.DIContainerWatchdog
 import io.github.lexadiky.pdx.ui.uikit.UikitModule
 

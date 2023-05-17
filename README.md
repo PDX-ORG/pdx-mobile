@@ -39,6 +39,7 @@ Home |                          Pokemon Details                           | Sett
 ## Tech stack
 
 - Jetpack Compose
+- Kotlin Multiplatform (Adoption in progress)
 - Ktor-Client with OkHttp engine
 - [Alice-DI](https://github.com/akore-org/alice)
 - Kotlin Coroutines
