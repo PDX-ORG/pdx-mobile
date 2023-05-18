@@ -4,7 +4,7 @@ import io.lexadiky.pokeapi.entity.common.ResourcePointer
 import io.lexadiky.pokeapi.entity.language.Language
 import kotlinx.serialization.SerialName
 
-enum class PokemonLanguage(internal val id: String) {
+enum class PokemonLanguage(internal val languageTag: String) {
     @SerialName("roomaji")
     JA_ROOMAJI("roomaji"),
 
@@ -46,6 +46,6 @@ enum class PokemonLanguage(internal val id: String) {
 
 // not implemented
 fun ResourcePointer<Language>.asLanguage(): PokemonLanguage {
-    return PokemonLanguage.values().firstOrNull { it.id == this.name }
+    return PokemonLanguage.values().firstOrNull { it.languageTag == this.name }
         ?: PokemonLanguage.default()
 }

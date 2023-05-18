@@ -35,6 +35,7 @@ class PdxConventionTargetPlugin : Plugin<Project> {
     }
 
     private fun baselineSettings(target: Project) {
+        return // TODO will not apply
         if (target.childProjects.contains("baseline")) {
             target.plugins.apply("androidx.baselineprofile")
             with(target.extensions.findByType<BaselineProfileConsumerExtension>()!!) {

@@ -15,6 +15,8 @@ fun List<Name>.ofCurrentLocale(manager: LocaleManager): String {
 }
 
 internal fun Locale.asPokemonLanguage(): PokemonLanguage {
-    return PokemonLanguage.values().firstOrNull { this.language == it.id }
+    val localeCode = this.toLanguageTag()
+    return PokemonLanguage.values()
+        .firstOrNull { pokemonLanguage -> localeCode == pokemonLanguage.languageTag }
         ?: PokemonLanguage.default()
 }
