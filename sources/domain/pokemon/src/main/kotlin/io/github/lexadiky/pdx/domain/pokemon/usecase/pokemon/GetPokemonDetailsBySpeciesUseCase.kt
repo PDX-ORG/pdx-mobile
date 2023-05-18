@@ -10,7 +10,7 @@ import io.lexadiky.pokeapi.PokeApiClient
 
 class GetPokemonDetailsBySpeciesUseCase(
     private val client: PokeApiClient,
-    private val getPokemonVarietyDetails: GetPokemonVarietyDetails
+    private val getPokemonVarietyDetails: GetPokemonVarietyDetailsUseCase
 ) {
 
     suspend operator fun invoke(id: String): Either<GenericError, DynamicLceList<GenericError, PokemonDetails>> = either {

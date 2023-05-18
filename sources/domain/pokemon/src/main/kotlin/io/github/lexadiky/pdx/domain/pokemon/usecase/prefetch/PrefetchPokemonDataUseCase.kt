@@ -11,7 +11,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class PrefetchPokemonData(private val pokeApiClient: PokeApiClient) {
+class PrefetchPokemonDataUseCase(private val pokeApiClient: PokeApiClient) {
 
     suspend operator fun invoke() {
         try {

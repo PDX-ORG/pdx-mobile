@@ -4,7 +4,7 @@ import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetAllPokemonPreviewsUseCase
-import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.IsPokemonFavorite
+import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.IsPokemonFavoriteUseCase
 import io.github.lexadiky.pdx.feature.generic.list.domain.GenericListItemDataSource
 import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
 import io.github.lexadiky.pdx.feature.pokemon.list.entity.PokemonGenericListItem
@@ -16,7 +16,7 @@ import io.github.lexadiky.pdx.ui.uikit.util.UikitStringFormatter
 
 internal class PokemonGenericListItemSource(
     private val getPokemon: GetAllPokemonPreviewsUseCase,
-    private val isPokemonFavorite: IsPokemonFavorite
+    private val isPokemonFavorite: IsPokemonFavoriteUseCase
 ) : GenericListItemDataSource<PokemonGenericListItem> {
 
     override suspend fun load(): Either<GenericListItemDataSource.Error, List<PokemonGenericListItem>> {

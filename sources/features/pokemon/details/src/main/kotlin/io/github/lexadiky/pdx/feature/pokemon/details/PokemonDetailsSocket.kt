@@ -6,8 +6,8 @@ import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
-import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.IsPokemonFavorite
-import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.SaveFavoritePokemon
+import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.IsPokemonFavoriteUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.SaveFavoritePokemonUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonDetailsBySpeciesUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonSpeciesDetailsUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
@@ -27,8 +27,8 @@ internal class PokemonDetailsSocket(
     private val getPokemonDetails: GetPokemonSpeciesDetailsUseCase,
     private val getAvailableDetailsSections: GetAvailableDetailsSections,
     private val markPokemonSpeciesAsViewedUseCase: MarkPokemonSpeciesAsViewedUseCase,
-    private val isPokemonFavorite: IsPokemonFavorite,
-    private val saveFavoritePokemon: SaveFavoritePokemon,
+    private val isPokemonFavorite: IsPokemonFavoriteUseCase,
+    private val saveFavoritePokemon: SaveFavoritePokemonUseCase,
     featureToggleManager: FeatureToggleManager,
     private val getPokemonDetailsBySpecies: GetPokemonDetailsBySpeciesUseCase
 ) : ViewModelSocket<PokemonDetailsState, PokemonDetailsAction>(PokemonDetailsState(pokemonId)) {

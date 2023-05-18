@@ -16,7 +16,7 @@ import kotlinx.coroutines.withContext
 
 class GetPokemonSpeciesDetailsUseCase(
     private val pokeApiClient: PokeApiClient,
-    private val getPokemonVarietyDetails: GetPokemonVarietyDetails,
+    private val getPokemonVarietyDetails: GetPokemonVarietyDetailsUseCase,
     private val localeManager: LocaleManager
 ) {
 

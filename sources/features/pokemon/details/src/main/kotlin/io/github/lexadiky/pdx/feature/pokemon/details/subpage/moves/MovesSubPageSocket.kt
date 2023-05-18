@@ -7,7 +7,7 @@ import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonMove
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
-import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetPokemonMoves
+import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetPokemonMovesUseCase
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSort
 import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 
 internal class MovesSubPageSocket(
     pokemonSpeciesDetails: PokemonSpeciesDetails,
-    getPokemonMoves: GetPokemonMoves,
+    getPokemonMoves: GetPokemonMovesUseCase,
     private val navigator: Navigator
 ) : ViewModelSocket<MovesSubPageState, MovesSubPageAction>(MovesSubPageState()) {
 

@@ -17,7 +17,7 @@ internal class ViewedPokemonRepository(
     private val  findPokemonPreviewUseCase: FindPokemonPreviewUseCase
 ) {
     private val microdata = microdataManager.acquire(this, "viewed_pokemon")
-    private var visited = microdata.strings("viewed_time_id")
+    private val visited = microdata.strings("viewed_time_id")
 
     suspend fun saveLatest(pokemon: PokemonSpeciesDetails): Either<GenericError, Unit> = withContext(Dispatchers.IO) {
         Either.catch {

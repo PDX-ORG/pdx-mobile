@@ -11,7 +11,7 @@ import io.lexadiky.pokeapi.entity.common.ResourcePointer
 import io.lexadiky.pokeapi.entity.evolution.EvolutionChain
 import io.lexadiky.pokeapi.entity.pokemon.PokemonSpecies
 
-class GetPokemonEvolutionDetails internal constructor(
+class GetPokemonEvolutionDetailsUseCase internal constructor(
     private val client: PokeApiClient,
     private val loadPreview: GetPokemonPreviewUseCase
 ) {

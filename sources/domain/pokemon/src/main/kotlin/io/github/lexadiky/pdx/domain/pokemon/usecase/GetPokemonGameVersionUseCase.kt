@@ -8,7 +8,7 @@ import io.github.lexadiky.pdx.lib.core.error.GenericError
 import io.github.lexadiky.pdx.lib.locale.LocaleManager
 import io.lexadiky.pokeapi.PokeApiClient
 
-class GetPokemonGameVersion(
+class GetPokemonGameVersionUseCase(
     private val pokeApiClient: PokeApiClient,
     private val localeManager: LocaleManager
 ) {

@@ -8,7 +8,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.EvolutionNode
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
-import io.github.lexadiky.pdx.domain.pokemon.usecase.evolution.GetPokemonEvolutionDetails
+import io.github.lexadiky.pdx.domain.pokemon.usecase.evolution.GetPokemonEvolutionDetailsUseCase
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.entity.EvolutionLinkPokemonVR
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.entity.EvolvesToVR
 import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 internal class EvolutionSubPageSocket(
     private val pokemonSpeciesDetails: PokemonSpeciesDetails,
     pokemonDetails: PokemonDetails,
-    getPokemonEvolutionDetails: GetPokemonEvolutionDetails,
+    getPokemonEvolutionDetails: GetPokemonEvolutionDetailsUseCase,
     private val navigator: Navigator
 ) : ViewModelSocket<EvolutionSubPageState, EvolutionSubPageAction>(EvolutionSubPageState()) {
 

@@ -5,7 +5,7 @@ import arrow.core.Either
 import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
-import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
+import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelationsUseCase
 import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
 import io.github.lexadiky.pdx.lib.errorhandler.classify
 import kotlinx.coroutines.launch
@@ -14,7 +14,7 @@ abstract class TypeChartSocket(initialState: TypeChartState) :
     ViewModelSocket<TypeChartState, TypeChartAction>(initialState)
 
 internal class TypeChartSocketImpl(
-    private val getPokemonDamageRelations: GetPokemonTypeDamageRelations,
+    private val getPokemonDamageRelations: GetPokemonTypeDamageRelationsUseCase,
     private val navigator: Navigator
 ) : TypeChartSocket(TypeChartState()) {
 

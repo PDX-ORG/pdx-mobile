@@ -15,7 +15,7 @@ import kotlin.reflect.KProperty1
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.typeOf
 
-class GetPokemonVarietyDetails(
+class GetPokemonVarietyDetailsUseCase(
     private val client: PokeApiClient
 ) {
 

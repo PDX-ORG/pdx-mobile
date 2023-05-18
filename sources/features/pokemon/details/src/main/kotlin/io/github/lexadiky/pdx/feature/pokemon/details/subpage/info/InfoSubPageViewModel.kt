@@ -9,7 +9,7 @@ import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPokedexDescription
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
-import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPokedexDescriptions
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPokedexDescriptionsUseCase
 import io.github.lexadiky.pdx.feature.pokemon.details.R
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDescriptionData
 import io.github.lexadiky.pdx.feature.pokemon.details.utils.extractDimensions
@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
 internal class InfoSubPageViewModel(
     private val species: PokemonSpeciesDetails,
     pokemon: PokemonDetails,
-    private val getPokemonPokedexDescriptions: GetPokemonPokedexDescriptions
+    private val getPokemonPokedexDescriptions: GetPokemonPokedexDescriptionsUseCase
 ) : ViewModel() {
 
     var state by mutableStateOf(InfoSubPageState())

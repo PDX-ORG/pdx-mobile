@@ -9,8 +9,8 @@ internal class FavoritePokemonRepository(microdataManager: MicrodataManager) {
 
     private val microdata = microdataManager.acquire(this, "favorite_pokemon")
 
-    private var savedPokemon = microdata.strings("favorite_pokemon_names")
-    private var savedSpecies = microdata.strings("favorite_species_names")
+    private val savedPokemon = microdata.strings("favorite_pokemon_names")
+    private val savedSpecies = microdata.strings("favorite_species_names")
 
     suspend fun save(pokemon: PokemonDetails) {
         savedPokemon.set(savedPokemon.get().orEmpty() + pokemon.name)

@@ -11,7 +11,7 @@ import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonMove
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
-import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetMoveDetails
+import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetMoveDetailsUseCase
 import io.github.lexadiky.pdx.feature.move.details.entity.attribute.MoveAttribute
 import io.github.lexadiky.pdx.lib.errorhandler.classify
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 
 internal class MoveDetailsViewModel(
     private val moveId: String,
-    private val getMoveDetails: GetMoveDetails,
+    private val getMoveDetails: GetMoveDetailsUseCase,
     private val navigator: Navigator,
 ) : ViewModel() {
 

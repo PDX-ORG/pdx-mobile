@@ -11,7 +11,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonTypeDamageRelation
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetAllPokemonPreviewsUseCase
-import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelations
+import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelationsUseCase
 import io.github.lexadiky.pdx.feature.type.details.entity.TypePokemonPreview
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.akore.lechuck.Navigator
@@ -21,7 +21,7 @@ import kotlin.random.Random
 
 internal class TypeDetailsViewModel(
     typeId: String,
-    private val getPokemonTypeDamageRelations: GetPokemonTypeDamageRelations,
+    private val getPokemonTypeDamageRelations: GetPokemonTypeDamageRelationsUseCase,
     private val getAllPokemonPreviewsUseCase: GetAllPokemonPreviewsUseCase,
     private val navigator: Navigator
 ) : ViewModel() {

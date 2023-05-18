@@ -4,13 +4,14 @@ import arrow.core.Either
 import arrow.core.continuations.either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonMove
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
+import io.github.lexadiky.pdx.domain.pokemon.mapper.MoveDomainMapper
 import io.github.lexadiky.pdx.lib.core.error.GenericError
 import io.github.lexadiky.pdx.lib.core.lce.DynamicLceList
 import io.github.lexadiky.pdx.lib.core.lce.lceFlow
 import io.github.lexadiky.pdx.lib.core.utils.asEither
 import io.lexadiky.pokeapi.PokeApiClient
 
-class GetPokemonMoves internal constructor(
+class GetPokemonMovesUseCase internal constructor(
     private val client: PokeApiClient,
     private val domainMapper: MoveDomainMapper
 ) {

@@ -5,7 +5,7 @@ import arrow.core.continuations.either
 import arrow.core.traverse
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPokedexDescription
 import io.github.lexadiky.pdx.domain.pokemon.entity.asLanguage
-import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonGameVersion
+import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonGameVersionUseCase
 import io.github.lexadiky.pdx.domain.pokemon.util.asPokemonLanguage
 import io.github.lexadiky.pdx.lib.core.error.GenericError
 import io.github.lexadiky.pdx.lib.core.lce.DynamicLceList
@@ -14,9 +14,9 @@ import io.github.lexadiky.pdx.lib.core.utils.removeNewLines
 import io.github.lexadiky.pdx.lib.locale.LocaleManager
 import io.lexadiky.pokeapi.PokeApiClient
 
-class GetPokemonPokedexDescriptions(
+class GetPokemonPokedexDescriptionsUseCase(
     private val pokeApiClient: PokeApiClient,
-    private val getPokemonVersion: GetPokemonGameVersion,
+    private val getPokemonVersion: GetPokemonGameVersionUseCase,
     private val localeManager: LocaleManager,
 ) {
 

@@ -7,7 +7,7 @@ import io.github.lexadiky.pdx.lib.core.error.GenericError
 import io.github.lexadiky.pdx.lib.fs.statist.StaticResourceProvider
 import io.github.lexadiky.pdx.lib.fs.statist.provide
 
-class GetPokemonTypeDamageRelations internal constructor(
+class GetPokemonTypeDamageRelationsUseCase internal constructor(
     private val resourceProvider: StaticResourceProvider
 ) {
 

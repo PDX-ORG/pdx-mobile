@@ -1,4 +1,4 @@
-package io.github.lexadiky.pdx.domain.pokemon.usecase.move
+package io.github.lexadiky.pdx.domain.pokemon.mapper
 
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonMove
 import io.github.lexadiky.pdx.domain.pokemon.entity.asLanguage
