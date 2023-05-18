@@ -48,7 +48,7 @@ internal class SettingsPageViewModel(
 
     fun openGithub() {
         viewModelScope.launch {
-            navigator.navigate("https://github.com/PDX-ORG/pdx-mobile-android")
+            navigator.navigate("https://github.com/PDX-ORG/pdx-mobile")
         }
     }
 
