@@ -11,6 +11,6 @@ fun FirebaseModule(context: Context): DIModule {
     return eagerModule("firebase") {
         single { FirebaseApp.initializeApp(context)!! }
         single { FirebaseRemoteConfigProvider(inject()) }
-        single { FirebaseRemoteConfig.getInstance(inject()) } // TODO use fs implementation
+        single { FirebaseRemoteConfig.getInstance(inject()) }
     }
 }
