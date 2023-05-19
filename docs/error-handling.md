@@ -14,7 +14,7 @@ To express that function can result in an error you should return `Either<Error,
 
 ## UseCase
 
-UseCases should return either `GenericError` or some custom sealed class inhereting ErrorType and Throwable.
+UseCases should return either `GenericError` or some custom sealed class inheriting ErrorType and Throwable.
 
 ## Logging
 

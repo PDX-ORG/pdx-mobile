@@ -11,76 +11,88 @@ baseline-profile = "1.2.0-alpha14"
 
 [libraries]
 
+# Kotlin coroutines and integrations
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlin-coroutines-gmsIntegration = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "coroutines" }
 
-kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
+# Kotlinx
 kotlin-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
+kotlin-collections-immutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
 kotlin-reflection = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
-kotlin-collections-immutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
-
+# Android system components
 android-core = "androidx.core:core-ktx:1.10.0"
 android-lifecycle-runtime = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
-android-activity-compose = "androidx.activity:activity-compose:1.7.1"
 android-material = "com.google.android.material:material:1.9.0-rc01"
 android-profileinstaller = "androidx.profileinstaller:profileinstaller:1.3.1"
-android-play-review= "com.google.android.play:review-ktx:2.0.1"
+android-play-review = "com.google.android.play:review-ktx:2.0.1"
 
-
+# Compose
 android-compose-bom = "androidx.compose:compose-bom:2023.05.00"
 android-compose-ui-core = { module = "androidx.compose.ui:ui" }
 android-compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
 android-compose-ui-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 android-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 android-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
-
+android-activity-compose = "androidx.activity:activity-compose:1.7.1"
 android-compose-material3 = "androidx.compose.material3:material3:1.1.0-rc01"
 android-compose-viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
 
+# Navigation
 android-navigation-compose = "androidx.navigation:navigation-compose:2.6.0-rc01"
 
+# Android testing
 android-test-espresso = "androidx.test.espresso:espresso-core:3.5.1"
 android-test-junit4 = "androidx.test.ext:junit:1.1.1"
-
 android-benchmark-macro-junit4 = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "baseline-profile" }
 
+# Datastorage
 android-mops-datastore-android = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 android-mops-datastore = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastore" }
 
-android-agp = { module = "com.android.application:com.android.application.gradle.plugin", version.ref = "agp" }
-
+# Image loading
 coil-compose-base = "io.coil-kt:coil-compose-base:2.3.0"
 
+# Functional programming
 arrow-core = "io.arrow-kt:arrow-core:1.1.5"
 
+# Network
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 
+# Firebase
 firebase-bom = "com.google.firebase:firebase-bom:32.0.0"
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-remoteConfig = { module = "com.google.firebase:firebase-config" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 firebase-performance = { module = "com.google.firebase:firebase-perf-ktx" }
 
+# Compose extensions
 accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
 accompanist-navigation-material = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
 accompanist-placeholder = { module = "com.google.accompanist:accompanist-placeholder-material3", version.ref = "accompanist" }
 
+# Logging
 akore-blogger-core = { module = "com.github.akore-org.blogger:core", version.ref = "akore" }
 akore-blogger-logcat = { module = "com.github.akore-org.blogger:logcat", version.ref = "akore" }
 
+# DI
 akore-alice-core = { module = "com.github.akore-org.alice:core", version = "b1e9b45eb9" }
 akore-alice-robo = { module = "com.github.akore-org.alice:robo", version = "9bf3816e80" }
 
+# Domain Specific
 pokeapi = "com.github.lexa-diky:pokeapi-kotlin:d4fa57d81f"
 
+# Serialization
 snakeyaml = "org.yaml:snakeyaml:2.0"
+kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
+
+# Code generation
 kotlinpoet = "com.squareup:kotlinpoet:1.13.2"
 
-# plugin deps
+# Plugins
 classpath-google-services = "com.google.gms:google-services:4.3.15"
 classpath-firebase-crashlytics = "com.google.firebase:firebase-crashlytics-gradle:2.9.5"
 classpath-firebase-preformance = "com.google.firebase:perf-plugin:1.4.2"
@@ -91,19 +103,23 @@ classpath-kotlin-android = { module = "org.jetbrains.kotlin.android:org.jetbrain
 
 [plugins]
 
+# Android
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 android-test = { id = "com.android.test", version.ref = "agp" }
 android-baselineprofile = { id = "androidx.baselineprofile", version.ref = "baseline-profile" }
 
+# Kotlin
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-kover = { id = "org.jetbrains.kotlinx.kover", version = "0.7.0" }
 
+# Lint
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.0-RC3" }
 buildHealth = { id = "com.autonomousapps.dependency-analysis", version = "1.20.0" }
 
+# Conventions
 pdx-convention-target = { id = "io.github.lexadiky.pdx.plugin.module.target", version = "indev" }
 pdx-convention-target-baseline = { id = "io.github.lexadiky.pdx.plugin.module.baseline", version = "indev" }
 pdx-convention-feature = { id = "io.github.lexadiky.pdx.plugin.module.feature", version = "indev" }
@@ -111,5 +127,9 @@ pdx-convention-library-android = { id = "io.github.lexadiky.pdx.plugin.module.li
 pdx-convention-library-compose = { id = "io.github.lexadiky.pdx.plugin.module.library.compose", version = "indev" }
 pdx-convention-library-jvm = { id = "io.github.lexadiky.pdx.plugin.module.library.jvm", version = "indev" }
 pdx-convention-library-multiplatform = { id = "io.github.lexadiky.pdx.plugin.module.library.multiplatform", version = "indev" }
+
+# Porject linting
 pdx-catkeeper = { id = "io.github.lexadiky.pdx.plugin.pm.catkeeper", version = "indev" }
+
+# Analytics generator
 pdx-eve = { id = "io.github.lexadiky.pdx.plugin.eve", version = "indev" }

@@ -44,7 +44,6 @@ enum class PokemonLanguage(internal val languageTag: String) {
     }
 }
 
-// not implemented
 fun ResourcePointer<Language>.asLanguage(): PokemonLanguage {
     return PokemonLanguage.values().firstOrNull { it.languageTag == this.name }
         ?: PokemonLanguage.default()

@@ -36,7 +36,7 @@ fun EvolutionMethodWidget(methodVR: EvolutionMethod) {
         )
         when (methodVR) {
             EvolutionMethod.Unknown -> TextEvolutionMethod(
-                stringResource(id = R.string.feature_pokemon_evolution_method_unkown)
+                stringResource(id = R.string.feature_pokemon_evolution_method_unknown)
             )
 
             is EvolutionMethod.LevelUp -> TextEvolutionMethod(

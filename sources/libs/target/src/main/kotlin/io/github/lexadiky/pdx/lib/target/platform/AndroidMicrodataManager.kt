@@ -4,11 +4,10 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import io.github.lexadiky.pdx.lib.microdata.Microdata
+import io.github.lexadiky.pdx.lib.microdata.MicrodataFactory
 import io.github.lexadiky.pdx.lib.microdata.MicrodataManager
 import java.util.concurrent.Executors
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
 
 @Suppress("PrivatePropertyName")
@@ -21,11 +20,11 @@ class AndroidMicrodataManager(private val context: Context) : MicrodataManager {
     )
     private val dummyDs: DataStore<Preferences>? = null
 
-    override fun acquire(owner: Any, database: String): Microdata {
+    override fun acquire(owner: Any, database: String): MicrodataFactory {
         val datastore = STATIC_PREFERENCES_DATASTORE_CACHE.getOrPut(database) {
             preferencesDataStore(database)
                 .getValue(context, ::dummyDs)
         }
-        return Microdata(datastore, scope)
+        return MicrodataFactory(datastore, scope)
     }
 }

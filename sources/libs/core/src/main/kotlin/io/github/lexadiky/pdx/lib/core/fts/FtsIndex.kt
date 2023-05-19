@@ -20,6 +20,10 @@ interface FtsIndex {
          * Useful for cleaning new indexes
          */
         fun buildable(): MutableFtsIndex = MatrixFtsIndex()
+
+        fun build(source: Collection<String>): FtsIndex =
+            MatrixFtsIndex(source.size)
+                .apply { source.forEach(::addClause) }
     }
 }
 
@@ -33,22 +37,22 @@ interface MutableFtsIndex : FtsIndex {
      *
      * Not thread safe.
      */
-    fun addClosure(closure: String)
+    fun addClause(closure: String)
 }
 
 /**
  * Implementation of [MutableFtsIndex] linearly searching for exact sequence partial match.
  */
-private class MatrixFtsIndex : MutableFtsIndex {
+internal class MatrixFtsIndex(baseSize: Int = EXPECTED_INDEX_SIZE) : MutableFtsIndex {
 
-    private val matrix: MutableList<String> = ArrayList(EXPECTED_INDEX_SIZE)
+    private val matrix: MutableList<String> = ArrayList(baseSize)
 
-    override fun addClosure(closure: String) {
+    override fun addClause(closure: String) {
         matrix += closure.lowercase()
     }
 
     override fun matches(query: String): Boolean {
-        if (query.isEmpty()) {
+        if (query.isBlank()) {
             return false
         }
 

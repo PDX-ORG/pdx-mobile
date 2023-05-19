@@ -43,12 +43,8 @@ internal class MoveDomainMapper(
         replace("\$effect_chance%", "${move.effectChance}%")
 
     private fun createFtsIndex(item: Move): FtsIndex {
-        val index = FtsIndex.buildable()
-
-        item.names.forEach { name ->
-            index.addClosure(name.name)
-        }
-
-        return index
+        return FtsIndex.build(
+            item.names.map { it.name }
+        )
     }
 }

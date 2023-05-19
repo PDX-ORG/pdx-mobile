@@ -8,8 +8,8 @@ import io.github.lexadiky.pdx.plugin.convention.mixin.AndroidCommonMixin
 import io.github.lexadiky.pdx.plugin.convention.mixin.DeshugaringMixin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.extra
-import org.gradle.kotlin.dsl.findByType
 
 class PdxConventionBaselinePlugin : Plugin<Project> {
 
@@ -21,7 +21,8 @@ class PdxConventionBaselinePlugin : Plugin<Project> {
 
         DeshugaringMixin.mix(target)
         AndroidCommonMixin.mix(target)
-        with(target.extensions.findByType<TestExtension>()!!) {
+
+        target.extensions.configure<TestExtension> {
             namespace = "io.github.lexadiky.baselineprofile"
 
             defaultConfig {
@@ -39,7 +40,7 @@ class PdxConventionBaselinePlugin : Plugin<Project> {
             }
         }
 
-        with(target.extensions.findByType<BaselineProfileProducerExtension>()!!) {
+        target.extensions.configure<BaselineProfileProducerExtension> {
             managedDevices += GradleManagedDevice.values().map { it.id }
             useConnectedDevices = false
         }

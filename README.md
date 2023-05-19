@@ -36,7 +36,11 @@ Home |                          Pokemon Details                           | Sett
 
 🚧 And more, coming soon...
 
-## Tech stack
+## Tech
+
+Documentation could be found [here](docs)
+
+### Stack
 
 - Jetpack Compose
 - Kotlin Multiplatform (Adoption in progress)
@@ -46,13 +50,6 @@ Home |                          Pokemon Details                           | Sett
 - Arrow
 - [Blogger](https://github.com/akore-org/blogger)
 - Kotest
-
-## Architecture
-
-### State management pattern
-
-We use google's default MVVM pattern, but looking for something else in the future.
-Might migrate to custom ELM/TEA architecture in the future
 
 ## Contributors
 

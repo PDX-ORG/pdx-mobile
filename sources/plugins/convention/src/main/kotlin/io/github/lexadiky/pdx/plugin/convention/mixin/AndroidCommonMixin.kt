@@ -1,8 +1,6 @@
 package io.github.lexadiky.pdx.plugin.convention.mixin
 
-import com.android.build.api.dsl.LibraryExtension
-import com.android.build.gradle.TestExtension
-import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
+import io.github.lexadiky.pdx.plugin.convention.android
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.extra
@@ -11,12 +9,7 @@ import org.gradle.kotlin.dsl.extra
 object AndroidCommonMixin {
 
     fun mix(target: Project) {
-        val android = target.extensions.findByType(LibraryExtension::class.java)
-            ?: target.extensions.findByType(BaseAppModuleExtension::class.java)
-            ?: target.extensions.findByType(TestExtension::class.java)
-            ?: error("can't setup android, no suitable extensions found")
-
-        android.apply {
+        target.extensions.android.apply {
             compileSdk = target.extra["pdx.android.target-sdk"].toString().toInt()
 
             defaultConfig {

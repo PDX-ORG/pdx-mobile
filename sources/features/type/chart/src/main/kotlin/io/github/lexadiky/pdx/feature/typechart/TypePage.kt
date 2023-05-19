@@ -38,7 +38,7 @@ private fun TypePageImpl() {
 
     Box(modifier = Modifier.fillMaxSize()) {
         Crossfade(
-            label = "type_page_corssfade",
+            label = "type_page_crossfade",
             targetState = isSearchEnabled
         ) { isSearchEnabledState ->
             if (isSearchEnabledState) {

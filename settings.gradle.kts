@@ -31,7 +31,8 @@ fun includeRecursive(path: String) {
         if (isModule(subDir)) {
             val moduleName = createModuleName(subDir, dir)
 
-            if (!moduleName.startsWith(":plugins")) {
+            // TODO reenable baseline
+            if (!moduleName.startsWith(":plugins") && !moduleName.endsWith(":baseline")) {
                 include(moduleName)
                 project(moduleName).projectDir = subDir
             }

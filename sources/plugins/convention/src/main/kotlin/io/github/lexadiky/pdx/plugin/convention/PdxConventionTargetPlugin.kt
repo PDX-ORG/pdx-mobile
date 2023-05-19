@@ -8,6 +8,7 @@ import io.github.lexadiky.pdx.plugin.convention.mixin.DeshugaringMixin
 import io.github.lexadiky.pdx.plugin.convention.mixin.TestMixin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.findByType
@@ -27,8 +28,9 @@ class PdxConventionTargetPlugin : Plugin<Project> {
         baselineSettings(target)
 
         AndroidCommonMixin.mix(target)
-        target.extensions.findByType(BaseAppModuleExtension::class.java)!!
-            .apply { androidSettings(target) }
+        target.extensions.configure<BaseAppModuleExtension> {
+            androidSettings(target)
+        }
         TestMixin.mix(target)
         ComposeMixin.mix(target)
         DeshugaringMixin.mix(target)

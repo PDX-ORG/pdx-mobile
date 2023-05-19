@@ -7,7 +7,7 @@ Generic view model should extend `androidx.lifecycle.ViewModel`.
 ## State Exposure
 
 State is exposed via `state` property of type `T` where `T` is your custom data class.
-To propogate chanhes form `ViewModel` to compose UI layer use MutableState<T> get/set delegates:
+To propagate changes form `ViewModel` to compose UI layer use MutableState<T> get/set delegates:
 
 ```kotlin
 var state by mutableStateOf(MovesSubPageState())
