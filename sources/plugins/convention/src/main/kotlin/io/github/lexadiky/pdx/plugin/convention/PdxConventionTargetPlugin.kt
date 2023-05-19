@@ -11,7 +11,6 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.extra
-import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.project
 
 @Suppress("MagicNumber")
@@ -39,7 +38,7 @@ class PdxConventionTargetPlugin : Plugin<Project> {
     private fun baselineSettings(target: Project) {
         if (target.childProjects.contains("baseline")) {
             target.plugins.apply("androidx.baselineprofile")
-            with(target.extensions.findByType<BaselineProfileConsumerExtension>()!!) {
+            target.extensions.configure<BaselineProfileConsumerExtension> {
                 saveInSrc = true
             }
             target.dependencies {

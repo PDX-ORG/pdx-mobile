@@ -1,10 +1,10 @@
 package io.github.lexadiky.pdx.plugin.eve
 
+import java.io.File
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-import java.io.File
 
 class EvePlugin : Plugin<Project> {
 
@@ -23,7 +23,7 @@ class EvePlugin : Plugin<Project> {
         target.tasks.findByName("preBuild")
             ?.dependsOn("eveBuild")
 
-        target.extensions.findByType<KotlinProjectExtension>()!!.apply {
+        target.extensions.configure<KotlinProjectExtension> {
             sourceSets.getByName("main") {
                 kotlin.srcDir(outputFile)
             }
