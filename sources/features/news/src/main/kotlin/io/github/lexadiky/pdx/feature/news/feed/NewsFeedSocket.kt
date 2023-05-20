@@ -1,9 +1,5 @@
 package io.github.lexadiky.pdx.feature.news.feed
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
 import io.github.lexadiky.akore.lechuck.Navigator
@@ -14,14 +10,14 @@ import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
 import io.github.lexadiky.pdx.lib.errorhandler.classify
 import kotlinx.coroutines.launch
 
-internal class NewsFeedViewModel(
+internal class NewsFeedSocket(
     private val getNewsFeedUseCase: GetNewsFeedUseCase,
     private val navigator: Navigator,
 ) : ViewModelSocket<NewsFeedState, NewsFeedAction>(NewsFeedState()) {
 
     init {
         viewModelScope.launch {
-            when (val eitherFeed = getNewsFeedUseCase().classify(NewsFeedViewModel::class)) {
+            when (val eitherFeed = getNewsFeedUseCase().classify(NewsFeedSocket::class)) {
                 is Either.Left -> state = state.copy(error = eitherFeed.value)
                 is Either.Right -> state = state.copy(items = eitherFeed.value)
             }
