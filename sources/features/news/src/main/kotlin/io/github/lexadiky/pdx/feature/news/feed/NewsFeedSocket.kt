@@ -10,36 +10,43 @@ import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.feature.news.domain.GetNewsFeedUseCase
 import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
+import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
+import io.github.lexadiky.pdx.lib.errorhandler.classify
 import kotlinx.coroutines.launch
 
 internal class NewsFeedViewModel(
     private val getNewsFeedUseCase: GetNewsFeedUseCase,
     private val navigator: Navigator,
-) : ViewModel() {
-
-    var state by mutableStateOf(NewsFeedState())
-        private set
+) : ViewModelSocket<NewsFeedState, NewsFeedAction>(NewsFeedState()) {
 
     init {
         viewModelScope.launch {
-            when (val eitherFeed = getNewsFeedUseCase()) {
+            when (val eitherFeed = getNewsFeedUseCase().classify(NewsFeedViewModel::class)) {
                 is Either.Left -> state = state.copy(error = eitherFeed.value)
                 is Either.Right -> state = state.copy(items = eitherFeed.value)
             }
         }
     }
 
-    fun dismissError() {
+    override suspend fun onAction(action: NewsFeedAction) {
+        when (action) {
+            NewsFeedAction.DismissError -> dismissError()
+            is NewsFeedAction.Navigate.Article -> openNewsItem(action.item)
+            is NewsFeedAction.Navigate.Author -> openNewsItemAuthor(action.item)
+        }
+    }
+
+    private fun dismissError() {
         state = state.copy(error = null)
     }
 
-    fun openNewsItem(item: NewsFeedItem) {
+    private fun openNewsItem(item: NewsFeedItem) {
         viewModelScope.launch {
             navigator.navigate(item.uri)
         }
     }
 
-    fun openNewsItemAuthor(item: NewsFeedItem) {
+    private fun openNewsItemAuthor(item: NewsFeedItem) {
         viewModelScope.launch {
             navigator.navigate(item.authorUri)
         }
