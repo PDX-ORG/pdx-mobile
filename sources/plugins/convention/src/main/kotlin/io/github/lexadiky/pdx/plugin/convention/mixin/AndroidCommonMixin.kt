@@ -14,8 +14,6 @@ object AndroidCommonMixin {
 
             val namespaceSuffix = createNamespaceSuffix(target)
             namespace = "io.github.lexadiky.pdx.$namespaceSuffix"
-            println(namespace)
-            println(namespace)
 
             defaultConfig {
                 minSdk = target.extra["pdx.android.min-sdk"].toString().toInt()
