@@ -1,4 +1,4 @@
-package io.github.lexadiky.pdx
+package io.github.lexadiky.pdx.target.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

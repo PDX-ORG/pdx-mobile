@@ -12,6 +12,11 @@ object AndroidCommonMixin {
         target.extensions.android.apply {
             compileSdk = target.extra["pdx.android.target-sdk"].toString().toInt()
 
+            val namespaceSuffix = createNamespaceSuffix(target)
+            namespace = "io.github.lexadiky.pdx.$namespaceSuffix"
+            println(namespace)
+            println(namespace)
+
             defaultConfig {
                 minSdk = target.extra["pdx.android.min-sdk"].toString().toInt()
 
@@ -43,4 +48,9 @@ object AndroidCommonMixin {
             }
         }
     }
+
+    private fun createNamespaceSuffix(target: Project) =
+        target.path.replace(':', '.')
+            .replace("-", ".")
+            .substring(1)
 }

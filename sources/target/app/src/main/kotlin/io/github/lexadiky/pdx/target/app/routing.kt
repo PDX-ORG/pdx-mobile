@@ -1,4 +1,4 @@
-package io.github.lexadiky.pdx
+package io.github.lexadiky.pdx.target.app
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
