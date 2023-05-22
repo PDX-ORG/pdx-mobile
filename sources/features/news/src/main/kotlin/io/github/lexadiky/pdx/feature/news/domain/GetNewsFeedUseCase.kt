@@ -1,9 +1,13 @@
 package io.github.lexadiky.pdx.feature.news.domain
 
 import arrow.core.Either
+import arrow.core.computations.ResultEffect.bind
+import arrow.core.continuations.either
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.error
 import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
+import io.github.lexadiky.pdx.feature.news.entity.domain.RedditResponse
+import io.github.lexadiky.pdx.lib.core.error.GenericError
 import io.github.lexadiky.pdx.lib.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
@@ -14,8 +18,13 @@ import kotlinx.datetime.Instant
 
 internal class GetNewsFeedUseCase(private val redditNewsClient: RedditNewsClient) {
 
-    suspend operator fun invoke(): Either<GetNewsFeedUseCaseError, List<NewsFeedItem>> = Either.catch {
-        val children = redditNewsClient.load().data.children
+    suspend operator fun invoke(): Either<GenericError, List<NewsFeedItem>> = either {
+        val response: RedditResponse = redditNewsClient.load()
+            .mapLeft { GenericError("can't load news feed", it) }
+            .bind()
+
+        val children = response.data.children
+
         children.map { child ->
             NewsFeedItem(
                 uri = URI.create(child.data.url),
@@ -29,10 +38,6 @@ internal class GetNewsFeedUseCase(private val redditNewsClient: RedditNewsClient
                     .let { StringResource.from(it) }
             )
         }
-    }.mapLeft { error ->
-        BLogger.tag("GetNewsFeedUseCase")
-            .error("can't load news feed", error)
-        GetNewsFeedUseCaseError
     }
 
     companion object {
@@ -40,5 +45,3 @@ internal class GetNewsFeedUseCase(private val redditNewsClient: RedditNewsClient
         private const val USER_LINK = "https://www.reddit.com/user/"
     }
 }
-
-internal object GetNewsFeedUseCaseError : UIError by UIError.generic()

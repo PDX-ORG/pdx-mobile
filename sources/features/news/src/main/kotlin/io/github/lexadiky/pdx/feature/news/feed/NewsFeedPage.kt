@@ -31,6 +31,7 @@ import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
 import io.github.lexadiky.pdx.feature.news.NewsModule
 import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
+import io.github.lexadiky.pdx.lib.arc.Page
 import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.resources.render
@@ -46,12 +47,12 @@ fun NewsFeedPage() {
 }
 
 @Composable
-internal fun NewsFeedPageImpl(viewModel: NewsFeedViewModel) {
+internal fun NewsFeedPageImpl(viewModel: NewsFeedSocket) = Page(viewModel) { state, act ->
     Decoration(decoration = "pdx://toolbar/title") {
         Text(text = stringResource(id = io.github.lexadiky.pdx.feature.news.R.string.news_feed_title))
     }
     ErrorDialog(error = viewModel.state.error) {
-        viewModel.dismissError()
+        act(NewsFeedAction.DismissError)
     }
     LazyColumn(
         state = LocalPrimeScrollState.current.asLazyListState(),
@@ -61,8 +62,8 @@ internal fun NewsFeedPageImpl(viewModel: NewsFeedViewModel) {
         items(viewModel.state.items) { item ->
             NewsFeedItem(
                 item = item,
-                onItemClick = { viewModel.openNewsItem(item) },
-                onAuthorClicked = { viewModel.openNewsItemAuthor(item) }
+                onItemClick = { act(NewsFeedAction.Navigate.Article(item)) },
+                onAuthorClicked = { act(NewsFeedAction.Navigate.Author(item)) }
             )
         }
     }
