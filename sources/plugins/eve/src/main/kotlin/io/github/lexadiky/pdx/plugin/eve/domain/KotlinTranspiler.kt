@@ -100,7 +100,7 @@ class KotlinTranspiler {
         private const val PACKAGE = "io.github.lexadiky.pdx.generated.analytics"
         private const val GENERATED_COMMENT = "GENERATED"
         private const val SNAKE_CASE_SEPARATOR = "_"
-        private const val ANALYTICS_MANAGER_CLASS = "io.github.lexadiky.pdx.lib.analytics.AnalyticsManager"
+        private const val ANALYTICS_MANAGER_CLASS = "io.github.lexadiky.pdx.library.analytics.AnalyticsManager"
         private const val ANALYTICS_MANAGER_PROPERTY = "analyticsManager"
         private const val TYPE_STRING = "kotlin.String"
         private const val TYPE_BOOLEAN = "kotlin.Boolean"

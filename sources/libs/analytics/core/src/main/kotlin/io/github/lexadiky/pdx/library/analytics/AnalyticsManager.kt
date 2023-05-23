@@ -1,6 +1,6 @@
-package io.github.lexadiky.pdx.lib.analytics
+package io.github.lexadiky.pdx.library.analytics
 
-import io.github.lexadiky.pdx.lib.analytics.sender.EventSender
+import io.github.lexadiky.pdx.library.analytics.sender.EventSender
 
 class AnalyticsManager : EventSender {
 

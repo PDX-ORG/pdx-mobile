@@ -1,4 +1,4 @@
-package io.github.lexadiky.pdx.lib.analytics.sender
+package io.github.lexadiky.pdx.library.analytics.sender
 
 import io.github.lexadiky.akore.blogger.BLogger
 import io.github.lexadiky.akore.blogger.info

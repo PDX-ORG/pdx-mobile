@@ -4,10 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
-android {
-    namespace = "io.github.lexadiky.pdx.domain.pokemon.asset"
-}
-
 dependencies {
     implementation(projects.domain.pokemon)
     implementation(projects.libs.resources)
