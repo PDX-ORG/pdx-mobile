@@ -9,6 +9,6 @@ android {
 
 dependencies {
     implementation(libs.akore.alice.robo)
-    implementation(projects.libs.uikit)
-    implementation(projects.libs.navigation)
+    implementation(projects.library.uikit)
+    implementation(projects.library.navigation)
 }

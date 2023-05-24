@@ -22,7 +22,7 @@ import io.github.lexadiky.pdx.feature.toolbar.Toolbar
 import io.github.lexadiky.pdx.feature.toolbar.rememberToolbarConnector
 import io.github.lexadiky.pdx.lib.navigation.NavigationHostStyles
 import io.github.lexadiky.pdx.lib.navigation.NavigationModule
-import io.github.lexadiky.pdx.lib.system.SystemModule
+import io.github.lexadiky.pdx.library.system.SystemModule
 import io.github.lexadiky.pdx.ui.uikit.theme.PdxTheme
 import io.github.lexadiky.pdx.ui.uikit.widget.scaffold.PdxScaffold
 import kotlin.time.Duration.Companion.milliseconds

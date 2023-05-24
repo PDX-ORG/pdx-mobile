@@ -37,8 +37,8 @@ import io.github.lexadiky.pdx.domain.pokemon.asset.PokemonTypeAssets
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonItem
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonType
 import io.github.lexadiky.pdx.feature.home.widget.RecommendedPokemonCard
-import io.github.lexadiky.pdx.lib.arc.Page
-import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
+import io.github.lexadiky.pdx.library.arc.Page
+import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from

@@ -31,8 +31,8 @@ import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
 import io.github.lexadiky.pdx.feature.news.NewsModule
 import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
-import io.github.lexadiky.pdx.lib.arc.Page
-import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
+import io.github.lexadiky.pdx.library.arc.Page
+import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid

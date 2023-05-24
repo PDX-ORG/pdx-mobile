@@ -8,7 +8,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSprites
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonStat
 import io.github.lexadiky.pdx.domain.pokemon.entity.asPokemonStat
 import io.github.lexadiky.pdx.domain.pokemon.entity.asType
-import io.github.lexadiky.pdx.lib.core.error.GenericError
+import io.github.lexadiky.pdx.library.core.error.GenericError
 import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.entity.pokemon.Pokemon
 import kotlin.reflect.KProperty1

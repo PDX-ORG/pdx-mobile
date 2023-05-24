@@ -14,7 +14,7 @@ import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetAllPokemonPreviewsUseCase
 import io.github.lexadiky.pdx.feature.whois.entity.WhoIsPokemonVariant
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.microdata.MicrodataManager
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from

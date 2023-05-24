@@ -37,9 +37,9 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSort
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.sort.MoveSortWidget
-import io.github.lexadiky.pdx.lib.arc.Page
-import io.github.lexadiky.pdx.lib.core.lce.Lce
-import io.github.lexadiky.pdx.lib.core.lce.contentOrNull
+import io.github.lexadiky.pdx.library.arc.Page
+import io.github.lexadiky.pdx.library.core.lce.Lce
+import io.github.lexadiky.pdx.library.core.lce.contentOrNull
 import io.github.lexadiky.pdx.lib.uikit.R
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.circular

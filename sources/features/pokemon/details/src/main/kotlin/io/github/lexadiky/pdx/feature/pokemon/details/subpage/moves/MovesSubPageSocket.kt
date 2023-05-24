@@ -10,10 +10,10 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetPokemonMovesUseCase
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSort
-import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
-import io.github.lexadiky.pdx.lib.core.lce.DynamicLceList
-import io.github.lexadiky.pdx.lib.core.lce.mapLce
-import io.github.lexadiky.pdx.lib.errorhandler.classify
+import io.github.lexadiky.pdx.library.arc.ViewModelSocket
+import io.github.lexadiky.pdx.library.core.lce.DynamicLceList
+import io.github.lexadiky.pdx.library.core.lce.mapLce
+import io.github.lexadiky.pdx.library.errorhandler.classify
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from
 import kotlinx.coroutines.flow.collectLatest

@@ -5,7 +5,7 @@ import arrow.core.continuations.either
 import io.github.lexadiky.pdx.domain.pokemon.entity.EvolutionNode
 import io.github.lexadiky.pdx.domain.pokemon.entity.evolution.EvolutionMethod
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPreviewUseCase
-import io.github.lexadiky.pdx.lib.core.error.GenericError
+import io.github.lexadiky.pdx.library.core.error.GenericError
 import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.entity.common.ResourcePointer
 import io.lexadiky.pokeapi.entity.evolution.EvolutionChain

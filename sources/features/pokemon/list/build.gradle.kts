@@ -13,10 +13,10 @@ dependencies {
     implementation(projects.domain.pokemonAsset)
 
     implementation(libs.akore.alice.robo)
-    implementation(projects.libs.uikit)
-    implementation(projects.libs.network)
-    implementation(projects.libs.errorHandler)
-    implementation(projects.libs.navigation)
+    implementation(projects.library.uikit)
+    implementation(projects.library.network)
+    implementation(projects.library.errorHandler)
+    implementation(projects.library.navigation)
     implementation(libs.akore.blogger.core)
     implementation(libs.arrow.core)
 

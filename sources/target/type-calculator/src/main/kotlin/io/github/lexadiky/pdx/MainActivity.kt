@@ -28,7 +28,7 @@ import io.github.lexadiky.akore.lechuck.robo.NavigationHost
 import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.lib.navigation.NavigationHostStyles
 import io.github.lexadiky.pdx.lib.navigation.NavigationModule
-import io.github.lexadiky.pdx.lib.system.SystemModule
+import io.github.lexadiky.pdx.library.system.SystemModule
 import io.github.lexadiky.pdx.ui.uikit.theme.PdxTheme
 import kotlinx.coroutines.launch
 

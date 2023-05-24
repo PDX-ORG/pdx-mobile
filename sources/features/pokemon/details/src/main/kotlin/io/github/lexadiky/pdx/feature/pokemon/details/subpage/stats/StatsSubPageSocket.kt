@@ -7,9 +7,9 @@ import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.usecase.ability.GetPokemonAbilitiesUseCase
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonAbilityData
-import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
-import io.github.lexadiky.pdx.lib.core.lce.mapLce
-import io.github.lexadiky.pdx.lib.errorhandler.classify
+import io.github.lexadiky.pdx.library.arc.ViewModelSocket
+import io.github.lexadiky.pdx.library.core.lce.mapLce
+import io.github.lexadiky.pdx.library.errorhandler.classify
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch

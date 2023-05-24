@@ -3,9 +3,9 @@ package io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon
 import arrow.core.Either
 import arrow.core.continuations.either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
-import io.github.lexadiky.pdx.lib.core.error.GenericError
-import io.github.lexadiky.pdx.lib.core.lce.DynamicLceList
-import io.github.lexadiky.pdx.lib.core.lce.lceFlow
+import io.github.lexadiky.pdx.library.core.error.GenericError
+import io.github.lexadiky.pdx.library.core.lce.DynamicLceList
+import io.github.lexadiky.pdx.library.core.lce.lceFlow
 import io.lexadiky.pokeapi.PokeApiClient
 
 class GetPokemonDetailsBySpeciesUseCase(

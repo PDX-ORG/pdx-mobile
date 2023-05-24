@@ -2,8 +2,8 @@ package io.github.lexadiky.pdx.feature.pokemon.details.subpage.info
 
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDescriptionData
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonPhysicalDimension
-import io.github.lexadiky.pdx.lib.core.lce.Lce
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.core.lce.Lce
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 

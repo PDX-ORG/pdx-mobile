@@ -7,7 +7,7 @@ import androidx.compose.runtime.remember
 import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListBanner
 import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
 import io.github.lexadiky.pdx.feature.generic.list.entity.SearchQuery
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

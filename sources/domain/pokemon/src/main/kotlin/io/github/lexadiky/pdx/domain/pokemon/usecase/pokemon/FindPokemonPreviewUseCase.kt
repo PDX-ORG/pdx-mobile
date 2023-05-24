@@ -2,7 +2,7 @@ package io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon
 
 import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
-import io.github.lexadiky.pdx.lib.core.error.GenericError
+import io.github.lexadiky.pdx.library.core.error.GenericError
 
 class FindPokemonPreviewUseCase(
     private val getAllPokemonPreviewsUseCase: GetAllPokemonPreviewsUseCase,

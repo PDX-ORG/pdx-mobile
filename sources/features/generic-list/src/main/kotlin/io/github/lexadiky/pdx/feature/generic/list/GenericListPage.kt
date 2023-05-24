@@ -25,8 +25,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
 import io.github.lexadiky.pdx.feature.generic.list.entity.SearchQuery
-import io.github.lexadiky.pdx.lib.dynbanner.DynamicBanner
-import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
+import io.github.lexadiky.pdx.library.dynbanner.DynamicBanner
+import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid

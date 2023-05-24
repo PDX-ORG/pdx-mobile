@@ -13,11 +13,11 @@ dependencies {
     implementation(projects.domain.achievement)
 
     implementation(libs.akore.alice.robo)
-    implementation(projects.libs.uikit)
-    implementation(projects.libs.errorHandler)
-    implementation(projects.libs.navigation)
-    implementation(projects.libs.microdata)
-    implementation(projects.libs.fs.core)
+    implementation(projects.library.uikit)
+    implementation(projects.library.errorHandler)
+    implementation(projects.library.navigation)
+    implementation(projects.library.microdata)
+    implementation(projects.library.fs.core)
 
     implementation(libs.akore.blogger.core)
     implementation(libs.arrow.core)

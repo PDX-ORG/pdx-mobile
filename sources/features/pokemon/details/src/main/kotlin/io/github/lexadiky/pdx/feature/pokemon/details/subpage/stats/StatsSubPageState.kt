@@ -4,7 +4,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonArchetype
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonStat
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonAbilityData
-import io.github.lexadiky.pdx.lib.core.lce.Lce
+import io.github.lexadiky.pdx.library.core.lce.Lce
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 

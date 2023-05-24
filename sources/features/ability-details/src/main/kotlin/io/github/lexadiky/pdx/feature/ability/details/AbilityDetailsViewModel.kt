@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.usecase.ability.GetAbilityUseCase
-import io.github.lexadiky.pdx.lib.errorhandler.classify
+import io.github.lexadiky.pdx.library.errorhandler.classify
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from
 import kotlinx.coroutines.launch

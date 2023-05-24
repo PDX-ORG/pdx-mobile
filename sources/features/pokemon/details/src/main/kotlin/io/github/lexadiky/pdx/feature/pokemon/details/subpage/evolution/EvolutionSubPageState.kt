@@ -2,7 +2,7 @@ package io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution
 
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.entity.EvolutionLinkPokemonVR
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.entity.EvolvesToVR
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 
 internal data class EvolutionSubPageState(
     val error: UIError? = null,

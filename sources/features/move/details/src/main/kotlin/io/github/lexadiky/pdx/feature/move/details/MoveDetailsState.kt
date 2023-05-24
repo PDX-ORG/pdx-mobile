@@ -2,7 +2,7 @@ package io.github.lexadiky.pdx.feature.move.details
 
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.move.details.entity.attribute.MoveAttribute
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from
 

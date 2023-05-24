@@ -5,10 +5,10 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.libs.microdata)
-    implementation(projects.libs.fs.core)
-    implementation(projects.libs.localeManager)
-    implementation(projects.libs.core)
+    implementation(projects.library.microdata)
+    implementation(projects.library.fs.core)
+    implementation(projects.library.localeManager)
+    implementation(projects.library.core)
 
     implementation(libs.kotlin.serialization.json)
     implementation(libs.akore.blogger.core)

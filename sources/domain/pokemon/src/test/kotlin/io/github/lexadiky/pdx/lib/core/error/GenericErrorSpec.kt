@@ -1,5 +1,6 @@
 package io.github.lexadiky.pdx.lib.core.error
 
+import io.github.lexadiky.pdx.library.core.error.GenericError
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.equals.shouldBeEqual
 import io.kotest.matchers.nulls.shouldBeNull

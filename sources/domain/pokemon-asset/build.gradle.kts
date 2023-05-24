@@ -6,8 +6,8 @@ plugins {
 
 dependencies {
     implementation(projects.domain.pokemon)
-    implementation(projects.libs.resources)
-    implementation(projects.libs.navigation)
+    implementation(projects.library.resources)
+    implementation(projects.library.navigation)
 
     implementation(libs.arrow.core)
 }

@@ -9,9 +9,9 @@ android {
 }
 
 dependencies {
-    implementation(projects.libs.uikit)
-    implementation(projects.libs.errorHandler)
-    implementation(projects.libs.navigation)
+    implementation(projects.library.uikit)
+    implementation(projects.library.errorHandler)
+    implementation(projects.library.navigation)
 
     implementation(projects.domain.pokemon)
     implementation(projects.domain.pokemonAsset)

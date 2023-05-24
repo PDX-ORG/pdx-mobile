@@ -9,12 +9,12 @@ android {
 
 dependencies {
     implementation(libs.akore.alice.robo)
-    implementation(projects.libs.uikit)
-    implementation(projects.libs.network)
-    implementation(projects.libs.errorHandler)
-    implementation(projects.libs.navigation)
-    implementation(projects.libs.fs.core)
-    implementation(projects.libs.localeManager)
+    implementation(projects.library.uikit)
+    implementation(projects.library.network)
+    implementation(projects.library.errorHandler)
+    implementation(projects.library.navigation)
+    implementation(projects.library.fs.core)
+    implementation(projects.library.localeManager)
 
     implementation(projects.domain.achievement)
     implementation(projects.domain.pokemon)

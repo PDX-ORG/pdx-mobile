@@ -1,14 +1,10 @@
 package io.github.lexadiky.pdx.feature.news.domain
 
 import arrow.core.Either
-import arrow.core.computations.ResultEffect.bind
 import arrow.core.continuations.either
-import io.github.lexadiky.akore.blogger.BLogger
-import io.github.lexadiky.akore.blogger.error
 import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
 import io.github.lexadiky.pdx.feature.news.entity.domain.RedditResponse
-import io.github.lexadiky.pdx.lib.core.error.GenericError
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.core.error.GenericError
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource

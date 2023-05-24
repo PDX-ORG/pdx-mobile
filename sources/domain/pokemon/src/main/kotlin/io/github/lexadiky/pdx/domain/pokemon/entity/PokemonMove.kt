@@ -1,6 +1,6 @@
 package io.github.lexadiky.pdx.domain.pokemon.entity
 
-import io.github.lexadiky.pdx.lib.core.fts.FtsIndex
+import io.github.lexadiky.pdx.library.core.fts.FtsIndex
 
 data class PokemonMove(
     val name: String,

@@ -12,7 +12,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.entity.EvolutionLinkPokemonVR
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.widget.EvolutionMethodWidget
-import io.github.lexadiky.pdx.lib.arc.Page
+import io.github.lexadiky.pdx.library.arc.Page
 import io.github.lexadiky.pdx.ui.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid

@@ -28,9 +28,9 @@ import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonPhysicalDimension
-import io.github.lexadiky.pdx.lib.core.lce.Lce
-import io.github.lexadiky.pdx.lib.core.lce.contentOrNull
-import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
+import io.github.lexadiky.pdx.library.core.lce.Lce
+import io.github.lexadiky.pdx.library.core.lce.contentOrNull
+import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.theme.transparent

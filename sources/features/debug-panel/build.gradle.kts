@@ -9,9 +9,9 @@ android {
 
 dependencies {
     implementation(projects.domain.achievement)
-    implementation(projects.libs.featureToggle)
-    implementation(projects.libs.navigation)
-    implementation(projects.libs.uikit)
+    implementation(projects.library.featureToggle)
+    implementation(projects.library.navigation)
+    implementation(projects.library.uikit)
 
     implementation(libs.akore.alice.robo)
 }

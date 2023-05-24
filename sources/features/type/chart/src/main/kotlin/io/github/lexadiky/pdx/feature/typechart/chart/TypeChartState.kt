@@ -3,7 +3,7 @@ package io.github.lexadiky.pdx.feature.typechart.chart
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.typechart.entity.DamageRelationsSubState
 import io.github.lexadiky.pdx.feature.typechart.entity.TypeDamageValue
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 
 data class TypeChartState(
     val damageRelationsSubState: DamageRelationsSubState = DamageRelationsSubState(),

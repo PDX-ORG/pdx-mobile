@@ -8,9 +8,9 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDetailsSection
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonPhysicalDimension
 import io.github.lexadiky.pdx.feature.pokemon.details.utils.extractDimensions
-import io.github.lexadiky.pdx.lib.core.lce.Lce
-import io.github.lexadiky.pdx.lib.core.lce.contentOrNull
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.core.lce.Lce
+import io.github.lexadiky.pdx.library.core.lce.contentOrNull
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.image.placeholder

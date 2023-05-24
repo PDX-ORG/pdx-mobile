@@ -2,8 +2,8 @@ package io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move
 
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonMoveData
-import io.github.lexadiky.pdx.lib.core.lce.Lce
-import io.github.lexadiky.pdx.lib.core.lce.contentOrNull
+import io.github.lexadiky.pdx.library.core.lce.Lce
+import io.github.lexadiky.pdx.library.core.lce.contentOrNull
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 

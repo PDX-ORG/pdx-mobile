@@ -23,7 +23,7 @@ import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.feature.move.details.entity.attribute.MoveAttribute
 import io.github.lexadiky.pdx.feature.move.details.widget.MoveDetailsHeader
-import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
+import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.grid
 import io.github.lexadiky.pdx.ui.uikit.widget.placeholder

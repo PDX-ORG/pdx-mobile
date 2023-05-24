@@ -4,7 +4,7 @@ import arrow.core.Either
 import arrow.core.continuations.either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonGameVersion
 import io.github.lexadiky.pdx.domain.pokemon.util.ofCurrentLocale
-import io.github.lexadiky.pdx.lib.core.error.GenericError
+import io.github.lexadiky.pdx.library.core.error.GenericError
 import io.github.lexadiky.pdx.lib.locale.LocaleManager
 import io.lexadiky.pokeapi.PokeApiClient
 

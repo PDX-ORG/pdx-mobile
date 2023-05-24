@@ -9,8 +9,8 @@ android {
 
 dependencies {
     implementation(projects.domain.pokemon)
-    implementation(projects.libs.uikit)
-    implementation(projects.libs.errorHandler)
+    implementation(projects.library.uikit)
+    implementation(projects.library.errorHandler)
 
     implementation(libs.akore.alice.robo)
     implementation(libs.arrow.core)

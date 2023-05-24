@@ -13,7 +13,7 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetAllPokemonPrevie
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelationsUseCase
 import io.github.lexadiky.pdx.feature.typechart.entity.PokemonSuggester
 import io.github.lexadiky.pdx.feature.typechart.entity.PokemonTypeSearchItem
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource

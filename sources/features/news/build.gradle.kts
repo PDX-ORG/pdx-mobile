@@ -9,12 +9,12 @@ android {
 }
 
 dependencies {
-    implementation(projects.libs.uikit)
-    implementation(projects.libs.arc)
-    implementation(projects.libs.errorHandler)
-    implementation(projects.libs.featureToggle)
-    implementation(projects.libs.network)
-    implementation(projects.libs.navigation)
+    implementation(projects.library.uikit)
+    implementation(projects.library.arc)
+    implementation(projects.library.errorHandler)
+    implementation(projects.library.featureToggle)
+    implementation(projects.library.network)
+    implementation(projects.library.navigation)
 
     implementation(libs.akore.alice.robo)
     implementation(libs.akore.blogger.core)

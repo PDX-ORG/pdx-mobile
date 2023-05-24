@@ -11,8 +11,8 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.usecase.evolution.GetPokemonEvolutionDetailsUseCase
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.entity.EvolutionLinkPokemonVR
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.entity.EvolvesToVR
-import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
-import io.github.lexadiky.pdx.lib.errorhandler.classify
+import io.github.lexadiky.pdx.library.arc.ViewModelSocket
+import io.github.lexadiky.pdx.library.errorhandler.classify
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.image.orPlaceholder

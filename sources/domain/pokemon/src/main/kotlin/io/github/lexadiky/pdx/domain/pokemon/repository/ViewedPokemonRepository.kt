@@ -7,7 +7,7 @@ import io.github.lexadiky.akore.blogger.error
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.FindPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
-import io.github.lexadiky.pdx.lib.core.error.GenericError
+import io.github.lexadiky.pdx.library.core.error.GenericError
 import io.github.lexadiky.pdx.lib.microdata.MicrodataManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

@@ -1,7 +1,7 @@
 package io.github.lexadiky.pdx.feature.home
 
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonItem
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 
 data class HomePageState(
     val featuredPokemon: List<SuggestedPokemonItem> = emptyList(),

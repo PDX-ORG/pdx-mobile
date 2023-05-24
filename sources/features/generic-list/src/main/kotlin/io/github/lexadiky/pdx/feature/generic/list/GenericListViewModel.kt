@@ -14,7 +14,7 @@ import io.github.lexadiky.pdx.feature.generic.list.domain.GenericListItemDataSou
 import io.github.lexadiky.pdx.feature.generic.list.domain.GenericListNavigator
 import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
 import io.github.lexadiky.pdx.feature.generic.list.entity.SearchQuery
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 import io.github.lexadiky.pdx.ui.uikit.util.ShakeDetector
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

@@ -11,8 +11,8 @@ import io.github.lexadiky.pdx.feature.home.entitiy.HomeMenuItemType
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonItem
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonType
 import io.github.lexadiky.pdx.generated.analytics.HomeEventsSpec
-import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.arc.ViewModelSocket
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.navigation.ShareIntentSender
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from

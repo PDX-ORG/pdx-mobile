@@ -1,7 +1,7 @@
 package io.github.lexadiky.pdx.feature.whois
 
 import io.github.lexadiky.pdx.feature.whois.entity.WhoIsPokemonVariant
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 
 data class WhoIsState(
     val error: UIError? = null,

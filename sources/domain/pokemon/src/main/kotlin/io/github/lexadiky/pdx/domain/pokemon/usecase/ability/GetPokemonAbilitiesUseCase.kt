@@ -4,10 +4,10 @@ import arrow.core.Either
 import arrow.core.continuations.either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonAbility
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
-import io.github.lexadiky.pdx.lib.core.error.GenericError
-import io.github.lexadiky.pdx.lib.core.lce.DynamicLceList
-import io.github.lexadiky.pdx.lib.core.lce.lceFlow
-import io.github.lexadiky.pdx.lib.core.utils.asEither
+import io.github.lexadiky.pdx.library.core.error.GenericError
+import io.github.lexadiky.pdx.library.core.lce.DynamicLceList
+import io.github.lexadiky.pdx.library.core.lce.lceFlow
+import io.github.lexadiky.pdx.library.core.utils.asEither
 import io.lexadiky.pokeapi.PokeApiClient
 import io.lexadiky.pokeapi.entity.pokemon.Pokemon
 

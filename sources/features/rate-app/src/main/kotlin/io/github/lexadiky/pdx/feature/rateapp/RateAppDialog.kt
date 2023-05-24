@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
-import io.github.lexadiky.pdx.lib.arc.Page
+import io.github.lexadiky.pdx.library.arc.Page
 
 @Composable
 fun RateAppDialog() {

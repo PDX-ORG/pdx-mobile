@@ -12,13 +12,13 @@ android {
 }
 
 dependencies {
-    implementation(projects.libs.target)
-    implementation(projects.libs.uikit)
+    implementation(projects.library.target)
+    implementation(projects.library.uikit)
     implementation(libs.akore.alice.robo)
-    implementation(projects.libs.featureToggle)
-    implementation(projects.libs.network)
-    implementation(projects.libs.navigation)
-    implementation(projects.libs.system)
+    implementation(projects.library.featureToggle)
+    implementation(projects.library.network)
+    implementation(projects.library.navigation)
+    implementation(projects.library.system)
     implementation(libs.akore.blogger.core)
     implementation(projects.domain.achievement)
     implementation(projects.features.settings)

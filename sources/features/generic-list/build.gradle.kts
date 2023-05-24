@@ -8,11 +8,11 @@ android {
 }
 
 dependencies {
-    implementation(projects.libs.uikit)
-    implementation(projects.libs.network)
-    implementation(projects.libs.errorHandler)
-    implementation(projects.libs.navigation)
-    implementation(projects.libs.dynamicBanner)
+    implementation(projects.library.uikit)
+    implementation(projects.library.network)
+    implementation(projects.library.errorHandler)
+    implementation(projects.library.navigation)
+    implementation(projects.library.dynamicBanner)
     implementation(projects.domain.pokemon)
     implementation(projects.domain.achievement)
 

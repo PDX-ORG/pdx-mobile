@@ -13,7 +13,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonMove
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetMoveDetailsUseCase
 import io.github.lexadiky.pdx.feature.move.details.entity.attribute.MoveAttribute
-import io.github.lexadiky.pdx.lib.errorhandler.classify
+import io.github.lexadiky.pdx.library.errorhandler.classify
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.image.from
 import io.github.lexadiky.pdx.lib.resources.string.StringResource

@@ -4,7 +4,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonTypeDamageRelation
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonTypeDamageRelationTable
 import io.github.lexadiky.pdx.feature.type.details.entity.TypePokemonPreview
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 
 internal data class TypeDetailsState(
     val type: PokemonType,

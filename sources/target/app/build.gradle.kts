@@ -10,12 +10,12 @@ android {
 }
 
 dependencies {
-    implementation(projects.libs.uikit)
-    implementation(projects.libs.featureToggle)
-    implementation(projects.libs.network)
-    implementation(projects.libs.navigation)
-    implementation(projects.libs.system)
-    implementation(projects.libs.target)
+    implementation(projects.library.uikit)
+    implementation(projects.library.featureToggle)
+    implementation(projects.library.network)
+    implementation(projects.library.navigation)
+    implementation(projects.library.system)
+    implementation(projects.library.target)
     implementation(projects.domain.achievement)
     implementation(projects.domain.pokemonAsset)
     implementation(projects.features.toolbar)

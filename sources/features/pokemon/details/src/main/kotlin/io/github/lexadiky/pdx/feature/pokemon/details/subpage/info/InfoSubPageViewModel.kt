@@ -13,10 +13,10 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPokedexDe
 import io.github.lexadiky.pdx.feature.pokemon.details.R
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDescriptionData
 import io.github.lexadiky.pdx.feature.pokemon.details.utils.extractDimensions
-import io.github.lexadiky.pdx.lib.core.error.GenericError
-import io.github.lexadiky.pdx.lib.core.lce.DynamicLceList
-import io.github.lexadiky.pdx.lib.core.lce.mapLce
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.core.error.GenericError
+import io.github.lexadiky.pdx.library.core.lce.DynamicLceList
+import io.github.lexadiky.pdx.library.core.lce.mapLce
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.format
 import io.github.lexadiky.pdx.lib.resources.string.from

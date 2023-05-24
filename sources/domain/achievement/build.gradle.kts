@@ -4,8 +4,8 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.libs.resources)
-    implementation(projects.libs.uikit)
+    implementation(projects.library.resources)
+    implementation(projects.library.uikit)
 
     implementation(libs.akore.blogger.core)
     implementation(libs.akore.alice.core)

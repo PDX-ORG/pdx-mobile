@@ -13,7 +13,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonTypeDamageRelation
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetAllPokemonPreviewsUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.GetPokemonTypeDamageRelationsUseCase
 import io.github.lexadiky.pdx.feature.type.details.entity.TypePokemonPreview
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
+import io.github.lexadiky.pdx.library.errorhandler.UIError
 import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.akore.lechuck.utils.navigate
 import kotlinx.coroutines.launch

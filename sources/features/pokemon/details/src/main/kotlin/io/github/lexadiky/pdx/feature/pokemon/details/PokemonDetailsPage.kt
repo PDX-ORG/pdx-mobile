@@ -62,9 +62,9 @@ import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.Evolutio
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.info.InfoSubPage
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.MovesSubPage
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.stats.StatsSubPage
-import io.github.lexadiky.pdx.lib.arc.Page
-import io.github.lexadiky.pdx.lib.core.lce.Lce
-import io.github.lexadiky.pdx.lib.errorhandler.ErrorDialog
+import io.github.lexadiky.pdx.library.arc.Page
+import io.github.lexadiky.pdx.library.core.lce.Lce
+import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.lib.navigation.FullScreenDialogStyles
 import io.github.lexadiky.pdx.lib.resources.image.ImageResource
 import io.github.lexadiky.pdx.lib.resources.string.StringResource

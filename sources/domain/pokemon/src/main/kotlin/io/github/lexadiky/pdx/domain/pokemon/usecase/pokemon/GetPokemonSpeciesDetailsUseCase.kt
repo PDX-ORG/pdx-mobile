@@ -8,7 +8,7 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.UseRomajiLocaleFlag
 import io.github.lexadiky.pdx.domain.pokemon.entity.asLanguage
 import io.github.lexadiky.pdx.domain.pokemon.util.asPokemonLanguage
-import io.github.lexadiky.pdx.lib.core.error.GenericError
+import io.github.lexadiky.pdx.library.core.error.GenericError
 import io.github.lexadiky.pdx.lib.locale.LocaleManager
 import io.lexadiky.pokeapi.PokeApiClient
 import kotlinx.coroutines.Dispatchers

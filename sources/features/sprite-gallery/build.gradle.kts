@@ -11,9 +11,9 @@ dependencies {
     implementation(projects.domain.pokemonAsset)
     implementation(projects.domain.pokemon)
 
-    implementation(projects.libs.uikit)
-    implementation(projects.libs.navigation)
-    implementation(projects.libs.errorHandler)
+    implementation(projects.library.uikit)
+    implementation(projects.library.navigation)
+    implementation(projects.library.errorHandler)
 
     implementation(libs.akore.alice.robo)
 }

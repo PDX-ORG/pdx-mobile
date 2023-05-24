@@ -10,9 +10,11 @@
 
 ## Screenshots
 
-Home |                          Pokemon Details                           | Settings
-:---:|:------------------------------------------------------------------:|:-------------------------: 
-![home_sample.png](assets%2Fhome_sample.png)  | ![pokemon_details_sample.png](assets%2Fpokemon_details_sample.png) | ![settings_sample.png](assets%2Fsettings_sample.png)
+<p>
+  <img width="240" src="assets/home_sample.png">
+  <img width="240" src="assets/pokemon_details_sample.png">
+  <img width="240" src="assets/settings_sample.png">
+</p>
 
 ## Features
 

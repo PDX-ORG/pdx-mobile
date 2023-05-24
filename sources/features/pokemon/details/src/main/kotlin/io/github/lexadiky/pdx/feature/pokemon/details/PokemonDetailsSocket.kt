@@ -14,10 +14,10 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAs
 import io.github.lexadiky.pdx.feature.pokemon.details.toggle.SpritesViewerFeatureToggle
 import io.github.lexadiky.pdx.feature.pokemon.details.usecase.GetAvailableDetailsSections
 import io.github.lexadiky.pdx.lib.FeatureToggleManager
-import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
-import io.github.lexadiky.pdx.lib.core.lce.contentOrNull
-import io.github.lexadiky.pdx.lib.errorhandler.UIError
-import io.github.lexadiky.pdx.lib.errorhandler.classify
+import io.github.lexadiky.pdx.library.arc.ViewModelSocket
+import io.github.lexadiky.pdx.library.core.lce.contentOrNull
+import io.github.lexadiky.pdx.library.errorhandler.UIError
+import io.github.lexadiky.pdx.library.errorhandler.classify
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

@@ -2,9 +2,9 @@ package io.github.lexadiky.pdx.feature.rateapp
 
 import androidx.lifecycle.viewModelScope
 import io.github.lexadiky.pdx.generated.analytics.RateAppEventsSpec
-import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
+import io.github.lexadiky.pdx.library.arc.ViewModelSocket
 import io.github.lexadiky.pdx.lib.microdata.MicrodataManager
-import io.github.lexadiky.pdx.lib.system.ReviewRequester
+import io.github.lexadiky.pdx.library.system.ReviewRequester
 import kotlin.time.Duration.Companion.minutes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

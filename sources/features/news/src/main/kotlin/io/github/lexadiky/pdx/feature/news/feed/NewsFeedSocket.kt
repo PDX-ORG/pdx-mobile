@@ -6,8 +6,8 @@ import io.github.lexadiky.akore.lechuck.Navigator
 import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.feature.news.domain.GetNewsFeedUseCase
 import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
-import io.github.lexadiky.pdx.lib.arc.ViewModelSocket
-import io.github.lexadiky.pdx.lib.errorhandler.classify
+import io.github.lexadiky.pdx.library.arc.ViewModelSocket
+import io.github.lexadiky.pdx.library.errorhandler.classify
 import kotlinx.coroutines.launch
 
 internal class NewsFeedSocket(

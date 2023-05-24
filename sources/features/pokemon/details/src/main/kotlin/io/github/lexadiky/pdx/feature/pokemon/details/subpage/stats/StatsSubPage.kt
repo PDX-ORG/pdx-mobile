@@ -36,8 +36,8 @@ import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.feature.pokemon.details.R
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonAbilityData
-import io.github.lexadiky.pdx.lib.arc.Page
-import io.github.lexadiky.pdx.lib.core.lce.contentOrNull
+import io.github.lexadiky.pdx.library.arc.Page
+import io.github.lexadiky.pdx.library.core.lce.contentOrNull
 import io.github.lexadiky.pdx.lib.resources.string.orPlaceholder
 import io.github.lexadiky.pdx.ui.uikit.resources.render
 import io.github.lexadiky.pdx.ui.uikit.theme.animation

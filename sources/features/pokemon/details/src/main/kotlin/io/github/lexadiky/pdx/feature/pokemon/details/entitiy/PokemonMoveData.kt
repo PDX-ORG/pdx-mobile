@@ -1,7 +1,7 @@
 package io.github.lexadiky.pdx.feature.pokemon.details.entitiy
 
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
-import io.github.lexadiky.pdx.lib.core.fts.FtsIndex
+import io.github.lexadiky.pdx.library.core.fts.FtsIndex
 import io.github.lexadiky.pdx.lib.resources.string.StringResource
 import io.github.lexadiky.pdx.lib.resources.string.from
 
