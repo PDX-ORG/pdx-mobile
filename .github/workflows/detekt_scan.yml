@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  lint:
     runs-on: macos-latest
 
     steps:
