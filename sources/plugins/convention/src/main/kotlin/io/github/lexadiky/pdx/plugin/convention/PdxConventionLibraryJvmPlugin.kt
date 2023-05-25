@@ -4,6 +4,7 @@ import io.github.lexadiky.pdx.plugin.convention.mixin.TestMixin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.extra
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
 class PdxConventionLibraryJvmPlugin : Plugin<Project> {
@@ -13,7 +14,7 @@ class PdxConventionLibraryJvmPlugin : Plugin<Project> {
         target.plugins.apply("org.jetbrains.kotlinx.kover")
 
         target.extensions.configure<KotlinProjectExtension>() {
-            jvmToolchain(17)
+            jvmToolchain(target.extra["pdx.kotlin.jvm-toolchain"].toString().toInt())
         }
 
         TestMixin.mix(target)

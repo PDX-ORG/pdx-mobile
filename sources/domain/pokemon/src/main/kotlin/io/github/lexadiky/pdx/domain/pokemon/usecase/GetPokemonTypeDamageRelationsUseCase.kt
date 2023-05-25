@@ -4,8 +4,8 @@ import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonTypeDamageRelation
 import io.github.lexadiky.pdx.library.core.error.GenericError
-import io.github.lexadiky.pdx.lib.fs.statist.StaticResourceProvider
-import io.github.lexadiky.pdx.lib.fs.statist.provide
+import io.github.lexadiky.pdx.library.fs.statist.StaticResourceProvider
+import io.github.lexadiky.pdx.library.fs.statist.provide
 
 class GetPokemonTypeDamageRelationsUseCase internal constructor(
     private val resourceProvider: StaticResourceProvider

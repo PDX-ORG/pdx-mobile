@@ -3,7 +3,7 @@ package io.github.lexadiky.pdx.domain.pokemon.repository
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
-import io.github.lexadiky.pdx.lib.microdata.MicrodataManager
+import io.github.lexadiky.pdx.library.microdata.MicrodataManager
 
 internal class FavoritePokemonRepository(microdataManager: MicrodataManager) {
 

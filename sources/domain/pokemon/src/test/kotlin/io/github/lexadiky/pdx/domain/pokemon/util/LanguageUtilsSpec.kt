@@ -1,8 +1,8 @@
 package io.github.lexadiky.pdx.domain.pokemon.util
 
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
-import io.github.lexadiky.pdx.lib.locale.LocaleManager
-import io.github.lexadiky.pdx.lib.locale.LocaleSettings
+import io.github.lexadiky.pdx.library.locale.LocaleManager
+import io.github.lexadiky.pdx.library.locale.LocaleSettings
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.equals.shouldBeEqual

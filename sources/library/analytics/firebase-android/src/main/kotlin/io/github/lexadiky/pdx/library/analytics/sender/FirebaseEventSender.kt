@@ -42,6 +42,7 @@ class FirebaseEventSender internal constructor(private val firebaseAnalytics: Fi
         )
 
         @SuppressLint("MissingPermission")
+        @Suppress("SwallowedException")
         fun create(context: Context): EventSender {
             val allPermissionsGranted = REQUIRED_PERMISSIONS.all {
                 context.checkSelfPermission(it) == PackageManager.PERMISSION_GRANTED

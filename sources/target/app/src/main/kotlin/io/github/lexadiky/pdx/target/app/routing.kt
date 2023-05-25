@@ -19,8 +19,8 @@ import io.github.lexadiky.pdx.feature.spritegallery.SpriteGalleryPage
 import io.github.lexadiky.pdx.feature.type.details.TypeDetailsPage
 import io.github.lexadiky.pdx.feature.typechart.TypePage
 import io.github.lexadiky.pdx.feature.whois.WhoIsPage
-import io.github.lexadiky.pdx.lib.FeatureToggleManager
-import io.github.lexadiky.pdx.lib.ifEnabled
+import io.github.lexadiky.pdx.library.featuretoggle.FeatureToggleManager
+import io.github.lexadiky.pdx.library.featuretoggle.ifEnabled
 
 @Composable
 fun routing(): NaviNavGraphBuilder.() -> Unit {

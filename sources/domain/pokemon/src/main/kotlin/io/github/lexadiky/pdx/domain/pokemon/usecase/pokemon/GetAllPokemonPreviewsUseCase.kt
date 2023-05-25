@@ -4,9 +4,9 @@ import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.entity.DiscoveryPokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.library.core.error.GenericError
-import io.github.lexadiky.pdx.lib.fs.statist.StaticResourceProvider
-import io.github.lexadiky.pdx.lib.fs.statist.provide
-import io.github.lexadiky.pdx.lib.locale.LocaleManager
+import io.github.lexadiky.pdx.library.fs.statist.StaticResourceProvider
+import io.github.lexadiky.pdx.library.fs.statist.provide
+import io.github.lexadiky.pdx.library.locale.LocaleManager
 
 class GetAllPokemonPreviewsUseCase internal constructor(
     private val resourceProvider: StaticResourceProvider,

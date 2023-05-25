@@ -2,7 +2,10 @@ style:
   MaxLineLength:
     maxLineLength: 180
   ForbiddenImport:
-    forbiddenPatterns: org.junit.*
+    forbiddenPatterns:
+      - org.junit.*
+      - io.github.lexadiky.pdx.library.uikit.R
+
 
 complexity:
   LongMethod:

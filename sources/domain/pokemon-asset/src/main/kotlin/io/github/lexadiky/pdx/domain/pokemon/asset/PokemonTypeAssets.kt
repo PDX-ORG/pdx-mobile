@@ -1,12 +1,12 @@
 package io.github.lexadiky.pdx.domain.pokemon.asset
 
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
-import io.github.lexadiky.pdx.lib.resources.color.ColorResource
-import io.github.lexadiky.pdx.lib.resources.color.from
-import io.github.lexadiky.pdx.lib.resources.image.ImageResource
-import io.github.lexadiky.pdx.lib.resources.image.from
-import io.github.lexadiky.pdx.lib.resources.string.StringResource
-import io.github.lexadiky.pdx.lib.resources.string.from
+import io.github.lexadiky.pdx.library.resources.color.ColorResource
+import io.github.lexadiky.pdx.library.resources.color.from
+import io.github.lexadiky.pdx.library.resources.image.ImageResource
+import io.github.lexadiky.pdx.library.resources.image.from
+import io.github.lexadiky.pdx.library.resources.string.StringResource
+import io.github.lexadiky.pdx.library.resources.string.from
 
 @Suppress("MagicNumber")
 enum class PokemonTypeAssets(

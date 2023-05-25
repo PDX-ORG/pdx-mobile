@@ -4,12 +4,12 @@ import android.content.Context
 import io.github.lexadiky.akore.alice.DIContainer
 import io.github.lexadiky.akore.alice.builder
 import io.github.lexadiky.pdx.domain.pokemon.PokemonDomainModule
-import io.github.lexadiky.pdx.lib.FeatureToggleModule
+import io.github.lexadiky.pdx.library.featuretoggle.FeatureToggleModule
 import io.github.lexadiky.pdx.lib.firebase.FirebaseModule
-import io.github.lexadiky.pdx.lib.fs.RoboFsModule
+import io.github.lexadiky.pdx.library.fs.RoboFsModule
 import network.NetworkModule
 import io.github.lexadiky.pdx.library.target.util.DIContainerWatchdog
-import io.github.lexadiky.pdx.ui.uikit.UikitModule
+import io.github.lexadiky.pdx.library.uikit.UikitModule
 
 class InitialDIContainerBuilder {
 

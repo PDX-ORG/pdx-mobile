@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import io.github.lexadiky.pdx.lib.microdata.MicrodataFactory
-import io.github.lexadiky.pdx.lib.microdata.MicrodataManager
+import io.github.lexadiky.pdx.library.microdata.MicrodataFactory
+import io.github.lexadiky.pdx.library.microdata.MicrodataManager
 import java.util.concurrent.Executors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.asCoroutineDispatcher

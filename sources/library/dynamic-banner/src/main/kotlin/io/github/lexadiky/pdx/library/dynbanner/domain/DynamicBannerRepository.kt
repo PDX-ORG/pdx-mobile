@@ -3,7 +3,7 @@ package io.github.lexadiky.pdx.library.dynbanner.domain
 import arrow.core.Either
 import io.github.lexadiky.pdx.library.core.error.GenericError
 import io.github.lexadiky.pdx.library.dynbanner.entity.Banner
-import io.github.lexadiky.pdx.lib.fs.statist.StaticResourceProvider
+import io.github.lexadiky.pdx.library.fs.statist.StaticResourceProvider
 import java.net.URI
 import kotlin.reflect.typeOf
 

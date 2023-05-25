@@ -2,7 +2,7 @@ package io.github.lexadiky.pdx.domain.pokemon.util
 
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonLanguage
 import io.github.lexadiky.pdx.domain.pokemon.entity.asLanguage
-import io.github.lexadiky.pdx.lib.locale.LocaleManager
+import io.github.lexadiky.pdx.library.locale.LocaleManager
 import io.lexadiky.pokeapi.entity.common.Name
 import java.util.Locale
 

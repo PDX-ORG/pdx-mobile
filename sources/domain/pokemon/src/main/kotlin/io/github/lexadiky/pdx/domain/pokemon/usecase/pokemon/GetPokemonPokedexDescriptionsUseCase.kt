@@ -11,7 +11,7 @@ import io.github.lexadiky.pdx.library.core.error.GenericError
 import io.github.lexadiky.pdx.library.core.lce.DynamicLceList
 import io.github.lexadiky.pdx.library.core.lce.lceFlow
 import io.github.lexadiky.pdx.library.core.utils.removeNewLines
-import io.github.lexadiky.pdx.lib.locale.LocaleManager
+import io.github.lexadiky.pdx.library.locale.LocaleManager
 import io.lexadiky.pokeapi.PokeApiClient
 
 class GetPokemonPokedexDescriptionsUseCase(

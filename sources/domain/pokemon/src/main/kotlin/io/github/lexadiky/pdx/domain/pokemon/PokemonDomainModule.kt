@@ -26,7 +26,7 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonVarietyDe
 import io.github.lexadiky.pdx.domain.pokemon.usecase.prefetch.PrefetchPokemonDataUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
-import io.github.lexadiky.pdx.lib.locale.LocaleManagerModule
+import io.github.lexadiky.pdx.library.locale.LocaleManagerModule
 
 val PokemonDomainModule by module("domain-pokemon") {
     import(LocaleManagerModule)

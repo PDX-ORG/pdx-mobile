@@ -1,8 +1,8 @@
 package io.github.lexadiky.pdx.domain.pokemon.asset
 
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonStat
-import io.github.lexadiky.pdx.lib.resources.string.StringResource
-import io.github.lexadiky.pdx.lib.resources.string.from
+import io.github.lexadiky.pdx.library.resources.string.StringResource
+import io.github.lexadiky.pdx.library.resources.string.from
 
 enum class PokemonStatAssets(
     shortTitleResource: Int

@@ -1,7 +1,7 @@
 package io.github.lexadiky.pdx.domain.achievement.library
 
-import io.github.lexadiky.pdx.lib.resources.image.ImageResource
-import io.github.lexadiky.pdx.lib.resources.string.StringResource
+import io.github.lexadiky.pdx.library.resources.image.ImageResource
+import io.github.lexadiky.pdx.library.resources.string.StringResource
 
 interface Achievement {
 
