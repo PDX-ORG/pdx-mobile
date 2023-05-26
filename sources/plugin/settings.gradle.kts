@@ -13,7 +13,7 @@ dependencyResolutionManagement {
 pluginManagement {
 }
 
-rootProject.name = "plugins"
+rootProject.name = "plugin"
 
 include(
     ":eve",
