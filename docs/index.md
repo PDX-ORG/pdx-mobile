@@ -1,7 +1,7 @@
 # PDX Mobile documentation
 
 - Architecture
-    - [Module Structure](module-structure.md)
-    - [Error Handling](error-handling.md)
-    - [ViewModel](viewmodel.md)
+    - [Module Structure](architecture/module-structure.md)
+    - [Error Handling](architecture/error-handling.md)
+    - [ViewModel](architecture/viewmodel.md)
 
