@@ -22,7 +22,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "pdx-mobile"
 
-includeBuild("sources/plugin")
+includeBuild("sources/plugins")
 includeRecursive("sources")
 
 fun includeRecursive(path: String) {

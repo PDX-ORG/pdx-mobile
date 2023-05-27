@@ -2,15 +2,13 @@ package io.github.lexadiky.pdx.library.analytics
 
 import io.github.lexadiky.pdx.library.analytics.sender.EventSender
 
-class AnalyticsManager : EventSender {
+interface AnalyticsManager : EventSender {
 
-    private val eventSenders: MutableList<EventSender> = ArrayList()
+    companion object {
 
-    override fun log(event: String, parameters: Map<String, Any>) {
-        eventSenders.forEach { sender -> sender.log(event, parameters) }
-    }
-
-    fun registerEventSender(sender: EventSender) {
-        eventSenders += sender
+        fun delegate(eventSenders: List<EventSender>): AnalyticsManager {
+            return DelegatingAnalyticsManager(eventSenders)
+        }
     }
 }
+

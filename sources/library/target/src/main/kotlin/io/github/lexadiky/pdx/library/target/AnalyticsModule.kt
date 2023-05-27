@@ -12,8 +12,10 @@ val AnalyticsModule by module("analytics") {
 }
 
 private fun createAnalyticsManager(context: Context): AnalyticsManager {
-    return AnalyticsManager().apply {
-        registerEventSender(FirebaseEventSender.create(context))
-        registerEventSender(BloggerEventSender())
-    }
+    return AnalyticsManager.delegate(
+        listOf(
+            FirebaseEventSender.create(context),
+            BloggerEventSender()
+        )
+    )
 }
