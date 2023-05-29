@@ -1,0 +1,10 @@
+<resources>
+    
+    <string name="type_tab_chart_title">チャート</string>
+    <string name="type_tab_search_title">検索</string>
+
+    <string name="type_chart_modifier">x %s</string>
+    <string name="type_chart_section_attack_title">にダメージを与える</string>
+    <string name="type_chart_section_defence_title">～からダメージを受ける</string>
+
+</resources>

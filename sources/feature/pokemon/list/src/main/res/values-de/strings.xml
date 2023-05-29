@@ -1,0 +1,12 @@
+<resources>
+    <string name="pokemon_list_title">Pokedex</string>
+
+    <string name="pokemon_list_national_id_template">#%D</string>
+
+    <string name="pokemon_list_query_type_button">Typ</string>
+    <string name="pokemon_list_query_favorite_button">Favoriten</string>
+
+    <string name="pokemon_list_type_filter_ok">OK</string>
+    <string name="pokemon_list_type_filter_clear">Klar</string>
+
+</resources>

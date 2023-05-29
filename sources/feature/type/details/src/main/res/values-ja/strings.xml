@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="type_damage_modifier">x %s</string>
+    <string name="type_damage_section_to">へのダメージ</string>
+    <string name="type_damage_section_from">からのダメージ</string>
+    <string name="type_moves_button">動きを見る</string>
+    <string name="type_featured_pokemon_title">注目のポケモン</string>
+    <string name="type_featured_pokemon_link">全て</string>
+
+</resources>

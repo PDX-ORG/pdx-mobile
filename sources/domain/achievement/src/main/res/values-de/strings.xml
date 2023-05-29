@@ -1,0 +1,18 @@
+<resources>
+
+    <string name="achievement_notification_channel_name">Erfolge</string>
+    <string name="achievement_notification_channel_description">Erfolge, die Sie erhalten haben</string>
+
+    <string name="achievement_lib_shiny_shake_name">Glänzender Shake</string>
+    <string name="achievement_lib_shiny_shake_description">Schütteln Sie das Gerät, um glänzende Pokémon zu sehen!</string>
+
+    <string name="achievement_lib_whois_beginner_name">Wer ist? Anfänger</string>
+    <string name="achievement_lib_whois_beginner_description">Habe eine Serie von mindestens 3 Pokémon</string>
+
+    <string name="achievement_lib_whois_trainer_name">Wer ist? Trainer</string>
+    <string name="achievement_lib_whois_trainer_description">Habe eine Serie von mindestens 10 Pokémon</string>
+
+    <string name="achievement_lib_whois_champion_name">Wer ist? Champion</string>
+    <string name="achievement_lib_whois_champion_description">Habe eine Serie von mindestens 100 Pokémon</string>
+
+</resources>

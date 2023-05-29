@@ -1,0 +1,12 @@
+<resources>
+    <string name="pokemon_list_title">ポケモン図鑑</string>
+
+    <string name="pokemon_list_national_id_template">#%d</string>
+
+    <string name="pokemon_list_query_type_button">タイプ</string>
+    <string name="pokemon_list_query_favorite_button">お気に入り</string>
+
+    <string name="pokemon_list_type_filter_ok">OK</string>
+    <string name="pokemon_list_type_filter_clear">クリア</string>
+
+</resources>

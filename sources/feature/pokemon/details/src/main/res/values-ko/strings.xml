@@ -1,0 +1,41 @@
+<resources>
+
+    <string name="feature_pokemon_details_section_title_stats">통계</string>
+    <string name="feature_pokemon_details_section_title_info">정보</string>
+    <string name="feature_pokemon_details_section_title_evolution">진화</string>
+    <string name="feature_pokemon_details_section_title_battle">움직임</string>
+
+    <string name="feature_pokemon_details_dimension_weight">%skg</string>
+    <string name="feature_pokemon_details_dimension_height">%s분</string>
+    <string name="feature_pokemon_details_dimension_is_legendary">전설적인</string>
+    <string name="feature_pokemon_details_dimension_is_mythical">신화</string>
+
+    <string name="feature_pokemon_details_section_stats_total_value">총</string>
+    <string name="feature_pokemon_details_section_stats_archetype">원형</string>
+
+    <string name="feature_pokemon_details_section_ability_type_normal">능력</string>
+    <string name="feature_pokemon_details_section_ability_type_hidden">숨겨진 능력</string>
+
+    <string name="feature_pokemon_info_section_description_title_0">일부 게임</string>
+    <string name="feature_pokemon_info_section_description_title_joiner_2">%봄 여름 시즌</string>
+    <string name="feature_pokemon_info_section_description_title_joiner_x">%s, %s 및 기타</string>
+
+    
+    <string name="feature_pokemon_move_sort_type_ascending">오름차순</string>
+    <string name="feature_pokemon_move_sort_type_descending">내림차순</string>
+
+    <string name="feature_pokemon_move_sort_state_default">기본 정렬</string>
+    <string name="feature_pokemon_move_sort_state_selected">정렬: %s</string>
+
+    <string name="feature_pokemon_move_sort_by_default">기본</string>
+    <string name="feature_pokemon_move_sort_by_name">이름으로</string>
+    <string name="feature_pokemon_move_sort_by_type">유형별</string>
+    <string name="feature_pokemon_move_sort_by_pp">PP로</string>
+    <string name="feature_pokemon_move_sort_by_power">힘으로</string>
+    <string name="feature_pokemon_move_sort_by_accuracy">정확도로</string>
+
+    
+    <string name="feature_pokemon_evolution_method_unknown">응용 프로그램에 알려지지 않은 진화 방법</string>
+    <string name="feature_pokemon_evolution_method_level_up">레벨 %s에서 진화</string>
+
+</resources>

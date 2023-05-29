@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="error_handler_error_message_unknown">Unbekannter Fehler aufgetreten</string>
+    <string name="error_handler_error_message_network">Netzwerkfehler</string>
+    <string name="error_handler_dialog_title">Fehler</string>
+    <string name="error_handler_dialog_dismiss">OK</string>
+
+</resources>

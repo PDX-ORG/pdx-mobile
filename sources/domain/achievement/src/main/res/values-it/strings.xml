@@ -1,0 +1,18 @@
+<resources>
+
+    <string name="achievement_notification_channel_name">Risultati</string>
+    <string name="achievement_notification_channel_description">Risultati che hai ricevuto</string>
+
+    <string name="achievement_lib_shiny_shake_name">Agitare lucido</string>
+    <string name="achievement_lib_shiny_shake_description">Scuoti il ​​dispositivo per vedere i pokemon luccicanti!</string>
+
+    <string name="achievement_lib_whois_beginner_name">Chi è? Principiante</string>
+    <string name="achievement_lib_whois_beginner_description">Avere una serie di almeno 3 pokemon</string>
+
+    <string name="achievement_lib_whois_trainer_name">Chi è? Allenatore</string>
+    <string name="achievement_lib_whois_trainer_description">Avere una serie di almeno 10 pokemon</string>
+
+    <string name="achievement_lib_whois_champion_name">Chi è? Campione</string>
+    <string name="achievement_lib_whois_champion_description">Avere una serie di almeno 100 pokemon</string>
+
+</resources>

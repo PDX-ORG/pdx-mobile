@@ -1,0 +1,35 @@
+<resources>
+
+    <string name="domain_pokemon_type_fire">Fuoco</string>
+    <string name="domain_pokemon_type_water">Acqua</string>
+    <string name="domain_pokemon_type_grass">Erba</string>
+    <string name="domain_pokemon_type_ice">Ghiaccio</string>
+    <string name="domain_pokemon_type_bug">Insetto</string>
+    <string name="domain_pokemon_type_steel">Acciaio</string>
+    <string name="domain_pokemon_type_dark">Buio</string>
+    <string name="domain_pokemon_type_dragon">Drago</string>
+    <string name="domain_pokemon_type_normal">Normale</string>
+    <string name="domain_pokemon_type_poison">Veleno</string>
+    <string name="domain_pokemon_type_ghost">Fantasma</string>
+    <string name="domain_pokemon_type_flying">Volare</string>
+    <string name="domain_pokemon_type_electric">Elettrico</string>
+    <string name="domain_pokemon_type_ground">Terra</string>
+    <string name="domain_pokemon_type_fairy">Fata</string>
+    <string name="domain_pokemon_type_fighting">Battagliero</string>
+    <string name="domain_pokemon_type_psychic">Psichico</string>
+    <string name="domain_pokemon_type_rock">Roccia</string>
+
+    <string name="domain_pokemon_asset_stat_short_hp">HP</string>
+    <string name="domain_pokemon_asset_stat_short_speed">vel</string>
+    <string name="domain_pokemon_asset_stat_short_attack">Att</string>
+    <string name="domain_pokemon_asset_stat_short_sp_attack">Sp.Atk</string>
+    <string name="domain_pokemon_asset_stat_short_defence">def</string>
+    <string name="domain_pokemon_asset_stat_short_sp_defence">Sp.Def</string>
+
+    <string name="domain_pokemon_asset_archetype_sp_attacker">Sp.Attaccante</string>
+    <string name="domain_pokemon_asset_archetype_ph_attacker">Ph.Attaccante</string>
+    <string name="domain_pokemon_asset_archetype_speedster">Velocista</string>
+    <string name="domain_pokemon_asset_archetype_balanced">Perfettamente bilanciato</string>
+    <string name="domain_pokemon_asset_archetype_unknown">Sconosciuto</string>
+
+</resources>

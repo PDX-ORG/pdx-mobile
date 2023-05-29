@@ -1,0 +1,9 @@
+<resources>
+    
+    <string name="home_featured_title_pokemon">Pokèmon</string>
+    <string name="home_featured_title_team">Squadra</string>
+    <string name="home_featured_title_whois">Chi è?</string>
+    <string name="home_featured_title_news">Notizia</string>
+    <string name="home_featured_title_achievements">Raggiungere</string>
+
+</resources>

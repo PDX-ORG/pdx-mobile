@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="drawer_item_home_title">Дом</string>
+    <string name="drawer_item_pokemon_title">Покемон</string>
+    <string name="drawer_item_type_chart_title">Типы</string>
+    <string name="drawer_item_who_is">Кто?</string>
+
+    <string name="drawer_item_news_title">Новости</string>
+    <string name="drawer_item_settings_title">Настройки</string>
+
+    <string name="drawer_item_debug_panel_title">Отлаживать</string>
+
+    <string name="drawer_account_card_username_default">Тренер</string>
+    <string name="drawer_account_card_login_suggestion">Войдите / зарегистрируйтесь, чтобы получить доступ к еще большему количеству функций</string>
+
+</resources>

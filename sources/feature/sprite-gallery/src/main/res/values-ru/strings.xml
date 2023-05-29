@@ -1,0 +1,9 @@
+<resources>
+    
+    <string name="home_featured_title_pokemon">Покемон</string>
+    <string name="home_featured_title_team">Команда</string>
+    <string name="home_featured_title_whois">Кто?</string>
+    <string name="home_featured_title_news">Новости</string>
+    <string name="home_featured_title_achievements">Достигать</string>
+
+</resources>

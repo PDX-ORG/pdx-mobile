@@ -1,0 +1,10 @@
+<resources>
+    
+    <string name="type_tab_chart_title">차트</string>
+    <string name="type_tab_search_title">찾다</string>
+
+    <string name="type_chart_modifier">x %s</string>
+    <string name="type_chart_section_attack_title">피해를 입히다</string>
+    <string name="type_chart_section_defence_title">피해를 입는다</string>
+
+</resources>

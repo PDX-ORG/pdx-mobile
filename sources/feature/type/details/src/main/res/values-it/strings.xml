@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="type_damage_modifier">x %s</string>
+    <string name="type_damage_section_to">Danni a</string>
+    <string name="type_damage_section_from">Danno da</string>
+    <string name="type_moves_button">Vedi mosse</string>
+    <string name="type_featured_pokemon_title">Pokémon in primo piano</string>
+    <string name="type_featured_pokemon_link">Tutto</string>
+
+</resources>

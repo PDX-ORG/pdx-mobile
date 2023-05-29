@@ -1,0 +1,18 @@
+<resources>
+
+    <string name="achievement_notification_channel_name">업적</string>
+    <string name="achievement_notification_channel_description">받은 업적</string>
+
+    <string name="achievement_lib_shiny_shake_name">샤이니 쉐이크</string>
+    <string name="achievement_lib_shiny_shake_description">빛나는 포켓몬을 보려면 장치를 흔들어!</string>
+
+    <string name="achievement_lib_whois_beginner_name">누구인가? 초보자</string>
+    <string name="achievement_lib_whois_beginner_description">최소 3마리의 포켓몬을 연속으로 보유하십시오.</string>
+
+    <string name="achievement_lib_whois_trainer_name">누구인가? 훈련자</string>
+    <string name="achievement_lib_whois_trainer_description">포켓몬을 10마리 이상 연속으로 보유하세요.</string>
+
+    <string name="achievement_lib_whois_champion_name">누구인가? 챔피언</string>
+    <string name="achievement_lib_whois_champion_description">최소 100마리의 포켓몬을 연속으로 보유하십시오.</string>
+
+</resources>

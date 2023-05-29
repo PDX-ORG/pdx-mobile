@@ -1,0 +1,12 @@
+<resources>
+    <string name="pokemon_list_title">Покедекс</string>
+
+    <string name="pokemon_list_national_id_template">#%d</string>
+
+    <string name="pokemon_list_query_type_button">Тип</string>
+    <string name="pokemon_list_query_favorite_button">Избранное</string>
+
+    <string name="pokemon_list_type_filter_ok">ХОРОШО</string>
+    <string name="pokemon_list_type_filter_clear">Прозрачный</string>
+
+</resources>

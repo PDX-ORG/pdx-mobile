@@ -1,0 +1,41 @@
+<resources>
+
+    <string name="feature_pokemon_details_section_title_stats">Статистика</string>
+    <string name="feature_pokemon_details_section_title_info">Информация</string>
+    <string name="feature_pokemon_details_section_title_evolution">Эволюция</string>
+    <string name="feature_pokemon_details_section_title_battle">Движения</string>
+
+    <string name="feature_pokemon_details_dimension_weight">%s кг</string>
+    <string name="feature_pokemon_details_dimension_height">%s м</string>
+    <string name="feature_pokemon_details_dimension_is_legendary">Легендарный</string>
+    <string name="feature_pokemon_details_dimension_is_mythical">Мифический</string>
+
+    <string name="feature_pokemon_details_section_stats_total_value">Общий</string>
+    <string name="feature_pokemon_details_section_stats_archetype">Архетип</string>
+
+    <string name="feature_pokemon_details_section_ability_type_normal">Способность</string>
+    <string name="feature_pokemon_details_section_ability_type_hidden">Скрытая способность</string>
+
+    <string name="feature_pokemon_info_section_description_title_0">Некоторые игры</string>
+    <string name="feature_pokemon_info_section_description_title_joiner_2">%SS</string>
+    <string name="feature_pokemon_info_section_description_title_joiner_x">%s, %s и другие</string>
+
+    
+    <string name="feature_pokemon_move_sort_type_ascending">Восходящий</string>
+    <string name="feature_pokemon_move_sort_type_descending">По убыванию</string>
+
+    <string name="feature_pokemon_move_sort_state_default">Сортировка по умолчанию</string>
+    <string name="feature_pokemon_move_sort_state_selected">Сортировать: %s</string>
+
+    <string name="feature_pokemon_move_sort_by_default">По умолчанию</string>
+    <string name="feature_pokemon_move_sort_by_name">По имени</string>
+    <string name="feature_pokemon_move_sort_by_type">По типу</string>
+    <string name="feature_pokemon_move_sort_by_pp">По ПП</string>
+    <string name="feature_pokemon_move_sort_by_power">По мощности</string>
+    <string name="feature_pokemon_move_sort_by_accuracy">По точности</string>
+
+    
+    <string name="feature_pokemon_evolution_method_unknown">Метод эволюции неизвестен приложению</string>
+    <string name="feature_pokemon_evolution_method_level_up">Эволюционирует на уровне %s</string>
+
+</resources>

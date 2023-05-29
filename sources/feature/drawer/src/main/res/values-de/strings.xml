@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="drawer_item_home_title">Heim</string>
+    <string name="drawer_item_pokemon_title">Pokémon</string>
+    <string name="drawer_item_type_chart_title">Typen</string>
+    <string name="drawer_item_who_is">Wer ist?</string>
+
+    <string name="drawer_item_news_title">Nachricht</string>
+    <string name="drawer_item_settings_title">Einstellungen</string>
+
+    <string name="drawer_item_debug_panel_title">Debuggen</string>
+
+    <string name="drawer_account_card_username_default">Trainer</string>
+    <string name="drawer_account_card_login_suggestion">Melden Sie sich an / registrieren Sie sich und greifen Sie auf noch mehr Funktionen zu</string>
+
+</resources>

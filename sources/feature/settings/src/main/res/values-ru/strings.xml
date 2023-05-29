@@ -1,0 +1,25 @@
+<resources>
+
+    <string name="settings_toolbar_title">Настройки</string>
+
+    <string name="settings_themes_header">Тема: %s</string>
+
+    <string name="settings_github_header">Начать / сообщить о проблеме на Github</string>
+    <string name="settings_github_description">Разработчики оценят оба</string>
+
+    <string name="settings_cache_header">Удалить кешированные данные</string>
+    <string name="settings_cache_description">Используйте это, если что-то кажется неправильным, или вы хотите обновить все данные приложения.</string>
+
+    <string name="settings_achievements_header">Управление достижениями</string>
+    <string name="settings_achievements_description">Смотрите заработанные или удаляйте свой прогресс</string>
+
+    <string name="settings_language_use_romaji_header">Используйте Ромаджи</string>
+    <string name="settings_language_use_romaji_description">Используйте латинскую расшифровку японских имен покемонов</string>
+
+    <string name="settings_achievements_option_forget_title">Забудьте обо всех достижениях</string>
+    <string name="settings_achievements_option_forget_subtitle">Если вы хотите получить их еще раз</string>
+
+    <string name="settings_achievements_option_onboarding_title">Достижений пока нет</string>
+    <string name="settings_achievements_option_onboarding_subtitle">Продолжайте использовать приложение, возможно, вы найдете</string>
+
+</resources>

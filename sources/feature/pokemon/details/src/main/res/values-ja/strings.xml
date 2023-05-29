@@ -1,0 +1,41 @@
+<resources>
+
+    <string name="feature_pokemon_details_section_title_stats">統計</string>
+    <string name="feature_pokemon_details_section_title_info">情報</string>
+    <string name="feature_pokemon_details_section_title_evolution">進化</string>
+    <string name="feature_pokemon_details_section_title_battle">移動</string>
+
+    <string name="feature_pokemon_details_dimension_weight">%s kg</string>
+    <string name="feature_pokemon_details_dimension_height">%sm</string>
+    <string name="feature_pokemon_details_dimension_is_legendary">伝説の</string>
+    <string name="feature_pokemon_details_dimension_is_mythical">神話的な</string>
+
+    <string name="feature_pokemon_details_section_stats_total_value">合計</string>
+    <string name="feature_pokemon_details_section_stats_archetype">原型</string>
+
+    <string name="feature_pokemon_details_section_ability_type_normal">能力</string>
+    <string name="feature_pokemon_details_section_ability_type_hidden">隠れた能力</string>
+
+    <string name="feature_pokemon_info_section_description_title_0">いくつかのゲーム</string>
+    <string name="feature_pokemon_info_section_description_title_joiner_2">%s &amp; %s</string>
+    <string name="feature_pokemon_info_section_description_title_joiner_x">%s、%s、その他</string>
+
+    
+    <string name="feature_pokemon_move_sort_type_ascending">上昇</string>
+    <string name="feature_pokemon_move_sort_type_descending">降順</string>
+
+    <string name="feature_pokemon_move_sort_state_default">デフォルトの並べ替え</string>
+    <string name="feature_pokemon_move_sort_state_selected">並べ替え: %s</string>
+
+    <string name="feature_pokemon_move_sort_by_default">デフォルト</string>
+    <string name="feature_pokemon_move_sort_by_name">名前で</string>
+    <string name="feature_pokemon_move_sort_by_type">種類別</string>
+    <string name="feature_pokemon_move_sort_by_pp">PPによる</string>
+    <string name="feature_pokemon_move_sort_by_power">力によって</string>
+    <string name="feature_pokemon_move_sort_by_accuracy">精度による</string>
+
+    
+    <string name="feature_pokemon_evolution_method_unknown">アプリケーションでは進化方法が不明</string>
+    <string name="feature_pokemon_evolution_method_level_up">レベル %s で進化します</string>
+
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="rate_app_title">😎 あなたの経験はどうですか？</string>
+    <string name="rate_app_content">あなたの正直なフィードバックはアプリケーションをより良くするのに役立ちます</string>
+    <string name="rate_app_like">それは素晴らしいです</string>
+    <string name="rate_app_dislike">改善できる</string>
+
+</resources>

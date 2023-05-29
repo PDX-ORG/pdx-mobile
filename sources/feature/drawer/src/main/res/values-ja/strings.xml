@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="drawer_item_home_title">家</string>
+    <string name="drawer_item_pokemon_title">ポケットモンスター</string>
+    <string name="drawer_item_type_chart_title">種類</string>
+    <string name="drawer_item_who_is">誰が？</string>
+
+    <string name="drawer_item_news_title">ニュース</string>
+    <string name="drawer_item_settings_title">設定</string>
+
+    <string name="drawer_item_debug_panel_title">デバッグ</string>
+
+    <string name="drawer_account_card_username_default">トレーナー</string>
+    <string name="drawer_account_card_login_suggestion">ログイン/登録してさらに多くの機能にアクセスしましょう</string>
+
+</resources>

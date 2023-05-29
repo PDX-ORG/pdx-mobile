@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="drawer_item_home_title">집</string>
+    <string name="drawer_item_pokemon_title">포켓몬</string>
+    <string name="drawer_item_type_chart_title">유형</string>
+    <string name="drawer_item_who_is">누구인가?</string>
+
+    <string name="drawer_item_news_title">소식</string>
+    <string name="drawer_item_settings_title">설정</string>
+
+    <string name="drawer_item_debug_panel_title">디버그</string>
+
+    <string name="drawer_account_card_username_default">훈련자</string>
+    <string name="drawer_account_card_login_suggestion">로그인/등록도 더 많은 기능에 액세스</string>
+
+</resources>

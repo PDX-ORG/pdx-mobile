@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="error_handler_error_message_unknown">不明なエラーが発生しました</string>
+    <string name="error_handler_error_message_network">ネットワークエラー</string>
+    <string name="error_handler_dialog_title">エラー</string>
+    <string name="error_handler_dialog_dismiss">Ok</string>
+
+</resources>

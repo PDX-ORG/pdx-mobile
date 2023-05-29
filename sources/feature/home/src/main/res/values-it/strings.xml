@@ -1,0 +1,14 @@
+<resources>
+    
+    <string name="home_featured_title_pokemon">Pokèmon</string>
+    <string name="home_featured_title_types">Tipi</string>
+    <string name="home_featured_title_whois">Chi è?</string>
+    <string name="home_featured_title_news">Notizia</string>
+    <string name="home_featured_title_achievements">Raggiungere</string>
+
+    <string name="home_section_featured_pokemon_title">Pokémon in primo piano</string>
+    <string name="home_section_last_viewed_pokemon_title">Ultima visualizzazione</string>
+
+    <string name="home_title_share_chip">Condividi app</string>
+
+</resources>

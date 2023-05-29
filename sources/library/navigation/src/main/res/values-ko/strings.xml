@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="navigation_404_title">404</string>
+    <string name="navigation_404_subtitle">죄송합니다. 필요한 목적지를 찾을 수 없습니다.</string>
+    <string name="navigation_share_intent_message">새로운 Pokedex 앱 %s을 확인해 보세요.</string>
+
+</resources>

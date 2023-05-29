@@ -1,0 +1,25 @@
+<resources>
+
+    <string name="settings_toolbar_title">設定</string>
+
+    <string name="settings_themes_header">テーマ: %s</string>
+
+    <string name="settings_github_header">Github で問題を開始/報告する</string>
+    <string name="settings_github_description">開発者は両方を高く評価するでしょう</string>
+
+    <string name="settings_cache_header">キャッシュされたデータを削除する</string>
+    <string name="settings_cache_description">何か問題があると思われる場合、またはアプリケーション データ全体を更新したい場合に使用します。</string>
+
+    <string name="settings_achievements_header">実績を管理する</string>
+    <string name="settings_achievements_description">獲得したものを確認するか、進行状況を削除します</string>
+
+    <string name="settings_language_use_romaji_header">ルーマジを使用する</string>
+    <string name="settings_language_use_romaji_description">日本のポケモン名のラテン語表記を使用する</string>
+
+    <string name="settings_achievements_option_forget_title">すべての成果を忘れる</string>
+    <string name="settings_achievements_option_forget_subtitle">もう一度受け取りたい場合は</string>
+
+    <string name="settings_achievements_option_onboarding_title">まだ成果はありません</string>
+    <string name="settings_achievements_option_onboarding_subtitle">アプリケーションを使い続けると、何か見つかるかもしれません</string>
+
+</resources>

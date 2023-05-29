@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="navigation_404_title">404</string>
+    <string name="navigation_404_subtitle">申し訳ありませんが、必要な宛先が見つかりません</string>
+    <string name="navigation_share_intent_message">新しいポケモン図鑑アプリ %s をチェックしてください</string>
+
+</resources>

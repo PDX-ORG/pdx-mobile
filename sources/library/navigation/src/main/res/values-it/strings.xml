@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="navigation_404_title">404</string>
+    <string name="navigation_404_subtitle">Spiacenti, impossibile trovare la destinazione richiesta</string>
+    <string name="navigation_share_intent_message">Ehi, dai un'occhiata alla nuova app Pokedex %s</string>
+
+</resources>
