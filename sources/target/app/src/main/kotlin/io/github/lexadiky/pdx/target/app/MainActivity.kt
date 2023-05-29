@@ -22,7 +22,6 @@ import io.github.lexadiky.pdx.feature.toolbar.Toolbar
 import io.github.lexadiky.pdx.feature.toolbar.rememberToolbarConnector
 import io.github.lexadiky.pdx.library.navigation.NavigationHostStyles
 import io.github.lexadiky.pdx.library.navigation.NavigationModule
-import io.github.lexadiky.pdx.library.system.SystemModule
 import io.github.lexadiky.pdx.library.uikit.theme.PdxTheme
 import io.github.lexadiky.pdx.library.uikit.widget.scaffold.PdxScaffold
 import kotlin.time.Duration.Companion.milliseconds
@@ -35,7 +34,6 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         val application = application as PdxApplication
-
         setContent {
             DIApplication(application.diContainer) {
                 Content()
@@ -65,10 +63,7 @@ class MainActivity : ComponentActivity() {
                         }
                 }
 
-                DIFeature(
-                    NavigationModule(LocalComposeNavigationContext.current),
-                    SystemModule(this@MainActivity)
-                ) {
+                DIFeature(NavigationModule(LocalComposeNavigationContext.current)) {
                     RateAppDialog()
                     PdxScaffold(
                         drawerState = drawerState,

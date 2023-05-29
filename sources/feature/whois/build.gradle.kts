@@ -3,10 +3,6 @@ plugins {
     alias(libs.plugins.pdx.convention.feature)
 }
 
-android {
-    namespace = "io.github.lexadiky.pdx.feature.whois"
-}
-
 dependencies {
     implementation(projects.domain.pokemon)
     implementation(projects.domain.pokemonAsset)

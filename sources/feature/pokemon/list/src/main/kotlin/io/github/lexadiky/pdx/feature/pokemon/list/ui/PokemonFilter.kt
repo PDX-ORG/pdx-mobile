@@ -2,6 +2,7 @@
 
 package io.github.lexadiky.pdx.feature.pokemon.list.ui
 
+import io.github.lexadiky.pdx.feature.pokemon.list.R
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -25,7 +26,6 @@ import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
-import io.github.lexadiky.pdx.feature.pokemonlist.R
 import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
 import io.github.lexadiky.pdx.library.uikit.theme.grid
 import io.github.lexadiky.pdx.library.uikit.widget.SearchField
@@ -49,62 +49,52 @@ internal fun PokemonFilter(isVisible: Boolean, viewModel: PokemonFilterViewModel
                 )
             } else {
                 Text(
-                    text = stringResource(id = R.string.pokemon_list_title),
-                    modifier = Modifier
+                    text = stringResource(id = R.string.pokemon_list_title), modifier = Modifier
                 )
             }
         }
     }
     AnimatedVisibility(
-        visible = isVisible,
-        enter = expandVertically(expandFrom = Alignment.Top),
-        exit = shrinkVertically(shrinkTowards = Alignment.Top)
+        visible = isVisible, enter = expandVertically(expandFrom = Alignment.Top), exit = shrinkVertically(shrinkTowards = Alignment.Top)
     ) {
         Column {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x1)
             ) {
                 if (viewModel.state.showTypeFilterDialog) {
-                    TypeFilterDialog(
-                        onClear = { viewModel.hideTypeFilterDialog(clearTypeFilters = true) },
+                    TypeFilterDialog(onClear = { viewModel.hideTypeFilterDialog(clearTypeFilters = true) },
                         onOk = { viewModel.hideTypeFilterDialog(clearTypeFilters = false) },
                         onItemClicked = { viewModel.onTypeSelected(it) },
                         selected = viewModel.state.query.selectedTypes
                     )
                 }
-                FilterChip(
-                    selected = false,
+                FilterChip(selected = false,
                     onClick = { viewModel.showTypeFilterDialog() },
                     colors = typeFilterColors(viewModel.state.query.selectedTypes),
-                    label = { Text(text = stringResource(id = R.string.pokemon_list_query_type_button)) }
-                )
-                FilterChip(
-                    selected = false,
+                    label = { Text(text = stringResource(id = R.string.pokemon_list_query_type_button)) })
+                FilterChip(selected = false,
                     onClick = { viewModel.toggleOnlyFilters() },
                     colors = favoriteFilterColors(viewModel.state.query.onlyFavorites),
-                    label = { Text(text = stringResource(id = R.string.pokemon_list_query_favorite_button)) }
-                )
+                    label = { Text(text = stringResource(id = R.string.pokemon_list_query_favorite_button)) })
             }
         }
     }
 }
 
 @Composable
-private fun typeFilterColors(selectedTypes: List<PokemonType>) =
-    if (selectedTypes.isEmpty()) {
-        FilterChipDefaults.filterChipColors()
-    } else {
-        FilterChipDefaults.filterChipColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        )
-    }
+private fun typeFilterColors(selectedTypes: List<PokemonType>) = if (selectedTypes.isEmpty()) {
+    FilterChipDefaults.filterChipColors()
+} else {
+    FilterChipDefaults.filterChipColors(
+        containerColor = MaterialTheme.colorScheme.primaryContainer
+    )
+}
 
 @Composable
-private fun favoriteFilterColors(isEnabled: Boolean) =
-    if (isEnabled) {
-        FilterChipDefaults.filterChipColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        )
-    } else {
-        FilterChipDefaults.filterChipColors()
-    }
+private fun favoriteFilterColors(isEnabled: Boolean) = if (isEnabled) {
+    FilterChipDefaults.filterChipColors(
+        containerColor = MaterialTheme.colorScheme.primaryContainer
+    )
+} else {
+    FilterChipDefaults.filterChipColors()
+}

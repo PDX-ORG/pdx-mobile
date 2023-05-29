@@ -3,10 +3,6 @@ plugins {
     alias(libs.plugins.pdx.convention.library.android)
 }
 
-android {
-    namespace = "io.github.lexadiky.pdx.lib.target"
-}
-
 dependencies {
     implementation(projects.library.analytics.core)
     implementation(projects.library.analytics.firebaseAndroid)

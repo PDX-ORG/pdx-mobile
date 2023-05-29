@@ -24,5 +24,6 @@ abstract class BaseTargetApplication : Application() {
         ApplicationInitializer(diContainer)
             .asyncTask(PrefetchPokemonDataAsyncTask(diContainer.lookup()))
             .run()
+        registerActivityLifecycleCallbacks(BaseTargetLifecycleCallbacks(this))
     }
 }

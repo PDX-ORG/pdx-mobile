@@ -24,7 +24,7 @@ import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
-import io.github.lexadiky.pdx.feature.typechart.R
+import io.github.lexadiky.pdx.feature.type.chart.R
 import io.github.lexadiky.pdx.feature.typechart.ui.EffectChart
 import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.library.uikit.resources.ImageTransformation

@@ -49,6 +49,6 @@ object AndroidCommonMixin {
 
     private fun createNamespaceSuffix(target: Project) =
         target.path.replace(':', '.')
-            .replace("-", ".")
+            .replace("-", "")
             .substring(1)
 }

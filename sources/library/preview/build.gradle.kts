@@ -3,10 +3,6 @@ plugins {
     alias(libs.plugins.pdx.convention.library.compose)
 }
 
-android {
-    namespace = "io.github.lexadiky.pdx.lib.preview"
-}
-
 dependencies {
     implementation(projects.library.uikit)
     implementation(projects.library.target)

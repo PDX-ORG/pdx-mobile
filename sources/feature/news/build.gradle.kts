@@ -4,10 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
-android {
-    namespace = "io.github.lexadiky.pdx.feature.news"
-}
-
 dependencies {
     implementation(projects.library.uikit)
     implementation(projects.library.arc)

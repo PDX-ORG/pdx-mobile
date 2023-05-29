@@ -1,6 +1,7 @@
 package io.github.lexadiky.pdx.domain.pokemon.asset
 
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
+import io.github.lexadiky.pdx.domain.pokemonasset.R
 import io.github.lexadiky.pdx.library.resources.color.ColorResource
 import io.github.lexadiky.pdx.library.resources.color.from
 import io.github.lexadiky.pdx.library.resources.image.ImageResource

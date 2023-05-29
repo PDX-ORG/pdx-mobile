@@ -23,8 +23,6 @@ class PdxConventionBaselinePlugin : Plugin<Project> {
         AndroidCommonMixin.mix(target)
 
         target.extensions.configure<TestExtension> {
-            namespace = "io.github.lexadiky.baselineprofile"
-
             defaultConfig {
                 minSdk = target.extra["pdx.android.baseline.min-sdk"].toString().toInt()
             }

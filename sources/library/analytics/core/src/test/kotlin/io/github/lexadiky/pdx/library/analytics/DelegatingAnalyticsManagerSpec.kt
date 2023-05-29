@@ -2,10 +2,19 @@ package io.github.lexadiky.pdx.library.analytics
 
 import io.github.lexadiky.pdx.library.analytics.sender.EventSender
 import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.should
 import io.mockk.mockk
 import io.mockk.verify
 
 class DelegatingAnalyticsManagerSpec : DescribeSpec({
+    describe("construction") {
+        it("is default implementation") {
+            AnalyticsManager.delegate(emptyList()) should {
+                it is DelegatingAnalyticsManager
+            }
+        }
+    }
+
     describe("log") {
         it("GIVEN no delegates THEN sends nothing") {
             val manager = DelegatingAnalyticsManager(emptyList())

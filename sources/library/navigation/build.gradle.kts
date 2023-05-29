@@ -4,10 +4,6 @@ plugins {
     alias(libs.plugins.pdx.eve)
 }
 
-android {
-    namespace = "io.github.lexadiky.pdx.lib.navigation"
-}
-
 dependencies {
     api(libs.android.navigation.compose)
 

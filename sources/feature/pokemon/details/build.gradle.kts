@@ -3,10 +3,6 @@ plugins {
     alias(libs.plugins.pdx.convention.feature)
 }
 
-android {
-    namespace = "io.github.lexadiky.pdx.feature.pokemon.details"
-}
-
 dependencies {
     implementation(libs.akore.alice.robo)
     implementation(projects.library.uikit)

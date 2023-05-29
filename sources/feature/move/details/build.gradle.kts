@@ -4,10 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
-android {
-    namespace = "io.github.lexadiky.pdx.feature.move.details"
-}
-
 dependencies {
     implementation(projects.library.uikit)
     implementation(projects.library.errorHandler)

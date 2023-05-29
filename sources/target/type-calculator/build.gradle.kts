@@ -4,8 +4,6 @@ plugins {
 }
 
 android {
-    namespace = "io.github.lexadiky.pdx"
-
     defaultConfig {
         applicationId = "io.github.lexadiky.pdx.typecalc"
     }

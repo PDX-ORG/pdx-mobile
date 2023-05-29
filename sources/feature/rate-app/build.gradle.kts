@@ -4,10 +4,6 @@ plugins {
     alias(libs.plugins.pdx.eve)
 }
 
-android {
-    namespace = "io.github.lexadiky.pdx.feature.rateapp"
-}
-
 dependencies {
     implementation(projects.library.uikit)
     implementation(projects.library.microdata)

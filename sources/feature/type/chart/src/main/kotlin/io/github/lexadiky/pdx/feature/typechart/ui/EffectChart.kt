@@ -10,7 +10,7 @@ import androidx.compose.ui.res.stringResource
 import com.google.accompanist.flowlayout.FlowRow
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
-import io.github.lexadiky.pdx.feature.typechart.R
+import io.github.lexadiky.pdx.feature.type.chart.R
 import io.github.lexadiky.pdx.feature.typechart.entity.TypeDamageValue
 import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.grid

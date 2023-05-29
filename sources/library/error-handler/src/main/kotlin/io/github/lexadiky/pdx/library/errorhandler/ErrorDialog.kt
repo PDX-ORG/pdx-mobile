@@ -5,7 +5,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import io.github.lexadiky.pdx.lib.errorhandler.R
 import io.github.lexadiky.pdx.library.uikit.resources.render
 
 @Composable

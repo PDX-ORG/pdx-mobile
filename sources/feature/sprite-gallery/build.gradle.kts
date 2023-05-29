@@ -3,10 +3,6 @@ plugins {
     alias(libs.plugins.pdx.convention.feature)
 }
 
-android {
-    namespace = "io.github.lexadiky.pdx.feature.spritegallery"
-}
-
 dependencies {
     implementation(projects.domain.pokemonAsset)
     implementation(projects.domain.pokemon)

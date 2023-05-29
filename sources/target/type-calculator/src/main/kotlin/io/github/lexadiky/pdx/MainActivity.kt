@@ -28,7 +28,6 @@ import io.github.lexadiky.akore.lechuck.robo.NavigationHost
 import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.library.navigation.NavigationHostStyles
 import io.github.lexadiky.pdx.library.navigation.NavigationModule
-import io.github.lexadiky.pdx.library.system.SystemModule
 import io.github.lexadiky.pdx.library.uikit.theme.PdxTheme
 import kotlinx.coroutines.launch
 
@@ -41,9 +40,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             DIApplication(application.diContainer) {
-                DIFeature(SystemModule(this)) {
-                    Content()
-                }
+                Content()
             }
         }
     }

@@ -4,10 +4,6 @@ plugins {
     alias(libs.plugins.pdx.eve)
 }
 
-android {
-    namespace = "io.github.lexadiky.pdx.feature.home"
-}
-
 dependencies {
     implementation(projects.domain.pokemonAsset)
     implementation(projects.domain.pokemon)

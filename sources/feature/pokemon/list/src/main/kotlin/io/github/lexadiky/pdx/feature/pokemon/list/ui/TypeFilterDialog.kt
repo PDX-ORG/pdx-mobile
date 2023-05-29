@@ -14,7 +14,7 @@ import androidx.compose.ui.res.stringResource
 import com.google.accompanist.flowlayout.FlowRow
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
-import io.github.lexadiky.pdx.feature.pokemonlist.R
+import io.github.lexadiky.pdx.feature.pokemon.list.R
 import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.grid
 

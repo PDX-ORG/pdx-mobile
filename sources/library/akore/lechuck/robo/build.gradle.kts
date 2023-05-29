@@ -3,10 +3,6 @@ plugins {
     alias(libs.plugins.pdx.convention.library.compose)
 }
 
-android {
-    namespace = "io.github.lexadiky.pdx.lib.navigation.lc"
-}
-
 dependencies {
     api(libs.android.navigation.compose)
     api(libs.akore.blogger.core)

@@ -33,6 +33,7 @@ import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
+import io.github.lexadiky.pdx.domain.pokemon.asset.PokemonAssetsDrawable
 import io.github.lexadiky.pdx.domain.pokemon.asset.PokemonTypeAssets
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonItem
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonType
@@ -76,7 +77,7 @@ internal fun HomePageImpl(viewModel: HomePageSocket = di.viewModel()) = Page(vie
         }
         pokemonSuggestionSection(
             title = R.string.home_section_featured_pokemon_title,
-            icon = io.github.lexadiky.pdx.domain.pokemon.asset.R.drawable.domain_pokemon_ic_type_fairy,
+            icon = PokemonAssetsDrawable.domain_pokemon_ic_type_fairy,
             items = state.featuredPokemon,
             openPokemonDetails = { item ->
                 act(
@@ -89,7 +90,7 @@ internal fun HomePageImpl(viewModel: HomePageSocket = di.viewModel()) = Page(vie
         )
         pokemonSuggestionSection(
             title = R.string.home_section_last_viewed_pokemon_title,
-            io.github.lexadiky.pdx.domain.pokemon.asset.R.drawable.domain_pokemon_ic_type_fire,
+            icon = PokemonAssetsDrawable.domain_pokemon_ic_type_fire,
             items = state.latestViewedPokemon,
             openPokemonDetails = { item ->
                 act(

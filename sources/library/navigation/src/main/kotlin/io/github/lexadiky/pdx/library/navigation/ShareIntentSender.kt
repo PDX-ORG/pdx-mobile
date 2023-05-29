@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import androidx.core.content.ContextCompat
-import io.github.lexadiky.pdx.lib.navigation.R
 
 class ShareIntentSender(private val context: Context) {
 

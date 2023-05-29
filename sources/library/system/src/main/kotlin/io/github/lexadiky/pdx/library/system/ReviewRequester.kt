@@ -1,10 +1,8 @@
 package io.github.lexadiky.pdx.library.system
 
-import android.app.Activity
 import com.google.android.play.core.ktx.launchReview
 import com.google.android.play.core.ktx.requestReview
 import com.google.android.play.core.review.ReviewManagerFactory
-import java.lang.ref.WeakReference
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
@@ -14,15 +12,16 @@ interface ReviewRequester {
 }
 
 internal class ReviewRequesterImpl(
-    private val activityRef: WeakReference<Activity>
+    private val activityHolder: ActivityHolder
 ): ReviewRequester {
 
     private val mutex = Mutex()
 
-    override suspend fun request() = mutex.withLock {
-        val activity = activityRef.get() ?: return
-        val manager = ReviewManagerFactory.create(activity)
-        val reviewRequest = manager.requestReview()
-        manager.launchReview(activity, reviewRequest)
+    override suspend fun request(): Unit = mutex.withLock {
+        activityHolder.use(this) { activity ->
+            val manager = ReviewManagerFactory.create(activity)
+            val reviewRequest = manager.requestReview()
+            manager.launchReview(activity, reviewRequest)
+        }
     }
 }
