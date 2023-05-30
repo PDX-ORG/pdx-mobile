@@ -1,8 +1,0 @@
-<resources>
-
-    <string name="error_handler_error_message_unknown">알 수 없는 오류가 발생했습니다.</string>
-    <string name="error_handler_error_message_network">네트워크 오류</string>
-    <string name="error_handler_dialog_title">오류</string>
-    <string name="error_handler_dialog_dismiss">좋아요</string>
-
-</resources>

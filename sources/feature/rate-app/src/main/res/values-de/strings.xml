@@ -1,8 +1,0 @@
-<resources>
-
-    <string name="rate_app_title">😎 Wie sind deine Erfahrungen?</string>
-    <string name="rate_app_content">Ihr ehrliches Feedback wird dazu beitragen, die Bewerbung zu verbessern</string>
-    <string name="rate_app_like">Es ist toll</string>
-    <string name="rate_app_dislike">Kann verbessert werden</string>
-
-</resources>

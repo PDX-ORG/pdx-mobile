@@ -1,9 +1,0 @@
-<resources>
-
-    <string name="move_details_attr_power">힘</string>
-    <string name="move_details_attr_accuracy">정확성</string>
-    <string name="move_details_attr_pp">PP</string>
-    <string name="move_details_attr_effect_chance">효과 확률</string>
-    <string name="move_details_attr_type">유형</string>
-
-</resources>

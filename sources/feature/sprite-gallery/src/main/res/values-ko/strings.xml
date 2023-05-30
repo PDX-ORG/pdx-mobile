@@ -1,9 +1,0 @@
-<resources>
-    
-    <string name="home_featured_title_pokemon">포켓몬</string>
-    <string name="home_featured_title_team">팀</string>
-    <string name="home_featured_title_whois">누구인가?</string>
-    <string name="home_featured_title_news">소식</string>
-    <string name="home_featured_title_achievements">성취하다</string>
-
-</resources>

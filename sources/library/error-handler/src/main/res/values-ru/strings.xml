@@ -1,8 +1,0 @@
-<resources>
-
-    <string name="error_handler_error_message_unknown">Произошла неизвестная ошибка</string>
-    <string name="error_handler_error_message_network">Ошибка сети</string>
-    <string name="error_handler_dialog_title">Ошибка</string>
-    <string name="error_handler_dialog_dismiss">Хорошо</string>
-
-</resources>

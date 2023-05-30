@@ -1,8 +1,0 @@
-<resources>
-
-    <string name="rate_app_title">😎 당신의 경험은 어떻습니까?</string>
-    <string name="rate_app_content">귀하의 솔직한 피드백은 응용 프로그램을 개선하는 데 도움이 됩니다.</string>
-    <string name="rate_app_like">그것은 굉장</string>
-    <string name="rate_app_dislike">개선 가능</string>
-
-</resources>

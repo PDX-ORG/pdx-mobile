@@ -1,9 +1,0 @@
-<resources>
-
-    <string name="move_details_attr_power">Власть</string>
-    <string name="move_details_attr_accuracy">Точность</string>
-    <string name="move_details_attr_pp">ПП</string>
-    <string name="move_details_attr_effect_chance">Шанс эффекта</string>
-    <string name="move_details_attr_type">Тип</string>
-
-</resources>

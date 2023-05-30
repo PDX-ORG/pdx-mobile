@@ -1,9 +1,0 @@
-<resources>
-    
-    <string name="home_featured_title_pokemon">Pokémon</string>
-    <string name="home_featured_title_team">Team</string>
-    <string name="home_featured_title_whois">Wer ist?</string>
-    <string name="home_featured_title_news">Nachricht</string>
-    <string name="home_featured_title_achievements">Erreichen</string>
-
-</resources>

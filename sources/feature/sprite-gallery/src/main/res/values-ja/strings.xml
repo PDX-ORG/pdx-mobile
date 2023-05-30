@@ -1,9 +1,0 @@
-<resources>
-    
-    <string name="home_featured_title_pokemon">ポケットモンスター</string>
-    <string name="home_featured_title_team">チーム</string>
-    <string name="home_featured_title_whois">誰が？</string>
-    <string name="home_featured_title_news">ニュース</string>
-    <string name="home_featured_title_achievements">成し遂げる</string>
-
-</resources>

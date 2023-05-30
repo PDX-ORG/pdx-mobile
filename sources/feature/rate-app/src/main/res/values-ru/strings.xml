@@ -1,8 +1,0 @@
-<resources>
-
-    <string name="rate_app_title">😎 Как ваши впечатления?</string>
-    <string name="rate_app_content">Ваш честный отзыв поможет сделать приложение лучше</string>
-    <string name="rate_app_like">это круто</string>
-    <string name="rate_app_dislike">Может быть улучшена</string>
-
-</resources>

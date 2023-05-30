@@ -1,6 +1,0 @@
-<resources>
-
-    <string name="whois_title">누구인가?</string>
-    <string name="whois_streak_label">연속: %d</string>
-
-</resources>

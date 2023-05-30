@@ -1,6 +1,0 @@
-<resources>
-
-    <string name="whois_title">Chi è?</string>
-    <string name="whois_streak_label">Serie: %d</string>
-
-</resources>
