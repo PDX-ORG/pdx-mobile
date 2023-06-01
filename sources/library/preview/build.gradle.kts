@@ -7,7 +7,7 @@ dependencies {
     implementation(projects.library.uikit)
     implementation(projects.library.target)
     implementation(projects.library.arc)
-    implementation(projects.library.navigation)
+    implementation(projects.library.nibbler.android)
 
     implementation(libs.akore.alice.robo)
 

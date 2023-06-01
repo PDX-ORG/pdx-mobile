@@ -6,14 +6,14 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
-import io.github.lexadiky.akore.lechuck.Navigator
-import io.github.lexadiky.akore.lechuck.utils.navigate
+import io.github.lexadiky.pdx.library.nibbler.Navigator
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonMove
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetMoveDetailsUseCase
 import io.github.lexadiky.pdx.feature.move.details.entity.attribute.MoveAttribute
 import io.github.lexadiky.pdx.library.errorhandler.classify
+import io.github.lexadiky.pdx.library.nibbler.navigate
 import io.github.lexadiky.pdx.library.resources.image.ImageResource
 import io.github.lexadiky.pdx.library.resources.image.from
 import io.github.lexadiky.pdx.library.resources.string.StringResource

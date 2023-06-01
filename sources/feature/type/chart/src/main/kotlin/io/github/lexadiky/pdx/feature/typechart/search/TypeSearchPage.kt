@@ -22,11 +22,11 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
-import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.feature.type.chart.R
 import io.github.lexadiky.pdx.feature.typechart.ui.EffectChart
 import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
+import io.github.lexadiky.pdx.library.nibbler.decoration.Decoration
 import io.github.lexadiky.pdx.library.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.grid
@@ -43,7 +43,7 @@ internal fun TypeSearchPage(viewModel: TypeSearchViewModel = di.viewModel()) {
     ErrorDialog(viewModel.state.error) {
         viewModel.hideError()
     }
-    Decoration(decoration = "pdx://toolbar/title") {
+    Decoration("pdx://toolbar/title") {
         SearchField(
             text = viewModel.state.searchQuery,
             onTextChanged = { viewModel.updateSearchQuery(it) },

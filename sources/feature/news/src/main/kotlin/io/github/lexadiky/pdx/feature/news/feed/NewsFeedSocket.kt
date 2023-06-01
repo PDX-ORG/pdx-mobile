@@ -2,12 +2,12 @@ package io.github.lexadiky.pdx.feature.news.feed
 
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
-import io.github.lexadiky.akore.lechuck.Navigator
-import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.feature.news.domain.GetNewsFeedUseCase
 import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
 import io.github.lexadiky.pdx.library.arc.ViewModelSocket
 import io.github.lexadiky.pdx.library.errorhandler.classify
+import io.github.lexadiky.pdx.library.nibbler.Navigator
+import io.github.lexadiky.pdx.library.nibbler.navigate
 import kotlinx.coroutines.launch
 
 internal class NewsFeedSocket(

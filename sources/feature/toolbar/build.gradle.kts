@@ -6,5 +6,5 @@ plugins {
 dependencies {
     implementation(libs.akore.alice.robo)
     implementation(projects.library.uikit)
-    implementation(projects.library.navigation)
+    implementation(projects.library.nibbler.android)
 }

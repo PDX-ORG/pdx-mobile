@@ -7,7 +7,7 @@ plugins {
 dependencies {
     implementation(projects.library.uikit)
     implementation(projects.library.errorHandler)
-    implementation(projects.library.navigation)
+    implementation(projects.library.nibbler.android)
 
     implementation(projects.domain.pokemon)
     implementation(projects.domain.pokemonAsset)

@@ -9,7 +9,7 @@ dependencies {
     implementation(projects.library.network)
     implementation(projects.library.errorHandler)
     implementation(projects.library.featureToggle)
-    implementation(projects.library.navigation)
+    implementation(projects.library.nibbler.android)
     implementation(projects.library.arc)
     implementation(libs.akore.blogger.core)
     implementation(libs.arrow.core)

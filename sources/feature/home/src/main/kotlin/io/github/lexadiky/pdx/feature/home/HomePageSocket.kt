@@ -2,8 +2,6 @@ package io.github.lexadiky.pdx.feature.home
 
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
-import io.github.lexadiky.akore.lechuck.Navigator
-import io.github.lexadiky.akore.lechuck.utils.navigate
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPreviewSampleUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.GetLatestViewedPokemonUseCase
@@ -13,7 +11,9 @@ import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonType
 import io.github.lexadiky.pdx.generated.analytics.HomeEventsSpec
 import io.github.lexadiky.pdx.library.arc.ViewModelSocket
 import io.github.lexadiky.pdx.library.errorhandler.UIError
-import io.github.lexadiky.pdx.library.navigation.ShareIntentSender
+import io.github.lexadiky.pdx.library.nibbler.Navigator
+import io.github.lexadiky.pdx.library.nibbler.android.util.ShareIntentSender
+import io.github.lexadiky.pdx.library.nibbler.navigate
 import io.github.lexadiky.pdx.library.resources.image.ImageResource
 import io.github.lexadiky.pdx.library.resources.image.from
 import io.github.lexadiky.pdx.library.resources.string.StringResource

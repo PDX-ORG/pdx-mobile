@@ -7,7 +7,7 @@ dependencies {
     implementation(projects.library.uikit)
     implementation(projects.library.network)
     implementation(projects.library.errorHandler)
-    implementation(projects.library.navigation)
+    implementation(projects.library.nibbler.android)
     implementation(projects.library.dynamicBanner)
     implementation(projects.domain.pokemon)
     implementation(projects.domain.achievement)

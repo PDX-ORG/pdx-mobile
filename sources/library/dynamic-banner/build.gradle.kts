@@ -7,7 +7,7 @@ plugins {
 dependencies {
     implementation(projects.library.uikit)
     implementation(projects.library.network)
-    implementation(projects.library.navigation)
+    implementation(projects.library.nibbler.android)
     implementation(projects.library.resources)
     implementation(projects.library.fs.core)
     implementation(projects.library.core)

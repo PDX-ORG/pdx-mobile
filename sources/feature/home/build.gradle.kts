@@ -9,7 +9,7 @@ dependencies {
     implementation(projects.domain.pokemon)
     implementation(projects.library.uikit)
     implementation(projects.library.arc)
-    implementation(projects.library.navigation)
+    implementation(projects.library.nibbler.android)
     implementation(projects.library.analytics.core)
     implementation(projects.library.errorHandler)
     implementation(projects.library.dynamicBanner)

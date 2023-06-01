@@ -15,7 +15,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
-import io.github.lexadiky.akore.lechuck.robo.decoration.DecorationHost
+import io.github.lexadiky.pdx.library.nibbler.decoration.DecorationHost
 import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.util.scroll.LocalPrimeScrollState
 import io.github.lexadiky.pdx.library.uikit.util.scroll.asTopAppBarState
@@ -36,7 +36,7 @@ internal fun ToolbarImpl(viewModel: ToolbarViewModel) {
     TopAppBar(
         scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(topAppBarState),
         title = {
-            DecorationHost(decoration = "pdx://toolbar/title") {
+            DecorationHost("pdx://toolbar/title") {
                 Text(
                     text = viewModel.state.title.render()
                 )

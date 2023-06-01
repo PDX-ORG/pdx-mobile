@@ -2,7 +2,6 @@
 
 package io.github.lexadiky.pdx.feature.pokemon.list.ui
 
-import io.github.lexadiky.pdx.feature.pokemon.list.R
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -26,7 +25,8 @@ import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
-import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
+import io.github.lexadiky.pdx.feature.pokemon.list.R
+import io.github.lexadiky.pdx.library.nibbler.decoration.Decoration
 import io.github.lexadiky.pdx.library.uikit.theme.grid
 import io.github.lexadiky.pdx.library.uikit.widget.SearchField
 
@@ -37,7 +37,7 @@ internal fun PokemonFilter(isVisible: Boolean, viewModel: PokemonFilterViewModel
             viewModel.clearFilter()
         }
     }
-    Decoration(decoration = "pdx://toolbar/title") {
+    Decoration("pdx://toolbar/title") {
         AnimatedContent(targetState = isVisible) { visible ->
             if (visible) {
                 SearchField(

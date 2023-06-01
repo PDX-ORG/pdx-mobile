@@ -7,7 +7,7 @@ plugins {
 dependencies {
     implementation(projects.domain.pokemon)
     implementation(projects.library.resources)
-    implementation(projects.library.navigation)
+    implementation(projects.library.nibbler.android)
 
     implementation(libs.arrow.core)
 }

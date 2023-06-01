@@ -35,7 +35,7 @@ import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.feature.whois.entity.WhoIsPokemonVariant
 import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
-import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
+import io.github.lexadiky.pdx.library.nibbler.decoration.Decoration
 import io.github.lexadiky.pdx.library.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.animation

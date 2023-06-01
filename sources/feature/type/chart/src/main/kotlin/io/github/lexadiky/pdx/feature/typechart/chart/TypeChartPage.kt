@@ -19,12 +19,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
-import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.feature.type.chart.R
 import io.github.lexadiky.pdx.feature.typechart.ui.EffectChart
 import io.github.lexadiky.pdx.library.arc.Page
 import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
+import io.github.lexadiky.pdx.library.nibbler.decoration.Decoration
 import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.grid
 
@@ -33,7 +33,7 @@ internal fun TypeChartPage(viewModel: TypeChartSocket = di.viewModel()) = Page(v
     ErrorDialog(state.error) {
         act(TypeChartAction.HideError)
     }
-    Decoration(decoration = "pdx://toolbar/title") {
+    Decoration("pdx://toolbar/title") {
         Text(text = stringResource(id = R.string.type_tab_chart_title))
     }
 

@@ -18,8 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import io.github.lexadiky.akore.alice.robo.DIApplication
-import io.github.lexadiky.akore.lechuck.robo.NavigationFeature
-import io.github.lexadiky.pdx.library.navigation.NavigationHostStyles
+import io.github.lexadiky.pdx.library.nibbler.android.NibblerRoot
 import io.github.lexadiky.pdx.library.target.InitialDIContainerBuilder
 import io.github.lexadiky.pdx.library.uikit.theme.PdxTheme
 import io.github.lexadiky.pdx.library.uikit.widget.scaffold.PdxScaffold
@@ -37,35 +36,31 @@ fun PagePreview(
 
     DIApplication(diContainer) {
         PdxTheme {
-            NavigationFeature(
-                startDestination = "pdx-preview://start",
-                style = NavigationHostStyles.default(),
-                content = {
-                    PdxScaffold(
-                        drawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
-                        drawerContent = {},
-                        topBar = {
-                            TopAppBar(
-                                title = { Text(title) },
-                                navigationIcon = {
-                                    IconButton(
-                                        content = { Icon(Icons.Default.Menu, null) },
-                                        onClick = {},
-                                    )
-                                }
-                            )
-                        },
-                        content = { paddingValues ->
-                            Box(
-                                modifier = Modifier
-                                    .padding(paddingValues)
-                            ) {
-                                content()
+            NibblerRoot(builder = {}) {
+                PdxScaffold(
+                    drawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
+                    drawerContent = {},
+                    topBar = {
+                        TopAppBar(
+                            title = { Text(title) },
+                            navigationIcon = {
+                                IconButton(
+                                    content = { Icon(Icons.Default.Menu, null) },
+                                    onClick = {},
+                                )
                             }
+                        )
+                    },
+                    content = { paddingValues ->
+                        Box(
+                            modifier = Modifier
+                                .padding(paddingValues)
+                        ) {
+                            content()
                         }
-                    )
-                }
-            )
+                    }
+                )
+            }
         }
     }
 }

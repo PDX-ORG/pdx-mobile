@@ -15,7 +15,8 @@ dependencies {
     implementation(libs.akore.alice.robo)
     implementation(projects.library.featureToggle)
     implementation(projects.library.network)
-    implementation(projects.library.navigation)
+    implementation(projects.library.nibbler.android)
+
     implementation(projects.library.system)
     implementation(libs.akore.blogger.core)
     implementation(projects.domain.achievement)

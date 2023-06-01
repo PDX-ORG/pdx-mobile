@@ -28,7 +28,6 @@ import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
-import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
 import io.github.lexadiky.pdx.feature.news.NewsModule
 import io.github.lexadiky.pdx.feature.news.entity.NewsFeedItem
 import io.github.lexadiky.pdx.library.arc.Page
@@ -39,6 +38,7 @@ import io.github.lexadiky.pdx.library.uikit.theme.grid
 import io.github.lexadiky.pdx.library.uikit.theme.pdx
 import io.github.lexadiky.pdx.library.uikit.util.scroll.LocalPrimeScrollState
 import io.github.lexadiky.pdx.feature.news.R
+import io.github.lexadiky.pdx.library.nibbler.decoration.Decoration
 
 @Composable
 fun NewsFeedPage() {
@@ -49,7 +49,7 @@ fun NewsFeedPage() {
 
 @Composable
 internal fun NewsFeedPageImpl(viewModel: NewsFeedSocket) = Page(viewModel) { state, act ->
-    Decoration(decoration = "pdx://toolbar/title") {
+    Decoration("pdx://toolbar/title") {
         Text(text = stringResource(id = R.string.news_feed_title))
     }
     ErrorDialog(error = viewModel.state.error) {

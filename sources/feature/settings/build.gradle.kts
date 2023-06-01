@@ -8,7 +8,7 @@ dependencies {
     implementation(projects.library.uikit)
     implementation(projects.library.network)
     implementation(projects.library.errorHandler)
-    implementation(projects.library.navigation)
+    implementation(projects.library.nibbler.android)
     implementation(projects.library.fs.core)
     implementation(projects.library.localeManager)
 

@@ -6,7 +6,7 @@ plugins {
 dependencies {
     implementation(projects.domain.achievement)
     implementation(projects.library.featureToggle)
-    implementation(projects.library.navigation)
+    implementation(projects.library.nibbler.android)
     implementation(projects.library.uikit)
 
     implementation(libs.akore.alice.robo)

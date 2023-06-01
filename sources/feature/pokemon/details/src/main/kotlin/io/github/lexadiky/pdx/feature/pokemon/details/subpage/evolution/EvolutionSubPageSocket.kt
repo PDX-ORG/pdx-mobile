@@ -2,8 +2,8 @@ package io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution
 
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
-import io.github.lexadiky.akore.lechuck.Navigator
-import io.github.lexadiky.akore.lechuck.utils.navigate
+import io.github.lexadiky.pdx.library.nibbler.Navigator
+import io.github.lexadiky.pdx.library.nibbler.navigate
 import io.github.lexadiky.pdx.domain.pokemon.entity.EvolutionNode
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview

@@ -8,7 +8,7 @@ dependencies {
     implementation(projects.domain.pokemon)
 
     implementation(projects.library.uikit)
-    implementation(projects.library.navigation)
+    implementation(projects.library.nibbler.android)
     implementation(projects.library.errorHandler)
 
     implementation(libs.akore.alice.robo)

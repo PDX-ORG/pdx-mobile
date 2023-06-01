@@ -10,7 +10,7 @@ dependencies {
     implementation(projects.library.errorHandler)
     implementation(projects.library.featureToggle)
     implementation(projects.library.network)
-    implementation(projects.library.navigation)
+    implementation(projects.library.nibbler.android)
 
     implementation(libs.akore.alice.robo)
     implementation(libs.akore.blogger.core)

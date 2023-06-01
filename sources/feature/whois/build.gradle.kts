@@ -11,7 +11,7 @@ dependencies {
     implementation(libs.akore.alice.robo)
     implementation(projects.library.uikit)
     implementation(projects.library.errorHandler)
-    implementation(projects.library.navigation)
+    implementation(projects.library.nibbler.android)
     implementation(projects.library.microdata)
     implementation(projects.library.fs.core)
 

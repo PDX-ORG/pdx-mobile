@@ -53,8 +53,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
-import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
-import io.github.lexadiky.akore.lechuck.robo.fsdialog.FullScreenDialogAnchor
 import io.github.lexadiky.pdx.domain.pokemon.asset.assets
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonDetailsSection
@@ -65,7 +63,7 @@ import io.github.lexadiky.pdx.feature.pokemon.details.subpage.stats.StatsSubPage
 import io.github.lexadiky.pdx.library.arc.Page
 import io.github.lexadiky.pdx.library.core.lce.Lce
 import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
-import io.github.lexadiky.pdx.library.navigation.FullScreenDialogStyles
+import io.github.lexadiky.pdx.library.nibbler.decoration.Decoration
 import io.github.lexadiky.pdx.library.resources.image.ImageResource
 import io.github.lexadiky.pdx.library.resources.string.StringResource
 import io.github.lexadiky.pdx.library.uikit.UikitDrawable
@@ -275,9 +273,6 @@ private fun BoxScope.SpriteButtonIcon(
             .padding(end = MaterialTheme.grid.x2)
     ) {
         Box(contentAlignment = Alignment.Center) {
-            FullScreenDialogAnchor(
-                style = FullScreenDialogStyles.circularExpansion()
-            )
             Icon(
                 painter = painterResource(id = UikitDrawable.uikit_ic_camera),
                 contentDescription = null,

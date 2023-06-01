@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.lexadiky.pdx.domain.pokemon.entity.UseRomajiLocaleFlag
 import io.github.lexadiky.pdx.library.locale.LocaleManager
-import io.github.lexadiky.akore.lechuck.Navigator
-import io.github.lexadiky.akore.lechuck.utils.navigate
+import io.github.lexadiky.pdx.library.nibbler.Navigator
+import io.github.lexadiky.pdx.library.nibbler.navigate
 import io.github.lexadiky.pdx.library.uikit.theme.custom.CustomTheme
 import io.github.lexadiky.pdx.library.uikit.theme.custom.ThemeManager
 import kotlinx.coroutines.flow.collectLatest

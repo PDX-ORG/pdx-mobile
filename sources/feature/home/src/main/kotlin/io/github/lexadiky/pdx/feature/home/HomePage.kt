@@ -32,7 +32,6 @@ import androidx.compose.ui.text.font.FontWeight
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
-import io.github.lexadiky.akore.lechuck.robo.decoration.Decoration
 import io.github.lexadiky.pdx.domain.pokemon.asset.PokemonAssetsDrawable
 import io.github.lexadiky.pdx.domain.pokemon.asset.PokemonTypeAssets
 import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonItem
@@ -40,6 +39,7 @@ import io.github.lexadiky.pdx.feature.home.entitiy.SuggestedPokemonType
 import io.github.lexadiky.pdx.feature.home.widget.RecommendedPokemonCard
 import io.github.lexadiky.pdx.library.arc.Page
 import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
+import io.github.lexadiky.pdx.library.nibbler.decoration.Decoration
 import io.github.lexadiky.pdx.library.resources.image.ImageResource
 import io.github.lexadiky.pdx.library.resources.string.StringResource
 import io.github.lexadiky.pdx.library.resources.string.from
@@ -109,7 +109,7 @@ internal fun HomePageImpl(viewModel: HomePageSocket = di.viewModel()) = Page(vie
 
 @Composable
 private fun HomeDecoration(onShareClicked: () -> Unit) {
-    Decoration(decoration = "pdx://toolbar/title") {
+    Decoration("pdx://toolbar/title") {
         ToolbarContent(
             start = {
                 Text(

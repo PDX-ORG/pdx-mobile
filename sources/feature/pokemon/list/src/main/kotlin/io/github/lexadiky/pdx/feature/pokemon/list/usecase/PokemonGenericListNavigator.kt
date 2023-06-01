@@ -3,8 +3,8 @@ package io.github.lexadiky.pdx.feature.pokemon.list.usecase
 import io.github.lexadiky.pdx.feature.generic.list.domain.GenericListNavigator
 import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
 import io.github.lexadiky.pdx.feature.pokemon.list.entity.PokemonGenericListItem
-import io.github.lexadiky.akore.lechuck.Navigator
-import io.github.lexadiky.akore.lechuck.utils.navigate
+import io.github.lexadiky.pdx.library.nibbler.Navigator
+import io.github.lexadiky.pdx.library.nibbler.navigate
 
 class PokemonGenericListNavigator(
     private val navigator: Navigator
