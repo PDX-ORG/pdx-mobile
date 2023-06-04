@@ -14,11 +14,12 @@ import com.google.accompanist.navigation.material.rememberBottomSheetNavigator
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
+import io.github.lexadiky.pdx.library.nibbler.NavigateCommand
 import io.github.lexadiky.pdx.library.nibbler.Navigator
 import io.github.lexadiky.pdx.library.nibbler.NibblerModule
 import io.github.lexadiky.pdx.library.nibbler.Route
-import io.github.lexadiky.pdx.library.nibbler.android.graph.RoutingBuilderContext
 import io.github.lexadiky.pdx.library.nibbler.android.graph.RoutingBuilder
+import io.github.lexadiky.pdx.library.nibbler.android.graph.RoutingBuilderContext
 
 private typealias NibblerRootContent = @Composable () -> Unit
 
@@ -34,7 +35,7 @@ fun NibblerRoot(builder: RoutingBuilder, installer: @Composable (NibblerRootCont
             installer {
                 // nibbler
                 val nibblerNavigator = di.inject<Navigator>()
-                val currentRoute by nibblerNavigator.currentRoute.collectAsState()
+                val navigateCommand by nibblerNavigator.navigateCommand.collectAsState()
 
                 // jetpack
 
@@ -44,8 +45,12 @@ fun NibblerRoot(builder: RoutingBuilder, installer: @Composable (NibblerRootCont
                         .apply(builder)
                 }
 
-                LaunchedEffect(currentRoute) {
-                    composeNavigator.navigate(currentRoute.uri)
+                LaunchedEffect(navigateCommand) {
+                    when (navigateCommand) {
+                        is NavigateCommand.GoTo -> composeNavigator.navigate(
+                            (navigateCommand as NavigateCommand.GoTo).uri
+                        )
+                    }
                 }
             }
         }

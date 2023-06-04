@@ -46,7 +46,7 @@ class HomePageSocketImpl(
 
         }
         viewModelScope.launch {
-            navigator.currentRoute.map {
+            navigator.navigateCommand.map {
                 when (val data = getLatestViewedPokemonUseCase(FEATURED_POKEMON_SAMPLE_SIZE)) {
                     is Either.Left -> state.copy(error = UIError.generic())
                     is Either.Right -> state.copy(

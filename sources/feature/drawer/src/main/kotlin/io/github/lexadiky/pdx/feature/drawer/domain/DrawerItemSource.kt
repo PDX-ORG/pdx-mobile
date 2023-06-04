@@ -10,6 +10,7 @@ import io.github.lexadiky.pdx.feature.drawer.R
 import io.github.lexadiky.pdx.feature.drawer.entity.AuthInDrawerFeatureToggle
 import io.github.lexadiky.pdx.feature.drawer.entity.DrawerItem
 import io.github.lexadiky.pdx.library.featuretoggle.FeatureToggleManager
+import io.github.lexadiky.pdx.library.nibbler.NavigateCommand
 import io.github.lexadiky.pdx.library.nibbler.Navigator
 import io.github.lexadiky.pdx.library.nibbler.Route
 import io.github.lexadiky.pdx.library.resources.image.ImageResource
@@ -19,6 +20,7 @@ import io.github.lexadiky.pdx.library.resources.string.from
 import io.github.lexadiky.pdx.library.uikit.UikitDrawable
 import io.github.lexadiky.pdx.library.uikit.resources.from
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 
@@ -28,7 +30,8 @@ internal class DrawerItemSource(
 ) {
 
     suspend fun get(): Flow<List<DrawerItem>> {
-        return navigator.currentRoute.filterNotNull()
+        return navigator.navigateCommand.filterNotNull()
+            .filterIsInstance<NavigateCommand.GoTo>()
             .map { currentRoute ->
                 listOfNotNull(
                     DrawerItem.UserAccount
@@ -59,7 +62,7 @@ internal class DrawerItemSource(
                         currentRoute = currentRoute.uri
                     ),
                     DrawerItem.Divider,
-                    newsItem(currentRoute),
+                    newsItem(currentRoute.route),
                     createNavigationItem(
                         icon = ImageResource.from(Icons.Default.Settings),
                         title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_settings_title),

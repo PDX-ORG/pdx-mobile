@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface Navigator {
 
-    val currentRoute: StateFlow<Route>
+    val navigateCommand: StateFlow<NavigateCommand>
 
     suspend fun navigate(route: Route)
 }
