@@ -1,6 +1,6 @@
 [versions]
 
-ktor = "2.3.0"
+ktor = "2.3.1"
 accompanist = "0.30.1"
 akore = "-SNAPSHOT"
 coroutines = "1.7.1"
@@ -90,7 +90,7 @@ snakeyaml = "org.yaml:snakeyaml:2.0"
 kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
 
 # Code generation
-kotlinpoet = "com.squareup:kotlinpoet:1.14.1"
+kotlinpoet = "com.squareup:kotlinpoet:1.14.2"
 
 # Plugins
 classpath-google-services = "com.google.gms:google-services:4.3.15"
@@ -113,7 +113,7 @@ android-baselineprofile = { id = "androidx.baselineprofile", version.ref = "base
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kotlin-kover = { id = "org.jetbrains.kotlinx.kover", version = "0.7.0" }
+kotlin-kover = { id = "org.jetbrains.kotlinx.kover", version = "0.7.1" }
 
 # Lint
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.0" }
