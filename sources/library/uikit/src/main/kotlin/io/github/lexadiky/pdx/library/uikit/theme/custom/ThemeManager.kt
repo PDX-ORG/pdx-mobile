@@ -1,6 +1,5 @@
 package io.github.lexadiky.pdx.library.uikit.theme.custom
 
-import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
@@ -14,15 +13,14 @@ import io.github.lexadiky.pdx.library.microdata.MicrodataManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class ThemeManager(
-    private val context: Context,
-    private val microdataManager: MicrodataManager,
+class ThemeManager internal constructor(
+    microdataManager: MicrodataManager,
+    private val factory: CustomThemeFactory,
     private val isDark: Boolean,
 ) {
     private val selectedThemeId = microdataManager.acquire(this, "custom_theme")
         .string("theme_id_${if (isDark) "dark" else "light"}")
 
-    private val factory: CustomThemeFactory = CustomThemeFactory(context)
     private val currentTheme: MutableState<CustomTheme> = mutableStateOf(factory.default(isDark))
 
     init {

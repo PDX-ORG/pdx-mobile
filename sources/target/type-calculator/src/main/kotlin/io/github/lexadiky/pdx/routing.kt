@@ -8,9 +8,10 @@ import io.github.lexadiky.pdx.feature.settings.SettingsPage
 import io.github.lexadiky.pdx.feature.settings.achievement.AchievementSettingsPage
 import io.github.lexadiky.pdx.feature.typechart.TypePage
 import io.github.lexadiky.pdx.library.featuretoggle.FeatureToggleManager
+import io.github.lexadiky.pdx.library.nibbler.android.graph.RoutingBuilderContext
 
 @Composable
-fun routing(): NaviNavGraphBuilder.() -> Unit {
+fun routing(): RoutingBuilderContext.() -> Unit {
     val toggleManager = di.inject<FeatureToggleManager>()
 
     return remember(toggleManager) {

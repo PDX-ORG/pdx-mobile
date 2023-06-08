@@ -164,7 +164,6 @@ private fun FeaturedPokemonSection(
         state.featuredPokemon.forEach { preview ->
             SmallWikiPreview(
                 title = preview.name.render(),
-                preTitle = "",
                 icon = preview.image.render(
                     transformations = listOf(ImageTransformation.CropTransparent)
                 ),

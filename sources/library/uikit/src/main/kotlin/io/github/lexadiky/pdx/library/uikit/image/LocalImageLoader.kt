@@ -14,9 +14,7 @@ val LocalImageLoader = compositionLocalOf<ImageLoader> {
 @Composable
 fun ProvideLocalImageLoader(content: @Composable () -> Unit) {
     val context = LocalContext.current
-    val imageLoader = remember(context) {
-        ImageLoader(context)
-    }
+    val imageLoader = remember(context) { ImageLoader(context) }
     CompositionLocalProvider(LocalImageLoader provides imageLoader) {
         content()
     }
