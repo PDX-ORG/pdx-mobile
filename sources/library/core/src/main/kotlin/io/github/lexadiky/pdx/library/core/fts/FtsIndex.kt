@@ -57,6 +57,7 @@ internal class MatrixFtsIndex(baseSize: Int = EXPECTED_INDEX_SIZE) : MutableFtsI
         }
 
         val sanitizedQuery = query.lowercase()
+            .trim()
 
         return matrix.any { closure -> sanitizedQuery in closure }
     }

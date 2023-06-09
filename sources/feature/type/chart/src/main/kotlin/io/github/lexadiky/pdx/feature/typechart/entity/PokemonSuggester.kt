@@ -4,7 +4,7 @@ internal class PokemonSuggester {
 
     fun suggest(all: List<PokemonTypeSearchItem>, query: String): Suggestion {
         val preparedQuery = query.lowercase()
-        val hints = all.filter { item -> preparedQuery in item.searchQueryIndex }
+        val hints = all.filter { item -> item.searchQueryIndex.matches(preparedQuery) }
             .take(SUGGESTION_SIZE)
         val mostLikely = hints.firstOrNull()
 

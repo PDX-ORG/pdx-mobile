@@ -1,6 +1,7 @@
 package io.github.lexadiky.pdx.domain.pokemon.entity
 
 import io.github.lexadiky.pdx.domain.pokemon.util.asPokemonLanguage
+import io.github.lexadiky.pdx.library.core.fts.FtsIndex
 import io.github.lexadiky.pdx.library.locale.LocaleManager
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -20,9 +21,6 @@ internal data class DiscoveryPokemonPreview(
     @SerialName("types")
     val types: List<PokemonType>
 ) {
-    private val simpleSearchIndex: String get() =
-        (localNames.values + types.map { it.id }).joinToString(separator = "|", transform = { it.lowercase() })
-
     fun asDomain(localeManager: LocaleManager): PokemonPreview = PokemonPreview(
         name = name,
         localeName = extractName(localeManager),
@@ -30,7 +28,10 @@ internal data class DiscoveryPokemonPreview(
         normalSprite = normalSprite,
         shinySprite = shinySprite ?: normalSprite,
         types = types,
-        simpleSearchIndex = simpleSearchIndex
+        searchIndex = FtsIndex.build(
+            (localNames.values + types.map { it.id })
+                .map { it.lowercase() }
+        )
     )
 
     private fun extractName(localeManager: LocaleManager) =

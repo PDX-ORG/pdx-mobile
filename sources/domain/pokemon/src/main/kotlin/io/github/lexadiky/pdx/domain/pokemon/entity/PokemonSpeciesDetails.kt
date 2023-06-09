@@ -1,5 +1,7 @@
 package io.github.lexadiky.pdx.domain.pokemon.entity
 
+import io.github.lexadiky.pdx.library.core.fts.FtsIndex
+
 data class PokemonSpeciesDetails(
     val name: String,
     val nationalDexNumber: Int,
@@ -18,7 +20,7 @@ data class PokemonSpeciesDetails(
             normalSprite = primaryVariety.sprites.default,
             shinySprite = primaryVariety.sprites.defaultShiny,
             types = primaryVariety.types,
-            simpleSearchIndex = "" // TODO not implemented
+            searchIndex = FtsIndex.build(emptyList()) // TODO not implemented
         )
     }
 }

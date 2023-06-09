@@ -21,7 +21,7 @@ data class PokemonSearchQuery(
 
         return items
             .filter { item -> onlyFavorites && item.isFavorite || !onlyFavorites }
-            .filter { item -> item.textSearchIndex.contains(text) }
+            .filter { item -> item.searchIndex.matches(text) }
             .filter { item -> item.types.containsAll(selectedTypes) }
     }
 

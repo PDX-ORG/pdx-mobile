@@ -8,6 +8,7 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetAllPokemonPrevie
 import io.github.lexadiky.pdx.feature.generic.list.domain.GenericListItemDataSource
 import io.github.lexadiky.pdx.feature.generic.list.entity.GenericListItem
 import io.github.lexadiky.pdx.feature.pokemon.list.entity.PokemonGenericListItem
+import io.github.lexadiky.pdx.library.core.fts.FtsIndex
 import io.github.lexadiky.pdx.library.resources.image.ImageResource
 import io.github.lexadiky.pdx.library.resources.image.from
 import io.github.lexadiky.pdx.library.resources.string.StringResource
@@ -38,8 +39,8 @@ internal class PokemonGenericListItemSource(
             tags = pokemon.types.map { type ->
                 GenericListItem.Tag(type.assets.title, type.assets.color, type.id)
             },
-            textSearchIndex = pokemon.simpleSearchIndex,
             types = pokemon.types,
-            isFavorite = isPokemonFavorite.invoke(pokemon)
+            isFavorite = isPokemonFavorite.invoke(pokemon),
+            searchIndex = pokemon.searchIndex
         )
 }
