@@ -7,17 +7,27 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 abstract class ViewModelSocket<S, A>(initialState: S) : Socket<S, A>, ViewModel() {
+    var isAsync: Boolean = true
 
     override var state: S by mutableStateOf(initialState)
         protected set
 
     final override fun act(action: A) {
-        viewModelScope.launch(SupervisorJob()) {
-            onAction(action)
+        if (isAsync) {
+            viewModelScope.launch(SupervisorJob()) {
+                onAction(action)
+            }
+        } else {
+            runBlocking { onAction(action) }
         }
     }
 
     protected abstract suspend fun onAction(action: A)
+
+    fun synchronize() = apply {
+        isAsync = false
+    }
 }
