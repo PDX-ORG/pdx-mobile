@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -47,7 +48,7 @@ private fun SpriteGalleryPageImpl(viewModel: SpriteGalleryPageViewModel) {
             )
     ) {
         HorizontalPager(
-            viewModel.state.items.size,
+            state = rememberPagerState { viewModel.state.items.size },
             userScrollEnabled = true
         ) { spriteIdx ->
             val (title, image) = viewModel.state.items[spriteIdx]

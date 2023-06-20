@@ -202,7 +202,7 @@ private fun HeaderImagePager(
 ) {
     Crossfade(targetState = state.isLoaded, label = "header-image-pager-cf") { isLoaded ->
         if (isLoaded) {
-            val pagerState = rememberPagerState()
+            val pagerState = rememberPagerState { state.availableVarieties }
             LaunchedEffect(pagerState.currentPage) {
                 act(PokemonDetailsAction.SelectVariety(pagerState.currentPage))
             }
@@ -210,7 +210,6 @@ private fun HeaderImagePager(
             Box {
                 Column {
                     HorizontalPager(
-                        state.availableVarieties,
                         state = pagerState
                     ) { page ->
                         HeaderImage(state.image(page))
