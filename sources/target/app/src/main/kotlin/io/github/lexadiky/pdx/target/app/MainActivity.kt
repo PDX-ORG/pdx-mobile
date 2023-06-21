@@ -55,9 +55,4 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
-    companion object {
-
-        private const val DRAWER_CLOSE_DELAY = 200
-    }
 }
