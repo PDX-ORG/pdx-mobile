@@ -48,7 +48,8 @@ private fun SpriteGalleryPageImpl(viewModel: SpriteGalleryPageViewModel) {
             )
     ) {
         HorizontalPager(
-            state = rememberPagerState { viewModel.state.items.size },
+            state = rememberPagerState(),
+            pageCount = viewModel.state.items.size,
             userScrollEnabled = true
         ) { spriteIdx ->
             val (title, image) = viewModel.state.items[spriteIdx]

@@ -19,6 +19,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.unit.dp
 import io.github.lexadiky.pdx.library.uikit.theme.circular
 import io.github.lexadiky.pdx.library.uikit.theme.grid
 import io.github.lexadiky.pdx.library.uikit.util.delayState
@@ -36,6 +38,10 @@ fun <T> FastScrollWheel(
     columnState: LazyListState,
     modifier: Modifier = Modifier,
 ) {
+    if (items.size < ITEM_CHUNK) {
+        return // show nothing
+    }
+
     val localState = rememberLazyListState()
     val scope = rememberCoroutineScope()
     val isScrollInProgressRecently by delayState(1.seconds) {
@@ -52,6 +58,7 @@ fun <T> FastScrollWheel(
             state = localState,
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
             modifier = Modifier
+                .shadow(8.dp, MaterialTheme.shapes.circular)
                 .padding(MaterialTheme.grid.x1)
                 .clip(MaterialTheme.shapes.circular)
                 .background(MaterialTheme.colorScheme.surface.copy(alpha = SCROLL_WHEEL_ALPHA))
@@ -59,7 +66,7 @@ fun <T> FastScrollWheel(
         ) {
             items(items.chunked(ITEM_CHUNK).indices.toList()) { idx ->
                 Text(
-                    text = idx.toString(),
+                    text = idx.toString().padStart(2, '0'),
                     modifier = Modifier
                         .clip(MaterialTheme.shapes.circular)
                         .clickable {

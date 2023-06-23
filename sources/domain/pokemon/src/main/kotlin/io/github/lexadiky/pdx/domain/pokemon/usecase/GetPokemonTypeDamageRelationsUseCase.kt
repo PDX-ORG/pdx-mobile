@@ -4,14 +4,13 @@ import arrow.core.Either
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonTypeDamageRelation
 import io.github.lexadiky.pdx.library.core.error.GenericError
-import io.github.lexadiky.pdx.library.fs.statist.StaticResourceProvider
-import io.github.lexadiky.pdx.library.fs.statist.provide
+import io.github.lexadiky.pdx.library.core.resource.ResourceReader
+import io.github.lexadiky.pdx.library.core.resource.read
 
 class GetPokemonTypeDamageRelationsUseCase internal constructor(
-    private val resourceProvider: StaticResourceProvider
+    private val resourceReader: ResourceReader
 ) {
 
     suspend operator fun invoke(): Either<GenericError, Map<PokemonType, PokemonTypeDamageRelation>> =
-        resourceProvider.provide<Map<PokemonType, PokemonTypeDamageRelation>>("bundle://type_chart.json").read()
-            .mapLeft { GenericError("can't load pokemon type relations", it.reason) }
+        resourceReader.read("type_chart.json")
 }
