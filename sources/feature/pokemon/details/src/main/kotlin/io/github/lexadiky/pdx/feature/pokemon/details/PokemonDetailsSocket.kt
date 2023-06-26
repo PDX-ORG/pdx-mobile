@@ -2,8 +2,8 @@ package io.github.lexadiky.pdx.feature.pokemon.details
 
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
-import io.github.lexadiky.pdx.library.nibbler.Navigator
-import io.github.lexadiky.pdx.library.nibbler.navigate
+import io.github.lexadiky.akore.blogger.BLogger
+import io.github.lexadiky.akore.blogger.error
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.domain.pokemon.usecase.favorite.IsPokemonFavoriteUseCase
@@ -13,11 +13,13 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonSpeciesDe
 import io.github.lexadiky.pdx.domain.pokemon.usecase.viewed.MarkPokemonSpeciesAsViewedUseCase
 import io.github.lexadiky.pdx.feature.pokemon.details.toggle.SpritesViewerFeatureToggle
 import io.github.lexadiky.pdx.feature.pokemon.details.usecase.GetAvailableDetailsSections
-import io.github.lexadiky.pdx.library.featuretoggle.FeatureToggleManager
 import io.github.lexadiky.pdx.library.arc.ViewModelSocket
 import io.github.lexadiky.pdx.library.core.lce.contentOrNull
 import io.github.lexadiky.pdx.library.errorhandler.UIError
 import io.github.lexadiky.pdx.library.errorhandler.classify
+import io.github.lexadiky.pdx.library.featuretoggle.FeatureToggleManager
+import io.github.lexadiky.pdx.library.nibbler.Navigator
+import io.github.lexadiky.pdx.library.nibbler.navigate
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -30,7 +32,7 @@ internal class PokemonDetailsSocket(
     private val isPokemonFavorite: IsPokemonFavoriteUseCase,
     private val saveFavoritePokemon: SaveFavoritePokemonUseCase,
     featureToggleManager: FeatureToggleManager,
-    private val getPokemonDetailsBySpecies: GetPokemonDetailsBySpeciesUseCase
+    private val getPokemonDetailsBySpecies: GetPokemonDetailsBySpeciesUseCase,
 ) : ViewModelSocket<PokemonDetailsState, PokemonDetailsAction>(PokemonDetailsState(pokemonId)) {
 
     init {
@@ -86,6 +88,15 @@ internal class PokemonDetailsSocket(
 
     private fun selectVariety(varietyIndex: Int) {
         viewModelScope.launch {
+            if (state.varieties.size >= varietyIndex) {
+                BLogger.tag("PokemonDetailsSocket")
+                    .error(
+                        message = "can't select variety, available size ${state.varieties} " +
+                                "but requested $varietyIndex for ${state.id}",
+                        throwable = IndexOutOfBoundsException()
+                    )
+                return@launch // do nothing, not yet loaded
+            }
             state = state.copy(selectedVariety = state.varieties[varietyIndex])
         }
     }
