@@ -33,3 +33,55 @@ For example pokemon details page will have URI like: `pdx://pokemon/ditto?style=
 **Cons:**
 1. Changing page URI will require manually going to every navigation call
 
+## Navigator contract
+
+1. `navigateCommand : StateFlow<NavigateCommand>` - flow of command for UI layer
+2. `navigate(route: Route)` - route (effectively URI) to next page
+
+## Decorations
+
+Sometimes application should contain UI elements that should be persisted across pages.
+For example toolbar should be visible on all pages, but it could contain different titles / badges / e.t.c.
+
+This issue is solved by `Decoration` system. 
+
+`DecorationHost` - point of integration of decorations into UI.
+Represents a slot that could be placed somewhere in UI. Marked by `decoarion route`
+
+`Decoration` - side effect emitting peace of UI into `DecorationHost`. 
+Should emit new version on UI on state changed. Connected to `DecoationHost` by specifying `decoartion route`.
+
+Each page could have only one `Decoaration` unique `decoration route`. Multiple `Decorations`s with different `decoartino route`s are permitted.
+
+### Example
+
+```kotlin
+@Composable
+fun Toolbar() {
+    // ... toolbar implementation
+    DecoationHost("pdx://decoration/toolbar_header") {
+        Text("Default Toolbar Title")
+    }
+}
+
+// on home page
+@Composable
+fun HomePage() {
+    // ... toolbar implementation
+    Decoation("pdx://decoration/toolbar_header") {
+        Text("HomePageTitle")
+    }
+}
+// on search page
+@Composable
+fun SearchPage() {
+    // ... toolbar implementation
+    Decoation("pdx://decoration/toolbar_header") {
+        SearchBar(
+            query = state.query, 
+            suggestions = state.suggestions,
+            onUpdate = { newQuery -> act(UpdateQuery(newQuery)) }
+        )
+    }
+}
+```
