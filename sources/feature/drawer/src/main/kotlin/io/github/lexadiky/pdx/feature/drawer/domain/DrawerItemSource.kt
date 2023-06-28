@@ -68,11 +68,7 @@ internal class DrawerItemSource(
                         title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_settings_title),
                         route = "pdx://settings",
                         currentRoute = currentRoute.uri
-                    ),
-                    DrawerItem.Divider
-                        .takeIf { toggleManager.resolve(AuthInDrawerFeatureToggle) },
-                    DrawerItem.Login
-                        .takeIf { toggleManager.resolve(AuthInDrawerFeatureToggle) }
+                    )
                 )
             }
     }

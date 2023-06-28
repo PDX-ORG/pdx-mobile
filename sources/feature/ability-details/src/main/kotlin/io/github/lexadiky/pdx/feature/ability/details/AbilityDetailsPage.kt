@@ -16,7 +16,8 @@ import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.grid
-import io.github.lexadiky.pdx.library.uikit.widget.BottomSheetHeaderScaffold
+import io.github.lexadiky.pdx.library.uikit.widget.BottomSheetBasement
+import io.github.lexadiky.pdx.library.uikit.widget.scaffold.BottomSheetHeaderScaffold
 
 @Composable
 fun AbilityDetailsPage(id: String) {
@@ -51,7 +52,7 @@ private fun AbilityDetailsPageImpl(viewModel: AbilityDetailsViewModel) {
             }
         }
         item {
-            Spacer(modifier = Modifier.size(MaterialTheme.grid.x10))
+            BottomSheetBasement()
         }
     }
 }

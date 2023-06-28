@@ -29,7 +29,6 @@ import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
 import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.PokemonPhysicalDimension
 import io.github.lexadiky.pdx.library.core.lce.Lce
-import io.github.lexadiky.pdx.library.core.lce.contentOrNull
 import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.grid
@@ -88,13 +87,10 @@ private fun InfoSubPageImpl(
             }
             itemsIndexed(
                 items = viewModel.state.descriptions,
-                key = { index, item ->
-                    item.contentOrNull()?.artificialId ?: index
-                }
             ) { index, lce ->
                 Crossfade(
                     label = "description-crossfade",
-                    targetState = lce
+                    targetState = lce,
                 ) { item ->
                     when (item) {
                         Lce.Loading -> DescriptionPlacholder()

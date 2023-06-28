@@ -34,6 +34,7 @@ internal class PokemonDetailsSocket(
     featureToggleManager: FeatureToggleManager,
     private val getPokemonDetailsBySpecies: GetPokemonDetailsBySpeciesUseCase,
 ) : ViewModelSocket<PokemonDetailsState, PokemonDetailsAction>(PokemonDetailsState(pokemonId)) {
+    private val logger = BLogger.tag("PokemonDetailsSocket")
 
     init {
         state = state.copy(
@@ -88,13 +89,12 @@ internal class PokemonDetailsSocket(
 
     private fun selectVariety(varietyIndex: Int) {
         viewModelScope.launch {
-            if (state.varieties.size >= varietyIndex) {
-                BLogger.tag("PokemonDetailsSocket")
-                    .error(
-                        message = "can't select variety, available size ${state.varieties} " +
-                                "but requested $varietyIndex for ${state.id}",
-                        throwable = IndexOutOfBoundsException()
-                    )
+            if (state.varieties.size <= varietyIndex) {
+                logger.error(
+                    message = "can't select variety, available size ${state.varieties} " +
+                            "but requested $varietyIndex for ${state.id}",
+                    throwable = IndexOutOfBoundsException("size = ${state.varieties.size}, index = $varietyIndex")
+                )
                 return@launch // do nothing, not yet loaded
             }
             state = state.copy(selectedVariety = state.varieties[varietyIndex])

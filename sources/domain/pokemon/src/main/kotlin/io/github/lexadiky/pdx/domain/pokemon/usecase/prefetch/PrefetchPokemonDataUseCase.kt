@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class PrefetchPokemonDataUseCase(private val pokeApiClient: PokeApiClient) {
+    private val logger = BLogger.tag("PrefetchPokemonData")
 
     suspend operator fun invoke() {
         try {
@@ -23,18 +24,15 @@ class PrefetchPokemonDataUseCase(private val pokeApiClient: PokeApiClient) {
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
-            BLogger.tag("PrefetchPokemonData")
-                .error("can't prefetch data", e)
+            logger.error("can't prefetch data", e)
         }
     }
 
     private suspend fun <T> prefetch(accessor: GenericAccessor<T>) = withContext(Dispatchers.IO + Job()) {
-        BLogger.tag("PrefetchPokemonData")
-            .verbose("prefetching $accessor started")
+        logger.verbose("prefetching $accessor started")
         accessor.all().getOrThrow().forEach { elementRef ->
             launch { accessor.get(elementRef).getOrThrow() }
         }
-        BLogger.tag("PrefetchPokemonData")
-            .verbose("prefetching $accessor done")
+        logger.verbose("prefetching $accessor done")
     }
 }

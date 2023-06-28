@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="account_login_title">PDX Account</string>
+    <string name="account_login_description">Offline account registration</string>
+
+    <string name="account_login_username_box_placeholder">Smoky Ketchup</string>
+    <string name="account_login_username_box_title">Username</string>
+    <string name="account_login_create_account_button">Create Account</string>
+    <string name="account_login_backup_notice">Your user data will be stored locally on device. Data could be synchronized between devices if you have automatic application backup enabled in system settings</string>
+    <string name="account_login_trainer_id_title">TrainerID</string>
+
+</resources>

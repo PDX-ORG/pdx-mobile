@@ -12,6 +12,6 @@
     <string name="drawer_item_debug_panel_title">Debug</string>
 
     <string name="drawer_account_card_username_default">Trainer</string>
-    <string name="drawer_account_card_login_suggestion">Login / Register too access even more features</string>
+    <string name="drawer_account_card_login_button">Login / Register</string>
 
 </resources>

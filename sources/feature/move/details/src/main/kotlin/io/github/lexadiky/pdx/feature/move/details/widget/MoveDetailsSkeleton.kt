@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import io.github.lexadiky.pdx.library.uikit.theme.circular
 import io.github.lexadiky.pdx.library.uikit.theme.grid
-import io.github.lexadiky.pdx.library.uikit.widget.BottomSheetHeaderScaffold
+import io.github.lexadiky.pdx.library.uikit.widget.scaffold.BottomSheetHeaderScaffold
 import io.github.lexadiky.pdx.library.uikit.widget.PlaceholderDefaults
 import io.github.lexadiky.pdx.library.uikit.widget.placeholder
 

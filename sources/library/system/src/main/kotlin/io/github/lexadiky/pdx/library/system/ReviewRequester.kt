@@ -17,17 +17,16 @@ internal class ReviewRequesterImpl(
     private val activityHolder: ActivityHolder
 ): ReviewRequester {
 
+    private val logger = BLogger.tag("ReviewRequester")
     private val mutex = Mutex()
 
     override suspend fun request(): Unit = mutex.withLock {
-        BLogger.tag("ReviewRequester")
-            .info("review requested, mutex locked")
+        logger.info("review requested, mutex locked")
         activityHolder.use(this) { activity ->
             val manager = ReviewManagerFactory.create(activity)
             val reviewRequest = manager.requestReview()
             manager.launchReview(activity, reviewRequest)
         }
-        BLogger.tag("ReviewRequester")
-            .info("review launched, mutex unlocked")
+        logger.info("review launched, mutex unlocked")
     }
 }

@@ -15,5 +15,4 @@ internal sealed interface DrawerItem {
 
     object Divider : DrawerItem
     object UserAccount : DrawerItem
-    object Login : DrawerItem
 }

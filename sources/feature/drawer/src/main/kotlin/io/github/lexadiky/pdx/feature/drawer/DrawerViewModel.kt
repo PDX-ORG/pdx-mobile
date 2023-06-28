@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import io.github.lexadiky.pdx.feature.drawer.domain.DrawerItemSource
 import io.github.lexadiky.pdx.feature.drawer.entity.DrawerItem
 import io.github.lexadiky.pdx.library.nibbler.Navigator
+import io.github.lexadiky.pdx.library.nibbler.navigate
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -34,6 +35,12 @@ internal class DrawerViewModel(
             viewModelScope.launch {
                 navigator.navigate(drawerItem.route)
             }
+        }
+    }
+
+    fun onLoginClicked() {
+        viewModelScope.launch {
+            navigator.navigate("pdx://account/login")
         }
     }
 }

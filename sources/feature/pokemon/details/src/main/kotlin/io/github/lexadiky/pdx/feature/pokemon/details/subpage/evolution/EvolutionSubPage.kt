@@ -1,15 +1,21 @@
 package io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonSpeciesDetails
+import io.github.lexadiky.pdx.feature.pokemon.details.R
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.entity.EvolutionLinkPokemonVR
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.widget.EvolutionMethodWidget
 import io.github.lexadiky.pdx.library.arc.Page
@@ -30,6 +36,11 @@ internal fun EvolutionSubPage(
 
 @Composable
 private fun EvolutionSubPageImpl(vm: EvolutionSubPageSocket) = Page(vm) { state, act ->
+    if (!state.hasAnyEvolutionData) {
+        NoEvolutionDataBanner()
+        return
+    }
+
     Column(
         modifier = Modifier
             .padding(MaterialTheme.grid.x2),
@@ -63,4 +74,21 @@ private fun PokemonPreview(pokemon: EvolutionLinkPokemonVR, act: (EvolutionSubPa
         onClick = { act(EvolutionSubPageAction.Navigate.PokemonDetails(pokemon.speciesId)) },
         colors = CardDefaults.elevatedCardColors(),
     )
+}
+
+@Composable
+private fun NoEvolutionDataBanner() {
+    ElevatedCard(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(MaterialTheme.grid.x2)
+    ) {
+        Text(
+            text = stringResource(id = R.string.feature_pokemon_evolution_method_unknown),
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(MaterialTheme.grid.x2)
+        )
+    }
 }

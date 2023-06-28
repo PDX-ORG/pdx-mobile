@@ -39,7 +39,6 @@ import io.github.lexadiky.pdx.feature.pokemon.details.entitiy.move.MoveSort
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.moves.sort.MoveSortWidget
 import io.github.lexadiky.pdx.library.arc.Page
 import io.github.lexadiky.pdx.library.core.lce.Lce
-import io.github.lexadiky.pdx.library.core.lce.contentOrNull
 import io.github.lexadiky.pdx.library.uikit.UikitDrawable
 import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.circular
@@ -73,7 +72,6 @@ private fun MovesSubPageImpl(vm: MovesSubPageSocket) = Page(vm) { state, act ->
         if (state.moves.isNotEmpty()) {
             itemsIndexed(
                 items = state.moves,
-                key = { idx, lce -> lce.contentOrNull()?.name ?: idx }
             ) { idx, lce ->
                 Column {
                     Crossfade(

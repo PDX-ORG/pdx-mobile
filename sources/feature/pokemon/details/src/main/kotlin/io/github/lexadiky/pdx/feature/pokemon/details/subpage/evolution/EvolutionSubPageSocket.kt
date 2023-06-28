@@ -2,8 +2,6 @@ package io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution
 
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
-import io.github.lexadiky.pdx.library.nibbler.Navigator
-import io.github.lexadiky.pdx.library.nibbler.navigate
 import io.github.lexadiky.pdx.domain.pokemon.entity.EvolutionNode
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonDetails
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonPreview
@@ -13,6 +11,8 @@ import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.entity.E
 import io.github.lexadiky.pdx.feature.pokemon.details.subpage.evolution.entity.EvolvesToVR
 import io.github.lexadiky.pdx.library.arc.ViewModelSocket
 import io.github.lexadiky.pdx.library.errorhandler.classify
+import io.github.lexadiky.pdx.library.nibbler.Navigator
+import io.github.lexadiky.pdx.library.nibbler.navigate
 import io.github.lexadiky.pdx.library.resources.image.ImageResource
 import io.github.lexadiky.pdx.library.resources.image.from
 import io.github.lexadiky.pdx.library.resources.image.orPlaceholder
@@ -34,7 +34,7 @@ internal class EvolutionSubPageSocket(
                 .classify(EvolutionSubPageSocket::class)
             state = when (data) {
                 is Either.Left -> state.copy(error = data.value)
-                is Either.Right -> data.value?.let { updateState(it) } ?: state
+                is Either.Right -> data.value.let { updateState(it) } ?: state
             }
         }
     }
@@ -47,7 +47,7 @@ internal class EvolutionSubPageSocket(
                     method = variation.method
                 )
             },
-            current = pokemonPreviewToVR(pokemonSpeciesDetails.asPreview()),
+            current = pokemonPreviewToVR(node.current),
             evolvesTo = node.to.map {  variation ->
                 EvolvesToVR(
                     pokemon = pokemonPreviewToVR(variation.species),

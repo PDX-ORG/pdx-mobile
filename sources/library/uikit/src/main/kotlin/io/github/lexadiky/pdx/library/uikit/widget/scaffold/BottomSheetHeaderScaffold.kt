@@ -1,4 +1,4 @@
-package io.github.lexadiky.pdx.library.uikit.widget
+package io.github.lexadiky.pdx.library.uikit.widget.scaffold
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

@@ -33,6 +33,7 @@ import io.github.lexadiky.pdx.library.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.grid
 import io.github.lexadiky.pdx.library.uikit.theme.pdx
+import io.github.lexadiky.pdx.library.uikit.widget.BottomSheetBasement
 import io.github.lexadiky.pdx.library.uikit.widget.PillChip
 import io.github.lexadiky.pdx.library.uikit.widget.PillChipDefaults
 import io.github.lexadiky.pdx.library.uikit.widget.SmallWikiPreview
@@ -106,7 +107,7 @@ internal fun TypeDetailsPageImpl(viewModel: TypeDetailsViewModel) {
         }
 
         item {
-            Spacer(modifier = Modifier.size(MaterialTheme.grid.x4))
+            BottomSheetBasement()
         }
     }
 }

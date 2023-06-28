@@ -15,7 +15,7 @@ import io.github.lexadiky.pdx.feature.move.details.MoveDetailsState
 import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.circular
 import io.github.lexadiky.pdx.library.uikit.theme.grid
-import io.github.lexadiky.pdx.library.uikit.widget.BottomSheetHeaderScaffold
+import io.github.lexadiky.pdx.library.uikit.widget.scaffold.BottomSheetHeaderScaffold
 
 @Composable
 internal fun MoveDetailsHeader(state: MoveDetailsState, onTypeClicked: (PokemonType) -> Unit) {

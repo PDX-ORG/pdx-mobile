@@ -15,19 +15,17 @@ class AchievementManager(
     private val context: Context,
     private val achievementLibraryFactory: AchievementLibraryFactory
 ) {
-
+    private val logger = BLogger.tag("AchievementManager")
     private val sharedPreferences = context.getSharedPreferences(SP_SPACE, Context.MODE_PRIVATE)
     private val notificationManager = NotificationManagerCompat.from(context)
 
     fun give(achievement: Achievement) {
         if (sharedPreferences.contains(SP_NAME_PREFIX + achievement.id)) {
-            BLogger.tag("AchievementManager")
-                .verbose("achievement '${achievement.id}' skipped due to repeat")
+            logger.verbose("achievement '${achievement.id}' skipped due to repeat")
             return
         }
 
-        BLogger.tag("AchievementManager")
-            .verbose("achievement '${achievement.id}' given")
+        logger.verbose("achievement '${achievement.id}' given")
         sharedPreferences.edit()
             .putBoolean(SP_NAME_PREFIX + achievement.id, true)
             .apply()
@@ -59,8 +57,7 @@ class AchievementManager(
 
             notificationManager.notify(achievement.id.hashCode(), notification)
         } catch (e: Throwable) {
-            BLogger.tag("AchievementManager")
-                .error("can't show notification", e)
+            logger.error("can't show notification", e)
         }
     }
 

@@ -19,13 +19,15 @@ internal class PokeApiClientFactory {
     private fun createCacheFile(): File =
         File(System.getProperty(TEMPORARY_BASE_DIR_PROPERTY), TEMPORARY_DIRECTORY)
 
-    class Logger : PokeApiClientLogger {
+    private class Logger : PokeApiClientLogger {
+        private val logger = BLogger.tag("PokeApi")
 
-        override fun onNetworkReceive(method: String, statusCode: Int, url: String) =
-            BLogger.tag("PokeApi").info("RECEIVE: $method/$statusCode <= $url")
+        override fun onNetworkReceive(method: String, statusCode: Int, url: String) {
+            logger.info("RECEIVE: $method/$statusCode <= $url")
+        }
 
         override fun onNetworkSend(method: String, url: String) =
-            BLogger.tag("PokeApi").info("SEND: $method => $url")
+            logger.info("SEND: $method => $url")
     }
 
     companion object {

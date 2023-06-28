@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import io.github.lexadiky.pdx.domain.pokemon.entity.PokemonType
 import io.github.lexadiky.pdx.feature.generic.list.entity.SearchQuery
+import io.github.lexadiky.pdx.library.core.fts.matchesOrEmpty
 import io.github.lexadiky.pdx.library.nibbler.android.PageContext
 
 data class PokemonSearchQuery(
@@ -21,7 +22,7 @@ data class PokemonSearchQuery(
 
         return items
             .filter { item -> onlyFavorites && item.isFavorite || !onlyFavorites }
-            .filter { item -> item.searchIndex.matches(text) }
+            .filter { item -> item.searchIndex.matchesOrEmpty(text) }
             .filter { item -> item.types.containsAll(selectedTypes) }
     }
 

@@ -1,8 +1,6 @@
 package io.github.lexadiky.pdx.feature.drawer
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -42,14 +40,10 @@ internal fun DrawerImpl(viewModel: DrawerViewModel = di.viewModel("default")) {
                 )
             }
             is DrawerItem.UserAccount -> {
-                AccountCard()
-            }
-            is DrawerItem.Login -> {
-                NavigationDrawerItem(
-                    label = { Text("Login / Register") },
-                    icon = { Icon(Icons.Default.Lock, null) },
-                    onClick = { viewModel.onItemClicked(item) },
-                    selected = false
+                AccountCard(
+                    onLoginClicked = {
+                        viewModel.onLoginClicked()
+                    }
                 )
             }
         }

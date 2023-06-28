@@ -2,6 +2,7 @@
 
 package io.github.lexadiky.pdx.library.nibbler.android
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -31,7 +32,10 @@ fun NibblerRoot(builder: RoutingBuilder, installer: @Composable (NibblerRootCont
     )
 
     DIFeature(NibblerModule(composeNavigator)) {
-        ModalBottomSheetLayout(bottomSheetNavigator = bottomSheetNavigator) {
+        ModalBottomSheetLayout(
+            sheetShape = MaterialTheme.shapes.extraLarge,
+            bottomSheetNavigator = bottomSheetNavigator
+        ) {
             installer {
                 // nibbler
                 val nibblerNavigator = di.inject<Navigator>()

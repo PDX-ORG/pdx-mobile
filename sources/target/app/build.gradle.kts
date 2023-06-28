@@ -23,6 +23,7 @@ dependencies {
     implementation(projects.feature.news)
     implementation(projects.feature.settings)
     implementation(projects.feature.rateApp)
+    implementation(projects.feature.account)
     implementation(projects.feature.pokemon.list)
     implementation(projects.feature.pokemon.details)
     implementation(projects.feature.type.chart)

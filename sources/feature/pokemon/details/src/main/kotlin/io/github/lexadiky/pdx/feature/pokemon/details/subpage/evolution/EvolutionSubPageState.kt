@@ -12,4 +12,5 @@ internal data class EvolutionSubPageState(
 ) {
 
     val isSingleToSpecies = evolvesTo.size == 1
+    val hasAnyEvolutionData = evolvesFrom != null || evolvesTo.isNotEmpty()
 }

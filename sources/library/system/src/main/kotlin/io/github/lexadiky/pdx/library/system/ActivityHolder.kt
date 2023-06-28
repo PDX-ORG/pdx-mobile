@@ -14,6 +14,8 @@ class ActivityHolder {
     internal var activityRef: WeakReference<Activity> = WeakReference(null)
     @PublishedApi
     internal val rwLock = ReentrantReadWriteLock()
+    @PublishedApi
+    internal val logger = BLogger.tag("ActivityHolder")
 
     fun take(activity: Activity) {
         rwLock.write {
@@ -24,17 +26,14 @@ class ActivityHolder {
     inline fun <T : Any> use(owner: Any, acceptor: (Activity) -> T): T? {
         val activity = rwLock.read { activityRef.get() }
         if (activity == null) {
-            BLogger.tag("ActivityHolder")
-                .error("tried to acquire activity, but it was unavailable", IllegalStateException())
+            logger.error("tried to acquire activity, but it was unavailable")
             return null
         }
 
-        BLogger.tag("ActivityHolder")
-            .info("$owner: acquired activity ${activity.componentName.flattenToString()}")
+        logger.info("$owner: acquired activity ${activity.componentName.flattenToString()}")
 
         return acceptor(activity).also {
-            BLogger.tag("ActivityHolder")
-                .info("$owner: processed activity, should let it go")
+            logger.info("$owner: processed activity, should let it go")
         }
     }
 }

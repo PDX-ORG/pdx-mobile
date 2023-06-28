@@ -26,6 +26,7 @@ import io.github.lexadiky.pdx.feature.move.details.widget.MoveDetailsHeader
 import io.github.lexadiky.pdx.library.errorhandler.ErrorDialog
 import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.grid
+import io.github.lexadiky.pdx.library.uikit.widget.BottomSheetBasement
 import io.github.lexadiky.pdx.library.uikit.widget.placeholder
 
 @Composable
@@ -52,7 +53,7 @@ private fun MoveDetailsPageImpl(vm: MoveDetailsViewModel) {
         )
         DescriptionCard(vm.state)
         Attributes(state = vm.state)
-        Box(modifier = Modifier.height(200.dp))
+        BottomSheetBasement()
     }
 }
 
