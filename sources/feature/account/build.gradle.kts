@@ -4,6 +4,7 @@ plugins {
 }
 
 dependencies {
+    implementation(projects.domain.account)
     implementation(projects.library.uikit)
     implementation(projects.library.arc)
     implementation(projects.library.errorHandler)

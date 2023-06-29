@@ -25,6 +25,6 @@ class PdxConventionLibraryKmpPlugin : Plugin<Project> {
             }
         }
 
-        TestMixin.mix(target)
+        TestMixin.mix(target = target, configureTasks = false)
     }
 }

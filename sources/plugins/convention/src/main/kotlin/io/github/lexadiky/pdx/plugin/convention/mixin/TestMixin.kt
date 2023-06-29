@@ -7,9 +7,11 @@ import org.gradle.kotlin.dsl.withType
 
 object TestMixin {
 
-    fun mix(target: Project) {
-        target.tasks.withType<Test> {
-            useJUnitPlatform()
+    fun mix(target: Project, configureTasks: Boolean = true) {
+        if (configureTasks) {
+            target.tasks.withType<Test> {
+                useJUnitPlatform()
+            }
         }
 
         target.dependencies {

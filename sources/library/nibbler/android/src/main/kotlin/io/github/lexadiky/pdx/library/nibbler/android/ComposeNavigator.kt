@@ -15,4 +15,8 @@ class ComposeNavigator(
     override suspend fun navigate(route: Route) {
         navigateCommand.value = NavigateCommand.GoTo(route)
     }
+
+    override suspend fun back() {
+        navigateCommand.value = NavigateCommand.Back()
+    }
 }

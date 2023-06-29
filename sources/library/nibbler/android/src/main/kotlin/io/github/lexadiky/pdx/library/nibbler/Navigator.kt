@@ -8,6 +8,8 @@ interface Navigator {
     val navigateCommand: StateFlow<NavigateCommand>
 
     suspend fun navigate(route: Route)
+
+    suspend fun back()
 }
 
 suspend fun Navigator.navigate(route: String) {

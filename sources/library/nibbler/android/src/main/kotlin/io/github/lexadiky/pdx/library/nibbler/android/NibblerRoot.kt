@@ -54,6 +54,8 @@ fun NibblerRoot(builder: RoutingBuilder, installer: @Composable (NibblerRootCont
                         is NavigateCommand.GoTo -> composeNavigator.navigate(
                             (navigateCommand as NavigateCommand.GoTo).uri
                         )
+
+                        is NavigateCommand.Back -> composeNavigator.popBackStack()
                     }
                 }
             }

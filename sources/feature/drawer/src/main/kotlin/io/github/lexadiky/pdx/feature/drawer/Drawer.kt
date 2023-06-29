@@ -40,11 +40,7 @@ internal fun DrawerImpl(viewModel: DrawerViewModel = di.viewModel("default")) {
                 )
             }
             is DrawerItem.UserAccount -> {
-                AccountCard(
-                    onLoginClicked = {
-                        viewModel.onLoginClicked()
-                    }
-                )
+                AccountCard()
             }
         }
     }

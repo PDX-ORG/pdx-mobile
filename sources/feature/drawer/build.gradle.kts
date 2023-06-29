@@ -4,9 +4,11 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.akore.alice.robo)
-
+    implementation(projects.domain.account)
     implementation(projects.library.uikit)
     implementation(projects.library.featureToggle)
     implementation(projects.library.nibbler.android)
+    implementation(projects.library.arc)
+
+    implementation(libs.akore.alice.robo)
 }

@@ -4,5 +4,7 @@ sealed interface LoginPageAction {
 
     object ShuffleUsername : LoginPageAction
 
+    object Login : LoginPageAction
+
     data class UpdateUsername(val newUsername: String) : LoginPageAction
 }

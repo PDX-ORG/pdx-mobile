@@ -15,4 +15,17 @@ sealed interface NavigateCommand {
             return "GoTo(uri=$uri)"
         }
     }
+
+    class Back : NavigateCommand {
+
+        val timestamp = System.currentTimeMillis().toInt()
+
+        override fun hashCode(): Int {
+            return timestamp
+        }
+
+        override fun toString(): String {
+            return "Back"
+        }
+    }
 }

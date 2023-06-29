@@ -23,13 +23,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import io.github.lexadiky.akore.alice.robo.di
+import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.feature.drawer.R
+import io.github.lexadiky.pdx.library.arc.Page
+import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.grid
 
 @Composable
-internal fun AccountCard(
-    onLoginClicked: () -> Unit
-) {
+internal fun AccountCard() {
+    AccountCardImpl()
+}
+
+@Composable
+internal fun AccountCardImpl(vm: AccountCardSocket = di.viewModel()) = Page(vm) { state, act ->
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -39,10 +46,7 @@ internal fun AccountCard(
         Row(
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(
-                horizontal = MaterialTheme.grid.x2,
-                vertical = MaterialTheme.grid.x2
-            )
+            modifier = Modifier.padding(MaterialTheme.grid.x2)
         ) {
             Image(
                 imageVector = Icons.Default.Person,
@@ -53,20 +57,22 @@ internal fun AccountCard(
                     .clip(MaterialTheme.shapes.small)
             )
             Text(
-                text = stringResource(id = R.string.drawer_account_card_username_default),
+                text = state.username.render(),
                 style = MaterialTheme.typography.titleMedium,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1
             )
         }
-        Button(
-            onClick = { onLoginClicked() },
-            modifier = Modifier
-                .padding(horizontal = MaterialTheme.grid.x2)
-                .padding(bottom = MaterialTheme.grid.x2)
-                .fillMaxWidth()
-        ) {
-            Text(text = stringResource(id = R.string.drawer_account_card_login_button))
+        if (!state.isLoggedIn) {
+            Button(
+                onClick = { act(AccountCardAction.LoginClicked) },
+                modifier = Modifier
+                    .padding(horizontal = MaterialTheme.grid.x2)
+                    .padding(bottom = MaterialTheme.grid.x2)
+                    .fillMaxWidth()
+            ) {
+                Text(text = stringResource(id = R.string.drawer_account_card_login_button))
+            }
         }
     }
 }

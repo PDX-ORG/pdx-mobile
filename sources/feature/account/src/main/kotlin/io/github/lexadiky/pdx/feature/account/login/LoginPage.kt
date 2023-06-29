@@ -22,13 +22,12 @@ import androidx.compose.ui.res.stringResource
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
-import io.github.lexadiky.pdx.library.uikit.theme.grid
-import io.github.lexadiky.pdx.library.uikit.widget.BottomSheetBasement
-import io.github.lexadiky.pdx.library.uikit.widget.scaffold.BottomSheetHeaderScaffold
 import io.github.lexadiky.pdx.feature.account.R
 import io.github.lexadiky.pdx.library.arc.Page
 import io.github.lexadiky.pdx.library.uikit.UikitDrawable
-import java.util.UUID
+import io.github.lexadiky.pdx.library.uikit.theme.grid
+import io.github.lexadiky.pdx.library.uikit.widget.BottomSheetBasement
+import io.github.lexadiky.pdx.library.uikit.widget.scaffold.BottomSheetHeaderScaffold
 
 @Composable
 fun LoginPage() {
@@ -63,6 +62,8 @@ private fun LoginPageImpl(vm: LoginPageSocket = di.viewModel()) = Page(socket = 
         item {
             OutlinedTextField(
                 value = state.username,
+                enabled = state.inputEnabled,
+                isError = state.usernameIsInvalid,
                 label = { Text(text = stringResource(id = R.string.account_login_username_box_title)) },
                 placeholder = { Text(text = stringResource(id = R.string.account_login_username_box_placeholder)) },
                 trailingIcon = {
@@ -95,7 +96,8 @@ private fun LoginPageImpl(vm: LoginPageSocket = di.viewModel()) = Page(socket = 
             ) {
                 Spacer(modifier = Modifier.size(MaterialTheme.grid.x2))
                 Button(
-                    onClick = { /*TODO*/ },
+                    enabled = state.inputEnabled,
+                    onClick = { act(LoginPageAction.Login) },
                 ) {
                     Text(text = stringResource(id = R.string.account_login_create_account_button))
                 }
