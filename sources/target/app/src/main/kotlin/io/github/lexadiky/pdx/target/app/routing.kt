@@ -5,6 +5,7 @@ import androidx.compose.runtime.remember
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.inject
 import io.github.lexadiky.pdx.feature.ability.details.AbilityDetailsPage
+import io.github.lexadiky.pdx.feature.account.details.AccountDetailsPage
 import io.github.lexadiky.pdx.feature.account.login.LoginPage
 import io.github.lexadiky.pdx.feature.debugpanel.DebugPanelFeature
 import io.github.lexadiky.pdx.feature.home.HomePage
@@ -57,6 +58,9 @@ fun routing(): RoutingBuilderContext.() -> Unit {
             }
             modal("pdx://account/login") {
                 LoginPage()
+            }
+            modal("pdx://account") {
+                AccountDetailsPage()
             }
 
             DebugPanelFeature.routing(this, toggleManager)

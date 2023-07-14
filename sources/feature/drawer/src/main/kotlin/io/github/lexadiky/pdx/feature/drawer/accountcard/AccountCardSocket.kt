@@ -31,10 +31,15 @@ internal class AccountCardSocket(
     override suspend fun onAction(action: AccountCardAction) {
         when (action) {
             AccountCardAction.LoginClicked -> onLoginClicked()
+            AccountCardAction.AccountClicked -> onAccountClicked()
         }
     }
 
     private suspend fun onLoginClicked() {
         navigator.navigate("pdx://account/login")
+    }
+
+    private suspend fun onAccountClicked() {
+        navigator.navigate("pdx://account")
     }
 }

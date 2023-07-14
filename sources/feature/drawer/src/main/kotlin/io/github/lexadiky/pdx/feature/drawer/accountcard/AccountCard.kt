@@ -4,6 +4,7 @@ package io.github.lexadiky.pdx.feature.drawer.accountcard
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -42,6 +43,7 @@ internal fun AccountCardImpl(vm: AccountCardSocket = di.viewModel()) = Page(vm) 
             .fillMaxWidth()
             .wrapContentHeight()
             .padding(MaterialTheme.grid.x1)
+            .clickable(state.isLoggedIn) { act(AccountCardAction.AccountClicked) }
     ) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),

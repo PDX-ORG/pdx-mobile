@@ -5,6 +5,7 @@ plugins {
 
 dependencies {
     implementation(projects.domain.account)
+    implementation(projects.domain.pokemon)
     implementation(projects.library.uikit)
     implementation(projects.library.arc)
     implementation(projects.library.errorHandler)

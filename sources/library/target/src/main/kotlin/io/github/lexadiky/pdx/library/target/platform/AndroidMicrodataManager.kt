@@ -9,6 +9,7 @@ import io.github.lexadiky.pdx.library.microdata.MicrodataManager
 import java.util.concurrent.Executors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.serialization.json.Json
 
 @Suppress("PrivatePropertyName")
 private val STATIC_PREFERENCES_DATASTORE_CACHE = HashMap<String, DataStore<Preferences>>()
@@ -25,6 +26,6 @@ class AndroidMicrodataManager(private val context: Context) : MicrodataManager {
             preferencesDataStore(database)
                 .getValue(context, ::dummyDs)
         }
-        return MicrodataFactory(datastore, scope)
+        return MicrodataFactory(datastore, Json, scope)
     }
 }

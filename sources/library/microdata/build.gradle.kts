@@ -8,6 +8,9 @@ plugins {
 
 dependencies {
     common {
+        implementation(libs.akore.blogger.core)
+
+        implementation(libs.kotlin.serialization.json)
         implementation(libs.android.mops.datastore)
     }
 }

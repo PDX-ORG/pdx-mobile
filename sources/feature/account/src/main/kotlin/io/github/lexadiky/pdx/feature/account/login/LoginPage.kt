@@ -1,13 +1,17 @@
 package io.github.lexadiky.pdx.feature.account.login
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -24,7 +28,10 @@ import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.feature.account.R
 import io.github.lexadiky.pdx.library.arc.Page
+import io.github.lexadiky.pdx.library.core.lce.Lce
 import io.github.lexadiky.pdx.library.uikit.UikitDrawable
+import io.github.lexadiky.pdx.library.uikit.resources.ImageTransformation
+import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.grid
 import io.github.lexadiky.pdx.library.uikit.widget.BottomSheetBasement
 import io.github.lexadiky.pdx.library.uikit.widget.scaffold.BottomSheetHeaderScaffold
@@ -55,6 +62,25 @@ private fun LoginPageImpl(vm: LoginPageSocket = di.viewModel()) = Page(socket = 
                     )
                 }
             )
+        }
+        item {
+            LazyRow {
+                when (state.availableAvatars) {
+                    is Lce.Content -> {
+                        items(state.availableAvatars.value) { preview ->
+                            Image(
+                                painter = preview.render(listOf(ImageTransformation.CropTransparent)),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .size(MaterialTheme.grid.x10)
+                                    .aspectRatio(1f)
+                            )
+                        }
+                    }
+                    is Lce.Error,
+                    Lce.Loading -> Unit
+                }
+            }
         }
         item {
             Text(text = stringResource(id = R.string.account_login_backup_notice))

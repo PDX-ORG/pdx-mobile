@@ -8,7 +8,7 @@ plugins {
 
 dependencies {
     common {
-        implementation(libs.akore.blogger.core)
+        api(libs.akore.blogger.core)
         api(libs.kotlin.collections.immutable)
         api(libs.arrow.core)
         api(libs.kotlin.datetime)

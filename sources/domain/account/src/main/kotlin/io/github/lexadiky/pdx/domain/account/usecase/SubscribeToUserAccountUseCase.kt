@@ -8,7 +8,7 @@ class SubscribeToUserAccountUseCase internal constructor(
     private val repository: AccountRepository
 ) {
 
-    operator suspend fun invoke(): Flow<UserAccount?> {
+    suspend operator fun invoke(): Flow<UserAccount?> {
         return repository.account()
     }
 }

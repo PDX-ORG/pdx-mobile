@@ -11,14 +11,14 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-class EditableMicrodata<T : Any> internal constructor(
+class EditableMicrodataImpl<T : Any> internal constructor(
     private val ds: DataStore<Preferences>,
     private val key: Preferences.Key<T>,
     scope: CoroutineScope,
-) {
+) : EditableMicrodata<T> {
     private val rwl = ReentrantReadWriteLock()
     private var currentValue: T? = null
     private var currentValueJob: Job? = null
@@ -32,31 +32,33 @@ class EditableMicrodata<T : Any> internal constructor(
         }
 
         currentValueJob = scope.launch {
-            ds.data.mapNotNull { it[key] }.collect {
-                currentValue = it
+            ds.data.map { it[key] }.collect {
+                rwl.write {
+                    currentValue = it
+                }
             }
         }
     }
 
-    suspend fun set(value: T) {
+    override suspend fun set(value: T) {
         ds.edit { preferences ->
             preferences[key] = value
         }
     }
 
-    suspend fun delete() {
+    override suspend fun delete() {
         ds.edit { preferences ->
             preferences.remove(key)
         }
     }
 
-    fun observe(): Flow<T?> {
-        return ds.data.mapNotNull { preferences ->
+    override fun observe(): Flow<T?> {
+        return ds.data.map { preferences ->
             preferences[key]
         }
     }
 
-    fun get(): T? = rwl.read { currentValue }
+    override fun get(): T? = rwl.read { currentValue }
 
 
     internal fun finalize() {

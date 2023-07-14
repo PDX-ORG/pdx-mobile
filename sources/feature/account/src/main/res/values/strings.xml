@@ -10,4 +10,7 @@
     <string name="account_login_backup_notice">Your user data will be stored locally on device. Data could be synchronized between devices if you have automatic application backup enabled in system settings</string>
     <string name="account_login_trainer_id_title">TrainerID</string>
 
+    <string name="account_details_default_username">Trainer</string>
+    <string name="account_details_logout_button">Logout</string>
+
 </resources>

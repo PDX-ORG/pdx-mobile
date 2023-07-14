@@ -10,6 +10,6 @@ internal val LoginModule by module("feature-account-login") {
     import(AccountDomainModule)
     internal {
         single { UsernameGenerator() }
-        singleViewModel { LoginPageSocket(inject(), inject(), inject()) }
+        singleViewModel { LoginPageSocket(inject(), inject(), inject(), inject()) }
     }
 }
