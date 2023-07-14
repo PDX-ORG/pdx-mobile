@@ -7,7 +7,7 @@ coroutines = "1.7.2"
 datastore = "1.0.0"
 agp = "8.2.0-alpha08"
 kotlin = "1.8.22"
-baseline-profile = "1.2.0-alpha14"
+baseline-profile = "1.2.0-alpha16"
 
 [libraries]
 
@@ -21,29 +21,29 @@ kotlin-collections-immutable = "org.jetbrains.kotlinx:kotlinx-collections-immuta
 kotlin-reflection = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
 # Android system components
-android-core = "androidx.core:core-ktx:1.10.0"
+android-core = "androidx.core:core-ktx:1.10.1"
 android-lifecycle-runtime = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
-android-material = "com.google.android.material:material:1.9.0-rc01"
+android-material = "com.google.android.material:material:1.9.0"
 android-profileinstaller = "androidx.profileinstaller:profileinstaller:1.3.1"
 android-play-review = "com.google.android.play:review-ktx:2.0.1"
 
 # Compose
-android-compose-bom = "androidx.compose:compose-bom:2023.05.00"
+android-compose-bom = "androidx.compose:compose-bom:2023.06.01"
 android-compose-ui-core = { module = "androidx.compose.ui:ui" }
 android-compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
 android-compose-ui-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 android-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 android-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
-android-activity-compose = "androidx.activity:activity-compose:1.7.1"
-android-compose-material3 = "androidx.compose.material3:material3:1.1.0-rc01"
+android-activity-compose = "androidx.activity:activity-compose:1.7.2"
+android-compose-material3 = "androidx.compose.material3:material3:1.1.1"
 android-compose-viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
 
 # Navigation
-android-navigation-compose = "androidx.navigation:navigation-compose:2.6.0-rc01"
+android-navigation-compose = "androidx.navigation:navigation-compose:2.6.0"
 
 # Android testing
 android-test-espresso = "androidx.test.espresso:espresso-core:3.5.1"
-android-test-junit4 = "androidx.test.ext:junit:1.1.1"
+android-test-junit4 = "androidx.test.ext:junit:1.1.5"
 android-benchmark-macro-junit4 = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "baseline-profile" }
 
 # Datastorage
@@ -113,7 +113,7 @@ android-baselineprofile = { id = "androidx.baselineprofile", version.ref = "base
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kotlin-kover = { id = "org.jetbrains.kotlinx.kover", version = "0.7.2" }
+kotlin-kover = { id = "org.jetbrains.kotlinx.kover", version = "0.7.1" }
 
 # Lint
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.0" }
