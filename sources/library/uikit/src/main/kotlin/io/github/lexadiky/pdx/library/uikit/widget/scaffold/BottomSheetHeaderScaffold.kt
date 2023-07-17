@@ -15,16 +15,18 @@ import io.github.lexadiky.pdx.library.uikit.theme.grid
 
 @Composable
 fun BottomSheetHeaderScaffold(
+    modifier: Modifier = Modifier,
     icon: @Composable () -> Unit = {},
     title: @Composable () -> Unit = {},
     subtitle: @Composable () -> Unit = {},
-    endDecoration: @Composable () -> Unit = {}
+    endDecoration: @Composable () -> Unit = {},
 ) {
-    Column {
+    Column(modifier = modifier) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,

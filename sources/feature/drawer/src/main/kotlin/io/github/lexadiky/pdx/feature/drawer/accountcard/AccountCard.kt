@@ -11,8 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -28,6 +26,7 @@ import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.feature.drawer.R
 import io.github.lexadiky.pdx.library.arc.Page
+import io.github.lexadiky.pdx.library.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.grid
 
@@ -51,7 +50,9 @@ internal fun AccountCardImpl(vm: AccountCardSocket = di.viewModel()) = Page(vm) 
             modifier = Modifier.padding(MaterialTheme.grid.x2)
         ) {
             Image(
-                imageVector = Icons.Default.Person,
+                painter = state.avatar.render(
+                    transformations = listOf(ImageTransformation.CropTransparent)
+                ),
                 contentDescription = null,
                 modifier = Modifier
                     .background(MaterialTheme.colorScheme.background, MaterialTheme.shapes.small)

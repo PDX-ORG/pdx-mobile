@@ -17,6 +17,7 @@ import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetMoveDetailsUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.move.GetPokemonMovesUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.FindPokemonPreviewUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetAllPokemonPreviewsUseCase
+import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetBasicPokemonPreviews
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonDetailsBySpeciesUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPokedexDescriptionsUseCase
 import io.github.lexadiky.pdx.domain.pokemon.usecase.pokemon.GetPokemonPreviewSampleUseCase
@@ -43,6 +44,7 @@ val PokemonDomainModule by module("domain-pokemon") {
     single { GetPokemonAbilitiesUseCase(inject(), inject()) }
     single { GetAbilityUseCase(inject(), inject()) }
     single { GetPokemonDetailsBySpeciesUseCase(inject(), inject()) }
+    single { GetBasicPokemonPreviews(inject()) }
 
     single { SaveFavoritePokemonUseCase(inject()) }
     single { IsPokemonFavoriteUseCase(inject()) }

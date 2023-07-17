@@ -1,9 +1,12 @@
 package io.github.lexadiky.pdx.feature.account.login
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,6 +21,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -27,6 +32,7 @@ import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.feature.account.R
+import io.github.lexadiky.pdx.feature.account.login.entity.AvatarSuggestion
 import io.github.lexadiky.pdx.library.arc.Page
 import io.github.lexadiky.pdx.library.core.lce.Lce
 import io.github.lexadiky.pdx.library.uikit.UikitDrawable
@@ -48,7 +54,6 @@ private fun LoginPageImpl(vm: LoginPageSocket = di.viewModel()) = Page(socket = 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
         modifier = Modifier
-            .padding(MaterialTheme.grid.x2)
             .fillMaxWidth()
     ) {
         item {
@@ -60,30 +65,35 @@ private fun LoginPageImpl(vm: LoginPageSocket = di.viewModel()) = Page(socket = 
                         painter = painterResource(id = UikitDrawable.uikit_ic_account_circle),
                         contentDescription = null
                     )
-                }
+                },
+                modifier = Modifier
+                    .padding(horizontal = MaterialTheme.grid.x2)
+                    .padding(top = MaterialTheme.grid.x2)
             )
         }
         item {
-            LazyRow {
-                when (state.availableAvatars) {
-                    is Lce.Content -> {
-                        items(state.availableAvatars.value) { preview ->
-                            Image(
-                                painter = preview.render(listOf(ImageTransformation.CropTransparent)),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(MaterialTheme.grid.x10)
-                                    .aspectRatio(1f)
-                            )
-                        }
-                    }
-                    is Lce.Error,
-                    Lce.Loading -> Unit
-                }
-            }
+            Text(
+                text = stringResource(id = R.string.account_login_backup_notice),
+                modifier = Modifier.padding(horizontal = MaterialTheme.grid.x2)
+            )
         }
         item {
-            Text(text = stringResource(id = R.string.account_login_backup_notice))
+            LazyRow(
+                contentPadding = PaddingValues(MaterialTheme.grid.x2),
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2)
+            ) {
+                when (state.availableAvatars) {
+                    is Lce.Content -> {
+                        items(state.availableAvatars.value) { suggestion ->
+                            AvatarSuggestion(suggestion, state.selectedAvatar) {
+                                act(LoginPageAction.UpdateAvatar(suggestion))
+                            }
+                        }
+                    }
+
+                    else -> Unit
+                }
+            }
         }
         item {
             OutlinedTextField(
@@ -103,7 +113,9 @@ private fun LoginPageImpl(vm: LoginPageSocket = di.viewModel()) = Page(socket = 
                 },
                 maxLines = 1,
                 onValueChange = { act(LoginPageAction.UpdateUsername(it)) },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = MaterialTheme.grid.x2)
             )
         }
         item {
@@ -112,13 +124,17 @@ private fun LoginPageImpl(vm: LoginPageSocket = di.viewModel()) = Page(socket = 
                 label = { Text(text = stringResource(id = R.string.account_login_trainer_id_title)) },
                 onValueChange = {},
                 enabled = false,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = MaterialTheme.grid.x2)
             )
         }
         item {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = MaterialTheme.grid.x2)
             ) {
                 Spacer(modifier = Modifier.size(MaterialTheme.grid.x2))
                 Button(
@@ -133,4 +149,39 @@ private fun LoginPageImpl(vm: LoginPageSocket = di.viewModel()) = Page(socket = 
             BottomSheetBasement()
         }
     }
+}
+
+private const val SHRIEKED_AVATAR_SUGGESTION_SIZE = 0.8f
+private const val INITIAL_AVATAR_SUGGESTION_SIZE = 1f
+private const val EXPANDED_AVATAR_SUGGESTION_SIZE = 1.2f
+
+@Composable
+private fun AvatarSuggestion(
+    suggestion: AvatarSuggestion,
+    selectedAvatarSuggestion: AvatarSuggestion?,
+    onClick: () -> Unit,
+) {
+    val size by animateFloatAsState(
+        targetValue = when (selectedAvatarSuggestion) {
+            suggestion -> EXPANDED_AVATAR_SUGGESTION_SIZE
+            null -> INITIAL_AVATAR_SUGGESTION_SIZE
+            else -> SHRIEKED_AVATAR_SUGGESTION_SIZE
+        },
+        label = "avatar-suggestion-size"
+    )
+
+    Image(
+        painter = suggestion.resource
+            .render(listOf(ImageTransformation.CropTransparent)),
+        contentDescription = null,
+        modifier = Modifier
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null,
+                onClick = onClick
+            )
+            .size(MaterialTheme.grid.x10)
+            .scale(size)
+            .aspectRatio(1f)
+    )
 }

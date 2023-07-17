@@ -1,9 +1,7 @@
 package io.github.lexadiky.pdx.feature.ability.details
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
@@ -39,9 +37,8 @@ private fun AbilityDetailsPageImpl(viewModel: AbilityDetailsViewModel) {
         item {
             BottomSheetHeaderScaffold(
                 title = { Text(text = viewModel.state.title.render()) },
-                subtitle = { Text(text = viewModel.state.subtitle.render()) }) {
-                
-            }
+                subtitle = { Text(text = viewModel.state.subtitle.render()) }
+            )
         }
         item {
             Card {
