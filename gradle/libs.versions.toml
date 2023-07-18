@@ -54,7 +54,7 @@ android-mops-datastore = { module = "androidx.datastore:datastore-preferences-co
 coil-compose-base = "io.coil-kt:coil-compose-base:2.4.0"
 
 # Functional programming
-arrow-core = "io.arrow-kt:arrow-core:1.1.5"
+arrow-core = "io.arrow-kt:arrow-core:1.2.0"
 
 # Network
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
