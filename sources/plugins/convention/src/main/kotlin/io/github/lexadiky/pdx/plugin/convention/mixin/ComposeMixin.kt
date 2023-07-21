@@ -12,7 +12,7 @@ object ComposeMixin {
                 compose = true
             }
             composeOptions {
-                kotlinCompilerExtensionVersion = "1.4.7"
+                kotlinCompilerExtensionVersion = "1.5.0"
             }
         }
 
@@ -20,8 +20,6 @@ object ComposeMixin {
             kotlinOptions {
                 freeCompilerArgs += arrayOf(
                     "-Xallow-jvm-ir-dependencies",
-                    "-P",
-                    "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
                 )
             }
         }
