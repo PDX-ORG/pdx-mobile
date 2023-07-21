@@ -45,6 +45,10 @@ internal class AccountCardSocket(
     }
 
     private suspend fun onAccountClicked() {
-        navigator.navigate("pdx://account")
+        if (state.isLoggedIn) {
+            navigator.navigate("pdx://account")
+        } else {
+            onLoginClicked()
+        }
     }
 }

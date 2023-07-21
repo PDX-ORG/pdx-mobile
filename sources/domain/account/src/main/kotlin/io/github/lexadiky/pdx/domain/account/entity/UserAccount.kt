@@ -9,7 +9,7 @@ data class UserAccount(
     val username: String,
     @SerialName("trainer_id")
     val trainerId: String,
-    @SerialName("avatarUrl")
+    @SerialName("avatar_uri")
     val avatarUrl: String?
 ) {
 

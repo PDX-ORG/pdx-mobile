@@ -4,7 +4,6 @@ package io.github.lexadiky.pdx.feature.drawer.accountcard
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,6 +25,8 @@ import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.feature.drawer.R
 import io.github.lexadiky.pdx.library.arc.Page
+import io.github.lexadiky.pdx.library.core.utils.applyIf
+import io.github.lexadiky.pdx.library.core.utils.identity
 import io.github.lexadiky.pdx.library.uikit.resources.ImageTransformation
 import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.grid
@@ -38,11 +39,11 @@ internal fun AccountCard() {
 @Composable
 internal fun AccountCardImpl(vm: AccountCardSocket = di.viewModel()) = Page(vm) { state, act ->
     Card(
+        onClick = { act(AccountCardAction.AccountClicked) },
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
             .padding(MaterialTheme.grid.x1)
-            .clickable(state.isLoggedIn) { act(AccountCardAction.AccountClicked) }
     ) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.grid.x2),
@@ -54,8 +55,10 @@ internal fun AccountCardImpl(vm: AccountCardSocket = di.viewModel()) = Page(vm) 
                     transformations = listOf(ImageTransformation.CropTransparent)
                 ),
                 contentDescription = null,
-                modifier = Modifier
-                    .background(MaterialTheme.colorScheme.background, MaterialTheme.shapes.small)
+                modifier = Modifier.identity<Modifier>()
+                    .applyIf(!state.isLoggedIn) {
+                        background(MaterialTheme.colorScheme.background, MaterialTheme.shapes.small)
+                    }
                     .size(MaterialTheme.grid.x4)
                     .clip(MaterialTheme.shapes.small)
             )

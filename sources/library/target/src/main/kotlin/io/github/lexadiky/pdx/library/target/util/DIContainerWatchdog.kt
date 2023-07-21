@@ -13,34 +13,31 @@ import kotlin.reflect.KClass
 
 class DIContainerWatchdog private constructor(): DIContainerEventListener {
 
+    private val logger = BLogger.tag("DIContainerWatchdog")
     private var totalLookupCounter: AtomicInteger = AtomicInteger(0)
 
     override fun onModuleRegistered(module: DIModule) {
-        BLogger.tag("DIContainerWatchdogRegister")
-            .verbose("module registered: ${module.name}")
+        logger.verbose("module registered: ${module.name}")
     }
 
     override fun onLookup(type: KClass<*>, qualifier: Qualifier, vararg parameters: Any) {
-        BLogger.tag("DIContainerWatchdogLookup")
-            .verbose("lookup: ${totalLookupCounter.addAndGet(1)}:${type.qualifiedName}:${qualifier}:${parameters.contentToString()}")
+        logger.verbose("lookup: ${totalLookupCounter.addAndGet(1)}:${type.qualifiedName}:${qualifier}:${parameters.contentToString()}")
     }
 
     override fun onContainerBuild(container: DIContainer) {
-        BLogger.tag("DIContainerWatchdogLookup")
-            .verbose("container built")
+        logger.verbose("container built")
     }
 
     override fun onModuleDeregistered(module: DIModule) {
-        BLogger.tag("DIContainerWatchdogRegister")
-            .verbose("module deregistered: ${module.name}")
+        logger.verbose("module deregistered: ${module.name}")
     }
 
     companion object {
 
         fun create(context: Context): DIContainerEventListener = if (context.isDebug) {
-            object : DIContainerEventListener {}
-        } else {
             DIContainerWatchdog()
+        } else {
+            object : DIContainerEventListener {}
         }
     }
 }
