@@ -11,6 +11,7 @@
     <string name="account_login_trainer_id_title">TrainerID</string>
 
     <string name="account_details_default_username">Trainer</string>
+    <string name="account_details_avatar_placeholder">User avatar image</string>
     <string name="account_details_logout_button">Logout</string>
 
 </resources>

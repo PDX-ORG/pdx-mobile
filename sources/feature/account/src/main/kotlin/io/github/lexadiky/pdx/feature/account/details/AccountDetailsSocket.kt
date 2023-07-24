@@ -5,6 +5,8 @@ import io.github.lexadiky.pdx.domain.account.usecase.LogoutUseCase
 import io.github.lexadiky.pdx.domain.account.usecase.SubscribeToUserAccountUseCase
 import io.github.lexadiky.pdx.library.arc.ViewModelSocket
 import io.github.lexadiky.pdx.library.nibbler.Navigator
+import io.github.lexadiky.pdx.library.resources.image.ImageResource
+import io.github.lexadiky.pdx.library.resources.image.from
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -20,7 +22,8 @@ internal class AccountDetailsSocket(
                 account?.let {
                     state = state.copy(
                         username = account.username,
-                        localTrainerId = account.localTrainerId
+                        localTrainerId = account.localTrainerId,
+                        avatar = ImageResource.from(account.avatarUrl)
                     )
                 }
             }

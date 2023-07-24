@@ -1,9 +1,11 @@
 package io.github.lexadiky.pdx.feature.account.details
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -12,11 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import io.github.lexadiky.akore.alice.robo.DIFeature
 import io.github.lexadiky.akore.alice.robo.di
 import io.github.lexadiky.akore.alice.robo.viewModel
 import io.github.lexadiky.pdx.feature.account.R
 import io.github.lexadiky.pdx.library.arc.Page
+import io.github.lexadiky.pdx.library.uikit.resources.ImageTransformation
+import io.github.lexadiky.pdx.library.uikit.resources.render
 import io.github.lexadiky.pdx.library.uikit.theme.grid
 import io.github.lexadiky.pdx.library.uikit.widget.BottomSheetBasement
 import io.github.lexadiky.pdx.library.uikit.widget.scaffold.BottomSheetHeaderScaffold
@@ -36,7 +41,21 @@ private fun AccountDetailsPageImpl(vm: AccountDetailsSocket = di.viewModel()) = 
     ) {
         item {
             BottomSheetHeaderScaffold(
-                title = { Text(text = state.username ?: stringResource(id = R.string.account_details_default_username)) }
+                icon = {
+                    Image(
+                        painter = state.avatar.render(
+                            transformations = listOf(ImageTransformation.CropTransparent)
+                        ),
+                        contentDescription = stringResource(id = R.string.account_details_avatar_placeholder),
+                        modifier = Modifier.size(MaterialTheme.grid.x4)
+                    )
+                },
+                title = {
+                    Text(
+                        text = state.username
+                            ?: stringResource(id = R.string.account_details_default_username)
+                    )
+                }
             )
         }
         item {
