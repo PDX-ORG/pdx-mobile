@@ -1,8 +1,8 @@
 # PDX Android
 
 ![Github Actions Build Apl](https://img.shields.io/github/actions/workflow/status/PDX-ORG/pdx-mobile/build_apk.yml)
-![Stars](https://img.shields.io/github/stars/PDX-ORG/pdx-mobile)
-![Lines](https://img.shields.io/tokei/lines/github/PDX-ORG/pdx-mobile)
+![Stars](https://img.shields.io/github/stars/lexa-diky/pdx-mobile)
+![Lines](https://img.shields.io/tokei/lines/github/lexa-diky/pdx-mobile)
 
 **The** open-source Pokèdex. [Google Play](https://play.google.com/store/apps/details?id=io.github.lexadiky.pdx) open beta available.
 
