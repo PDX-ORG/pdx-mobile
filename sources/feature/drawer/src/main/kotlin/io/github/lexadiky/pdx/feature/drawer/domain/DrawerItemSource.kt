@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.Star
 import io.github.lexadiky.pdx.feature.drawer.R
 import io.github.lexadiky.pdx.feature.drawer.entity.AuthInDrawerFeatureToggle
 import io.github.lexadiky.pdx.feature.drawer.entity.DrawerItem
+import io.github.lexadiky.pdx.feature.drawer.entity.NewsInDrawerFeatureToggle
 import io.github.lexadiky.pdx.library.featuretoggle.FeatureToggleManager
 import io.github.lexadiky.pdx.library.nibbler.NavigateCommand
 import io.github.lexadiky.pdx.library.nibbler.Navigator
@@ -85,12 +86,16 @@ internal class DrawerItemSource(
         route = Route.from(route)
     )
 
-    private fun newsItem(currentRoute: Route?): DrawerItem {
-        return createNavigationItem(
-            icon = ImageResource.from(Icons.Default.Notifications),
-            title = StringResource.from(io.github.lexadiky.pdx.feature.drawer.R.string.drawer_item_news_title),
-            route = "pdx://news",
-            currentRoute = currentRoute?.uri
-        )
+    private fun newsItem(currentRoute: Route?): DrawerItem? {
+        return if (toggleManager.resolve(NewsInDrawerFeatureToggle)) {
+            createNavigationItem(
+                icon = ImageResource.from(Icons.Default.Notifications),
+                title = StringResource.from(R.string.drawer_item_news_title),
+                route = "pdx://news",
+                currentRoute = currentRoute?.uri
+            )
+        } else {
+            null
+        }
     }
 }
