@@ -5,5 +5,5 @@ import io.github.lexadiky.pdx.library.featuretoggle.BooleanFeatureToggle
 internal val AuthInDrawerFeatureToggle = BooleanFeatureToggle(
     id = "auth_in_drawer",
     group = "drawer",
-    defaultValue = true
+    defaultValue = false
 )
