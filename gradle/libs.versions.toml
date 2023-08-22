@@ -1,7 +1,7 @@
 [versions]
 
 ktor = "2.3.3"
-accompanist = "0.30.1"
+accompanist = "0.32.0"
 akore = "-SNAPSHOT"
 coroutines = "1.7.3"
 datastore = "1.0.0"
