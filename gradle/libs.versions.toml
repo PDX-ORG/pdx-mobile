@@ -6,7 +6,7 @@ akore = "-SNAPSHOT"
 coroutines = "1.7.3"
 datastore = "1.0.0"
 agp = "8.2.0-alpha11"
-kotlin = "1.9.0"
+kotlin = "1.9.10"
 baseline-profile = "1.2.0-beta01"
 
 [libraries]
