@@ -86,7 +86,7 @@ akore-alice-robo = { module = "com.github.akore-org.alice:robo", version = "9bf3
 pokeapi = "com.github.lexa-diky:pokeapi-kotlin:d4fa57d81f"
 
 # Serialization
-snakeyaml = "org.yaml:snakeyaml:2.1"
+snakeyaml = "org.yaml:snakeyaml:2.2"
 kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
 
 # Code generation
