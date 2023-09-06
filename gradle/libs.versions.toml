@@ -16,7 +16,7 @@ kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", 
 kotlin-coroutines-gmsIntegration = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "coroutines" }
 
 # Kotlinx
-kotlin-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
+kotlin-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.1"
 kotlin-collections-immutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
 kotlin-reflection = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
