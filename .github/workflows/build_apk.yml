@@ -25,7 +25,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
     - name: Setup Android SDK
-      uses: android-actions/setup-android@v2
+      uses: android-actions/setup-android@v3
     - name: Create Google Services JSON File
       env:
         GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
