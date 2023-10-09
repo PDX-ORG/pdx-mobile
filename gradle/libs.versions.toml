@@ -117,7 +117,7 @@ kotlin-kover = { id = "org.jetbrains.kotlinx.kover", version = "0.7.3" }
 
 # Lint
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.1" }
-buildHealth = { id = "com.autonomousapps.dependency-analysis", version = "1.24.0" }
+buildHealth = { id = "com.autonomousapps.dependency-analysis", version = "1.25.0" }
 
 # Conventions
 pdx-convention-target = { id = "io.github.lexadiky.pdx.plugin.module.target", version = "indev" }
