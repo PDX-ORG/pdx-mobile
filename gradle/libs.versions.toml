@@ -116,7 +116,7 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 kotlin-kover = { id = "org.jetbrains.kotlinx.kover", version = "0.7.3" }
 
 # Lint
-detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.1" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.3" }
 buildHealth = { id = "com.autonomousapps.dependency-analysis", version = "1.25.0" }
 
 # Conventions
