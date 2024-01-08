@@ -90,7 +90,7 @@ snakeyaml = "org.yaml:snakeyaml:2.2"
 kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
 
 # Code generation
-kotlinpoet = "com.squareup:kotlinpoet:1.14.2"
+kotlinpoet = "com.squareup:kotlinpoet:1.15.3"
 
 # Plugins
 classpath-google-services = "com.google.gms:google-services:4.3.15"
