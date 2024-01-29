@@ -35,7 +35,7 @@ android-compose-ui-preview = { module = "androidx.compose.ui:ui-tooling-preview"
 android-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 android-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 android-activity-compose = "androidx.activity:activity-compose:1.7.2"
-android-compose-material3 = "androidx.compose.material3:material3:1.1.1"
+android-compose-material3 = "androidx.compose.material3:material3:1.1.2"
 android-compose-viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
 
 # Navigation
