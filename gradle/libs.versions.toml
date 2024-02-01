@@ -1,6 +1,6 @@
 [versions]
 
-ktor = "2.3.5"
+ktor = "2.3.7"
 accompanist = "0.32.0"
 akore = "-SNAPSHOT"
 coroutines = "1.7.3"
