@@ -87,7 +87,7 @@ pokeapi = "com.github.lexa-diky:pokeapi-kotlin:d4fa57d81f"
 
 # Serialization
 snakeyaml = "org.yaml:snakeyaml:2.2"
-kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
+kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3"
 
 # Code generation
 kotlinpoet = "com.squareup:kotlinpoet:1.15.3"
