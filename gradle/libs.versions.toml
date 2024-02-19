@@ -113,7 +113,7 @@ android-baselineprofile = { id = "androidx.baselineprofile", version.ref = "base
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kotlin-kover = { id = "org.jetbrains.kotlinx.kover", version = "0.7.3" }
+kotlin-kover = { id = "org.jetbrains.kotlinx.kover", version = "0.7.6" }
 
 # Lint
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.4" }
