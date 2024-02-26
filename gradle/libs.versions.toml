@@ -51,7 +51,7 @@ android-mops-datastore-android = { module = "androidx.datastore:datastore-prefer
 android-mops-datastore = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastore" }
 
 # Image loading
-coil-compose-base = "io.coil-kt:coil-compose-base:2.4.0"
+coil-compose-base = "io.coil-kt:coil-compose-base:2.6.0"
 
 # Functional programming
 arrow-core = "io.arrow-kt:arrow-core:1.2.1"
