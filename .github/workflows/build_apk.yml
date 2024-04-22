@@ -33,7 +33,7 @@ jobs:
         echo "$GOOGLE_SERVICES_JSON" > ./sources/target/app/google-services.json
         echo "$GOOGLE_SERVICES_JSON" > ./sources/target/type-calculator/google-services.json
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@8baac4c8ef753599f92eeb509c246d09d6250fa6
+      uses: gradle/gradle-build-action@e2097ccd7e8ed48671dc068ac4efa86d25745b39
       with:
         arguments: clean assemble test --stacktrace
     - uses: actions/upload-artifact@v3
