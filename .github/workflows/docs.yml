@@ -32,7 +32,7 @@ jobs:
       - name: Run mkdocs build
         run: mkdocs build -c -d ./build/site
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
