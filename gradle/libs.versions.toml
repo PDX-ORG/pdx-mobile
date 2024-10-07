@@ -93,7 +93,7 @@ kotlin-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.
 kotlinpoet = "com.squareup:kotlinpoet:1.15.3"
 
 # Plugins
-classpath-google-services = "com.google.gms:google-services:4.3.15"
+classpath-google-services = "com.google.gms:google-services:4.4.2"
 classpath-firebase-crashlytics = "com.google.firebase:firebase-crashlytics-gradle:2.9.5"
 classpath-firebase-preformance = "com.google.firebase:perf-plugin:1.4.2"
 classpath-android-agp = { module = "com.android.application:com.android.application.gradle.plugin", version.ref = "agp" }
