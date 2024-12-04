@@ -36,7 +36,7 @@ jobs:
       uses: gradle/gradle-build-action@66535aaf56f831b35e3a8481c9c99b665b84dd45
       with:
         arguments: clean assemble test --stacktrace
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       name: Upload artifacts
       with:
         name: outputs
